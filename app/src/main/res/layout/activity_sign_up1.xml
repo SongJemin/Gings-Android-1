@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+   android:background="#f9f9f9"
+    tools:context=".SignUp1Activity">
+    <TextView
+        android:gravity="center"
+        android:background="#b0caea"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:textSize="14sp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="6sp"
+        android:text="이용약관"
+        />
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_alignParentLeft="true"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="6sp"
+            android:id="@+id/tv_sign_up_personal_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개인정보 수집 및 이용"/>
+        <CheckBox
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_width="25dp"
+            android:layout_height="17dp"
+            android:id="@+id/cb_sign_up1_personal_check"/>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:background="@drawable/back"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/tv_sign_up_personal_info" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_alignParentLeft="true"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:id="@+id/tv_sign_up1_using_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이용 약관 동의"/>
+        <CheckBox
+            android:layout_alignParentRight="true"
+            android:layout_width="25dp"
+            android:layout_height="17dp"
+            android:id="@+id/cb_sign_up1_using_agree_check"/>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:background="@drawable/back"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/tv_sign_up1_using_agree" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tv_sign_up1_membership_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="멤버십 원칙 동의"/>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:background="@drawable/back"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/tv_sign_up1_membership_agree" />
+        <CheckBox
+            android:layout_alignParentRight="true"
+            android:layout_width="25dp"
+            android:layout_height="17dp"
+            android:id="@+id/cb_sign_up1_membership_agree_check"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginRight="30dp">
+
+        <TextView
+            android:id="@+id/tv_sign_up1_all_agree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6sp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+           android:text="위 내용에 모두 동의합니다."/>
+
+        <CheckBox
+            android:id="@+id/cb_sign_up1_all_agree_check"
+            android:layout_width="25dp"
+            android:layout_height="17dp"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/tv_sign_up1_next_btn"
+        android:layout_gravity="center"
+        android:background="#b0caea"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:textSize="15sp"
+        android:textColor="#f6f9fd"
+        android:lineSpacingExtra="5sp"
+        android:gravity="center"
+      android:text="다음"/>
+</LinearLayout>

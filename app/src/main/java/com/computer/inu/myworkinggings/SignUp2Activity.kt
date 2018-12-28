@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_sign_up2.*
-import kotlinx.android.synthetic.main.activity_test.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/rl_detail_board_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:paddingTop="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_detail_board_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/tv_detail_board_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="18.5dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="1sp"
+                android:text="질문"
+                android:textColor="#b0caea"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/v_detail_board_slash"
+                android:layout_width="1dp"
+                android:layout_height="15.6dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/tv_detail_board_category"
+                android:background="#999999" />
+
+
+            <TextView
+                android:id="@+id/tv_detail_board_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/v_detail_board_slash"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="1sp"
+                android:text="유능한 안드로이드 개발자 구하는 방법이 뭘까요?"
+                android:textColor="#222222"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_detail_board_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_detail_board_title"
+            android:layout_marginStart="65dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_detail_board_tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:paddingEnd="15dp"
+                android:text="#사업"
+                android:textColor="#999999"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_tag2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:paddingEnd="15dp"
+                android:text="#공모전"
+                android:textColor="#999999"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_tag3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:paddingEnd="15dp"
+                android:text="#준비"
+                android:textColor="#999999"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_tag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:paddingEnd="15dp"
+                android:text="#정보"
+                android:textColor="#999999"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_tag5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:paddingEnd="15dp"
+                android:text="#팁"
+                android:textColor="#999999"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_detail_board_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_detail_board_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="6sp"
+            android:text="2시간전"
+            android:textColor="#999999"
+            android:textSize="10sp" />
+
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_detail_board_contents_image"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="#b0caea" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_detail_board_contents_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="안드로이드 잘하는사람 여기 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_contents_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_detail_board_contents_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="6sp"
+                android:text="더보기"
+                android:textColor="#a7a7a7"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <ImageView
+            android:id="@+id/iv_detail_board_profile_img"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="19dp"
+            android:src="#b0caea" />
+
+        <TextView
+            android:id="@+id/tv_detail_board_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="63.5dp"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="4sp"
+            android:text="이충엽"
+            android:textColor="#222222"
+            android:textSize="12sp" />
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="7.6dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="104dp"
+            android:background="#999999" />
+
+        <TextView
+            android:id="@+id/tv_detail_board_profile_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="117dp"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="6sp"
+            android:text="깅스"
+            android:textColor="#525252"
+            android:textSize="10sp" />
+
+
+        <TextView
+            android:id="@+id/tv_detail_board_profile_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_detail_board_profile_team"
+            android:text="/" />
+
+        <TextView
+            android:id="@+id/tv_detail_board_profile_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_detail_board_profile_slash"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="6sp"
+            android:text="PM"
+            android:textColor="#525252"
+            android:textSize="10sp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_detail_board_like"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="180dp">
+
+            <ImageView
+                android:id="@+id/iv_detail_board_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_thumb_up_black_24dp" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_like_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toEndOf="@+id/iv_detail_board_like"
+                android:layout_toRightOf="@id/iv_detail_board_like"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:text="999+"
+                android:textColor="#222222"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_detail_board_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/rl_detail_board_like">
+
+            <ImageView
+                android:id="@+id/iv_detail_board_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_comment_black_24dp" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_comment_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/iv_detail_board_comment"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="12sp"
+                android:text="999+"
+                android:textColor="#222222"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_detail_board_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/rl_detail_board_comment"
+            android:src="@drawable/ic_share_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_detail_board_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/iv_detail_board_share"
+            android:src="@drawable/ic_more_vert_black_24dp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

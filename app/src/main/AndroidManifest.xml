@@ -22,7 +22,8 @@
         <activity
             android:name=".TestActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".BottomNaviActivity"></activity>
+        <activity android:name=".BottomNaviActivity" />
+        <activity android:name=".DetailBoardActivity"></activity>
     </application>
 
 </manifest>

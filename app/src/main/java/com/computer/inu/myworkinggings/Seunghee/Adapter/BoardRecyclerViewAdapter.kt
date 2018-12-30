@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.Seunghee.Data.BoardData
+import com.computer.inu.myworkinggings.data.BoardData
 import java.util.ArrayList
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardData>)

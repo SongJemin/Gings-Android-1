@@ -221,7 +221,7 @@
             android:text="이충엽"
             android:textColor="#222222"
             android:textSize="12sp" />
-        
+
         <TextView
 
             android:id="@+id/tv_item_board_profile_team"

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="63dp">
+
+        <TextView
+            android:id="@+id/item_act_question_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="질문"
+            android:textSize="15sp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="18.5dp"
+            />
+
+        <View
+            android:id="@+id/item_act_view"
+            android:layout_width="1dp"
+            android:layout_height="15.6dp"
+            android:background="#999999"
+            android:layout_toRightOf="@+id/item_act_question_tv"
+            android:layout_marginTop="19.8dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/item_act_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="창업하고 싶은데 어떻게 준비하면 좋을까요?"
+            android:textSize="15sp"
+            android:textColor="#222222"
+            android:layout_toRightOf="@+id/item_act_view"
+            android:layout_alignTop="@+id/item_act_question_tv"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:id="@+id/item_act_hashtag_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#사업 #창업 #준비 #팁"
+            android:layout_below="@+id/item_act_title_tv"
+            android:layout_alignLeft="@+id/item_act_title_tv"
+            android:textSize="10sp"
+            android:textColor="#999999"
+            android:layout_marginTop="3dp"
+            />
+
+        <TextView
+            android:id="@+id/item_act_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3시간전"
+            android:textSize="10sp"
+            android:textColor="#999999"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="31dp"
+            android:layout_below="@+id/item_act_title_tv"
+            />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/item_act_background_img"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/invalid_name"
+            android:scaleType="fitXY"
+            android:layout_marginTop="8dp"
+            />
+        <TextView
+            android:id="@+id/item_act_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이번에 처음 준비하는데 너무 어렵네요ㅠㅠ
+팁 좀 주세요...ㅠㅠ"
+            android:textSize="13sp"
+            android:textColor="#222222"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="66.5dp"
+            android:layout_marginRight="69.5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="18dp"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                >
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/item_act_profile_img"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="19dp"
+                    android:src="@drawable/invalid_name"
+                    />
+
+                <TextView
+                    android:id="@+id/item_act_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이충엽"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="14.5dp"
+                    android:layout_gravity="center"
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="7.6dp"
+                    android:background="#999999"
+                    android:layout_marginLeft="7.2dp"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/item_act_role_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="깅스/PM"
+                    android:textSize="10sp"
+                    android:layout_marginLeft="8.8dp"
+                    android:layout_gravity="center"
+                    android:textColor="#525252"
+                    />
+
+
+
+        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:layout_width="24.3dp"
+                    android:layout_height="24.3dp"
+                    android:src="@drawable/invalid_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="155.3dp"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="999+"
+                    android:textSize="10sp"
+                    android:layout_centerVertical="true"
+                    android:textColor="#525252"
+                    android:layout_marginRight="134dp"
+                    android:layout_alignParentRight="true"
+                    />
+
+                <ImageView
+                    android:layout_width="24.3dp"
+                    android:layout_height="24.3dp"
+                    android:src="@drawable/invalid_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="101.1dp"
+                    android:layout_centerVertical="true"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="999+"
+                    android:textSize="10sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="80dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#525252"
+                    />
+                <ImageView
+                    android:layout_width="24.3dp"
+                    android:layout_height="24.3dp"
+                    android:src="@drawable/invalid_name"
+                    android:layout_marginRight="51.4dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    />
+                <ImageView
+                    android:layout_width="24.3dp"
+                    android:layout_height="24.3dp"
+                    android:src="@drawable/invalid_name"
+                    android:layout_marginLeft="14.4dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:layout_centerVertical="true"
+                    />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e2e8ed"
+        android:layout_marginTop="16dp"
+        />
+</LinearLayout>

@@ -15,6 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name=".SignUp1Activity" />
         <activity android:name=".SignUp2Activity" />
         <activity android:name=".SignUp3Activity" />
@@ -25,6 +26,13 @@
             android:windowSoftInputMode="adjustResize">
 
         </activity>
+
+        <activity
+            android:name=".Seunghee.Activity.CategoryMenuActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" >
+
+        </activity>
+
 
 
         <activity android:name=".DetailBoardActivity"></activity>

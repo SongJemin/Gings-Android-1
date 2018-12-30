@@ -1,20 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
+    android:layout_height="match_parent"
+    android:background="#f9f9f9">
+<LinearLayout
+    android:gravity="center"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="56dp">
     <RelativeLayout
+        android:background="#f6f9fd"
+        android:layout_width="344dp"
+        android:layout_height="34dp"
+        android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_directory_picture"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_width="17.8dp"
+                android:layout_height="17.8dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="18.5dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="1sp"
+                android:textColor="#b0caea"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_toRightOf="@id/iv_directory_picture"
+                android:id="@+id/et_directory_searching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+               android:layout_marginStart="18.2dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="1sp"
+                android:textColor="#222222"
+                android:textSize="15sp"
+                android:hint="이름,역할,소속,협업 분야,키워드" />
+        </RelativeLayout>
+</LinearLayout>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#999999"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="9sp"
+        android:text="새로운 깅스 멤버를 반겨주세요!"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_directory_user_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="wrap_content"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="I'm Directory Fragment" />
-
-    </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

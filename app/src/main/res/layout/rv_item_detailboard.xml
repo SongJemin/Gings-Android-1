@@ -23,19 +23,21 @@
 
 
         <View
-            android:layout_toRightOf="@+id/tv_item_detailboard_profile_name"
+            android:id="@+id/v_item_detailboard_v"
+            android:layout_toRightOf="@id/tv_item_detailboard_profile_name"
             android:layout_marginTop="15.5dp"
             android:layout_width="1dp"
             android:layout_height="7.6dp"
-     android:layout_marginLeft="4dp"
+     android:layout_marginLeft="7.2dp"
             android:background="#999999" />
 
         <TextView
+            android:layout_marginLeft="7.8dp"
+            android:layout_toRightOf="@+id/v_item_detailboard_v"
             android:id="@+id/tv_item_detailboard_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:layout_marginStart="117dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="6sp"
             android:textColor="#525252"
@@ -53,4 +55,12 @@
             android:lineSpacingExtra="9sp"
             android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
             />
+        <ImageView
+            android:id="@+id/iv_item_board_image_contents"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_item_detailboard_contents"
+            android:layout_width="245dp"
+            android:layout_height="245dp"
+            android:src="@mipmap/ic_launcher_round"/>
 </RelativeLayout>

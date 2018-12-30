@@ -18,17 +18,7 @@
         <activity android:name=".SignUp1Activity" />
         <activity android:name=".SignUp2Activity" />
         <activity android:name=".SignUp3Activity" />
-
         <activity android:name=".BottomNaviActivity"></activity>
-
-        <activity android:name=".UpBoardActivity"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-
-
         <activity android:name=".DetailBoardActivity"></activity>
-
     </application>
-
 </manifest>

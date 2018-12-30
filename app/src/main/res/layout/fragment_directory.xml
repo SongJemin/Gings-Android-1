@@ -22,13 +22,16 @@
                 android:layout_height="17.8dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="18.5dp"
+                android:layout_marginStart="15dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:textColor="#b0caea"
                 android:textSize="15sp" />
 
             <EditText
+                android:background="@null"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
                 android:layout_toRightOf="@id/iv_directory_picture"
                 android:id="@+id/et_directory_searching"
                 android:layout_width="wrap_content"
@@ -40,9 +43,18 @@
                 android:textColor="#222222"
                 android:textSize="15sp"
                 android:hint="이름,역할,소속,협업 분야,키워드" />
+        <ImageView
+            android:id="@+id/iv_directory_finish"
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/ic_launcher_round"/>
         </RelativeLayout>
 </LinearLayout>
     <TextView
+        android:id="@+id/tv_directory_welcome"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
@@ -58,5 +70,23 @@
         android:id="@+id/rv_directory_user_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
+<ImageView
+    android:layout_marginTop="158.7dp"
+    android:layout_gravity="center"
+    android:src="@mipmap/ic_launcher_round"
+    android:id="@+id/iv_directory_searching"
+    android:layout_width="77.2dp"
+    android:layout_height="77.2dp" />
+    <TextView
+        android:id="@+id/tv_directory_searching_text"
+        android:layout_marginTop="41dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#999999"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="6sp"
+       android:text="깅스의 멤버를 검색합니다."
+        />
 </LinearLayout>

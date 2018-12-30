@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.computer.inu.myworkinggings.adapter.BoardRecyclerViewAdapter
+import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.data.BoardData
+import com.computer.inu.myworkinggings.Seunghee.Data.BoardData
 import kotlinx.android.synthetic.main.fragment_home_board.*
 
 class HomeBoardFragment : Fragment(){
@@ -40,13 +40,13 @@ class HomeBoardFragment : Fragment(){
         var dataList: ArrayList<BoardData> = ArrayList()
         //dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53","사진 없는뎁..", "이 편지는 행운의 편지입니다", true, "사진없눈뎁", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
         //dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53","사진 없는뎁..", "이 편지는 행운의 편지입니다", "사진없눈뎁", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
-        dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
+        dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
 
-        dataList.add(BoardData("창업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
+        dataList.add(BoardData("창업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
 
-        dataList.add(BoardData("창", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
+        dataList.add(BoardData("창", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
 
-        dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
+        dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
 
         /*dataList.add(BoardData("영감", "영감이 떠오른드아!!!", "#배고푸다", "오후 4:43"))
         dataList.add(BoardData("협업", "깅스쵝오!!!", "하배고파", "오후 3:03"))

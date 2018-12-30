@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings.data
+package com.computer.inu.myworkinggings.Moohyeon.Data
 
 data class ReBoardData(
         var name : String,

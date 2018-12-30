@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings.adapter
+package com.computer.inu.myworkinggings.Seunghee.Adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

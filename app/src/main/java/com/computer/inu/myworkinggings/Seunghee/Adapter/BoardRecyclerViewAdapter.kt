@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings.adapter
+package com.computer.inu.myworkinggings.Seunghee.Adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -16,6 +16,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardDa
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
 
+        //test
 
 
         return Holder(view)

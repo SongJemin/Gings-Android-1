@@ -14,7 +14,7 @@ class LoginActivity : AppCompatActivity() {
       startActivity<SignUp1Activity>()
         }
         tv_login_about_gings.setOnClickListener {
-
+           startActivity<DetailBoardActivity>()
         }
         tv_login_login_button.setOnClickListener {
             startActivity<BottomNaviActivity>()

@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_item_board_list"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/rl_detail_board_list"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="#f9f9f9" />
-
-    //title
+    android:orientation="vertical"
+    android:paddingTop="4dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="71dp">
 
         <RelativeLayout
-            android:id="@+id/rl_item_board_title"
+            android:id="@+id/rl_detail_board_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true">
 
             <TextView
-                android:id="@+id/tv_item_board_category"
+                android:id="@+id/tv_detail_board_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -31,45 +27,45 @@
                 android:layout_marginStart="18.5dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
-                android:text="협업"
+                android:text="질문"
                 android:textColor="#b0caea"
                 android:textSize="15sp" />
 
             <View
-                android:id="@+id/v_item_board_slash"
+                android:id="@+id/v_detail_board_slash"
                 android:layout_width="1dp"
                 android:layout_height="15.6dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:layout_toRightOf="@+id/tv_item_board_category"
+                android:layout_toRightOf="@+id/tv_detail_board_category"
                 android:background="#999999" />
 
 
             <TextView
-                android:id="@+id/tv_item_board_title"
+                android:id="@+id/tv_detail_board_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:layout_toRightOf="@+id/v_item_board_slash"
+                android:layout_toRightOf="@+id/v_detail_board_slash"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
-                android:text="개발 협업할 디자이너 구합니다!"
+                android:text="유능한 안드로이드 개발자 구하는 방법이 뭘까요?"
                 android:textColor="#222222"
                 android:textSize="15sp" />
 
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/ll_item_board_tag"
+            android:id="@+id/ll_detail_board_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rl_item_board_title"
+            android:layout_below="@id/rl_detail_board_title"
             android:layout_marginStart="65dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_item_board_tag1"
+                android:id="@+id/tv_detail_board_tag1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -81,19 +77,19 @@
                 android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/tv_item_board_tag2"
+                android:id="@+id/tv_detail_board_tag2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="12sp"
                 android:paddingEnd="15dp"
-                android:text="#창업"
+                android:text="#공모전"
                 android:textColor="#999999"
                 android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/tv_item_board_tag3"
+                android:id="@+id/tv_detail_board_tag3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -105,7 +101,7 @@
                 android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/tv_item_board_tag4"
+                android:id="@+id/tv_detail_board_tag4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -117,7 +113,7 @@
                 android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/tv_item_board_tag5"
+                android:id="@+id/tv_detail_board_tag5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -132,82 +128,82 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_item_board_time"
+            android:id="@+id/tv_detail_board_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rl_item_board_title"
+            android:layout_below="@id/rl_detail_board_title"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="30dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="6sp"
-            android:text="3시간전"
+            android:text="2시간전"
             android:textColor="#999999"
             android:textSize="10sp" />
 
 
     </RelativeLayout>
 
-    //contents
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_item_board_contents_image"
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:background="#b0caea" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_detail_board_contents_image"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="#b0caea" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="65dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="65dp"
-                android:layout_marginBottom="10dp">
-
-                <TextView
-                    android:id="@+id/tv_item_board_contents_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="안녕하세요ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ오안녕하세요 키이이이 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/tv_item_board_contents_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_item_board_contents_text"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="0dp"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="6sp"
-                    android:text="더보기"
-                    android:textColor="#a7a7a7"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    //profile
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_detail_board_contents_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="안드로이드 잘하는사람 여기 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/tv_detail_board_contents_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_detail_board_contents_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="6sp"
+                android:text="더보기"
+                android:textColor="#a7a7a7"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="64dp">
 
         <ImageView
             android:id="@+id/iv_item_board_profile_img"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
+            android:layout_width="32dp" android:layout_height="32dp"
             android:layout_marginStart="19dp"
-            android:src="#b0caea" />
+            android:src="#b0caea"
+            android:layout_alignParentStart="true" android:layout_centerVertical="true"/>
 
         <TextView
             android:id="@+id/tv_item_board_profile_name"
@@ -221,9 +217,16 @@
             android:text="이충엽"
             android:textColor="#222222"
             android:textSize="12sp" />
-        
-        <TextView
 
+        <View
+            android:layout_width="1dp"
+            android:layout_height="7.6dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="104dp"
+            android:background="#999999" />
+
+        <TextView
             android:id="@+id/tv_item_board_profile_team"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -232,37 +235,37 @@
             android:layout_marginStart="117dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="6sp"
-            android:text="깅스"
             android:textColor="#525252"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:text="깅스" />
 
 
         <TextView
             android:id="@+id/tv_item_board_profile_slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/tv_item_board_profile_team"
-            android:text="/" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"/>
 
         <TextView
             android:id="@+id/tv_item_board_profile_role"
+            android:layout_toRightOf="@+id/tv_item_board_profile_slash"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/tv_item_board_profile_slash"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="6sp"
-            android:text="PM"
             android:textColor="#525252"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:text="PM" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="18dp">
+            android:layout_centerVertical="true">
 
             <RelativeLayout
                 android:id="@+id/rl_item_board_like"
@@ -343,5 +346,12 @@
         </RelativeLayout>
 
     </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_item_detailboard_list"
+        android:layout_width="match_parent"
+        android:nestedScrollingEnabled="false"
+        android:layout_height="wrap_content"/>
 
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

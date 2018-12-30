@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="72dp">
 
-        //style="@style/TextStyle"
 
         <TextView
             android:layout_width="wrap_content"

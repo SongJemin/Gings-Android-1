@@ -16,6 +16,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardDa
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
 
+        //test
 
 
         return Holder(view)

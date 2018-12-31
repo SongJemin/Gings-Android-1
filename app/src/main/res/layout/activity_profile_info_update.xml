@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    //탑
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:background="#FFFFFF">
+
+
+
+        <TextView
+                android:textSize="15sp"
+                android:textColor="#040404"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="프로필 정보 수정"
+                android:lineHeight="20sp"
+                android:layout_centerInParent="true"
+        />
+
+
+        <ImageView
+                android:id="@+id/iv_btn_category_board_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_close_black_24dp"/>
+
+        <ImageView
+                android:id="@+id/iv_btn_category_board_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_close_black_24dp"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginTop="71dp"
+                android:background="#e2e8ed"></View>
+    </RelativeLayout>
+
+    //기입창
+
+    <LinearLayout
+            android:layout_marginTop="30dp"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
+                      android:orientation="horizontal"
+                      android:paddingStart="37dp" android:paddingEnd="16dp">
+
+            <TextView   android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#333333"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="4sp"
+                        android:text="지역"
+                      android:layout_gravity="center"/>
+
+            <android.support.v7.widget.AppCompatSpinner
+
+                    android:id="@+id/sp_profile_info_update_city"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginEnd="24dp"
+                    android:entries="@array/city"/>
+
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+        //역할
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="50dp"
+                      android:orientation="horizontal"
+                      android:paddingStart="37dp"
+                      android:paddingEnd="16dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="13sp"
+                      android:textColor="#333333"
+                      android:letterSpacing="-0.01"
+                      android:lineSpacingExtra="4sp"
+                      android:text="역할"
+                      android:layout_gravity="center"/>
+            <EditText android:id="@+id/et_profile_info_update_role"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_marginStart="55dp"
+                      android:layout_marginEnd="16dp"
+                      android:background="@null"
+            />
+
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+        //소속
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp"
+                android:paddingEnd="16dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="13sp"
+                      android:textColor="#333333"
+                      android:letterSpacing="-0.01"
+                      android:lineSpacingExtra="4sp"
+                      android:text="소속"
+                      android:layout_gravity="center"/>
+            <EditText
+                    android:id="@+id/et_profile_info_update_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+            />
+
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+        //활동분야
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp"
+                android:paddingEnd="16dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="13sp"
+                      android:textColor="#333333"
+                      android:letterSpacing="-0.01"
+                      android:lineSpacingExtra="4sp"
+                      android:text="활동 분야"
+                      android:layout_gravity="center"/>
+            <EditText android:id="@+id/et_profile_info_update_co_part"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_marginStart="29dp"
+                      android:layout_marginEnd="16dp"
+                      android:background="@null"
+
+            />
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+        //협업여부
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp"
+                android:paddingEnd="16dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="13sp"
+                      android:textColor="#333333"
+                      android:letterSpacing="-0.01"
+                      android:lineSpacingExtra="4sp"
+                      android:text="협업 여부"
+                      android:layout_gravity="center"/>
+            <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/sp_profile_info_update_co_available"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:entries="@array/co_available"
+            />
+
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+        //업무 상태
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp"
+                android:paddingEnd="16dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="13sp"
+                      android:textColor="#333333"
+                      android:letterSpacing="-0.01"
+                      android:lineSpacingExtra="4sp"
+                      android:text="업무 상태"
+                      android:layout_gravity="center"/>
+            <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/sp_profile_info_update_co_state"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:entries="@array/co_state"/>
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+        //keyword
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp"
+                android:paddingEnd="16dp">
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="13sp"
+                      android:textColor="#333333"
+                      android:letterSpacing="-0.01"
+                      android:lineSpacingExtra="4sp"
+                      android:text="키워드"
+                      android:layout_gravity="center"/>
+            <EditText
+                    android:id="@+id/et_profile_info_update_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13sp"
+                    android:textColor="#999999"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:layout_marginStart="43dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="#최대_5개"
+                    android:background="@null"
+
+            />
+        </LinearLayout>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed"></View>
+
+    </LinearLayout>
+
+
+    <Button
+            android:id="@+id/bt_profile_info_update_complete"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="확인"
+            android:background="#b0caea" android:textColor="#ffffff"/>
+
+</LinearLayout>

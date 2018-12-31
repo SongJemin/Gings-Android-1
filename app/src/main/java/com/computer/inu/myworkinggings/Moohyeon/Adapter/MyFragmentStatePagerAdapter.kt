@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.RoungeFragment
 import com.computer.inu.myworkinggings.Hyunjin.Activity.TopNaviMessageNoticeActivity
+import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
 import com.computer.inu.myworkinggings.fragment.*
 
 class MyFragmentStatePagerAdapter(fm : FragmentManager, val fragmentCount : Int): FragmentStatePagerAdapter(fm) {

@@ -18,6 +18,7 @@
         <activity android:name=".SignUp1Activity" />
         <activity android:name=".SignUp2Activity" />
         <activity android:name=".SignUp3Activity" />
+        <activity android:name=".Hyunjin.Activity.MessageSend1Activity" />
 
         <activity android:name=".BottomNaviActivity"></activity>
 

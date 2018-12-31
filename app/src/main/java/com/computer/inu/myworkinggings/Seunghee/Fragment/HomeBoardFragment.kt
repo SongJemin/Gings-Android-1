@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings.Seunghee.Fragment
+package com.computer.inu.myworkinggings
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.Seunghee.Activity.CategoryMenuActivity
+import com.computer.inu.myworkinggings.CategoryMenuActivity
 import com.computer.inu.myworkinggings.data.BoardData
 import kotlinx.android.synthetic.main.fragment_home_board.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 
 class HomeBoardFragment : Fragment(){

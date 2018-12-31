@@ -1,18 +1,17 @@
-package com.computer.inu.myworkinggings
+package com.computer.inu.myworkinggings.Hyunjin.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import com.computer.inu.myworkinggings.Hyunjin.Activity.BottomNavigationMessageSendTabActivity
-import com.computer.inu.myworkinggings.Hyunjin.Activity.TopNaviMessageNoticeSend1Activity
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.MessageSend1Fragment
+import com.computer.inu.myworkinggings.R
 
-class MessageSend2Activity : AppCompatActivity() {
+class MessageSend1Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_message_send2)
+        setContentView(R.layout.activity_message_send1)
 
         addFragment(MessageSend1Fragment())
         addFragment_sub(TopNaviMessageNoticeSend1Activity())

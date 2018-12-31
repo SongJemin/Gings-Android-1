@@ -1,6 +1,5 @@
-package com.computer.inu.myworkinggings
+package com.computer.inu.myworkinggings.Hyunjin.Activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.computer.inu.myworkinggings.Moohyeon.Adapter.MyFragmentNoticeTabPagerAdapter
+import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_top_navi_message_notice.*
 
 class TopNaviMessageNoticeActivity : Fragment() {

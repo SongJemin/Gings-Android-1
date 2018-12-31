@@ -11,24 +11,28 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".SignUp1Activity" />
         <activity android:name=".SignUp2Activity" />
         <activity android:name=".SignUp3Activity" />
-
-        <activity android:name=".BottomNaviActivity"></activity>
-
-        <activity android:name=".UpBoardActivity"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
-
-
-        <activity android:name=".DetailBoardActivity"></activity>
-
+        <activity android:name=".BottomNaviActivity" />
+        <activity
+            android:name=".UpBoardActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".DetailBoardActivity" />
+        <activity android:name=".Hyunjin.Fragment.MessageFragment" />
+        <activity android:name=".Hyunjin.Activity.TopNaviMessageNoticeActivity" />
+        <activity android:name=".Hyunjin.Activity.MessageSend1Activity" />
+        <activity android:name=".Hyunjin.Activity.LoungeIntroduceActivity" />
+        <activity android:name=".Hyunjin.Activity.MessageSend1Activity" />
+        <activity android:name=".Hyunjin.Activity.LoungeIntroduceActivity" />
+        <activity android:name=".Hyunjin.Fragment.MessageSend1Fragment" />
+        <activity android:name=".Hyunjin.Activity.MessageSend1Activity" />
+        <activity android:name=".Hyunjin.Activity.LoungeScheduleActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:background="#ffffff"
+    >
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_message_send_picture"
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_wallpaper_black_24dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="275dp"
+        android:layout_height="match_parent"
+        >
+        <EditText
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="메세지 입력중입니다."
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:lineSpacingExtra="6sp"
+            />
 
-</android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5.4dp">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_arrow_forward_black_24dp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -4,6 +4,7 @@
     android:layout_height="72dp"
     android:background="#ebf8f8f8"
     android:orientation="horizontal">
+
     <RelativeLayout
         android:id="@+id/btn_top_navi_message_send1"
         android:layout_width="match_parent"

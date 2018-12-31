@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.Seunghee.Data.BoardData
+import com.computer.inu.myworkinggings.data.BoardData
 import kotlinx.android.synthetic.main.fragment_home_board.*
 
 class HomeBoardFragment : Fragment(){

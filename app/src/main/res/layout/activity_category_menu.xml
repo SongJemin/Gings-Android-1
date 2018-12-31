@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
+    <!--
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:background="#ffffffff"
+        android:layout_toLeftOf="@+id/ll_category_menu_bar"
+
+        android:layout_height="match_parent"></RelativeLayout>
+-->
 
 
     //메뉴바
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="240dp"
+        android:id="@+id/ll_category_menu_bar"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="0dp">
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="#ffffff"
+        android:orientation="vertical">
 
         //상단바
         <RelativeLayout
             android:id="@+id/rl_category_bar"
             android:layout_width="fill_parent"
+            android:background="#ffffff"
             android:layout_height="50dp">
 
             <TextView
@@ -27,6 +40,7 @@
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="7sp"
                 android:text="CATEGORY"
+                android:background="#ffffff"
                 android:textColor="#040404"
                 android:textSize="13sp" />
         </RelativeLayout>
@@ -54,15 +68,108 @@
                 android:background="#e2e8ed" />
         </LinearLayout>
 
-        <GridLayout
+        //디렉토리 선택
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:numColumns="3">
+            android:background="#ffffff"
+            >
+
+            //질문아이콘
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_category_menu_question_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#ffffff"
+                    android:src="@drawable/ic_face_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_category_menu_question_icon"
+                    android:layout_centerHorizontal="true"
+                    android:text="질문"
+                    android:textSize="12sp"
+                    android:textColor="#999999"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="0sp"
+                    android:theme="@style/Theme.AppCompat.Translucent" />
+            </RelativeLayout>
+
+            //영감
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_category_menu_inspiration_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#ffffff"
+                    android:src="@drawable/ic_face_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_category_menu_inspiration_icon"
+                    android:layout_centerHorizontal="true"
+                    android:text="영감"
+                    android:textSize="12sp"
+                    android:textColor="#999999"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="0sp"
+                    android:theme="@style/Theme.AppCompat.Translucent" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_category_menu_collaboration_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="#ffffff"
+                    android:src="@drawable/ic_face_black_24dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_category_menu_collaboration_icon"
+                    android:layout_centerHorizontal="true"
+                    android:text="협업"
+                    android:textSize="12sp"
+                    android:textColor="#999999"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="0sp"
+                    android:theme="@style/Theme.AppCompat.Translucent" />
+            </RelativeLayout>
 
 
-        </GridLayout>
+        </LinearLayout>
 
-    </LinearLayout> //메뉴바
+
+    </LinearLayout>//메뉴바
 
 
 </RelativeLayout>

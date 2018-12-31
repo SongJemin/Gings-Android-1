@@ -3,7 +3,6 @@
     android:id="@+id/rl_item_board_list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
     android:orientation="vertical">
 
     <View

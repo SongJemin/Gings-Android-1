@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:layout_marginBottom="8dp">
     <ImageView
         android:layout_marginTop="12dp"
-        android:id="@+id/iv_item_detailboard_profile_img"
+        android:id="@+id/iv_item_directory_profile_img"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="19dp"
@@ -11,7 +14,7 @@
 
     <TextView
         android:layout_marginTop="12dp"
-        android:id="@+id/tv_item_detailboard_profile_name"
+        android:id="@+id/tv_item_directory_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="63.5dp"
@@ -23,28 +26,65 @@
 
 
     <View
-        android:layout_toRightOf="@+id/tv_item_detailboard_profile_name"
+        android:id="@+id/v_item_directory_v"
+        android:layout_toRightOf="@+id/tv_item_directory_profile_name"
         android:layout_marginTop="16.5dp"
         android:layout_width="1dp"
         android:layout_height="7.6dp"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="7.2dp"
         android:background="#999999" />
 
     <TextView
-        android:id="@+id/tv_item_detailboard_time"
+        android:layout_toRightOf="@+id/v_item_directory_v"
+        android:id="@+id/tv_item_directory_team_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:layout_marginStart="117dp"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
         android:textSize="10sp"
-        android:text="깅스/PM" />
+        android:layout_marginLeft="8.8dp"
+        android:text="깅스" />
+    <TextView
+        android:layout_toRightOf="@+id/tv_item_directory_team_name"
+        android:id="@+id/tv_item_directory_slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#525252"
+        android:textSize="10sp"
+        android:text="/" />
+    <TextView
+        android:layout_toRightOf="@+id/tv_item_directory_slash"
+        android:id="@+id/tv_item_directory_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#525252"
+        android:textSize="10sp"
+        android:text="PM" />
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="63.5dp"
+        android:layout_below="@+id/tv_item_directory_profile_name"
+        android:id="@+id/tv_item_directory_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#999999"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="6sp"
+       android:text="2018/12/29 03:00"
+        />
     <ImageView
         android:src="@mipmap/ic_launcher_round"
         android:layout_marginTop="38dp"
-        android:id="@+id/tv_item_detailboard_contents"
+        android:id="@+id/iv_item_directory_contents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="13sp"
@@ -54,7 +94,7 @@
     <TextView
         android:id="@+id/tv_item_directory_contents"
         android:layout_marginTop="10.5dp"
-        android:layout_below="@+id/tv_item_detailboard_contents"
+        android:layout_below="@+id/iv_item_directory_contents"
         android:layout_marginStart="65dp"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
@@ -71,6 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <Button
+        android:id="@+id/btn_item_directory_message"
         android:background="#ffffff"
         android:text="메세지"
         android:layout_weight="1"
@@ -78,6 +119,7 @@
         android:layout_height="50dp" />
 
     <Button
+        android:id="@+id/btn_item_directory_guest_board"
         android:layout_weight="1"
         android:background="#ffffff"
         android:text="게스트 보드"
@@ -85,4 +127,5 @@
         android:layout_height="50dp" />
 
     </LinearLayout>
+
 </RelativeLayout>

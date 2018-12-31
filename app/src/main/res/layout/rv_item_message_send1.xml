@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f9f9f9"
+            android:id="@+id/lv_item_message_send1_sender"
+    >
+        <de.hdodenhof.circleimageview.CircleImageView android:layout_width="43dp"
+                                                      android:layout_height="43dp"
+                                                      android:src="@mipmap/ic_launcher"
+                                                      android:layout_marginTop="17dp"
+                                                      android:layout_marginLeft="15dp"
+                                                      android:id="@+id/iv_rv_item_message_send1_image"
+        />
+
+        <TextView
+                android:id="@+id/tv_rv_item_message_send1_content"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="15dp"
+                android:textSize="14sp"
+                android:background="#ffffff"
+                android:textColor="#040404"
+                android:lineSpacingExtra="6sp"
+                android:text="쌍계명가
+돼지감자차 청정한 자연의 차,
+품격 있는 명인의 차, 문화가 담긴 차! Jerusalem Artichoke Tea!!"
+        />
+
+        <TextView
+                android:id="@+id/tv_rv_item_message_send1_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="#bcc5d3"
+                android:lineSpacingExtra="6sp"
+                android:layout_marginTop="81dp"
+                android:layout_marginLeft="11dp"
+                android:gravity="end"
+                android:text="12월 4일, 18:03"
+        />
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lv_item_message_send1_sender"
+            android:id="@+id/lv_item_message_send1_receiver"
+            android:background="#f9f9f9"
+    >
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_item_message_send1_receiver_time"
+                android:layout_marginTop="105dp"
+        >
+            <TextView
+                    android:id="@+id/tv_rv_item_message_send1_receiver_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#bcc5d3"
+                    android:lineSpacingExtra="6sp"
+                    android:text="12월 4일, 18:33"
+                    android:layout_marginLeft="90dp"
+            />
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/rv_item_message_send1_receiver"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#b0caea"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="11dp"
+        >
+
+            <TextView
+                    android:id="@+id/tv_rv_item_message_send1_receiver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="0dp"
+                    android:lineSpacingExtra="7sp"
+                    android:text="돼지감자차
+자연의 건강함이 가득 담겨있는
+담백하고 풍부한 맛의 깊이를
+느낄수 있는 차입니다.
+차 우리는 시간은 3분입니다."
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

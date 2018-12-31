@@ -3,17 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <!--
-
-    <RelativeLayout
-        android:layout_width="150dp"
-        android:background="#ffffffff"
-        android:layout_toLeftOf="@+id/ll_category_menu_bar"
-
-        android:layout_height="match_parent"></RelativeLayout>
--->
-
-
     //메뉴바
     <LinearLayout
         android:id="@+id/ll_category_menu_bar"
@@ -27,23 +16,25 @@
         android:orientation="vertical">
 
         //상단바
+
         <RelativeLayout
             android:id="@+id/rl_category_bar"
             android:layout_width="fill_parent"
-            android:background="#ffffff"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="#ffffff">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:background="#ffffff"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="7sp"
                 android:text="CATEGORY"
-                android:background="#ffffff"
                 android:textColor="#040404"
                 android:textSize="13sp" />
         </RelativeLayout>
+
 
         //구분선
         <LinearLayout
@@ -68,105 +59,412 @@
                 android:background="#e2e8ed" />
         </LinearLayout>
 
-        //디렉토리 선택
+        //1st line
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="95dp"
             android:background="#ffffff"
-            >
+            android:orientation="horizontal">
 
-            //질문아이콘
+            //질문
             <RelativeLayout
-                android:layout_weight="1"
+                android:id="@+id/rl_btn_category_menu_question"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                >
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#ffffff">
 
-                <ImageView
-                    android:id="@+id/iv_category_menu_question_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
-                    android:src="@drawable/ic_face_black_24dp" />
-
-                <TextView
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_category_menu_question_icon"
-                    android:layout_centerHorizontal="true"
-                    android:text="질문"
-                    android:textSize="12sp"
-                    android:textColor="#999999"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="0sp"
-                    android:theme="@style/Theme.AppCompat.Translucent" />
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_question_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_question_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="질문"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
             </RelativeLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e2e8ed"/>
 
             //영감
             <RelativeLayout
+                android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                >
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/iv_category_menu_inspiration_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
-                    android:src="@drawable/ic_face_black_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_category_menu_inspiration_icon"
-                    android:layout_centerHorizontal="true"
-                    android:text="영감"
-                    android:textSize="12sp"
-                    android:textColor="#999999"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="0sp"
-                    android:theme="@style/Theme.AppCompat.Translucent" />
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_inspiration_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_inspiration_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="영감"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
             </RelativeLayout>
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e2e8ed"/>
+
+            //협업
             <RelativeLayout
+                android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                >
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/iv_category_menu_collaboration_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="#ffffff"
-                    android:src="@drawable/ic_face_black_24dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_category_menu_collaboration_icon"
-                    android:layout_centerHorizontal="true"
-                    android:text="협업"
-                    android:textSize="12sp"
-                    android:textColor="#999999"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="0sp"
-                    android:theme="@style/Theme.AppCompat.Translucent" />
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_collaboration_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_category_menu_collaboration_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="협업"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>//1st line
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            ></View>
+
+        //2nd line
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            //샘플
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_sample1_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_sample1_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="샘플"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
             </RelativeLayout>
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e2e8ed"/>
 
-        </LinearLayout>
+            //샘플
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_sample2_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_sample2_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="샘플"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e2e8ed"/>
+
+            //샘플
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_sample3_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_sample3_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="샘플"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout> //2nd line
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            ></View>
+
+        //3rd line
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:background="#ffffff"
+            android:orientation="horizontal">
+
+            //샘플
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_sample4_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_sample4_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="샘플"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e2e8ed"/>
+
+            //샘플
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_sample5_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_sample5_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="샘플"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e2e8ed"/>
+
+            //샘플
+            <RelativeLayout
+                android:background="#ffffff"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:id="@+id/iv_category_menu_sample6_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:src="@drawable/ic_face_black_24dp" />
+
+                    <TextView
+                        android:layout_marginTop="6.5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_category_menu_sample6_icon"
+                        android:layout_centerHorizontal="true"
+                        android:background="#ffffff"
+                        android:letterSpacing="-0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:text="샘플"
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout> //3rd line
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            ></View>
 
 
     </LinearLayout>//메뉴바

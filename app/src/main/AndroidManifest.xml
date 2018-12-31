@@ -47,8 +47,10 @@
 
         //카테고리 별 보드
         <activity android:name=".Seunghee.Activity.CategoryBoardActivity">
-
         </activity>
 
+        <activity android:name=".Seunghee.Activity.ProfileSettingMenuActivity"
+            android:theme="@style/Theme.AppCompat.Translucent">
+        </activity>
     </application>
 </manifest>

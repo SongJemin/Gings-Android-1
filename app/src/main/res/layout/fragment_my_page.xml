@@ -49,13 +49,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     >
+
                     <ImageView
+                        android:id="@+id/iv_btn_my_page_setting"
                         android:layout_width="34dp"
                         android:layout_height="34dp"
-                        android:background="@drawable/mypage_setting_circle"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="13dp"
-                        />
+                        android:background="@drawable/mypage_setting_circle" />
 
                 </RelativeLayout>
 

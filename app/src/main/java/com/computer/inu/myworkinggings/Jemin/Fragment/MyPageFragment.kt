@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Jemin.Fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
@@ -62,6 +64,12 @@ class MyPageFragment : Fragment() {
             mypage_act_view.setVisibility(View.VISIBLE)
             mypage_intro_view.setVisibility(View.INVISIBLE)
             replaceFragment(MypageActFragment())
+        }
+
+        // 테스트 연결
+        v.mypage_background_img.setOnClickListener {
+            val intent = Intent(getActivity(), PasswdModifyActivity::class.java)
+            startActivity(intent)
         }
 
         return v

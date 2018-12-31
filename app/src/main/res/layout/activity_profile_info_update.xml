@@ -13,7 +13,6 @@
             android:background="#FFFFFF">
 
 
-
         <TextView
                 android:textSize="15sp"
                 android:textColor="#040404"

@@ -12,25 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".SignUp1Activity" />
         <activity android:name=".SignUp2Activity" />
         <activity android:name=".SignUp3Activity" />
+        <activity android:name=".BottomNaviActivity" />
+        <activity
+            android:name=".UpBoardActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".DetailBoardActivity" />
+        <activity
+            android:name=".Seunghee.Activity.CategoryMenuActivity"
+            android:label="@string/title_activity_category_menu"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".BottomNaviActivity"></activity>
-
-        <activity android:name=".UpBoardActivity"
-            android:windowSoftInputMode="adjustResize">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-
-        <activity android:name=".DetailBoardActivity"></activity>
-
     </application>
 
 </manifest>

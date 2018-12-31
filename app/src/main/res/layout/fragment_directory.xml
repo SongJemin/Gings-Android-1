@@ -89,4 +89,8 @@
         android:lineSpacingExtra="6sp"
        android:text="깅스의 멤버를 검색합니다."
         />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_item_SearchingUserlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

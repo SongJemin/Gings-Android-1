@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f9f9f9"
-    tools:context=".SignUp3Activity">
+    tools:context=".Moohyeon.Activity.SignUp3Activity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="56dp"

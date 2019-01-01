@@ -4,13 +4,13 @@
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:layout_marginBottom="8dp">
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="12dp"
         android:id="@+id/iv_item_directory_profile_img"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="19dp"
-        android:src="#b0caea"/>
+        android:src="@drawable/invalid_name"/>
 
     <TextView
         android:layout_marginTop="12dp"
@@ -30,7 +30,7 @@
         android:layout_toRightOf="@+id/tv_item_directory_profile_name"
         android:layout_marginTop="16.5dp"
         android:layout_width="1dp"
-        android:layout_height="7.6dp"
+        android:layout_height="12dp"
         android:layout_marginLeft="7.2dp"
         android:background="#999999" />
 
@@ -82,8 +82,9 @@
        android:text="2018/12/29 03:00"
         />
     <ImageView
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_marginTop="38dp"
+        android:layout_below="@+id/tv_item_directory_time"
+        android:src="@drawable/invalid_name"
+        android:layout_marginTop="15dp"
         android:id="@+id/iv_item_directory_contents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

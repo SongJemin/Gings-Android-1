@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Hyunjin.Activity.LoungeReservationActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top_bar_lounge_event_innobatorclub"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#ffffff"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="5sp"
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:text="INNOVATOR CLUB"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:id="@+id/iv_btn_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more_horiz_black_24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/rl_top_bar_lounge_event_innobatorclub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f9f9f9"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#999999"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="6sp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="예약을 진행하기 위해 SafariㅣChrome으로 이동합니다."
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

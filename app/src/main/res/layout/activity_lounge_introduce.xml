@@ -2,115 +2,213 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f9f9f9"
-    >
+    android:background="#f9f9f9">
+
     <RelativeLayout
         android:id="@+id/rl_top_bar_lounge_innobatorclub"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="#ffffff"
-        >
+        android:background="#ffffff">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#000000"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
             android:letterSpacing="0.05"
             android:lineSpacingExtra="5sp"
-            android:gravity="center_horizontal"
-            android:layout_centerInParent="true"
             android:text="INNOVATOR CLUB"
-            android:textStyle="bold"
-            />
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/rl_lounge_image"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:id="@+id/rl_lounge_image"
         android:layout_below="@id/rl_top_bar_lounge_innobatorclub"
-        android:background="@drawable/rounge"
-        >
+        android:background="@drawable/rounge">
+
         <TextView
             android:id="@+id/tv_lounge_introduce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#ffffff"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="182.7dp"
+            android:gravity="center_horizontal"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="5sp"
-            android:gravity="center_horizontal"
             android:text="소개"
-            android:layout_marginTop="182.7dp"
-            android:layout_marginLeft="30dp"
-            android:textStyle="bold"
-            />
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_lounge_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#ffffff"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="182.7dp"
+            android:gravity="center_horizontal"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="5sp"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="182.7dp"
-            android:layout_marginLeft="88dp"
             android:text="일정"
-            />
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
     </RelativeLayout>
-    <RelativeLayout
-        android:background="#f9f9f9"
-        android:layout_width="match_parent"
-        android:layout_height="92dp"
-        android:layout_below="@id/rl_lounge_image"
-        android:id="@+id/rl_lounge_introducetext"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="#040404"
-            android:lineSpacingExtra="7sp"
-            android:textStyle="bold"
-            android:layout_marginTop="31.7dp"
-            android:layout_marginLeft="30dp"
-            android:text="ABOUT
-INNOVATOR CLUB"
-            />
 
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_below="@id/rl_lounge_introducetext"
-        android:layout_width="328dp"
+
+    //소개
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="#ffffff"
+        android:layout_below="@id/rl_lounge_image"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:id="@+id/ll_lounge_introduce_introduce_layout"
         >
-        <TextView
-            android:layout_marginLeft="14dp"
-            android:layout_marginTop="30dp"
-            android:textColor="#000000"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이노베이터 클럽은 혁신을 추구하는
+
+        <RelativeLayout
+            android:id="@+id/rl_lounge_introducetext"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:background="#f9f9f9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="31.7dp"
+                android:lineSpacingExtra="7sp"
+                android:text="ABOUT
+INNOVATOR CLUB"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="328dp"
+            android:layout_height="292dp"
+            android:layout_below="@id/rl_lounge_introducetext"
+            android:layout_gravity="center"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="30dp"
+                android:text="이노베이터 클럽은 혁신을 추구하는
 창업가, 스타트업 관계자, 개발자, 디자이너 등
 창업에 뜻이 있는 사람들이 모인 커뮤니티입니다."
-            />
-        <Button
-            android:id="@+id/btn_lounge_introduce"
-            android:layout_width="164dp"
-            android:layout_height="48dp"
-            android:background="#b0caea"
-            android:layout_marginLeft="82dp"
-            android:layout_marginTop="113dp"
-            android:text="가입하기"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            />
+                android:textColor="#000000" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/btn_lounge_introduce"
+                android:layout_width="164dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="82dp"
+                android:layout_marginTop="113dp"
+                android:background="#b0caea"
+                android:text="가입하기"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    //일정
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll_lounge_introduce_introduce_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_lounge_schedule_text"
+            android:layout_width="match_parent"
+            android:layout_height="57.7dp"
+            android:layout_below="@id/rl_lounge_image"
+            android:background="#f9f9f9">
+
+            <TextView
+                android:id="@+id/tv_lounge_calendar_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20.7dp"
+                android:lineSpacingExtra="7sp"
+                android:text="April"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_lounge_calendar_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20.7dp"
+                android:lineSpacingExtra="7sp"
+                android:text="2019"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_lounge_event_calendar"
+            android:layout_width="328dp"
+            android:layout_height="217dp"
+            android:layout_below="@id/rl_lounge_schedule_text"
+            android:layout_gravity="center"
+            android:background="#ffffff">
+            //달력 들어갈 부분</RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_lounge_event_text"
+            android:layout_width="match_parent"
+            android:layout_height="57.7dp"
+            android:layout_below="@id/rl_lounge_event_calendar"
+            android:background="#f9f9f9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20.7dp"
+                android:lineSpacingExtra="7sp"
+                android:text="EVENT"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_lounge_event_image"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_below="@id/rl_lounge_event_text">
+
+            <FrameLayout
+                android:id="@+id/fl_event_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </FrameLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
 </RelativeLayout>

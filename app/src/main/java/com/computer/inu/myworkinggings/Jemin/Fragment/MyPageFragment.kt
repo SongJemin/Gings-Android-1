@@ -1,6 +1,5 @@
 package com.computer.inu.myworkinggings.Jemin.Fragment
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,10 +7,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Activity.CategoryMenuActivity
+import com.computer.inu.myworkinggings.Seunghee.Activity.ProfileSettingMenuActivity
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class MyPageFragment : Fragment() {
@@ -66,10 +67,8 @@ class MyPageFragment : Fragment() {
             replaceFragment(MypageActFragment())
         }
 
-        // 테스트 연결
-        v.mypage_background_img.setOnClickListener {
-            val intent = Intent(getActivity(), PasswdModifyActivity::class.java)
-            startActivity(intent)
+        v.iv_btn_my_page_setting.setOnClickListener {
+            startActivity<ProfileSettingMenuActivity>()
         }
 
         return v

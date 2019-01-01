@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings
+package com.computer.inu.myworkinggings.Seunghee.Activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
+import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.AlbumRecyclerViewAdapter
 import com.sopt.gings.data.AlbumData
 import kotlinx.android.synthetic.main.activity_up_board.*

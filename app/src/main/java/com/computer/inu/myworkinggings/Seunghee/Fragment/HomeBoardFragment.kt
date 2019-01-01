@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.CategoryMenuActivity
-import com.computer.inu.myworkinggings.UpBoardActivity
+import com.computer.inu.myworkinggings.Seunghee.Activity.UpBoardActivity
 import com.computer.inu.myworkinggings.data.BoardData
 import kotlinx.android.synthetic.main.fragment_home_board.*
 import org.jetbrains.anko.support.v4.startActivity

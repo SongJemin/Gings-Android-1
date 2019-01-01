@@ -38,6 +38,7 @@
                 android:gravity="center_horizontal"
                 android:lineHeight="20sp"
                 android:lineSpacingExtra="7sp"
+                android:textStyle="bold"
                 android:text="설정"
                 android:textColor="#040404"
                 android:textSize="15sp" />
@@ -97,6 +98,15 @@
                 android:text="알림"
                 android:textColor="#b0caea"
                 android:textSize="13sp" />
+
+            <Switch
+                android:id="@+id/sw_profile_setting_menu_alarm"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="17dp"
+                android:shadowColor="#b0caea" />
         </RelativeLayout>
 
         //프로필관리
@@ -122,6 +132,7 @@
 
             //프로필 사진변경
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_image_modify"
                 android:background="#ffffff"
 
                 android:layout_width="match_parent"
@@ -165,6 +176,7 @@
 
             //프로필 정보 수정
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_profile_info_update"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -207,6 +219,7 @@
 '
             //자기소개 수정
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_mypage_update"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -272,6 +285,7 @@
 
             //비밀번호 변경
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_password_modify"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -367,6 +381,7 @@
 
             //탈퇴하기
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_unsubscrible"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">

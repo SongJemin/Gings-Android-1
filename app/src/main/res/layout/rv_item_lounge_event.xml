@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/iv_rv_item_lounge_event_image"
+        android:layout_width="match_parent"
+        android:layout_height="188dp"
+        android:background="#f9f9f9"
+        >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/lounge_event"
+        />
+        <TextView
+            android:id="@+id/tv_rv_item_lounge_event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#ffffff"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="10sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="37dp"
+            android:text="혁신콘서트"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tv_rv_item_lounge_event_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="6sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:text="2019 / 04 / 13 (목)"
+            android:layout_marginTop="82.7dp"
+            />
+        <TextView
+            android:id="@+id/tv_rv_item_lounge_event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="6sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:text="12:00 - 17:00"
+            android:layout_marginTop="102.7dp"
+            />
+        <TextView
+            android:id="@+id/tv_rv_item_lounge_event_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="6sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:text="서울청년창업허브"
+            android:layout_marginTop="122.7dp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

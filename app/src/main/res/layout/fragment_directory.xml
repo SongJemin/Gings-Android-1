@@ -90,7 +90,23 @@
        android:text="깅스의 멤버를 검색합니다."
         />
     <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="4.5dp"
+        android:layout_marginRight="4.5dp"
+        android:layout_gravity="center"
         android:id="@+id/rv_item_SearchingUserlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/tv_directory_seaching_fail"
+android:layout_marginTop="277dp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#999999"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="6sp"
+        android:text="검색 결과가 없습니다."
+        />
 </LinearLayout>

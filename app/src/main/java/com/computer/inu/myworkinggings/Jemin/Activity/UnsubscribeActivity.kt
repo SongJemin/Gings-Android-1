@@ -3,7 +3,7 @@ package com.computer.inu.myworkinggings.Jemin.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.computer.inu.myworkinggings.LoginActivity
+import com.computer.inu.myworkinggings.Moohyeon.Activity.LoginActivity
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_unsubscribe.*
 

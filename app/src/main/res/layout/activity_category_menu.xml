@@ -31,6 +31,7 @@
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="7sp"
                 android:text="CATEGORY"
+                android:textStyle="bold"
                 android:textColor="#040404"
                 android:textSize="13sp" />
         </RelativeLayout>
@@ -111,6 +112,7 @@
 
             //영감
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_inspiration"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -153,6 +155,7 @@
 
             //협업
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_collaboration"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -204,6 +207,7 @@
 
             //샘플
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_sample1"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -244,8 +248,9 @@
                 android:layout_height="match_parent"
                 android:background="#e2e8ed"/>
 
-            //샘플
+            //샘플2
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_sample2"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -286,8 +291,9 @@
                 android:layout_height="match_parent"
                 android:background="#e2e8ed"/>
 
-            //샘플
+            //샘플3
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_sample3"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -337,8 +343,9 @@
             android:background="#ffffff"
             android:orientation="horizontal">
 
-            //샘플
+            //샘플4
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_sample4"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -379,8 +386,9 @@
                 android:layout_height="match_parent"
                 android:background="#e2e8ed"/>
 
-            //샘플
+            //샘플5
             <RelativeLayout
+                android:id="@+id/rl_btn_category_menu_sample5"
                 android:background="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
@@ -421,16 +429,18 @@
                 android:layout_height="match_parent"
                 android:background="#e2e8ed"/>
 
-            //샘플
+            //샘플6
+
             <RelativeLayout
-                android:background="#ffffff"
-                android:layout_weight="1"
+                android:id="@+id/rl_btn_category_menu_sample6"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ffffff">
 
                 <RelativeLayout
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:background="#ffffff">
 
@@ -444,11 +454,11 @@
                         android:src="@drawable/ic_face_black_24dp" />
 
                     <TextView
-                        android:layout_marginTop="6.5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/iv_category_menu_sample6_icon"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="6.5dp"
                         android:background="#ffffff"
                         android:letterSpacing="-0.01"
                         android:lineSpacingExtra="0sp"

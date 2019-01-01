@@ -11,7 +11,11 @@ import kotlinx.android.synthetic.main.activity_category_board.*
 
 class CategoryBoardActivity : AppCompatActivity() {
 
+    //adapter
     lateinit var categoryBoardRecyclerViewAdapter : BoardRecyclerViewAdapter
+
+    //임시데이터
+    var dataList: ArrayList<BoardData> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,13 +24,14 @@ class CategoryBoardActivity : AppCompatActivity() {
 
         setRecyclerView()
 
+        var category_name : String = intent.getStringExtra("category_name")
+        tv_category_board_category_name.setText(category_name)
+
     }
 
 
     private fun setRecyclerView(){
 
-        //임시데이터
-        var dataList: ArrayList<BoardData> = ArrayList()
         //dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53","사진 없는뎁..", "이 편지는 행운의 편지입니다", "사진없눈뎁", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
         dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
         dataList.add(BoardData("창업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))

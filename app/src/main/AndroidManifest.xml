@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--로그인/가입창-->
+        //로그인 시작
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,26 +23,49 @@
         <activity android:name=".SignUp1Activity" />
         <activity android:name=".SignUp2Activity" />
         <activity android:name=".SignUp3Activity" />
+
+
+        <!--탭바-->
         //보드
         <activity android:name=".BottomNaviActivity" />
+
+
+        <!--홈보드-->
+        //업보드
         <activity
-            android:name=".UpBoardActivity"
+            android:name=".Seunghee.Activity.UpBoardActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".DetailBoardActivity" />
-        // 라운지
-        <activity android:name=".Hyunjin.Activity.LoungeIntroduceActivity" />
-        //투명
+        //카테고리 메뉴창
         <activity
             android:name=".Seunghee.Activity.CategoryMenuActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        //카테고리 별 보드
         <activity android:name=".Seunghee.Activity.CategoryBoardActivity" />
+
+
+        <!--라운지-->
+        // 라운지
+        <activity android:name=".Hyunjin.Activity.LoungeIntroduceActivity" />
+
+
+        <!--알림-->
+        //메세지
         <activity android:name=".Hyunjin.Activity.MessageSend1Activity" />
+
+
+        <!--마이페이지-->
+        //설정메뉴바
+        <activity android:name=".Seunghee.Activity.ProfileSettingMenuActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        //프로필
+        <activity android:name=".Seunghee.Activity.ProfileImageUpdateActivity" />
         <activity android:name=".Seunghee.Activity.ProfileInfoUpdateActivity" />
         <activity android:name=".Jemin.Activity.MypageUpdateActivity" />
+        //보안
         <activity android:name=".Jemin.Activity.PasswdModifyActivity" />
         <activity android:name=".Jemin.Activity.PasswordConfirmActivity" />
         <activity android:name=".Jemin.Activity.UnsubscribeActivity"></activity>
+
     </application>
 
 </manifest>

@@ -6,6 +6,8 @@ import com.computer.inu.myworkinggings.Jemin.Activity.MypageUpdateActivity
 import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.Jemin.Activity.UnsubscribeActivity
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.R.anim.sliding_left_to_right
+import com.computer.inu.myworkinggings.R.anim.stay
 import kotlinx.android.synthetic.main.activity_profile_setting_menu.*
 import org.jetbrains.anko.startActivity
 
@@ -21,7 +23,6 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
         rl_btn_profile_setting_menu_image_modify.setOnClickListener {
             startActivity<ProfileImageUpdateActivity>()
         }
-
         //프로필 정보 수정
         rl_btn_profile_setting_menu_profile_info_update.setOnClickListener{
             startActivity<ProfileInfoUpdateActivity>()
@@ -48,8 +49,10 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
         /**/
         //종료버튼
         iv_btn_profile_setting_close.setOnClickListener {
+
             finish()
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in)
+            //overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in)
+            overridePendingTransition(stay, android.R.anim.fade_out)
 
         }
     }

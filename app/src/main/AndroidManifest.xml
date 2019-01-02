@@ -27,9 +27,7 @@
 
         <!--탭바-->
         //보드
-        <activity android:name=".Moohyeon.Activity.BottomNaviActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
+        <activity android:name=".Moohyeon.Activity.BottomNaviActivity" />
 
 
         <!--홈보드-->
@@ -59,7 +57,7 @@
 
         <!--마이페이지-->
         //설정메뉴바
-        <activity android:name=".Hyunjin.ProfileSettingMenuActivity"
+        <activity android:name=".Seunghee.Activity.ProfileSettingMenuActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
         //프로필
         <activity android:name=".Seunghee.Activity.ProfileImageUpdateActivity" />

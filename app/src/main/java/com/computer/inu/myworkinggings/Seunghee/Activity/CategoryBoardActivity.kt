@@ -7,6 +7,7 @@ import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.data.BoardData
 import kotlinx.android.synthetic.main.activity_category_board.*
+import kotlinx.android.synthetic.main.activity_category_menu.*
 
 
 class CategoryBoardActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class CategoryBoardActivity : AppCompatActivity() {
 
         var category_name : String = intent.getStringExtra("category_name")
         tv_category_board_category_name.setText(category_name)
+
 
     }
 

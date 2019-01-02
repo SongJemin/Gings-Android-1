@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
    android:background="#f9f9f9"
-    tools:context=".SignUp1Activity">
+    tools:context=".Moohyeon.Activity.SignUp1Activity">
     <TextView
         android:gravity="center"
         android:background="#b0caea"
@@ -39,14 +39,21 @@
             android:layout_width="25dp"
             android:layout_height="17dp"
             android:id="@+id/cb_sign_up1_personal_check"/>
-        <TextView
+        <ScrollView
+            android:layout_below="@+id/tv_sign_up_personal_info"
             android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp">
+
+        <TextView
             android:background="@drawable/back"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
+            android:text="내용을입력하세요용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을용을입력하세요내용을내용을입력하세요~내용을내용을입력하세요~내용을내용을입력하세요~내용을내용을입력하세요~내용을~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
             android:layout_centerInParent="true"
-            android:layout_below="@+id/tv_sign_up_personal_info" />
+        />
+
+        </ScrollView>
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="23dp"
@@ -68,14 +75,21 @@
             android:layout_width="25dp"
             android:layout_height="17dp"
             android:id="@+id/cb_sign_up1_using_agree_check"/>
-        <TextView
+
+        <ScrollView
             android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tv_sign_up1_using_agree"
+            android:layout_height="80dp">
+
+        <TextView
             android:background="@drawable/back"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
+            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
             android:layout_centerInParent="true"
-            android:layout_below="@+id/tv_sign_up1_using_agree" />
+            />
+        </ScrollView>
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="23dp"
@@ -91,14 +105,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="멤버십 원칙 동의"/>
-        <TextView
+        <ScrollView
             android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tv_sign_up1_membership_agree"
+            android:layout_height="80dp">
+        <TextView
             android:background="@drawable/back"
             android:layout_width="350dp"
             android:layout_height="80dp"
-            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
+            android:text="내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용내용을입력하세요~내용을입력하세요~내용내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~내용을입력하세요~"
             android:layout_centerInParent="true"
-            android:layout_below="@+id/tv_sign_up1_membership_agree" />
+            />
+        </ScrollView>
         <CheckBox
             android:layout_alignParentRight="true"
             android:layout_width="25dp"

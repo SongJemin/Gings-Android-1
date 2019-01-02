@@ -3,17 +3,11 @@ package com.computer.inu.myworkinggings.Hyunjin.Activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.view.View
-import com.computer.inu.myworkinggings.DetailBoardActivity
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeEventFragment
-import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeFragment
-import com.computer.inu.myworkinggings.LoginActivity
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_lounge_introduce.*
-import kotlinx.android.synthetic.main.fragment_lounge.*
-import org.jetbrains.anko.startActivity
 
 
 class LoungeIntroduceActivity : AppCompatActivity() {

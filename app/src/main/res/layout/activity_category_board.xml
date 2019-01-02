@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_category_board_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="질문" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text=" 보드" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_btn_category_board_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_close_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_btn_category_board_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_close_black_24dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginTop="71dp"
+            android:background="#e2e8ed"></View>
+    </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="34dp">
+
+    <TextView
+        android:id="@+id/tv_category_board_like_rank"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="5sp"
+        android:textColor="#999999"
+        android:textSize="11sp"
+        android:layout_marginEnd="60dp"
+        android:text="추천수" />
+
+    <TextView
+        android:id="@+id/tv_category_board_new_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="0dp"
+        android:letterSpacing="-0.01"
+        android:lineSpacingExtra="5sp"
+        android:textColor="#999999"
+        android:textSize="11sp"
+        android:layout_marginEnd="20dp"
+        android:text="최신순" />
+
+</RelativeLayout>
+
+    //카테고리 보드 리스트
+    <LinearLayout
+        android:id="@+id/ll_category_board_board_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_item_category_board_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+</LinearLayout>

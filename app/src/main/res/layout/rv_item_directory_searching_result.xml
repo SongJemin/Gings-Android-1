@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:layout_marginTop="9dp"
+    android:layout_marginLeft="4.5dp"
+    android:layout_marginRight="4.5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="168dp"
+    android:layout_width="match_parent"
     android:layout_height="216dp"
     android:background="#ffffff">
-    <ImageView
-        android:layout_marginLeft="24dp"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+       android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
         android:id="@+id/iv_item_directory_searching_profile_img"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:src="@drawable/invalid_name"/>
 <RelativeLayout
     android:layout_centerHorizontal="true"
     android:layout_below="@id/iv_item_directory_searching_profile_img"
@@ -89,7 +94,8 @@
         android:layout_below="@+id/tv_item_directory_searching_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:textSize="10dp"
+        android:layout_marginTop="4dp"
         android:text="/"/>
     <TextView
         android:layout_marginTop="4dp"
@@ -110,7 +116,7 @@
         android:layout_toRightOf="@+id/tv_item_directory_searching_ablity"
         android:gravity="center"
         android:background="#b0caea"
-        android:layout_width="38dp"
+        android:layout_width="39dp"
         android:layout_height="14dp"
         android:textSize="8sp"
         android:layout_marginLeft="6dp"

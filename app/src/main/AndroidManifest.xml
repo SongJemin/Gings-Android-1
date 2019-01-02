@@ -9,25 +9,64 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+
+        <!--로그인/가입창-->
+        //로그인 시작
+        <activity android:name=".Moohyeon.Activity.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp1Activity" />
-        <activity android:name=".SignUp2Activity" />
-        <activity android:name=".SignUp3Activity" />
-
-        <activity android:name=".BottomNaviActivity"></activity>
-
-        <activity android:name=".UpBoardActivity"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+        //가입창
+        <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
+        <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
+        <activity android:name=".Moohyeon.Activity.SignUp3Activity" />
 
 
-        <activity android:name=".DetailBoardActivity"></activity>
+        <!--탭바-->
+        //보드
+        <activity android:name=".Moohyeon.Activity.BottomNaviActivity" />
+
+
+        <!--홈보드-->
+        //업보드
+        <activity
+            android:name=".Seunghee.Activity.UpBoardActivity"
+            android:windowSoftInputMode="adjustResize" />
+        //디테일보드
+        <activity android:name=".Moohyeon.Activity.DetailBoardActivity" />
+        //카테고리 메뉴창
+        <activity
+            android:name=".Seunghee.Activity.CategoryMenuActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".Seunghee.Activity.CategoryBoardActivity" />
+
+
+        <!--라운지-->
+        // 라운지
+        <activity android:name=".Hyunjin.Activity.LoungeIntroduceActivity" />
+        <activity android:name=".Hyunjin.Activity.LoungeReservationActivity"></activity>
+
+
+        <!--알림-->
+        //메세지
+        <activity android:name=".Hyunjin.Activity.MessageSend1Activity" />
+
+
+        <!--마이페이지-->
+        //설정메뉴바
+        <activity android:name=".Seunghee.Activity.ProfileSettingMenuActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        //프로필
+        <activity android:name=".Seunghee.Activity.ProfileImageUpdateActivity" />
+        <activity android:name=".Seunghee.Activity.ProfileInfoUpdateActivity" />
+        <activity android:name=".Jemin.Activity.MypageUpdateActivity" />
+        //보안
+        <activity android:name=".Jemin.Activity.PasswdModifyActivity" />
+        <activity android:name=".Jemin.Activity.PasswordConfirmActivity" />
+        <activity android:name=".Jemin.Activity.UnsubscribeActivity"></activity>
 
     </application>
 

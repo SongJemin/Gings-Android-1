@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.computer.inu.myworkinggings.Moohyeon.Data.DirectoryBoardData
 import com.computer.inu.myworkinggings.R
+import org.jetbrains.anko.toast
 import java.util.ArrayList
 
 class DirectoryBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<DirectoryBoardData>)

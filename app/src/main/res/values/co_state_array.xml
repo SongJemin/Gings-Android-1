@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="co_state">
+        <item >열려있음</item>
+        <item >준비중</item>
+        <item >본업</item>
+        <item >프리랜서</item>
+        <item >구인중</item>
+        <item >구직중</item>
+        <item >투자후원유중</item>
+    </string-array>
+</resources>

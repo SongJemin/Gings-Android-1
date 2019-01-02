@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    //메뉴바
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_btn_home_board_more_btn_"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#ffffff"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="0sp"
+                android:text="이 보드 숨기기"
+                android:textColor="#222222"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="#ffffff"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="0sp"
+                android:text="ㅇㅇㅇ님의 모든 보드 숨기기"
+                android:textColor="#222222"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+    //메뉴바
+
+
+</RelativeLayout>
+

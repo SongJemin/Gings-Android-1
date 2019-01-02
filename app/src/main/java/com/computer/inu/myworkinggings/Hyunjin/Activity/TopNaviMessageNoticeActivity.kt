@@ -18,7 +18,6 @@ class TopNaviMessageNoticeActivity : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.activity_top_navi_message_notice,container,false)
-
     }
     private fun configureTopNavigation(){
         vp_top_navi_act_frag_pager.adapter = MyFragmentNoticeTabPagerAdapter(childFragmentManager,2)

@@ -1,10 +1,11 @@
-package com.computer.inu.myworkinggings
+package com.computer.inu.myworkinggings.Moohyeon.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.computer.inu.myworkinggings.Moohyeon.Adapter.DetailBoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Moohyeon.Data.ReBoardData
+import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_detail_board.*
 
 class DetailBoardActivity : AppCompatActivity() {

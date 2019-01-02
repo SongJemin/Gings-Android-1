@@ -46,10 +46,10 @@
             android:src="#b0caea"
             android:layout_alignParentStart="true" android:layout_centerVertical="true"/>
         <TextView
+            android:id="@+id/tv_home_board_write_board"
             android:layout_marginStart="65.5dp"
             android:layout_toEndOf="@+id/iv_home_board_profile_img"
             android:background="@null"
-            android:id="@+id/tv_home_board_write_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"

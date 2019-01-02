@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.view.View
-import com.computer.inu.myworkinggings.DetailBoardActivity
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeEventFragment
-import com.computer.inu.myworkinggings.LoginActivity
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_lounge_introduce.*
 import org.jetbrains.anko.startActivity

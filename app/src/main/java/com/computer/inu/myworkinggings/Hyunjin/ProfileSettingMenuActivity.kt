@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings.Seunghee.Activity
+package com.computer.inu.myworkinggings.Hyunjin
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,8 @@ import com.computer.inu.myworkinggings.Jemin.Activity.MypageUpdateActivity
 import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.Jemin.Activity.UnsubscribeActivity
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Activity.ProfileImageUpdateActivity
+import com.computer.inu.myworkinggings.Seunghee.Activity.ProfileInfoUpdateActivity
 import kotlinx.android.synthetic.main.activity_profile_setting_menu.*
 import org.jetbrains.anko.startActivity
 

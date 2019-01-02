@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_lounge_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f9f9f9">
@@ -11,6 +12,13 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="#ffffff">
+
+        <Button
+            android:id="@+id/btn_lounge_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,44 +41,56 @@
         android:layout_below="@id/rl_top_bar_lounge_innobatorclub"
         android:background="@drawable/rounge">
 
-        <TextView
-            android:id="@+id/tv_lounge_introduce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_lounge_introuce_introudeuce_bar"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="182.7dp"
-            android:gravity="center_horizontal"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="5sp"
-            android:text="소개"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="182.7dp">
 
-        <TextView
-            android:id="@+id/tv_lounge_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="88dp"
-            android:layout_marginTop="182.7dp"
-            android:gravity="center_horizontal"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="5sp"
-            android:text="일정"
-            android:textColor="#ffffff"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_lounge_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="5sp"
+                android:text="소개"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_lounge_introuce_event_bar"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="182.7dp">
+
+            <TextView
+                android:id="@+id/tv_lounge_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="5sp"
+                android:text="일정"
+                android:textColor="#ffffff"
+                android:textSize="15sp" />
+        </RelativeLayout>
     </RelativeLayout>
 
 
     //소개
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ll_lounge_introduce_introduce_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/rl_lounge_image"
         android:orientation="vertical"
-        android:visibility="visible"
-        android:id="@+id/ll_lounge_introduce_introduce_layout"
-        >
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/rl_lounge_introducetext"
@@ -124,14 +144,14 @@ INNOVATOR CLUB"
     </LinearLayout>
 
     //일정
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ll_lounge_introduce_introduce_schedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="292dp"
         android:orientation="vertical"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/rl_lounge_schedule_text"
@@ -204,8 +224,7 @@ INNOVATOR CLUB"
             <FrameLayout
                 android:id="@+id/fl_event_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </FrameLayout>
+                android:layout_height="match_parent"></FrameLayout>
 
         </RelativeLayout>
     </LinearLayout>

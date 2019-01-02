@@ -12,6 +12,13 @@
         android:layout_alignParentTop="true"
         android:background="#ffffff"
         >
+        <Button
+            android:layout_width="40dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_lounge_reservation_back"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

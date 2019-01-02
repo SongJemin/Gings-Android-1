@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
@@ -16,7 +17,7 @@ import com.computer.inu.myworkinggings.data.BoardData
 import org.jetbrains.anko.startActivity
 import java.util.ArrayList
 
-class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardData>)
+class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>)
     :RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -32,22 +33,29 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardDa
         //title
         holder.category.text = dataList[position].category
         holder.title.text = dataList[position].title
-        holder.tag.text = dataList[position].tag
+        for(i in 0 .. dataList[position].keywords.size-1){
+            if(i == 0){
+                holder.tag.text = "#"+ dataList[position].keywords[i]
+            }
+            else{
+                holder.tag.append("    #" + dataList[position].keywords[i])
+            }
+        }
+
         holder.time.text = dataList[position].time
 
         //contents
         //holder.contents_img
-        holder.contents_text.text = dataList[position].contents_text
+        holder.contents_text.text = dataList[position].content
 
         //profile
-        holder.name.text = dataList[position].name
-        holder.team.text = dataList[position].team
-        holder.role.text = dataList[position].role
+        holder.name.text = dataList[position].writerId.toString()
+        holder.role.text = dataList[position].category
 
-        //
-        holder.like_cnt.text = dataList[position].like_cnt.toString()
-        holder.comment_cnt.text = dataList[position].comment_cnt.toString()
-
+        // 좋아요 수
+        holder.like_cnt.text = dataList[position].share!!.toString()
+        // 댓글 수
+        holder.comment_cnt.text = dataList[position].replys.size.toString()
 
         /*이벤트 처리*/
 
@@ -83,12 +91,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardDa
         //title
         val category : TextView = itemView.findViewById(R.id.tv_item_board_category) as TextView
         val title : TextView = itemView.findViewById(R.id.tv_item_board_title) as TextView
-        val tag : TextView  = itemView.findViewById(R.id.tv_item_board_tag1) as TextView
+        val tag : TextView  = itemView.findViewById(R.id.tv_item_board_tag) as TextView
         val time : TextView = itemView.findViewById(R.id.tv_item_board_time) as TextView
 
         //contents
         val contents_img : ImageView = itemView.findViewById(R.id.iv_item_board_contents_image) as ImageView
-        val contents_text : TextView = itemView.findViewById(R.id.tv_item_board_title) as TextView
+        val contents_text : TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
         val contents_more : TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필

@@ -3,6 +3,8 @@ package com.computer.inu.myworkinggings.Network
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
+import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -43,4 +45,16 @@ interface NetworkService {
             @Body() body : JsonObject
     ) : Call<PostLogInResponse>
 
+    @POST("boards/{boardId}/recommend")
+    fun postBoardLikeResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId : Int
+    ) : Call<PostBoardLikeResponse>
+    @POST("/signup")
+    fun postSignUpResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Body() body : JsonObject
+    ) : Call<PostSignUpResponse>
 }

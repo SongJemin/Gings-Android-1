@@ -70,6 +70,8 @@
         <activity android:name=".Jemin.Activity.PasswdModifyActivity" />
         <activity android:name=".Jemin.Activity.PasswordConfirmActivity" />
         <activity android:name=".Jemin.Activity.UnsubscribeActivity"></activity>
+        <activity android:name=".Jemin.Activity.MainActivity"></activity>
+
 
     </application>
 

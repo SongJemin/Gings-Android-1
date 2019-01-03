@@ -8,7 +8,6 @@ import android.view.View
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeEventFragment
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_lounge_introduce.*
-import org.jetbrains.anko.startActivity
 
 
 class LoungeIntroduceActivity : AppCompatActivity() {

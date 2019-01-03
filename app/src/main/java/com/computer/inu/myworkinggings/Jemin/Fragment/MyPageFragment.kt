@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.Seunghee.Activity.CategoryMenuActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.ProfileSettingMenuActivity
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*

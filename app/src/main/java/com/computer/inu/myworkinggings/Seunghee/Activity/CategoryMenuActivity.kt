@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.RelativeLayout
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.R.anim.stay
 import kotlinx.android.synthetic.main.activity_category_menu.*
 import org.jetbrains.anko.startActivity
 
@@ -14,6 +15,12 @@ class CategoryMenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_menu)
+
+        iv_btn_category_setting_close.setOnClickListener {
+            finish()
+            overridePendingTransition(stay, android.R.anim.fade_out)
+        }
+
 
         val directoryList : Array<RelativeLayout> = arrayOf(rl_btn_category_menu_question,
                 rl_btn_category_menu_inspiration,
@@ -34,6 +41,8 @@ class CategoryMenuActivity : AppCompatActivity() {
                 startActivity<CategoryBoardActivity>("category_name" to directoryListText[i])
             }
         }
+
+
     }
 
 }

@@ -40,9 +40,9 @@ class CategoryBoardActivity : AppCompatActivity() {
         dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
         dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다", "이충엽", "깅스", "쵝오이 피엠", 1, 1))
 
-        categoryBoardRecyclerViewAdapter = BoardRecyclerViewAdapter(this, dataList)
-        rv_item_category_board_list.adapter = categoryBoardRecyclerViewAdapter
-        rv_item_category_board_list.layoutManager = LinearLayoutManager(this)
+        //categoryBoardRecyclerViewAdapter = BoardRecyclerViewAdapter(this, dataList)
+        //rv_item_category_board_list.adapter = categoryBoardRecyclerViewAdapter
+        //rv_item_category_board_list.layoutManager = LinearLayoutManager(this)
 
     }
 }

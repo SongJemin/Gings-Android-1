@@ -70,7 +70,7 @@
             android:textColor="#999999"
             android:layout_marginLeft="113dp"
             />
-        <TextView
+        <Button
             android:layout_marginTop="5dp"
             android:layout_marginRight="23dp"
             android:layout_alignParentRight="true"

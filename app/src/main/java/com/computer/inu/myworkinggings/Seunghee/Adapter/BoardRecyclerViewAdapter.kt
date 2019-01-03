@@ -2,22 +2,25 @@ package com.computer.inu.myworkinggings.Seunghee.Adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.R.id.iv_item_board_contents_image
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
 import com.computer.inu.myworkinggings.data.BoardData
 import org.jetbrains.anko.startActivity
 import java.util.ArrayList
 
-class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>)
+class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
     :RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -42,7 +45,21 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             }
         }
 
-        holder.time.text = dataList[position].time
+        for(i in 0 .. dataList[position].images.size-1){
+            if(dataList[position].images.size == 0){
+                Log.v("asdf","사이즈 0" + dataList[position].images.size)
+                holder.contents_img.visibility = View.GONE
+            }
+            else{
+                Log.v("asdf","사이즈 있음 " + dataList[position].images.size)
+                requestManager.load(dataList[position].images[0]).into(holder.contents_img)
+                if(dataList[position].images[i] == "abcd"){
+                    holder.contents_img.visibility = View.GONE
+                }
+            }
+        }
+
+        holder.time.text = dataList[position].time!!.substring(0, 16).replace("T", " ")
 
         //contents
         //holder.contents_img
@@ -53,7 +70,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.role.text = dataList[position].category
 
         // 좋아요 수
-        holder.like_cnt.text = dataList[position].share!!.toString()
+        holder.like_cnt.text = dataList[position].recommender!!.toString()
+
         // 댓글 수
         holder.comment_cnt.text = dataList[position].replys.size.toString()
 
@@ -77,15 +95,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //좋아요 버튼
 
         //댓글창=> 디테일보드
-
-
     }
 
 
     //layout의 view를 인스턴스 변수로 만들어 줌
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        //
         val gotoDetailedBoard : LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
 
         //title

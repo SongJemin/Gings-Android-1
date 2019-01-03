@@ -30,6 +30,7 @@ class MypageActFragment : Fragment(){
         guestActAdapter = GuestActAdapter(guestActItem)
         v.mypage_act_recyclerview.layoutManager = LinearLayoutManager(v.context)
         v.mypage_act_recyclerview.adapter = guestActAdapter
+        v.mypage_act_recyclerview.setNestedScrollingEnabled(false)
 
         return v
     }

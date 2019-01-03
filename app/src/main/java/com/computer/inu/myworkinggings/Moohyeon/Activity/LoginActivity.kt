@@ -2,6 +2,7 @@ package com.computer.inu.myworkinggings.Moohyeon.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
@@ -23,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
            startActivity<DetailBoardActivity>()
         }
         tv_login_login_button.setOnClickListener {
-            startActivity<BottomNaviActivity>()
+            startActivity<MainActivity>()
         }
     }
 

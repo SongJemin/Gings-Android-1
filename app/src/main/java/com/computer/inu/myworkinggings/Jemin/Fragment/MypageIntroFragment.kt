@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.computer.inu.myworkinggings.Jemin.Adapter.GuestBoardAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.GuestBoardItem
 import com.computer.inu.myworkinggings.R
+import kotlinx.android.synthetic.main.fragment_mypage_act.view.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
 
 class MypageIntroFragment : Fragment(){
@@ -26,6 +27,7 @@ class MypageIntroFragment : Fragment(){
         guestBoardAdapter = GuestBoardAdapter(guestBoardItem)
         v.mypage_guestboard_recyclerview.layoutManager = LinearLayoutManager(v.context)
         v.mypage_guestboard_recyclerview.adapter = guestBoardAdapter
+        v.mypage_guestboard_recyclerview.setNestedScrollingEnabled(false)
         return v
     }
 }

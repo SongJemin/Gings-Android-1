@@ -107,8 +107,13 @@ class SignUp2Activity : AppCompatActivity() {
                 if (response!!.isSuccessful) {
 
                     Log.v("TAG", "이메일 중복 확인")
-                    status = response.body()!!.status!!
                     message = response.body()!!.message!!
+                    if(message == "이미 등록된 이메일입니다"){
+                        // 이미 있는 아이디로 토스트 띄우기
+                    }
+                    else{
+                        // 사용 가능한 아이디입니다 토스트 띄우기
+                    }
 
                     Log.v("TAG", "이메일 중복 확인 stats = " + status)
                     Log.v("TAG", "이메일 중복 확인 message = " + message)

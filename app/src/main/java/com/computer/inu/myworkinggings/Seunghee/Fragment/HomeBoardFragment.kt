@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Jemin.Get.Response.BoardData
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
@@ -29,11 +31,12 @@ class HomeBoardFragment : Fragment(){
     lateinit var networkService : NetworkService
     var BoardData = ArrayList<BoardData>()
     var BoardItemList = ArrayList<BoardItem>()
+    lateinit var requestManager : RequestManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view : View = inflater.inflate(R.layout.fragment_home_board, container, false)
         networkService = ApplicationController.instance.networkService
-        Log.v("TAG", "보드 서버 통신 연결준비")
+        requestManager = Glide.with(this)
         getBoard()
         return view
     }
@@ -65,8 +68,7 @@ class HomeBoardFragment : Fragment(){
     }
 
     fun getBoard() {
-        var getBoardResponse = networkService.getBoard(0,10) // 네트워크 서비스의 getContent 함수를 받아옴
-        Log.v("TAG", "보드 서버 통신 연결준비2")
+        var getBoardResponse = networkService.getBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",0,10) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
             override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
@@ -76,10 +78,9 @@ class HomeBoardFragment : Fragment(){
                     for(i in 0..BoardData.size-1){
                         BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images, BoardData[i].keywords, BoardData[i].replys, BoardData[i].recommender ))
                     }
-                    Log.v("ㅁㄴㅇㄹ","보드 Get 통신 성공")
                     Log.v("asdf","응답 바디 = " + response.body().toString())
 
-                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(activity!!, BoardItemList)
+                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(activity!!, BoardItemList, requestManager)
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(activity)
                 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -97,10 +98,9 @@
 
             <TextView
                 android:visibility="gone"
-
                 android:layout_centerVertical="true"
                 android:id="@+id/tv_up_board_inspiration"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
@@ -113,7 +113,7 @@
 
                 android:layout_centerVertical="true"
                 android:id="@+id/tv_up_board_collaboration"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -126,7 +126,7 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_up_board_category_select"
                 android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -320,8 +320,8 @@
 
         <EditText
             android:id="@+id/et_up_board_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_marginStart="83.5dp"
             android:background="@null"
@@ -357,8 +357,8 @@
 
         <EditText
             android:id="@+id/et_up_board_tags"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_marginStart="83.5dp"
             android:background="@null"
@@ -390,8 +390,8 @@
 
         <EditText
             android:id="@+id/et_up_board_modify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:background="@null"
             android:letterSpacing="-0.01"

@@ -36,60 +36,8 @@ class UpBoardActivity : AppCompatActivity() {
         //gl_upboard_album_view.visibility=View.GONE
 
 
-
-        /*각각의 카테고리 선택 리스너*/
-        //카테고리 선택
-        val categoryBtnList : Array<RelativeLayout> = arrayOf(
-                rl_btn_up_board_category_question,
-                rl_btn_up_board_category_inspriation,
-                rl_btn_up_board_category_collaboration
-        )
-        val categoryListText : Array<TextView> = arrayOf(tv_up_board_question,tv_up_board_inspiration,tv_up_board_collaboration)
-        //카테고리 선택시, 선택 창 닫힘 + 헤당 카테고리 글자 띄우기
-        for(i in categoryBtnList.indices)
-        {
-            categoryBtnList[i].setOnClickListener{
-                rl_btn_up_board_category_selected.visibility=View.GONE
-                categoryListText[i].visibility=View.VISIBLE
-
-                ll_up_board_category_list.visibility=View.GONE
-            }
-        }
-
-        for(i in categoryListText.indices)
-        {
-            categoryListText[i].setOnClickListener{
-                categoryListText[i].visibility=View.GONE
-                rl_btn_up_board_category_selected.visibility=View.VISIBLE
-
-                ll_up_board_category_list.visibility=View.VISIBLE
-            }
-        }
-
-
-        /*카테고리 선택 창 열고 닫는 리스너*/
-        //열기
-        rl_btn_up_board_category_select.setOnClickListener{
-
-            //more버튼 대신 less버튼으로
-            rl_btn_up_board_category_select.visibility=View.GONE
-            rl_btn_up_board_category_selected.visibility=View.VISIBLE
-
-            //카테고리 리스트 선택 창
-            ll_up_board_category_list.visibility=View.VISIBLE
-
-        }
-        //닫기
-        rl_btn_up_board_category_selected.setOnClickListener{
-
-            rl_btn_up_board_category_selected.visibility=View.GONE
-            rl_btn_up_board_category_select.visibility=View.VISIBLE
-
-            //카테고리 리스트 선택 창
-            ll_up_board_category_list.visibility=View.GONE
-        }
-
-
+        /*카테고리 선택&재선택 함수*/
+        categorySelectOnClickListener()
 
         /*사진선택*/
         //이미지 버튼 클릭시
@@ -116,6 +64,61 @@ class UpBoardActivity : AppCompatActivity() {
         //하단 이미지선택
         setRecyclerView()
 
+    }
+
+    private fun categorySelectOnClickListener(){
+
+        /*각각의 카테고리 선택*/
+        val categoryBtnList : Array<RelativeLayout> = arrayOf(
+                rl_btn_up_board_category_question,
+                rl_btn_up_board_category_inspriation,
+                rl_btn_up_board_category_collaboration
+        )
+        val categoryListText : Array<TextView> = arrayOf(tv_up_board_question,tv_up_board_inspiration,tv_up_board_collaboration)
+
+        //카테고리 선택시, 선택 창 닫힘 + 헤당 카테고리 글자 띄우기
+        for(i in categoryBtnList.indices)
+        {
+            categoryBtnList[i].setOnClickListener{
+                rl_btn_up_board_category_selected.visibility=View.GONE
+                categoryListText[i].visibility=View.VISIBLE
+
+                ll_up_board_category_list.visibility=View.GONE
+            }
+        }
+
+        //카테고리 선택 완료 후, 재 선택
+        for(i in categoryListText.indices)
+        {
+            categoryListText[i].setOnClickListener{
+                categoryListText[i].visibility=View.GONE
+                rl_btn_up_board_category_selected.visibility=View.VISIBLE
+
+                ll_up_board_category_list.visibility=View.VISIBLE
+            }
+        }
+
+        /*카테고리 선택 창 열고 닫는 리스너*/
+        //열기
+        rl_btn_up_board_category_select.setOnClickListener{
+
+            //more버튼 대신 less버튼으로
+            rl_btn_up_board_category_select.visibility=View.GONE
+            rl_btn_up_board_category_selected.visibility=View.VISIBLE
+
+            //카테고리 리스트 선택 창
+            ll_up_board_category_list.visibility=View.VISIBLE
+
+        }
+        //닫기
+        rl_btn_up_board_category_selected.setOnClickListener{
+
+            rl_btn_up_board_category_selected.visibility=View.GONE
+            rl_btn_up_board_category_select.visibility=View.VISIBLE
+
+            //카테고리 리스트 선택 창
+            ll_up_board_category_list.visibility=View.GONE
+        }
     }
 
     private fun setRecyclerView(){

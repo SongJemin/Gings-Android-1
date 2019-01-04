@@ -5,6 +5,10 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResp
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
+import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
+import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -65,5 +69,30 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("myPageUserId") myPageUserId : Int?
     ) : Call<GetOtherIntroResponse>
+
+    @POST("boards/{boardId}/recommend")
+    fun postBoardLikeResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId : Int
+    ) : Call<PostBoardLikeResponse>
+    @POST("/signup")
+    fun postSignUpResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Body() body : JsonObject
+    ) : Call<PostSignUpResponse>
+
+    @GET("/mypage/mine/guestboard")
+    fun getGuestBoardResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization : String
+    ) : Call<GetGuestBoardResponse>
+
+    @GET("/mypage/mine")
+    fun getMypageResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization : String
+    ) : Call<GetMypageResponse>
 
 }

@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Seunghee.Adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -13,27 +14,40 @@ import android.widget.TextView
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
+import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.R.id.iv_item_board_contents_image
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
 import com.computer.inu.myworkinggings.data.BoardData
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.ArrayList
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
     :RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>(){
-
+    var b_id : Int = 0
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
+
         return Holder(view)
     }
 
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
         //'인스턴스 객체 = 데이터' 연결
 
+        b_id = dataList[position].boardId!!
         //title
         holder.category.text = dataList[position].category
         holder.title.text = dataList[position].title
@@ -45,7 +59,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                 holder.tag.append("    #" + dataList[position].keywords[i])
             }
         }
-
         for(i in 0 .. dataList[position].images.size-1){
             if(dataList[position].images.size == 0){
                 Log.v("asdf","사이즈 0" + dataList[position].images.size)
@@ -98,8 +111,11 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         }
 */
         //좋아요 버튼
-
+        holder.like_btn.setOnClickListener {
+      BoardLikePost()
+        }
         //댓글창=> 디테일보드
+
     }
 
 
@@ -136,5 +152,21 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //공유하기 val
         val share_btn : ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
 
+    }
+private fun BoardLikePost(){
+        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+                , b_id)
+
+        postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
+            override fun onFailure(call: Call<PostBoardLikeResponse>, t: Throwable) {
+                Log.e("통신 fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("통신성공","  통신 성공")
+                }
+            }
+        })
     }
 }

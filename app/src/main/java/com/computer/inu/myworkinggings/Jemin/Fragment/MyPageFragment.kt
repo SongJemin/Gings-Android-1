@@ -4,38 +4,39 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
-import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
+import com.computer.inu.myworkinggings.Moohyeon.Data.UserPageData
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.ProfileSettingMenuActivity
-import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
-import kotlinx.android.synthetic.main.fragment_home_board.*
-import kotlinx.android.synthetic.main.fragment_my_page.*
-import kotlinx.android.synthetic.main.fragment_my_page.view.*
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_my_page.*
+import kotlinx.android.synthetic.main.fragment_my_page.view.*
 
 class MyPageFragment : Fragment() {
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     lateinit var requestManager: RequestManager
-    lateinit var networkService : NetworkService
     var field : String = ""
     var status : String = ""
     var coworkingEnabled : Int = 0
     var checkFlag : Int = 0
+    var keword : String= "";
 
     // 처음 프래그먼트 추가
     fun addFragment(fragment : Fragment){
@@ -87,7 +88,10 @@ class MyPageFragment : Fragment() {
 
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
+
         getOtherPage()
+
+        getUserPagePost()
 
         // '소개' 클릭 시
         v.mypage_intro_btn.setOnClickListener {
@@ -130,23 +134,22 @@ class MyPageFragment : Fragment() {
         return v
     }
 
+
     fun getOtherPage() {
-        networkService = ApplicationController.instance.networkService
         var getOtherInformResponse = networkService.getOtherPageInform("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",1) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherInformResponse.enqueue(object : Callback<GetOtherInformResponse> {
             override fun onResponse(call: Call<GetOtherInformResponse>?, response: Response<GetOtherInformResponse>?) {
                 Log.v("TAG", "타인페이지 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     Log.v("TAG", "타인페이지 서버 통신 연결 성공")
-                    if(response!!.body()!!.message == "자격 없음"){
+                    if (response!!.body()!!.message == "자격 없음") {
                         iv_btn_my_page_setting.visibility = View.GONE
                         iv_btn_other_page_close.visibility = View.VISIBLE
-                    }
-                    else{
+                    } else {
                         iv_btn_other_page_close.visibility = View.GONE
                         iv_btn_my_page_setting.visibility = View.VISIBLE
                     }
-                    Log.v("asdf","응답 바디 = " + response.body().toString())
+                    Log.v("asdf", "응답 바디 = " + response.body().toString())
                     mypage_name_tv.text = response.body()!!.data.name
                     mypage_job_tv.text = response.body()!!.data.job
                     mypage_team_tv.text = response.body()!!.data.company
@@ -154,19 +157,17 @@ class MyPageFragment : Fragment() {
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
 
-                    if(response.body()!!.data.coworkingEnabled == true){
+                    if (response.body()!!.data.coworkingEnabled == true) {
                         coworkingEnabled = 1
-                    }
-                    else{
+                    } else {
                         coworkingEnabled = 0
                     }
 
 
-                    for(i in 0 .. response.body()!!.data.keywords.size-1){
-                        if(i == 0){
-                            mypage_keyword_tv.text = "#"+ response.body()!!.data.keywords[i].content
-                        }
-                        else{
+                    for (i in 0..response.body()!!.data.keywords.size - 1) {
+                        if (i == 0) {
+                            mypage_keyword_tv.text = "#" + response.body()!!.data.keywords[i].content
+                        } else {
                             mypage_keyword_tv.append("    #" + response.body()!!.data.keywords[i].content)
                         }
                     }
@@ -175,6 +176,36 @@ class MyPageFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<GetOtherInformResponse>?, t: Throwable?) {
+
+            }
+        })
+    }
+    fun getUserPagePost(){
+        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+        getMypageResponse.enqueue(object : Callback<GetMypageResponse> {
+            override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
+                Log.v("TAG", "보드 서버 통신 연결")
+                if (response!!.isSuccessful) {
+                    val temp : UserPageData = response.body()!!.data
+
+                    mypage_name_tv.text=temp.name
+                    mypage_job_tv.text=temp.job
+                    mypage_team_tv.text=temp.company
+                    mypage_region_tv.text=temp.region
+                    Glide.with(ctx).load(temp.image).into(mypage_background_img)
+
+                    for(i in 0..temp.keywords.size-1)
+                    {
+                        keword += (temp.keywords[i].content.toString() + " ")
+                    }
+                    mypage_keyword_tv.text = keword
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<GetMypageResponse>?, t: Throwable?) {
+
                 Log.v("TAG", "통신 실패 = " +t.toString())
             }
         })

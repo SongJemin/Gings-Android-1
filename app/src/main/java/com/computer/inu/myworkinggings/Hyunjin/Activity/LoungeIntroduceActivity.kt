@@ -42,11 +42,4 @@ class LoungeIntroduceActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-   /* private fun replaceFragment(fragment: Fragment) {
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.rl_lounge_main, fragment)
-        transaction.commit()
-    }*/
-
-
 }

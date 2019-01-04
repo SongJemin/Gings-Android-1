@@ -1,17 +1,20 @@
 package com.computer.inu.myworkinggings.Moohyeon.Activity
 
-import android.content.Context
 import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.PorterDuff
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
+import com.computer.inu.myworkinggings.Hyunjin.get.GetVerifyNumberRequest
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_sign_up2.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class SignUp2Activity : AppCompatActivity() {
@@ -20,6 +23,9 @@ class SignUp2Activity : AppCompatActivity() {
     var password_check: String = String()
     var email : String = String()
     val Passwrod_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{7,16}$"
+
+    lateinit var networkService : NetworkService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
@@ -28,6 +34,7 @@ class SignUp2Activity : AppCompatActivity() {
         tv_sign_up2_confirm_number_send_message.isEnabled=false
         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
 
+        networkService = ApplicationController.instance.networkService
 
         tv_sign_up2_overlap_check.setOnClickListener {
          email=et_sign_up2_email.text.toString()
@@ -49,6 +56,7 @@ class SignUp2Activity : AppCompatActivity() {
                 tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
             }
         }
+
 
         tv_sign_up2_confirm_number_send_message.setOnClickListener {
             var post_check = 0
@@ -76,12 +84,33 @@ class SignUp2Activity : AppCompatActivity() {
             }else{
                 toast("정보를 모두 입력해주세요.")
             }
+            getVerifyNumberData()
         }
+
+
     }
     fun Passwordvalidate(pw : String) : Boolean
     {
         var pattern = Pattern.compile(Passwrod_PATTERN)
         var matcher = pattern.matcher(pw)
         return matcher.matches()
+    }
+
+    fun getVerifyNumberData() {
+        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("wqefsdf", "seunghx@gmail.com") // 네트워크 서비스의 getContent 함수를 받아옴
+        getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
+            override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
+                Log.v("TAG", "GET 통신 성공")
+                if (response!!.isSuccessful) {
+                    Log.v("TAG", "인증번호 통신 성공")
+                    Log.v("TAG", "status = " + response.body()!!.status)
+                    Log.v("TAG", "message = " + response.body()!!.message)
+                }
+            }
+
+            override fun onFailure(call: Call<GetVerifyNumberRequest>?, t: Throwable?) {
+                Log.v("TAG", "통신 실패")
+            }
+        })
     }
 }

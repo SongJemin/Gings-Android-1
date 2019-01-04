@@ -67,7 +67,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.contents_text.text = dataList[position].content
 
         //profile
-        holder.name.text = dataList[position].writerId.toString()
+        holder.name.text = dataList[position].writer
         holder.role.text = dataList[position].category
 
         // 좋아요 수
@@ -86,6 +86,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             ctx.startActivity(intent)
         }
 
+        /*
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
 
@@ -95,7 +96,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             //일반 게시글 클릭
             ctx.startActivity<HomeBoardMoreBtnActivity>()
         }
-
+*/
         //좋아요 버튼
 
         //댓글창=> 디테일보드
@@ -135,7 +136,5 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //공유하기 val
         val share_btn : ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
 
-        //더보기 val
-        val more_btn : ImageView = itemView.findViewById(R.id.iv_item_board_more_btn) as ImageView
     }
 }

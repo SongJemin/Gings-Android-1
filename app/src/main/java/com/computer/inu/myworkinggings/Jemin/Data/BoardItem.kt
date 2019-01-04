@@ -5,6 +5,7 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.ReplyData
 data class BoardItem (
         var boardId : Int?,
         var writerId : Int?,
+        var writer : String?,
         var title : String?,
         var content : String?,
         var share : Int?,

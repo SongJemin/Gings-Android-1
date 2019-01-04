@@ -19,6 +19,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
@@ -97,9 +98,8 @@ class UpBoardActivity : AppCompatActivity() {
             }
             else{
                 Log.v("asdf","널값없이 잘 들어옴")
-                //postBoard()
+                postBoard()
             }
-            postBoard()
         }
 
         /*카테고리 선택&재선택 함수*/
@@ -263,6 +263,8 @@ class UpBoardActivity : AppCompatActivity() {
                     Log.v("TAG", "보드 값 전달 성공")
                     Log.v("TAG","보드 status = " + response.body()!!.status)
                     Log.v("TAG","보드 message = " + response.body()!!.message)
+                    var intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
                 }
                 else{
                     Log.v("TAG", "보드 값 전달 실패")

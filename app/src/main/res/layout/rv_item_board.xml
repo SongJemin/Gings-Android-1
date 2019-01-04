@@ -17,7 +17,7 @@
         <RelativeLayout
             android:id="@+id/rl_item_board_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true">
 
             <TextView
@@ -30,7 +30,8 @@
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="협업"
-                android:textColor="#b0caea"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:textSize="15sp" />
 
             <View
@@ -40,7 +41,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/tv_item_board_category"
-                android:background="#999999" />
+                android:background="@color/colorPrimary" />
 
 
             <TextView
@@ -50,36 +51,45 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:layout_toRightOf="@+id/v_item_board_slash"
-                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="개발 협업할 디자이너 구합니다!"
                 android:textColor="#222222"
                 android:textSize="15sp" />
 
+            <Button
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/bt_more"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                />
+            <LinearLayout
+                android:id="@+id/ll_item_board_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_item_board_title"
+                android:layout_alignLeft="@+id/tv_item_board_title"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_item_board_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="12sp"
+                    android:paddingEnd="15dp"
+                    android:text="#사업 #창업 #준비"
+                    android:textColor="#999999"
+                    android:textSize="10sp" />
+
+
+            </LinearLayout>
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_item_board_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rl_item_board_title"
-            android:layout_marginStart="65dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_item_board_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="12sp"
-                android:paddingEnd="15dp"
-                android:text="#사업 #창업 #준비"
-                android:textColor="#999999"
-                android:textSize="10sp" />
-
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_item_board_time"
@@ -149,16 +159,17 @@
     //profile
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="56dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_item_board_profile_img"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="19dp"
-            android:src="#b0caea" />
+            android:src="@drawable/invalid_name"
+            />
 
         <TextView
             android:id="@+id/tv_item_board_profile_name"
@@ -171,7 +182,17 @@
             android:lineSpacingExtra="4sp"
             android:text="이충엽"
             android:textColor="#222222"
+            android:textStyle="bold"
             android:textSize="12sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="7.6dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_item_board_profile_name"
+            android:layout_marginLeft="7.2dp"
+            android:background="#999999"
+            />
         
         <TextView
 
@@ -180,7 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="117dp"
+            android:layout_marginStart="112.5dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="6sp"
             android:text="깅스"
@@ -210,7 +231,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="18dp">
@@ -219,7 +240,10 @@
                 android:id="@+id/rl_item_board_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/rl_item_board_comment"
+                android:layout_marginRight="15.7dp"
+                >
 
                 <ImageView
                     android:id="@+id/iv_item_board_like"
@@ -227,7 +251,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="0dp"
-                    android:src="@drawable/ic_thumb_up_black_24dp" />
+                    android:src="@drawable/ic_like" />
 
                 <TextView
                     android:id="@+id/tv_item_board_like_cnt"
@@ -246,24 +270,24 @@
 
             <RelativeLayout
                 android:id="@+id/rl_item_board_comment"
-                android:layout_width="wrap_content"
+                android:layout_width="42.7dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/rl_item_board_like">
+                android:layout_marginRight="10.3dp"
+                android:layout_toLeftOf="@id/iv_item_board_share">
 
                 <ImageView
                     android:id="@+id/iv_item_board_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_comment_black_24dp" />
+                    android:layout_width="13.6dp"
+                    android:layout_height="13.6dp"
+                    android:src="@drawable/ic_reple" />
 
                 <TextView
                     android:id="@+id/tv_item_board_comment_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="6.1dp"
                     android:layout_toRightOf="@id/iv_item_board_comment"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="12sp"
@@ -278,18 +302,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/rl_item_board_comment"
-                android:src="@drawable/ic_share_black_24dp" />
+                android:layout_marginRight="19dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/bt_share" />
 
-            <ImageView
-                android:id="@+id/iv_item_board_more_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/iv_item_board_share"
-                android:src="@drawable/ic_more_vert_black_24dp" />
 
         </RelativeLayout>
 

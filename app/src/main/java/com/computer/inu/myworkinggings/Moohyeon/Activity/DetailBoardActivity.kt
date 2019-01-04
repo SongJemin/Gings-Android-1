@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Moohyeon.Activity
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -11,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.Adapter.DetailBoardRecyclerViewAdapter
@@ -170,8 +172,9 @@ class DetailBoardActivity : AppCompatActivity() {
                     Log.v("TAG", "보드 값 전달 성공")
                     Log.v("TAG","보드 status = " + response.body()!!.status)
                     Log.v("TAG","보드 message = " + response.body()!!.message)
-                }
-                else{
+                    var intent = Intent(applicationContext, DetailBoardActivity::class.java)
+                    startActivity(intent)
+                } else{
                     Log.v("TAG", "보드 값 전달 실패")
                 }
             }

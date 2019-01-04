@@ -2,6 +2,8 @@ package com.computer.inu.myworkinggings.Network
 
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
 import com.google.gson.JsonObject
@@ -52,5 +54,16 @@ interface NetworkService {
             @Body() body : JsonObject
     ) : Call<PostLogInResponse>
 
+    @GET("/mypage/others/{myPageUserId}")
+    fun getOtherPageInform(
+            @Header("Authorization") Authorization: String,
+            @Path("myPageUserId") myPageUserId : Int?
+    ) : Call<GetOtherInformResponse>
+
+    @GET("/mypage/others/introduce/{myPageUserId}")
+    fun getOtherPageIntro(
+            @Header("Authorization") Authorization: String,
+            @Path("myPageUserId") myPageUserId : Int?
+    ) : Call<GetOtherIntroResponse>
 
 }

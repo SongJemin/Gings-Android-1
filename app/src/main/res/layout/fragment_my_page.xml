@@ -64,6 +64,14 @@
                             android:layout_marginRight="13dp"
                             android:background="@drawable/mypage_setting_circle" />
 
+                        <ImageView
+                            android:id="@+id/iv_btn_other_page_close"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="13dp"
+                            android:background="@drawable/otherpage_button" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -163,29 +171,14 @@
                             android:textColor="#ffffff"
                             />
                         <TextView
-                            android:id="@+id/mypage_myposition_tv"
+                            android:id="@+id/mypage_keyword_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="#기획"
+                            android:text="#기획 #PM #안드"
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />
-                        <TextView
-                            android:id="@+id/mypage_myteam_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="#깅스"
-                            android:textSize="10sp"
-                            android:textColor="#ffffff"
-                            />
-                        <TextView
-                            android:id="@+id/mypage_myrole_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="#PM"
-                            android:textSize="10sp"
-                            android:textColor="#ffffff"
-                            />
+
 
                     </LinearLayout>
 

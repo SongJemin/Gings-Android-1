@@ -1,0 +1,93 @@
+<?xml version="1.0"
+    encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="621"
+        >
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/main_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="574.3" >
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#95989a"
+            />
+
+        <LinearLayout
+            android:id="@+id/main_tab_linear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="47"
+            android:orientation="horizontal"
+            android:background="#ebf8f8f8"
+            >
+
+            <ImageButton
+                android:id="@+id/main_hometab_btn"
+                android:layout_width="46.08dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="#00000000"
+                android:padding="7sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/hometab_selector" />
+
+            <ImageButton
+                android:id="@+id/main_directory_btn"
+                android:layout_width="46.08dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:padding="6sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/directorytab_selector"/>
+
+            <ImageButton
+                android:id="@+id/main_lounge_btn"
+                android:layout_width="41dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:padding="2sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/lounge_selector" />
+
+            <ImageButton
+                android:id="@+id/main_alarm_btn"
+                android:layout_width="46.08dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:padding="7sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/alarm_selector" />
+
+            <ImageButton
+                android:id="@+id/main_mypage_btn"
+                android:layout_width="46.08dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:padding="7sp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mypage_selector" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

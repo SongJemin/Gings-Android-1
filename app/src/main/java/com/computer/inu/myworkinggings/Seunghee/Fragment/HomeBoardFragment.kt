@@ -3,24 +3,41 @@ package com.computer.inu.myworkinggings.Seunghee.Fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
+import com.computer.inu.myworkinggings.Jemin.Get.Response.BoardData
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.CategoryMenuActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.UpBoardActivity
-import com.computer.inu.myworkinggings.data.BoardData
 import kotlinx.android.synthetic.main.fragment_home_board.*
 import org.jetbrains.anko.support.v4.startActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeBoardFragment : Fragment(){
     lateinit var boardRecyclerViewAdapter : BoardRecyclerViewAdapter
+    lateinit var networkService : NetworkService
+    var BoardData = ArrayList<BoardData>()
+    var BoardItemList = ArrayList<BoardItem>()
+    lateinit var requestManager : RequestManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view : View = inflater.inflate(R.layout.fragment_home_board, container, false)
-
+        networkService = ApplicationController.instance.networkService
+        requestManager = Glide.with(this)
+        getBoard()
         return view
     }
 
@@ -45,19 +62,33 @@ class HomeBoardFragment : Fragment(){
 
     private fun setRecyclerView(){
 
-        //임시데이터
-        var dataList: ArrayList<BoardData> = ArrayList()
 
-        //dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53","사진 없는뎁..", "이 편지는 행운의 편지입니다", true, "사진없눈뎁", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
-        //dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53","사진 없는뎁..", "이 편지는 행운의 편지입니다", "사진없눈뎁", "이충엽", "깅스" , "쵝오이 피엠", 1, 1))
-        dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다","이충엽","깅스", "PM", 1, 1))
-        dataList.add(BoardData("창업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다","이충엽","깅스", "PM", 1, 1))
-        dataList.add(BoardData("창업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다","이충엽","깅스", "PM", 1, 1))
-        dataList.add(BoardData("협업", "창업에 관심 있으신 분!!!", "#cowalk", "오후 6:53", "이 편지는 행운의 편지입니다","이충엽","깅스", "PM",1, 1))
 
-        boardRecyclerViewAdapter = BoardRecyclerViewAdapter(activity!!, dataList)
-        rv_item_board_list.adapter = boardRecyclerViewAdapter
-        rv_item_board_list.layoutManager = LinearLayoutManager(activity)
 
+    }
+
+    fun getBoard() {
+        var getBoardResponse = networkService.getBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",0,10) // 네트워크 서비스의 getContent 함수를 받아옴
+        getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
+            override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
+                Log.v("TAG", "보드 서버 통신 연결")
+                if (response!!.isSuccessful) {
+                    BoardData = response.body()!!.data
+
+                    for(i in 0..BoardData.size-1){
+                        BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images, BoardData[i].keywords, BoardData[i].replys, BoardData[i].recommender ))
+                    }
+                    Log.v("asdf","응답 바디 = " + response.body().toString())
+
+                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(activity!!, BoardItemList, requestManager)
+                    rv_item_board_list.adapter = boardRecyclerViewAdapter
+                    rv_item_board_list.layoutManager = LinearLayoutManager(activity)
+                }
+            }
+
+            override fun onFailure(call: Call<GetBoardResponse>?, t: Throwable?) {
+                Log.v("TAG", "통신 실패 = " +t.toString())
+            }
+        })
     }
 }

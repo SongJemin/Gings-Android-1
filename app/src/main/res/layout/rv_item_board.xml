@@ -67,62 +67,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_item_board_tag1"
+                android:id="@+id/tv_item_board_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="12sp"
                 android:paddingEnd="15dp"
-                android:text="#사업"
-                android:textColor="#999999"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/tv_item_board_tag2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="12sp"
-                android:paddingEnd="15dp"
-                android:text="#창업"
-                android:textColor="#999999"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/tv_item_board_tag3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="12sp"
-                android:paddingEnd="15dp"
-                android:text="#준비"
-                android:textColor="#999999"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/tv_item_board_tag4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="12sp"
-                android:paddingEnd="15dp"
-                android:text="#정보"
-                android:textColor="#999999"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/tv_item_board_tag5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="12sp"
-                android:paddingEnd="15dp"
-                android:text="#팁"
+                android:text="#사업 #창업 #준비"
                 android:textColor="#999999"
                 android:textSize="10sp" />
 

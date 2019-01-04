@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.ProfileSettingMenuActivity
@@ -15,9 +17,9 @@ import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import org.jetbrains.anko.support.v4.startActivity
 
-
 class MyPageFragment : Fragment() {
 
+    lateinit var requestManager: RequestManager
 
     // 처음 프래그먼트 추가
     fun addFragment(fragment : Fragment){
@@ -28,8 +30,7 @@ class MyPageFragment : Fragment() {
     }
 
     // 프래그먼트 교체
-    fun replaceFragment(fragment: Fragment)
-    {
+    fun replaceFragment(fragment: Fragment) {
         val fm = childFragmentManager
         val transaction = fm.beginTransaction()
         transaction.replace(R.id.mypage_content_layout, fragment)
@@ -41,6 +42,9 @@ class MyPageFragment : Fragment() {
         val v : View = inflater.inflate(R.layout.fragment_my_page,container,false)
         v.mypage_act_view.visibility = View.INVISIBLE
         addFragment(MypageIntroFragment())
+        requestManager = Glide.with(this)
+        requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
+
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
 

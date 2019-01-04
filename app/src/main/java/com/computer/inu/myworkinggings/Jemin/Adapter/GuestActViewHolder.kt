@@ -11,5 +11,5 @@ class GuestActViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) 
     var actTime: TextView = itemView!!.findViewById(R.id.item_act_time_tv)
     var actContent: TextView = itemView!!.findViewById(R.id.item_act_content_tv)
     var actName: TextView = itemView!!.findViewById(R.id.item_act_name_tv)
-    var actRole: TextView = itemView!!.findViewById(R.id.item_act_role_tv)
+    var actRole: TextView = itemView!!.findViewById(R.id.item_act_role_role_tv)
 }

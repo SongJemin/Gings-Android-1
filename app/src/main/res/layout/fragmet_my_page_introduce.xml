@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="92dp"
         android:orientation="vertical"
         android:background="#f9f9f9"
         >
@@ -19,19 +19,23 @@
             >
 
             <LinearLayout
-                android:layout_width="249dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:layout_marginTop="15.2dp"
-                android:layout_marginBottom="13dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="46dp"
+                android:layout_marginBottom="11dp"
                 >
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_weight="1"
                     >
                     <ImageView
+                        android:layout_centerHorizontal="true"
+
                         android:layout_width="23dp"
                         android:layout_height="23dp"
                         android:background="@drawable/invalid_name"
@@ -39,6 +43,9 @@
                         />
 
                     <TextView
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="협업여부"
@@ -46,14 +53,29 @@
                         android:textStyle="bold"
                         android:layout_gravity="center"
                         />
-                    <ImageView
-                        android:layout_width="39dp"
-                        android:layout_height="14dp"
-                        android:background="@drawable/invalid_name"
-                        android:layout_gravity="center"
-                        />
 
-                </LinearLayout>
+                    <RelativeLayout
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="48dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/box_on"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="2sp"
+                            android:text="불가능"
+                            android:textColor="#ffffff"
+                            android:textSize="8sp"
+                            android:layout_centerInParent="true"
+                            />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
@@ -61,35 +83,56 @@
                     android:layout_marginBottom="12.5dp"
                     android:background="#e2e8ed"
                     />
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_weight="1"
                     >
+
                     <ImageView
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:background="@drawable/invalid_name"
+                        android:layout_width="18dp"
+
+                        android:layout_height="14.1dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
-                        />
+                        android:background="@drawable/ic_category" />
 
                     <TextView
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="협업여부"
+                        android:text="활동분야"
                         android:textSize="10sp"
                         android:textStyle="bold"
                         android:layout_gravity="center"
                         />
-                    <ImageView
-                        android:layout_width="39dp"
-                        android:layout_height="14dp"
-                        android:background="@drawable/invalid_name"
-                        android:layout_gravity="center"
-                        />
 
-                </LinearLayout>
+                    <RelativeLayout
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="48dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/box_on"
+                        >
+                        <TextView
+
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="2sp"
+                            android:text="열글자 후후훟ㅅ파하ㅏㅎ"
+                            android:textColor="#ffffff"
+                            android:textSize="8sp"
+                            android:layout_centerInParent="true"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
@@ -97,35 +140,53 @@
                     android:layout_marginBottom="12.5dp"
                     android:background="#e2e8ed"
                     />
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_weight="1"
                     >
                     <ImageView
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:background="@drawable/invalid_name"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="15.5dp"
+                        android:layout_height="15.5dp"
+                        android:background="@drawable/ic_now"
                         android:layout_gravity="center"
                         />
 
                     <TextView
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="협업여부"
+                        android:text="업무상태"
                         android:textSize="10sp"
                         android:textStyle="bold"
                         android:layout_gravity="center"
                         />
-                    <ImageView
-                        android:layout_width="39dp"
-                        android:layout_height="14dp"
-                        android:background="@drawable/invalid_name"
-                        android:layout_gravity="center"
-                        />
 
-                </LinearLayout>
+                    <RelativeLayout
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="48dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/box_on"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="2sp"
+                            android:text="구직중"
+                            android:textColor="#ffffff"
+                            android:textSize="8sp"
+                            android:layout_centerInParent="true"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -134,7 +195,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:background="#ffffff"
@@ -212,8 +273,8 @@
 
             <TextView
                 android:id="@+id/mypage_board_content_tv"
-                android:layout_width="230dp"
-                android:layout_height="107dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="안녕하세요! 깅스의 런칭을 기다려온 이충엽입니다. 깅스의 승승장구를 기원합니다.
  저와 컨택하고 싶은 분이 있다면
 게스트보드에 글을 남겨주시거나
@@ -251,10 +312,10 @@
             <Button
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="16dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/bt_guestmore"
-                />
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/bt_guestmore" />
 
 
         </RelativeLayout>

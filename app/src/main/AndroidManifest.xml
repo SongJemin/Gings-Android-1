@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.computer.inu.myworkinggings">
+    package="com.computer.inu.myworkinggings"
+    android:targetSandboxVersion="1">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -38,6 +39,11 @@
         <activity
             android:name=".Seunghee.Activity.UpBoardActivity"
             android:windowSoftInputMode="adjustResize" />
+        //보드 더보기 버튼
+        <activity android:name=".Seunghee.Activity.HomeBoardMoreBtnActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" /> //일반 게시물
+        <activity android:name=".Seunghee.Activity.HomeBoardMoreBtnMineActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" /> //내 게시물
         //디테일보드
         <activity android:name=".Moohyeon.Activity.DetailBoardActivity" />
         //카테고리 메뉴창
@@ -71,7 +77,6 @@
         <activity android:name=".Jemin.Activity.PasswordConfirmActivity" />
         <activity android:name=".Jemin.Activity.UnsubscribeActivity"></activity>
         <activity android:name=".Jemin.Activity.MainActivity"></activity>
-
 
     </application>
 

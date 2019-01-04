@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.Moohyeon.Data.ReBoardData
+import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
 import java.util.ArrayList
 
-class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReBoardData>)
+class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReplyData?>)
     : RecyclerView.Adapter<DetailBoardRecyclerViewAdapter.Holder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -21,22 +21,20 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        //holder.name.text = dataList[position].name
 
-        holder.time.text = dataList[position].time
-        holder.contents_text.text = dataList[position].contents_text
-        holder.name.text = dataList[position].name
-    }
+        holder.name.text = dataList[position]!!.writer
+        holder.time.text = dataList[position]!!.writeTime
+        holder.contents_text.text = dataList[position]!!.content
+
+        }
 
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         val time : TextView = itemView.findViewById(R.id.tv_item_detailboard_time) as TextView
-        //val contents_img : TextView = itemView.findViewById(R.id.)
-        //val contents_more : TextView = itemView.findViewById(R.id.tv_item_detailboard_contents_more) as TextView //boolean
-        //val profile_img : TextView
         val name : TextView = itemView.findViewById(R.id.tv_item_detailboard_profile_name) as TextView
         val contents_text : TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView
-        //공유하기 val
-        //더보기 val
+
     }
 }

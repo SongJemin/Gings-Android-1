@@ -13,11 +13,10 @@ import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.R.id.iv_item_board_contents_image
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
-import com.computer.inu.myworkinggings.data.BoardData
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import java.util.ArrayList
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
@@ -31,7 +30,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //'인스턴스 객체 = 데이터' 연결
+        //인스턴스 객체 - 데이터 연결
 
         //title
         holder.category.text = dataList[position].category
@@ -73,13 +72,23 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.like_cnt.text = dataList[position].recommender!!.toString()
 
         // 댓글 수
-        holder.comment_cnt.text = dataList[position].replys.size.toString()
+        holder.comment_cnt.text = dataList[position].numOfReply.toString()
 
         /*이벤트 처리*/
 
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
-            ctx.startActivity<DetailBoardActivity>()
+            /*var intent = Intent(ctx, DetailBoardActivity::class.java)
+            intent.putExtra("BoardId", dataList[position].boardId)
+
+            //startActivity<>()
+            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
+*/
+            //dataList[position].boardId
+
+            ctx.toast( dataList[position].boardId!!.toString())
+            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
+
         }
 
         //더보기 버튼 클릭 시

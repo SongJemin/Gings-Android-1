@@ -9,6 +9,7 @@ import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
+import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -22,26 +23,26 @@ interface NetworkService {
 
     @GET("/signup/email")
     fun getEmailRedundancyResponse(
-            @Query("email") email : String
-    ) : Call<GetEmailRedundancyResponse>
+            @Query("email") email: String
+    ): Call<GetEmailRedundancyResponse>
 
     @GET("/boards")
     fun getBoard(
-            @Header("Authorization") Authorization : String,
-            @Query("offset") offset : Int?,
-            @Query("limit") limit : Int?
-    ) : Call<GetBoardResponse>
+            @Header("Authorization") Authorization: String,
+            @Query("offset") offset: Int?,
+            @Query("limit") limit: Int?
+    ): Call<GetBoardResponse>
 
     @Multipart
     @POST("/boards")
     fun postBoard(
-            @Header("Authorization") Authorization : String,
-            @Part("title") title : RequestBody,
-            @Part("content") summary : RequestBody,
+            @Header("Authorization") Authorization: String,
+            @Part("title") title: RequestBody,
+            @Part("content") summary: RequestBody,
             @Part("category") area: RequestBody,
-            @Part images : ArrayList<MultipartBody.Part?>,
-            @Part("keywords") keywords : ArrayList<RequestBody>
-    ) : Call<PostBoardResponse>
+            @Part images: ArrayList<MultipartBody.Part?>,
+            @Part("keywords") keywords: ArrayList<RequestBody>
+    ): Call<PostBoardResponse>
 
     @Multipart
     @POST(" /reboards")
@@ -55,8 +56,8 @@ interface NetworkService {
     @POST("/login")
     fun postLoginResponse(
             @Header("Content-type") content_type: String,
-            @Body() body : JsonObject
-    ) : Call<PostLogInResponse>
+            @Body() body: JsonObject
+    ): Call<PostLogInResponse>
 
     @GET("/mypage/others/{myPageUserId}")
     fun getOtherPageInform(
@@ -95,4 +96,10 @@ interface NetworkService {
             @Header("Authorization") Authorization : String
     ) : Call<GetMypageResponse>
 
+    @GET("/boards/{boardId}")
+    fun getDetailedBoardResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String,
+            @Path("boardId") boardId : Int
+    ) : Call<GetDetailedBoardResponse>
 }

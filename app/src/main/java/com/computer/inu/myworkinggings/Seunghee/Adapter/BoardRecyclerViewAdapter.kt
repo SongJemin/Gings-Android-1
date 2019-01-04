@@ -18,10 +18,8 @@ import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
-import com.computer.inu.myworkinggings.R.id.iv_item_board_contents_image
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
-import com.computer.inu.myworkinggings.data.BoardData
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -30,13 +28,14 @@ import retrofit2.Response
 import java.util.ArrayList
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
-    :RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>(){
-    var b_id : Int = 0
+    :RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>() {
+    var b_id: Int = 0
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
 
         return Holder(view)
     }
@@ -45,29 +44,27 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        //'인스턴스 객체 = 데이터' 연결
+        //인스턴스 객체 - 데이터 연결
 
         b_id = dataList[position].boardId!!
         //title
         holder.category.text = dataList[position].category
         holder.title.text = dataList[position].title
-        for(i in 0 .. dataList[position].keywords.size-1){
-            if(i == 0){
-                holder.tag.text = "#"+ dataList[position].keywords[i]
-            }
-            else{
+        for (i in 0..dataList[position].keywords.size - 1) {
+            if (i == 0) {
+                holder.tag.text = "#" + dataList[position].keywords[i]
+            } else {
                 holder.tag.append("    #" + dataList[position].keywords[i])
             }
         }
-        for(i in 0 .. dataList[position].images.size-1){
-            if(dataList[position].images.size == 0){
-                Log.v("asdf","사이즈 0" + dataList[position].images.size)
+        for (i in 0..dataList[position].images.size - 1) {
+            if (dataList[position].images.size == 0) {
+                Log.v("asdf", "사이즈 0" + dataList[position].images.size)
                 holder.contents_img.visibility = View.GONE
-            }
-            else{
-                Log.v("asdf","사이즈 있음 " + dataList[position].images.size)
+            } else {
+                Log.v("asdf", "사이즈 있음 " + dataList[position].images.size)
                 requestManager.load(dataList[position].images[0]).centerCrop().into(holder.contents_img)
-                if(dataList[position].images[i] == "abcd"){
+                if (dataList[position].images[i] == "abcd") {
                     holder.contents_img.visibility = View.GONE
                 }
             }
@@ -95,8 +92,19 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.gotoDetailedBoard.setOnClickListener {
             var intent = Intent(ctx, DetailBoardActivity::class.java)
             intent.putExtra("boardId", dataList[position].boardId)
-            Log.v("asdf","보드 id 전송 = " + dataList[position].boardId)
+            Log.v("asdf", "보드 id 전송 = " + dataList[position].boardId)
             ctx.startActivity(intent)
+            /*var intent = Intent(ctx, DetailBoardActivity::class.java)
+            intent.putExtra("BoardId", dataList[position].boardId)
+
+            //startActivity<>()
+            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
+*/
+            //dataList[position].boardId
+
+            ctx.toast(dataList[position].boardId!!.toString())
+            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
+
         }
 
         /*
@@ -112,7 +120,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 */
         //좋아요 버튼
         holder.like_btn.setOnClickListener {
-      BoardLikePost()
+            BoardLikePost()
         }
         //댓글창=> 디테일보드
 
@@ -120,40 +128,41 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
 
     //layout의 view를 인스턴스 변수로 만들어 줌
-    inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val gotoDetailedBoard : LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
+        val gotoDetailedBoard: LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
 
         //title
-        val category : TextView = itemView.findViewById(R.id.tv_item_board_category) as TextView
-        val title : TextView = itemView.findViewById(R.id.tv_item_board_title) as TextView
-        val tag : TextView  = itemView.findViewById(R.id.tv_item_board_tag) as TextView
-        val time : TextView = itemView.findViewById(R.id.tv_item_board_time) as TextView
+        val category: TextView = itemView.findViewById(R.id.tv_item_board_category) as TextView
+        val title: TextView = itemView.findViewById(R.id.tv_item_board_title) as TextView
+        val tag: TextView = itemView.findViewById(R.id.tv_item_board_tag) as TextView
+        val time: TextView = itemView.findViewById(R.id.tv_item_board_time) as TextView
 
         //contents
-        val contents_img : ImageView = itemView.findViewById(R.id.iv_item_board_contents_image) as ImageView
-        val contents_text : TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
-        val contents_more : TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
+        val contents_img: ImageView = itemView.findViewById(R.id.iv_item_board_contents_image) as ImageView
+        val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
+        val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필
         //val profile_img : ImageView = itemView.findViewById(R.id.iv_home_board_profile_img) as ImageView
-        val name : TextView = itemView.findViewById(R.id.tv_item_board_profile_name) as TextView
-        val team : TextView = itemView.findViewById(R.id.tv_item_board_profile_team) as TextView
-        val role : TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
+        val name: TextView = itemView.findViewById(R.id.tv_item_board_profile_name) as TextView
+        val team: TextView = itemView.findViewById(R.id.tv_item_board_profile_team) as TextView
+        val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
 
         //좋아요
-        val like_btn : ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
-        val like_cnt : TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
+        val like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
+        val like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 
         //댓글아이콘
-        val comment_btn : ImageView = itemView.findViewById(R.id.iv_item_board_comment) as ImageView
-        val comment_cnt : TextView = itemView.findViewById(R.id.tv_item_board_comment_cnt) as TextView //int
+        val comment_btn: ImageView = itemView.findViewById(R.id.iv_item_board_comment) as ImageView
+        val comment_cnt: TextView = itemView.findViewById(R.id.tv_item_board_comment_cnt) as TextView //int
 
         //공유하기 val
-        val share_btn : ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
+        val share_btn: ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
 
     }
-private fun BoardLikePost(){
+
+    private fun BoardLikePost(){
         val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
                 , b_id)
 

@@ -33,30 +33,49 @@
     <View
         android:id="@+id/item_guest_view"
         android:layout_width="1dp"
-        android:layout_height="8dp"
+        android:layout_height="12dp"
         android:background="#999999"
         android:layout_toRightOf="@+id/item_guest_name_tv"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="22.2dp"
         android:layout_marginLeft="9.1dp"
         />
 
     <TextView
-        android:id="@+id/item_guest_role_tv"
+        android:id="@+id/item_guest_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SWU/DESIGNER"
+        android:text="SWU"
         android:textSize="10sp"
         android:layout_marginTop="21.2dp"
         android:layout_toRightOf="@+id/item_guest_view"
         android:layout_marginLeft="8.5dp"
         android:textColor="#525252"
         />
-
     <TextView
-        android:id="@+id/item_guest_date_tv"
+        android:id="@+id/item_guest_slash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2018/12/30"
+        android:text="/"
+        android:textSize="10sp"
+        android:layout_marginTop="21.2dp"
+        android:layout_toRightOf="@+id/item_guest_team"
+        android:textColor="#525252"
+        />
+    <TextView
+        android:id="@+id/item_guest_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DESIGNER"
+        android:textSize="10sp"
+        android:layout_marginTop="21.2dp"
+        android:layout_toRightOf="@+id/item_guest_slash"
+        android:textColor="#525252"
+        />
+    <TextView
+        android:id="@+id/item_guest_date_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2019-01-02 T 12:51:47"
         android:textSize="9sp"
         android:layout_marginTop="4.8dp"
         android:layout_toRightOf="@+id/item_guest_view"
@@ -65,17 +84,7 @@
         android:layout_below="@+id/item_guest_name_tv"
         />
 
-    <TextView
-        android:id="@+id/item_guest_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="01:16"
-        android:textSize="9sp"
-        android:layout_marginTop="4.8dp"
-        android:layout_toRightOf="@+id/item_guest_date_tv"
-        android:textColor="#999999"
-        android:layout_marginLeft="5dp"
-        android:layout_below="@+id/item_guest_name_tv"
+
         />
 
     <TextView
@@ -85,7 +94,7 @@
         android:text="편안한 협업 보장! 함께 하기 좋은 기획자! 추천합니다."
         android:layout_alignLeft="@+id/item_guest_profile_img"
         android:layout_marginRight="30dp"
-        android:layout_below="@+id/item_guest_date_tv"
+        android:layout_below="@+id/item_guest_date_time"
         android:layout_marginTop="11dp"
         android:textSize="13sp"
         android:textColor="#222222"

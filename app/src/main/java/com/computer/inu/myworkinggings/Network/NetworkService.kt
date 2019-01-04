@@ -3,6 +3,8 @@ package com.computer.inu.myworkinggings.Network
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
@@ -57,4 +59,14 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Body() body : JsonObject
     ) : Call<PostSignUpResponse>
+    @GET("/mypage/mine/guestboard")
+    fun getGuestBoardResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization : String
+    ) : Call<GetGuestBoardResponse>
+    @GET("/mypage/mine")
+    fun getMypageResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization : String
+    ) : Call<GetMypageResponse>
 }

@@ -170,22 +170,7 @@
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />
-                        <TextView
-                            android:id="@+id/mypage_myteam_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="#깅스"
-                            android:textSize="10sp"
-                            android:textColor="#ffffff"
-                            />
-                        <TextView
-                            android:id="@+id/mypage_myrole_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="#PM"
-                            android:textSize="10sp"
-                            android:textColor="#ffffff"
-                            />
+
 
                     </LinearLayout>
 

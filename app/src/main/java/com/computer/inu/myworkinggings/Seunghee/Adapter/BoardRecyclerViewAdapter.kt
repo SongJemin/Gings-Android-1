@@ -86,7 +86,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.like_cnt.text = dataList[position].recommender!!.toString()
 
         // 댓글 수
-        holder.comment_cnt.text = dataList[position].replys.size.toString()
+        holder.comment_cnt.text = dataList[position].numOfReply.toString()
 
         /*이벤트 처리*/
 

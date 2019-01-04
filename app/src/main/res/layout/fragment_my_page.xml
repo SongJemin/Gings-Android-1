@@ -87,14 +87,18 @@
                         android:layout_weight="2.9"
                         android:layout_marginLeft="16dp"
                         >
+
                         <TextView
                             android:id="@+id/mypage_name_tv"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이충엽"
                             android:textSize="20sp"
                             android:textColor="#ffffff"
+                            android:letterSpacing="-0.01"
                             android:textStyle="bold"
+                            android:lineSpacingExtra="16sp"
+                            android:text="이충엽"
                             />
                     </LinearLayout>
                     <LinearLayout
@@ -116,6 +120,7 @@
                             android:layout_height="wrap_content"
                             android:text="CEO"
                             android:textSize="13sp"
+                            android:lineSpacingExtra="5sp"
                             android:textColor="#ffffff"
                             />
                         <TextView
@@ -131,6 +136,7 @@
                             android:layout_height="wrap_content"
                             android:text="Gings"
                             android:textSize="13sp"
+                            android:lineSpacingExtra="5sp"
                             android:textColor="#ffffff"
                             />
                     </LinearLayout>
@@ -153,6 +159,7 @@
                             android:layout_height="wrap_content"
                             android:text="대한민국 서울"
                             android:textSize="10sp"
+                            android:lineSpacingExtra="11sp"
                             android:textColor="#ffffff"
                             />
                         <TextView
@@ -167,6 +174,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="#기획"
+                            android:lineSpacingExtra="11sp"
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />
@@ -175,6 +183,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="#깅스"
+                            android:lineSpacingExtra="11sp"
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />
@@ -183,6 +192,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="#PM"
+                            android:lineSpacingExtra="11sp"
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />

@@ -21,8 +21,6 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
-
-
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
@@ -42,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
         tv_login_login_button.setOnClickListener {
             startActivity<MainActivity>()
         }
-
 
             //startActivity<BottomNaviActivity>()
             getLoginResponse()

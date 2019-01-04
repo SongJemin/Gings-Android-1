@@ -3,7 +3,9 @@ package com.computer.inu.myworkinggings.Seunghee.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.content.Context
+import android.net.Uri
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -12,7 +14,9 @@ import android.widget.TextView
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.AlbumRecyclerViewAdapter
 import com.sopt.gings.data.AlbumData
+import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_up_board.*
+import java.util.ArrayList
 
 
 class UpBoardActivity : AppCompatActivity() {
@@ -23,8 +27,6 @@ class UpBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_up_board)
-
-        val mLinearLayout = findViewById(R.id.ll_upboard_album_view) as LinearLayout//기능상 키보드가 사라짐과 연관있는 view를 사용하면 된다.
 
         //키보드 제어
         val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -42,28 +44,25 @@ class UpBoardActivity : AppCompatActivity() {
         /*사진선택*/
         //이미지 버튼 클릭시
         iv_upboard_input_image.setOnClickListener {
-
-            //이미지 창 나타내기
-            ll_upboard_album_view.visibility=View.VISIBLE
-
             //키보드 창 내리기
-            inputMethodManager.hideSoftInputFromWindow(mLinearLayout.windowToken, 0)
-        }
-        //et뷰 클릭시. 이미지 창 감추기
-        et_up_board_title.setOnClickListener {
-            ll_upboard_album_view.visibility=View.GONE
-        }
+            //inputMethodManager.hideSoftInputFromWindow(mLinearLayout.windowToken, 0)
+            val tedBottomPicker = TedBottomPicker.Builder(this@UpBoardActivity)
+                    .setOnMultiImageSelectedListener {
+                        uriList: ArrayList<Uri>? ->
+                        for(i in 0 .. uriList!!.size-1){
+                            uriList!!.add(uriList.get(i))
+                            Log.v("TAG","이미지 = " + uriList.get(i))
+                        }
+                    }
+                    .setSelectMaxCount(4)
+                    .showCameraTile(false)
+                    .setPeekHeight(800)
+                    .showTitle(false)
+                    .setEmptySelectionText("선택된게 없습니다! 이미지를 선택해 주세요!")
+                    .create()
 
-        et_up_board_tags.setOnClickListener {
-            ll_upboard_album_view.visibility=View.GONE
+            tedBottomPicker.show(supportFragmentManager)
         }
-
-        et_up_board_modify.setOnClickListener {
-            ll_upboard_album_view.visibility=View.GONE
-        }
-        //하단 이미지선택
-        setRecyclerView()
-
     }
 
     private fun categorySelectOnClickListener(){
@@ -121,26 +120,4 @@ class UpBoardActivity : AppCompatActivity() {
         }
     }
 
-    private fun setRecyclerView(){
-
-        //임시데이터set
-        var dataList: ArrayList<AlbumData> = ArrayList()
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-        dataList.add(AlbumData(true))
-
-        AlbumRecyclerViewAdapter = AlbumRecyclerViewAdapter(this, dataList)
-        rv_upboard_album_list.adapter = AlbumRecyclerViewAdapter
-        rv_upboard_album_list.layoutManager = GridLayoutManager(this,3)
-
-    }
 }

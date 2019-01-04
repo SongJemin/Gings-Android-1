@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val FRAGMENT3 = 3
     private val FRAGMENT4 = 4
     private val FRAGMENT5 = 5
+    private val MY_PERMISSIONS_REQUEST = 100
+    private val MY_PERMISSIONS_REQUEST2 = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         main_lounge_btn!!.setOnClickListener(this)
         main_alarm_btn!!.setOnClickListener(this)
         main_mypage_btn!!.setOnClickListener(this)
+
+        if (ContextCompat.checkSelfPermission(this@MainActivity,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this@MainActivity,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    MY_PERMISSIONS_REQUEST)
+        }
+        if (ContextCompat.checkSelfPermission(this@MainActivity,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this@MainActivity,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    MY_PERMISSIONS_REQUEST2)
+        }
+
+
 
         // 임의로 액티비티 호출 시점에 어느 프레그먼트를 프레임레이아웃에 띄울 것인지를 정함
         callFragment(FRAGMENT1)

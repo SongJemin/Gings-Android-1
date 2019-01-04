@@ -12,6 +12,6 @@ data class BoardItem (
         var category : String?,
         var images : ArrayList<String>,
         var keywords : ArrayList<String>,
-        var replys : ArrayList<ReplyData>,
+        var numOfReply : Int?,
         var recommender : Int?
 )

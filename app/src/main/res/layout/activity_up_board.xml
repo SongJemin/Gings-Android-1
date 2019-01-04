@@ -4,443 +4,494 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        //고정바
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp">
+            android:layout_height="wrap_content">
 
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/upboard_top_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:textStyle="bold"
-                android:text="업보드"
-                android:textColor="#040404" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="23dp"
-                android:gravity="center_horizontal"
-                android:lineSpacingExtra="5sp"
-                android:text="작성"
-                android:textColor="#b0caea"
-                android:textSize="15sp"
-                />
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#eceff0" />
-
-        //카테고리
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="17dp"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="1sp"
-                android:text="Category"
-                android:textColor="#b0caea"
-                android:textSize="13sp" />
-            <!--
-
-                    <TextView
-                        android:id="@+id/et_upboard_category_clicked"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="83.5dp"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="1sp"
-                        android:text="질문"
-                        android:textColor="#333333"
-                        android:textSize="15sp" />
-            -->
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="83.5dp">
-
-                <TextView
-                    android:visibility="gone"
-
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_up_board_question"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="1sp"
-                    android:text="질문"
-                    android:textColor="#333333"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:visibility="gone"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_up_board_inspiration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="1sp"
-                    android:text="영감"
-                    android:textColor="#333333"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:visibility="gone"
-
-                    android:layout_centerVertical="true"
-                    android:id="@+id/tv_up_board_collaboration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="1sp"
-                    android:text="협업"
-                    android:textColor="#333333"
-                    android:textSize="15sp" />
+                android:orientation="vertical"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                >
+                //고정바
 
                 <RelativeLayout
-                    android:id="@+id/rl_btn_up_board_category_select"
-                    android:layout_centerInParent="true"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="72dp">
+
 
                     <TextView
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="3sp"
-                        android:text="카테고리를 정해주세요"
-                        android:textColor="#999999"
-                        android:textSize="13sp" />
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold"
+                        android:text="업보드"
+                        android:textColor="#040404" />
 
-                    <ImageView
-                        android:layout_centerVertical="true"
-                        android:id="@+id/iv_up_borad_category_more"
-                        android:layout_alignParentRight="true"
+                    <TextView
+                        android:id="@+id/iv_upboard_confirm_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_expand_more_black_24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="23dp"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="5sp"
+                        android:text="작성"
+                        android:textColor="#b0caea"
+                        android:textSize="15sp"
                         />
+
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/rl_btn_up_board_category_selected"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e2e8ed" />
 
-                    <TextView
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="3sp"
-                        android:text="카테고리를 정해주세요"
-                        android:textColor="#999999"
-                        android:textSize="13sp" />
-
-                    <ImageView
-                        android:id="@+id/iv_up_borad_category_less"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_expand_less_black_24dp"
-                        />
-                </RelativeLayout>
+            </LinearLayout>
 
 
-            </RelativeLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/upboard_top_layout"
+                android:fillViewport="true"
+                >
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="#eceff0" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed" />
+                    //카테고리
 
-        //카테고리 메뉴선택
-        //
-        <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/ll_up_board_category_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#eceff0"
-            android:orientation="horizontal">
-
-            //질문아이콘
-            <RelativeLayout
-                android:id="@+id/rl_btn_up_board_category_question"
-                android:layout_weight="1"
-                android:layout_width="match_parent" android:layout_height="120dp">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
-
-                    <ImageView
-                        android:id="@+id/iv_up_board_category_question"
-                        android:layout_width="50dp"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_face_black_24dp" />
+                        android:padding="8dp">
 
-                    <TextView
-                        android:layout_marginTop="13dp"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="17dp"
+                            android:letterSpacing="-0.01"
+                            android:lineSpacingExtra="1sp"
+                            android:text="Category"
+                            android:textColor="#b0caea"
+                            android:textSize="13sp" />
+                        <!--
+
+                                <TextView
+                                    android:id="@+id/et_upboard_category_clicked"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="83.5dp"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="1sp"
+                                    android:text="질문"
+                                    android:textColor="#333333"
+                                    android:textSize="15sp" />
+                        -->
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="83.5dp">
+
+                            <TextView
+                                android:visibility="gone"
+
+                                android:layout_centerVertical="true"
+                                android:id="@+id/tv_up_board_question"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="-0.01"
+                                android:lineSpacingExtra="1sp"
+                                android:text="질문"
+                                android:textColor="#333333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:visibility="gone"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/tv_up_board_inspiration"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="-0.01"
+                                android:lineSpacingExtra="1sp"
+                                android:text="영감"
+                                android:textColor="#333333"
+                                android:textSize="15sp" />
+
+                            <TextView
+                                android:visibility="gone"
+
+                                android:layout_centerVertical="true"
+                                android:id="@+id/tv_up_board_collaboration"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:letterSpacing="-0.01"
+                                android:lineSpacingExtra="1sp"
+                                android:text="협업"
+                                android:textColor="#333333"
+                                android:textSize="15sp" />
+
+                            <RelativeLayout
+                                android:id="@+id/rl_btn_up_board_category_select"
+                                android:layout_centerInParent="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="3sp"
+                                    android:text="카테고리를 정해주세요"
+                                    android:textColor="#999999"
+                                    android:textSize="13sp" />
+
+                                <ImageView
+                                    android:layout_centerVertical="true"
+                                    android:id="@+id/iv_up_borad_category_more"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_expand_more_black_24dp"
+                                    />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_btn_up_board_category_selected"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="3sp"
+                                    android:text="카테고리를 정해주세요"
+                                    android:textColor="#999999"
+                                    android:textSize="13sp" />
+
+                                <ImageView
+                                    android:id="@+id/iv_up_borad_category_less"
+                                    android:layout_centerVertical="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_expand_less_black_24dp"
+                                    />
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
+
+                    //카테고리 메뉴선택
+                    //
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/ll_up_board_category_list"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/iv_up_board_category_question"
-                        android:layout_centerHorizontal="true"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="1sp"
-                        android:text="질문"
-                        android:textColor="#999999"
-                        android:textSize="15sp" />
-                </RelativeLayout>
+                        android:background="#eceff0"
+                        android:orientation="horizontal">
+
+                        //질문아이콘
+                        <RelativeLayout
+                            android:id="@+id/rl_btn_up_board_category_question"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent" android:layout_height="120dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <ImageView
+                                    android:id="@+id/iv_up_board_category_question"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/ic_face_black_24dp" />
+
+                                <TextView
+                                    android:layout_marginTop="13dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/iv_up_board_category_question"
+                                    android:layout_centerHorizontal="true"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="1sp"
+                                    android:text="질문"
+                                    android:textColor="#999999"
+                                    android:textSize="15sp" />
+                            </RelativeLayout>
 
 
-            </RelativeLayout>
+                        </RelativeLayout>
 
-            //영감아이콘
-            <RelativeLayout
-                android:id="@+id/rl_btn_up_board_category_inspriation"
-                android:layout_weight="1"
-                android:layout_width="match_parent" android:layout_height="120dp">
+                        //영감아이콘
+                        <RelativeLayout
+                            android:id="@+id/rl_btn_up_board_category_inspriation"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent" android:layout_height="120dp">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
 
-                    <ImageView
-                        android:id="@+id/iv_up_board_category_inspiration"
-                        android:layout_width="50dp"
+                                <ImageView
+                                    android:id="@+id/iv_up_board_category_inspiration"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/ic_face_black_24dp" />
+
+                                <TextView
+                                    android:layout_marginTop="13dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/iv_up_board_category_inspiration"
+                                    android:layout_centerHorizontal="true"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="1sp"
+                                    android:text="영감"
+                                    android:textColor="#999999"
+                                    android:textSize="15sp" />
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                        //협업아이콘
+                        <RelativeLayout
+                            android:id="@+id/rl_btn_up_board_category_collaboration"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent" android:layout_height="120dp">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <ImageView
+                                    android:id="@+id/iv_up_board_category_collaboration"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/ic_face_black_24dp" />
+
+                                <TextView
+                                    android:layout_marginTop="13dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/iv_up_board_category_collaboration"
+                                    android:layout_centerHorizontal="true"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="1sp"
+                                    android:text="협업"
+                                    android:textColor="#999999"
+                                    android:textSize="15sp" />
+
+
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    //제목
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_face_black_24dp" />
+                        android:padding="8dp">
 
-                    <TextView
-                        android:layout_marginTop="13dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/iv_up_board_category_inspiration"
-                        android:layout_centerHorizontal="true"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="1sp"
-                        android:text="영감"
-                        android:textColor="#999999"
-                        android:textSize="15sp" />
-                </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="31dp"
+                            android:letterSpacing="-0.01"
+                            android:lineSpacingExtra="1sp"
+                            android:text="Title"
+                            android:textColor="#b0caea"
+                            android:textSize="13sp" />
 
+                        <EditText
+                            android:id="@+id/et_up_board_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="83.5dp"
+                            android:background="@null"
+                            android:hint="제목을 입력하세요"
+                            android:letterSpacing="-0.01"
+                            android:lineSpacingExtra="1sp"
+                            android:textColor="#999999"
 
-            </RelativeLayout>
+                            android:textSize="15sp" />
+                    </RelativeLayout>
 
-            //협업아이콘
-            <RelativeLayout
-                android:id="@+id/rl_btn_up_board_category_collaboration"
-                android:layout_weight="1"
-                android:layout_width="match_parent" android:layout_height="120dp">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
+                    //태그
 
-                    <ImageView
-                        android:id="@+id/iv_up_board_category_collaboration"
-                        android:layout_width="50dp"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_face_black_24dp" />
+                        android:padding="8dp">
 
-                    <TextView
-                        android:layout_marginTop="13dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/iv_up_board_category_collaboration"
-                        android:layout_centerHorizontal="true"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="1sp"
-                        android:text="협업"
-                        android:textColor="#999999"
-                        android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="31dp"
+                            android:letterSpacing="-0.01"
+                            android:lineSpacingExtra="1sp"
+                            android:text="Tags"
+                            android:textColor="#b0caea"
+                            android:textSize="13sp" />
+
+                        <EditText
+                            android:id="@+id/et_up_board_tags"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="83.5dp"
+                            android:background="@null"
+                            android:hint="#"
+                            android:letterSpacing="-0.01"
+                            android:lineSpacingExtra="1sp"
+                            android:textColor="#999999"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="#eceff0" />
 
 
-                </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="#eceff0" />
+                    //내용
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="10"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <EditText
+                            android:id="@+id/et_up_board_modify"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="20dp"
+                            android:background="@null"
+                            android:letterSpacing="-0.01"
+                            android:lineSpacingExtra="1sp"
+                            android:hint="텍스트를 입력하세요."
+                            android:gravity="top"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
+
+                </LinearLayout>
 
 
-            </RelativeLayout>
+            </ScrollView>
 
-        </LinearLayout>
-
-
-        //제목
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="31dp"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="1sp"
-                android:text="Title"
-                android:textColor="#b0caea"
-                android:textSize="13sp" />
+                android:orientation="vertical"
+                android:layout_alignParentBottom="true"
+                >
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/upboard_pick_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#ffffff"
+                    >
 
-            <EditText
-                android:id="@+id/et_up_board_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="83.5dp"
-                android:background="@null"
-                android:hint="제목을 입력하세요"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="1sp"
-                android:textColor="#999999"
+                </android.support.v7.widget.RecyclerView>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="#ffffff"
+                    android:layout_alignParentStart="true">
 
-                android:textSize="15sp" />
+                    <ImageView
+                        android:id="@+id/iv_upboard_input_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <ImageView
+                        android:id="@+id/iv_upboard_input_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_toRightOf="@+id/iv_upboard_input_image"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
         </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed" />
-
-        //태그
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="31dp"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="1sp"
-                android:text="Tags"
-                android:textColor="#b0caea"
-                android:textSize="13sp" />
-
-            <EditText
-                android:id="@+id/et_up_board_tags"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="83.5dp"
-                android:background="@null"
-                android:hint="#"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="1sp"
-                android:textColor="#999999"
-                android:textSize="15sp" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:background="#eceff0" />
-
-        //내용
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <EditText
-                android:id="@+id/et_up_board_modify"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:background="@null"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="1sp"
-                android:hint="텍스트를 입력하세요."
-                android:gravity="top"
-                android:textSize="13sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed" />
-
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
-
-        <ImageView
-            android:id="@+id/iv_upboard_input_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:src="@drawable/ic_close_black_24dp" />
-
-        <ImageView
-            android:id="@+id/iv_upboard_input_link"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_toRightOf="@+id/iv_upboard_input_image"
-            android:src="@drawable/ic_close_black_24dp" />
-
-    </RelativeLayout>
 
 </RelativeLayout>

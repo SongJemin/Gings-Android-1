@@ -37,6 +37,8 @@ class HomeBoardFragment : Fragment(){
         val view : View = inflater.inflate(R.layout.fragment_home_board, container, false)
         networkService = ApplicationController.instance.networkService
         requestManager = Glide.with(this)
+
+
         getBoard()
         return view
     }
@@ -76,7 +78,10 @@ class HomeBoardFragment : Fragment(){
                     BoardData = response.body()!!.data
 
                     for(i in 0..BoardData.size-1){
-                        BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images, BoardData[i].keywords, BoardData[i].replys, BoardData[i].recommender ))
+                        Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+                        Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+                        BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images, BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender ))
+
                     }
                     Log.v("asdf","응답 바디 = " + response.body().toString())
 

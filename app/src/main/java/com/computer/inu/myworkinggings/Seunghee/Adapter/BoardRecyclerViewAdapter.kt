@@ -1,6 +1,7 @@
 package com.computer.inu.myworkinggings.Seunghee.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -52,7 +53,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             }
             else{
                 Log.v("asdf","사이즈 있음 " + dataList[position].images.size)
-                requestManager.load(dataList[position].images[0]).into(holder.contents_img)
+                requestManager.load(dataList[position].images[0]).centerCrop().into(holder.contents_img)
                 if(dataList[position].images[i] == "abcd"){
                     holder.contents_img.visibility = View.GONE
                 }
@@ -73,13 +74,16 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.like_cnt.text = dataList[position].recommender!!.toString()
 
         // 댓글 수
-        holder.comment_cnt.text = dataList[position].replys.size.toString()
+        holder.comment_cnt.text = dataList[position].numOfReply.toString()
 
         /*이벤트 처리*/
 
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
-            ctx.startActivity<DetailBoardActivity>()
+            var intent = Intent(ctx, DetailBoardActivity::class.java)
+            intent.putExtra("boardId", dataList[position].boardId)
+            Log.v("asdf","보드 id 전송 = " + dataList[position].boardId)
+            ctx.startActivity(intent)
         }
 
         //더보기 버튼 클릭 시

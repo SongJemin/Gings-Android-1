@@ -37,10 +37,20 @@ interface NetworkService {
             @Part("keywords") keywords : ArrayList<RequestBody>
     ) : Call<PostBoardResponse>
 
+    @Multipart
+    @POST(" /reboards")
+    fun postReBoard(
+            @Header("Authorization") Authorization : String,
+            @Part("content") summary : RequestBody,
+            @Part images : ArrayList<MultipartBody.Part?>
+    ) : Call<PostBoardResponse>
+
+
     @POST("/login")
     fun postLoginResponse(
             @Header("Content-type") content_type: String,
             @Body() body : JsonObject
     ) : Call<PostLogInResponse>
+
 
 }

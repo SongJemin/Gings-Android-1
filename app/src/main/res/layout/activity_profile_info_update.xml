@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    //탑
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        //탑
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="#FFFFFF">
 
 
-        <TextView
+            <TextView
                 android:textSize="15sp"
                 android:textColor="#040404"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="프로필 정보 수정"
+                android:text="프로필 정보 수정"
                 android:lineHeight="20sp"
+                android:textStyle="bold"
                 android:layout_centerInParent="true"
-        />
+                />
 
 
-        <ImageView
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:src="@drawable/ic_chevron_left_black_24dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            />
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/ic_chevron_left_black_24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                />
 
-        <ImageView
+            <ImageView
                 android:id="@+id/iv_btn_category_board_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,34 +47,34 @@
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_close_black_24dp"/>
 
-        <View
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
                 android:layout_marginTop="71dp"
                 android:background="#e2e8ed"></View>
-    </RelativeLayout>
+        </RelativeLayout>
 
-    //기입창
+        //기입창
 
-    <LinearLayout
+        <LinearLayout
             android:layout_marginTop="30dp"
             android:background="#ffffff"
             android:orientation="vertical"
             android:layout_width="wrap_content" android:layout_height="wrap_content">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
-                      android:orientation="horizontal"
-                      android:paddingStart="37dp" android:paddingEnd="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp" android:paddingEnd="16dp">
 
-            <TextView   android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
-                        android:textColor="#333333"
-                        android:letterSpacing="-0.01"
-                        android:lineSpacingExtra="4sp"
-                        android:text="지역"
-                      android:layout_gravity="center"/>
+                <TextView   android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="지역"
+                    android:layout_gravity="center"/>
 
-            <android.support.v7.widget.AppCompatSpinner
+                <android.support.v7.widget.AppCompatSpinner
 
                     android:id="@+id/sp_profile_info_update_city"
                     android:layout_gravity="center"
@@ -78,119 +84,121 @@
                     android:layout_marginEnd="24dp"
                     android:entries="@array/city"/>
 
-        </LinearLayout>
-        <View
+            </LinearLayout>
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-        //역할
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="50dp"
-                      android:orientation="horizontal"
-                      android:paddingStart="37dp"
-                      android:paddingEnd="16dp">
+            //역할
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:paddingStart="37dp"
+                android:paddingEnd="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="13sp"
-                      android:textColor="#333333"
-                      android:letterSpacing="-0.01"
-                      android:lineSpacingExtra="4sp"
-                      android:text="역할"
-                      android:layout_gravity="center"/>
-            <EditText android:id="@+id/et_profile_info_update_role"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:layout_marginStart="55dp"
-                      android:layout_marginEnd="16dp"
-                      android:background="@null"
-            />
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="역할"
+                    android:layout_gravity="center"/>
 
-        </LinearLayout>
-        <View
+                <EditText android:id="@+id/et_profile_info_update_role"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
+                    />
+
+            </LinearLayout>
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-        //소속
-        <LinearLayout
+            //소속
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="13sp"
-                      android:textColor="#333333"
-                      android:letterSpacing="-0.01"
-                      android:lineSpacingExtra="4sp"
-                      android:text="소속"
-                      android:layout_gravity="center"/>
-            <EditText
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="소속"
+                    android:layout_gravity="center"/>
+                <EditText
                     android:id="@+id/et_profile_info_update_part"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="55dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
-            />
+                    />
 
-        </LinearLayout>
-        <View
+            </LinearLayout>
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-        //활동분야
-        <LinearLayout
+            //활동분야
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="13sp"
-                      android:textColor="#333333"
-                      android:letterSpacing="-0.01"
-                      android:lineSpacingExtra="4sp"
-                      android:text="활동 분야"
-                      android:layout_gravity="center"/>
-            <EditText android:id="@+id/et_profile_info_update_co_part"
-                      android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:layout_marginStart="29dp"
-                      android:layout_marginEnd="16dp"
-                      android:background="@null"
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="활동 분야"
+                    android:layout_gravity="center"/>
+                <EditText android:id="@+id/et_profile_info_update_co_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="29dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@null"
 
-            />
-        </LinearLayout>
-        <View
+                    />
+            </LinearLayout>
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-        //협업여부
-        <LinearLayout
+            //협업여부
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="13sp"
-                      android:textColor="#333333"
-                      android:letterSpacing="-0.01"
-                      android:lineSpacingExtra="4sp"
-                      android:text="협업 여부"
-                      android:layout_gravity="center"/>
-            <android.support.v7.widget.AppCompatSpinner
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="협업 여부"
+                    android:layout_gravity="center"/>
+
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/sp_profile_info_update_co_available"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
@@ -198,31 +206,31 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:entries="@array/co_available"
-            />
+                    />
 
-        </LinearLayout>
-        <View
+            </LinearLayout>
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-        //업무 상태
-        <LinearLayout
+            //업무 상태
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="13sp"
-                      android:textColor="#333333"
-                      android:letterSpacing="-0.01"
-                      android:lineSpacingExtra="4sp"
-                      android:text="업무 상태"
-                      android:layout_gravity="center"/>
-            <android.support.v7.widget.AppCompatSpinner
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="업무 상태"
+                    android:layout_gravity="center"/>
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/sp_profile_info_update_co_state"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
@@ -231,30 +239,30 @@
                     android:layout_marginEnd="24dp"
                     android:entries="@array/co_state"/>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <View
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-        //keyword
-        <LinearLayout
+            //keyword
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:textSize="13sp"
-                      android:textColor="#333333"
-                      android:letterSpacing="-0.01"
-                      android:lineSpacingExtra="4sp"
-                      android:text="키워드"
-                      android:layout_gravity="center"/>
-            <EditText
+                <TextView android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="4sp"
+                    android:text="키워드"
+                    android:layout_gravity="center"/>
+                <EditText
                     android:id="@+id/et_profile_info_update_keyword"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -267,23 +275,29 @@
                     android:hint="#최대_5개"
                     android:background="@null"
 
-            />
-        </LinearLayout>
-        <View
+                    />
+            </LinearLayout>
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#e2e8ed"></View>
 
-    </LinearLayout>
+        </LinearLayout>
 
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt_profile_info_update_complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
         android:text="확인"
         android:textColor="#ffffff"
+        android:textStyle="bold"
         android:layout_marginTop="50dp"/>
 
-</LinearLayout>
+
+</RelativeLayout>

@@ -3,6 +3,8 @@ package com.computer.inu.myworkinggings.Jemin.Activity;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.computer.inu.myworkinggings.R;
 
@@ -16,6 +18,7 @@ public class Test2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test2);
+
         TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(Test2Activity.this)
                 .setOnMultiImageSelectedListener(new TedBottomPicker.OnMultiImageSelectedListener() {
                     @Override
@@ -30,6 +33,7 @@ public class Test2Activity extends AppCompatActivity {
                 .create();
 
     }
+
 
 
 }

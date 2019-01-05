@@ -55,14 +55,10 @@
         android:id="@+id/ll_upboard_profile_album_view"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
+        android:orientation="vertical"
         android:background="#FFFFFF">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_upboard_profile_album_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 

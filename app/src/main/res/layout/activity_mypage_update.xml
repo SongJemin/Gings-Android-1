@@ -1,65 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Jemin.Activity.MypageUpdateActivity"
     android:background="#f9f9f9"
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:background="#ffffff"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="자기소개 수정"
-            android:layout_centerInParent="true"
-            android:textStyle="bold"
-            android:textColor="#040404"
-            />
-
-        <ImageView
-            android:layout_width="21dp"
-            android:layout_height="21dp"
-            android:src="@drawable/invalid_name"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="완료"
-            android:textColor="@color/colorPrimary"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="24dp"
-            android:layout_alignParentRight="true"
-            android:textStyle="bold"
-            />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e2e8ed"
-        />
-
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:layout_marginTop="32dp"
-        android:hint="자기소개를 입력해주세요."
-        android:gravity="top"
-        android:textSize="13sp"
-        android:padding="20dp"
-        />
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:background="#ffffff"
+            >
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자기소개 수정"
+                android:layout_centerInParent="true"
+                android:textStyle="bold"
+                android:textColor="#040404"
+                />
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/back_btn"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                />
+
+            <TextView
+                android:id="@+id/mypage_update_confirm_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="완료"
+                android:textColor="@color/colorPrimary"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24dp"
+                android:layout_alignParentRight="true"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            />
+
+        <EditText
+            android:id="@+id/mypage_update_content_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:layout_marginTop="32dp"
+            android:hint="자기소개를 입력해주세요."
+            android:gravity="top"
+            android:textSize="13sp"
+            android:padding="20dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mypage_update_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+        </android.support.v7.widget.RecyclerView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            >
+
+            <Button
+                android:id="@+id/mypage_update_galley_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/ic_image"
+                />
+
+            <Button
+                android:id="@+id/mypage_update_camera_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/bt_camera"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

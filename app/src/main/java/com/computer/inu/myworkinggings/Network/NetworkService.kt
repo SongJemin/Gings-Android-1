@@ -113,9 +113,43 @@ interface NetworkService {
             @Body() body : JsonObject
     ) : Call<PostResponse>
 
+
+    @Multipart
+    @POST("/mypage/setting/introduce")
+    fun postMyIntroduce(
+            @Header("Authorization") Authorization : String,
+            @Part("content") content : RequestBody,
+            @Part images : ArrayList<MultipartBody.Part?>
+    ) : Call<PostResponse>
+
     @GET("/mypage/others/active/{myPageUserId}")
     fun getOtherActive(
             @Header("Authorization") Authorization: String,
             @Path("myPageUserId") myPageUserId : Int
     ) : Call<GetOtherActiveResponse>
+
+    @GET("/mypage/setting/image")
+    fun getProfileImgUrl(
+            @Header("Authorization") Authorization: String
+    ) : Call<GetProfileImgUrlResponse>
+
+    @Multipart
+    @PUT("/mypage/setting/image")
+    fun putMyProfileImg(
+            @Header("Authorization") Authorization : String,
+            @Part("image") image : RequestBody,
+            @Part imgFile : MultipartBody.Part?
+    ) : Call<PostResponse>
+
+    @PUT("/mypage/setting/info")
+    fun putProfileInfo(
+            @Header("Authorization") Authorization: String,
+            @Body() body : JsonObject
+    ) : Call<PostResponse>
+
+    @GET("/mypage/setting/introduce")
+    fun getMyIntroduce(
+            @Header("Authorization") Authorization: String
+    ) : Call<GetMyIntroduceResponse>
+
 }

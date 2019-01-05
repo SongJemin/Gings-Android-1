@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +24,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.bumptech.glide.Glide
+import com.computer.inu.myworkinggings.Jemin.Adapter.GuestActAdapter
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherActiveResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
+import kotlinx.android.synthetic.main.fragment_mypage_act.*
 
 class MyPageFragment : Fragment() {
     val networkService: NetworkService by lazy {
@@ -36,7 +41,8 @@ class MyPageFragment : Fragment() {
     var status : String = ""
     var coworkingEnabled : Int = 0
     var checkFlag : Int = 0
-    var keword : String= "";
+    var keword : String= ""
+    var profileImgUrl : String = ""
 
     // 처음 프래그먼트 추가
     fun addFragment(fragment : Fragment){
@@ -85,7 +91,7 @@ class MyPageFragment : Fragment() {
 
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
-
+        getProfileImgUrl()
         getOtherPage()
 
         //getUserPagePost()
@@ -119,7 +125,15 @@ class MyPageFragment : Fragment() {
         }
 
         v.iv_btn_my_page_setting.setOnClickListener {
-            startActivity<ProfileSettingMenuActivity>()
+            var intent = Intent(activity, ProfileSettingMenuActivity::class.java)
+            intent.putExtra("profileImgUrl", profileImgUrl)
+            startActivity(intent)
+        }
+
+        v.iv_btn_other_page_close.setOnClickListener {
+            var intent = Intent(activity, ProfileSettingMenuActivity::class.java)
+            intent.putExtra("profileImgUrl", profileImgUrl)
+            startActivity(intent)
         }
 
         // 테스트 연결
@@ -198,7 +212,7 @@ class MyPageFragment : Fragment() {
 
                     for(i in 0..temp.keywords.size-1)
                     {
-                        keword += (temp.keywords[i].content.toString() + " ")
+                        keword += (temp.keywords[i] + " ")
                     }
                     mypage_keyword_tv.text = keword
                 }
@@ -209,6 +223,24 @@ class MyPageFragment : Fragment() {
             override fun onFailure(call: Call<GetMypageResponse>?, t: Throwable?) {
 
                 Log.v("TAG", "통신 실패 = " +t.toString())
+            }
+        })
+    }
+
+    fun getProfileImgUrl() {
+        var getProfileImgUrlResponse = networkService.getProfileImgUrl("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg") // 네트워크 서비스의 getContent 함수를 받아옴
+        getProfileImgUrlResponse.enqueue(object : Callback<GetProfileImgUrlResponse> {
+            override fun onResponse(call: Call<GetProfileImgUrlResponse>?, response: Response<GetProfileImgUrlResponse>?) {
+                Log.v("TAG", "프로필 이미지 서버 통신 연결")
+                if (response!!.isSuccessful) {
+                    Log.v("TAG", "프로필 이미지 조회 성공")
+                    Glide.with(context).load(response.body()!!.data.image).centerCrop().into(mypage_background_img)
+                    profileImgUrl = response.body()!!.data.image
+                }
+            }
+
+            override fun onFailure(call: Call<GetProfileImgUrlResponse>?, t: Throwable?) {
+                Log.v("TAG", "프로필 이미지 서버 연결 실패 = " + t.toString())
             }
         })
     }

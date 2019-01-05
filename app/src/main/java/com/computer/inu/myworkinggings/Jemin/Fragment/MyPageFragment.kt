@@ -31,7 +31,7 @@ class MyPageFragment : Fragment() {
         ApplicationController.instance.networkService
     }
 
-    lateinit var requestManager: RequestManager
+
     var field : String = ""
     var status : String = ""
     var coworkingEnabled : Int = 0
@@ -83,15 +83,15 @@ class MyPageFragment : Fragment() {
         val v : View = inflater.inflate(R.layout.fragment_my_page,container,false)
         v.mypage_act_view.visibility = View.INVISIBLE
 
-        requestManager = Glide.with(this)
+       /* requestManager = Glide.with(this)
         requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
-
+*/
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
 
         getOtherPage()
 
-        //getUserPagePost()
+      //  getUserPagePost()
 
         // '소개' 클릭 시
         v.mypage_intro_btn.setOnClickListener {

@@ -106,7 +106,7 @@ class MypageIntroFragment : Fragment(){
                     var temp = response.body()!!.data.imgs
                     mypage_board_content_tv.text = response.body()!!.data.content
                     mypage_board_datetime_tv.text = response.body()!!.data.time!!.substring(0, 16).replace("T", "   ")
-                    
+
                     // 사진 넣어야함
                 }
             }

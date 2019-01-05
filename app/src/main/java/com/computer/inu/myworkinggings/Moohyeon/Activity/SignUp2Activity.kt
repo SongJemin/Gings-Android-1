@@ -5,16 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-<<<<<<< HEAD
-import com.computer.inu.myworkinggings.Hyunjin.get.GetVerifyNumberRequest
-import com.computer.inu.myworkinggings.Network.ApplicationController
-=======
-import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
->>>>>>> 70b4cdbf587e4da5a587823f4198e631c1cec447
+import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_sign_up2.*
+
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -28,11 +25,8 @@ class SignUp2Activity : AppCompatActivity() {
     var password_check: String = String()
     var email : String = String()
     val Passwrod_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{7,16}$"
-<<<<<<< HEAD
-=======
     var status : String = ""
     var message : String = ""
->>>>>>> 70b4cdbf587e4da5a587823f4198e631c1cec447
 
     lateinit var networkService : NetworkService
 
@@ -67,14 +61,13 @@ class SignUp2Activity : AppCompatActivity() {
             }
         }
 
-<<<<<<< HEAD
-=======
         tv_sign_up2_overlap_check.setOnClickListener {
             getEmailRedundancy()
         }
->>>>>>> 70b4cdbf587e4da5a587823f4198e631c1cec447
 
         tv_sign_up2_confirm_number_send_message.setOnClickListener {
+
+            System.out.println("push button")
             var post_check = 0
             name = et_sign_up2_name.text.toString()
             email = et_sign_up2_email.text.toString()
@@ -113,8 +106,8 @@ class SignUp2Activity : AppCompatActivity() {
         return matcher.matches()
     }
 
-<<<<<<< HEAD
     fun getVerifyNumberData() {
+        System.out.println("network")
         var getVerifyNumberDataResponse = networkService.getVerifyNumberData("wqefsdf", "seunghx@gmail.com") // 네트워크 서비스의 getContent 함수를 받아옴
         getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
             override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
@@ -127,7 +120,10 @@ class SignUp2Activity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<GetVerifyNumberRequest>?, t: Throwable?) {
-=======
+                Log.v("TAG", "통신 실패")
+            }
+        })
+    }
     fun getEmailRedundancy() {
         networkService = ApplicationController.instance.networkService
         var getProjectResponse = networkService.getEmailRedundancyResponse("seunghx@naver.com") // 네트워크 서비스의 getContent 함수를 받아옴
@@ -154,9 +150,9 @@ class SignUp2Activity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<GetEmailRedundancyResponse>?, t: Throwable?) {
->>>>>>> 70b4cdbf587e4da5a587823f4198e631c1cec447
                 Log.v("TAG", "통신 실패")
             }
         })
     }
+
 }

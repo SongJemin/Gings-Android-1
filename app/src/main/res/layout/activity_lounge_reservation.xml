@@ -31,7 +31,6 @@
             android:text="INNOVATOR CLUB"
             android:textStyle="bold"
             />
-
         <ImageView
             android:id="@+id/iv_btn_more"
             android:layout_width="wrap_content"
@@ -58,7 +57,7 @@
             android:lineSpacingExtra="6sp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="예약을 진행하기 위해 SafariㅣChrome으로 이동합니다."
+            android:text="예약을 진행하기 위해 \n SafariㅣChrome으로 이동합니다."
             />
     </RelativeLayout>
 

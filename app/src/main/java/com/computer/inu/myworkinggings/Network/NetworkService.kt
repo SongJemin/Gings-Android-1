@@ -1,20 +1,8 @@
 package com.computer.inu.myworkinggings.Network
 
-<<<<<<< HEAD
-import com.computer.inu.myworkinggings.Hyunjin.get.GetVerifyNumberRequest
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
-
-interface NetworkService {
-    @GET("/signup/authNumber")
-    fun getVerifyNumberData(
-            @Header("token") token : String,
-            @Query("email") email : String
-            ) : Call<GetVerifyNumberRequest>
-}
-=======
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
+import com.computer.inu.myworkinggings.Hyunjin.Post.PostClubSignUp
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
@@ -41,6 +29,17 @@ interface NetworkService {
             @Query("limit") limit : Int?
     ) : Call<GetBoardResponse>
 
+    @GET("/signup/authNumber")
+    fun getVerifyNumberData(
+            @Header("Authorization") Authorization : String,
+            @Query("email") email : String
+    ) : Call<GetVerifyNumberRequest>
+
+    @GET("/clubs")
+    fun getSearchClub(
+            @Header("Authorization") Authorization : String
+    ) : Call<GetSearchClub>
+
     @Multipart
     @POST("/boards")
     fun postBoard(
@@ -58,5 +57,8 @@ interface NetworkService {
             @Body() body : JsonObject
     ) : Call<PostLogInResponse>
 
+    @POST("/clubs/{clubId}/join")
+    fun postClubSignUp(
+            @Header("Authorization") Authorization : String
+    ) : Call<PostClubSignUp>
 }
->>>>>>> 70b4cdbf587e4da5a587823f4198e631c1cec447

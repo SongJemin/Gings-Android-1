@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Gings.iml" filepath="$PROJECT_DIR$/Gings.iml" />
       <module fileurl="file://$PROJECT_DIR$/Gings_App_jam.iml" filepath="$PROJECT_DIR$/Gings_App_jam.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gings.iml" filepath="$PROJECT_DIR$/Gings.iml" />
     </modules>
   </component>
 </project>

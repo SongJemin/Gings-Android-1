@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.content.Context
 import android.net.Uri
-import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.AlbumRecyclerViewAdapter
-import com.sopt.gings.data.AlbumData
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_up_board.*
 import java.util.ArrayList

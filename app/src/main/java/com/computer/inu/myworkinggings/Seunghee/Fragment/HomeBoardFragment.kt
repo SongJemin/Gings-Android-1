@@ -37,7 +37,7 @@ class HomeBoardFragment : Fragment(){
         val view : View = inflater.inflate(R.layout.fragment_home_board, container, false)
         networkService = ApplicationController.instance.networkService
         requestManager = Glide.with(this)
-        getBoard()
+        //getBoard()
         return view
     }
 

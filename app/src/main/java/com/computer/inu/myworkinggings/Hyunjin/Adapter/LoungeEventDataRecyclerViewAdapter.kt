@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
-import com.computer.inu.myworkinggings.Hyunjin.Data.LoungeData
+import com.computer.inu.myworkinggings.Hyunjin.Activity.LoungeReservationActivity
 import com.computer.inu.myworkinggings.Hyunjin.Data.LoungeEventData
 import com.computer.inu.myworkinggings.R
+import org.jetbrains.anko.startActivity
 
 class LoungeEventDataRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<LoungeEventData>) : RecyclerView.Adapter<LoungeEventDataRecyclerViewAdapter.Holder>(){
 
@@ -24,6 +26,9 @@ class LoungeEventDataRecyclerViewAdapter(val ctx : Context, val dataList : Array
         holder.date.text = dataList[position].date
         holder.time.text = dataList[position].time
         holder.place.text = dataList[position].place
+        holder.all.setOnClickListener {
+            ctx.startActivity<LoungeReservationActivity>()
+        }
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -31,5 +36,6 @@ class LoungeEventDataRecyclerViewAdapter(val ctx : Context, val dataList : Array
         val date : TextView = itemView.findViewById(R.id.tv_rv_item_lounge_event_date)
         val time : TextView = itemView.findViewById(R.id.tv_rv_item_lounge_event_time) as TextView
         val place : TextView = itemView.findViewById(R.id.tv_rv_item_lounge_event_place)
+        val all : RelativeLayout = itemView.findViewById(R.id.iv_rv_item_lounge_event_image) as RelativeLayout
     }
 }

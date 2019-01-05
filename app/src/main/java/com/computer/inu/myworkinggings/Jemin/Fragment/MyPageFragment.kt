@@ -99,7 +99,7 @@ class MyPageFragment : Fragment() {
             mypage_act_btn.isSelected = false
             mypage_intro_btn.isSelected = true
             mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
-            mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
+            mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
             mypage_intro_view.setVisibility(View.VISIBLE)
             mypage_act_view.setVisibility(View.INVISIBLE)
             checkFlag=0
@@ -113,7 +113,7 @@ class MyPageFragment : Fragment() {
             mypage_act_btn.isSelected = true
             mypage_intro_btn.isSelected = false
             mypage_intro_btn.setTextColor(Color.parseColor("#bcc5d3"))
-            mypage_act_btn.setTextColor(Color.parseColor("#b0caea"))
+            mypage_act_btn.setTextColor(Color.parseColor("#f7746b"))
             mypage_act_view.setVisibility(View.VISIBLE)
             mypage_intro_view.setVisibility(View.INVISIBLE)
             checkFlag=1

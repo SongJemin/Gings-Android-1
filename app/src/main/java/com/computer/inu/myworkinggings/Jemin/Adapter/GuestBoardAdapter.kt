@@ -28,7 +28,7 @@ class GuestBoardAdapter(var ctx : Context  ,val guestBoardItems : ArrayList<Gues
         holder.guestRole.text = guestBoardItems[position].guestModelUser.job
         holder.guestContent.text = guestBoardItems[position].content
         holder.guestTeam.text =  guestBoardItems[position].guestModelUser.company
-        holder.guestTime.text = guestBoardItems[position].time
+        holder.guestTime.text = guestBoardItems[position].time.substring(0, 16).replace("T", "   ")
         Glide.with(ctx)
                 .load(guestBoardItems[position].guestModelUser.image)
                 .into(holder.guestImage)

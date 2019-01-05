@@ -129,6 +129,7 @@
                             android:lineSpacingExtra="2sp"
                             android:text="열글자 후후훟ㅅ파하ㅏㅎ"
                             android:textColor="#ffffff"
+                            android:padding="3dp"
                             android:textSize="8sp"
                             android:layout_centerInParent="true"
                             />

@@ -1,9 +1,6 @@
 package com.computer.inu.myworkinggings.Network
 
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
@@ -102,4 +99,10 @@ interface NetworkService {
             @Header("Authorization") authorization  : String,
             @Path("boardId") boardId : Int
     ) : Call<GetDetailedBoardResponse>
+
+    @GET("/mypage/others/guestboard/{myPageUserId}")
+    fun getOtherGuestBoard(
+            @Header("Authorization") Authorization: String,
+            @Path("myPageUserId") myPageUserId : Int
+    ) : Call<GetOtherGuestBoardResponse>
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.Data.UserPageData
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
@@ -15,6 +16,10 @@ import com.computer.inu.myworkinggings.R
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_profile_info_update.*
+import kotlinx.android.synthetic.main.activity_up_board.*
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +31,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     lateinit var regionSpinner : Spinner
     lateinit var collabSpinner : Spinner
     lateinit var statusSpinner : Spinner
+    var keywords = ArrayList<String>()
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -36,6 +42,12 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
         getProfileInform()
 
         bt_profile_info_update_complete.setOnClickListener {
+            val keywordList = et_profile_info_update_keyword.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+            for (keyword in keywordList) {
+                Log.v("Asdf", "키워드 자르기 = " +   keyword.replace("#", ""))
+                keywords.add(keyword.replace("#", ""))
+            }
             putProfileInfo()
         }
 
@@ -80,42 +92,6 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
                     }
                     Log.v("asdf","키워드 값 = " + keywordString)
                     et_profile_info_update_keyword.hint = keywordString
-                        /*
-                        if(profileInformData.region == "서울특별시")
-                            regionSpinner.setSelection(0)
-                        else if(profileInformData.region == "부산광역시")
-                            regionSpinner.setSelection(1)
-                        else if(profileInformData.region == "인천광역시")
-                            regionSpinner.setSelection(2)
-                        else if(profileInformData.region == "대구광역시")
-                            regionSpinner.setSelection(3)
-                        else if(profileInformData.region == "광주광역시")
-                            regionSpinner.setSelection(4)
-                        else if(profileInformData.region == "대전광역시")
-                            regionSpinner.setSelection(5)
-                        else if(profileInformData.region == "울산광역시")
-                            regionSpinner.setSelection(6)
-                        else if(profileInformData.region == "세종특별자치시")
-                            regionSpinner.setSelection(7)
-                        else if(profileInformData.region == "경기도")
-                            regionSpinner.setSelection(8)
-                        else if(profileInformData.region == "강원도")
-                            regionSpinner.setSelection(9)
-                        else if(profileInformData.region == "충청북도")
-                            regionSpinner.setSelection(10)
-                        else if(profileInformData.region == "충청남도")
-                            regionSpinner.setSelection(11)
-                        else if(profileInformData.region == "경상북도")
-                            regionSpinner.setSelection(12)
-                        else if(profileInformData.region == "경상남도")
-                            regionSpinner.setSelection(13)
-                        else if(profileInformData.region == "전락북도")
-                            regionSpinner.setSelection(14)
-                        else if(profileInformData.region == "전라남도")
-                            regionSpinner.setSelection(15)
-                        else if(profileInformData.region == "제주도")
-                            regionSpinner.setSelection(16)
-                            */
                 }
             }
 
@@ -131,8 +107,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
         return adapter.getPosition(findData)
     }
 
-    fun putProfileInfo()
-    {
+    fun putProfileInfo(){
         var collabResult : String = ""
         if(collabSpinner.getSelectedItem().toString() == "가능"){
             collabResult = "true"
@@ -156,6 +131,23 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 if(response.isSuccessful){
                     Log.v("asdf", "프로필 정보 등록 성공")
+                    postKeywordList()
+                }
+            }
+            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
+            }
+        })
+    }
+
+    fun postKeywordList(){
+
+        var postKeywords = PostKeywords(keywords)
+        var putProfileInfoResponse = networkService.postKeywordList("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", postKeywords)
+        putProfileInfoResponse.enqueue(object : Callback<PostResponse>{
+
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                if(response.isSuccessful){
+                    Log.v("asdf", "키워드 리스트 전송 성공")
                     finish()
                 }
             }

@@ -113,7 +113,6 @@ class UpBoardActivity : AppCompatActivity() {
                             uriList!!.add(uriList.get(i))
 
                             imageUrlList.add(uriList.get(i))
-                            Log.v("TAG","이미지 = " + uriList.get(i))
 
                             val options = BitmapFactory.Options()
 
@@ -127,15 +126,10 @@ class UpBoardActivity : AppCompatActivity() {
                             val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
                             val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
 
-                            Log.v("asdf","이미지3 = " + images)
-
-                            Log.v("asdf","이미지5 = " + images.name)
-                            Log.v("asdf","이미지6 = " + images.name.toString())
                             imagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
 
                             for(i in 0 .. imagesList.size-1){
 
-                                Log.v("asdf", "이미지리스트 = " + images.toString())
                             }
                             if(imageUrlList.size > 0){
                                 upboard_pick_recyclerview.visibility = View.VISIBLE
@@ -147,19 +141,6 @@ class UpBoardActivity : AppCompatActivity() {
                                 upboard_pick_recyclerview.visibility = View.GONE
 
                             }
-
-                            /*
-                            try {
-                                for(i in 0 .. urlSize){
-
-                                }
-
-                            } catch (e: FileNotFoundException) {
-                                e.printStackTrace()
-                            }
-                            */
-
-
                         }
 
                     }

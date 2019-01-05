@@ -1,6 +1,7 @@
 package com.computer.inu.myworkinggings.Network
 
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
+import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
@@ -151,5 +152,12 @@ interface NetworkService {
     fun getMyIntroduce(
             @Header("Authorization") Authorization: String
     ) : Call<GetMyIntroduceResponse>
+
+    @POST("/mypage/setting/info/keyword")
+    fun postKeywordList(
+            @Header("Authorization") Authorization : String,
+            @Body postKeywords : PostKeywords
+    ) : Call<PostResponse>
+
 
 }

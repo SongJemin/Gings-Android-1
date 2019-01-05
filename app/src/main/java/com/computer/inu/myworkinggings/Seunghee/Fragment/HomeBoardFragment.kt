@@ -10,9 +10,8 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
-import com.computer.inu.myworkinggings.Jemin.Get.Response.BoardData
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetData.BoardData
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter

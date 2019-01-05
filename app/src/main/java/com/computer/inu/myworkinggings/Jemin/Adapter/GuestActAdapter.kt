@@ -1,15 +1,17 @@
 package com.computer.inu.myworkinggings.Jemin.Adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.computer.inu.myworkinggings.Jemin.Data.GuestActItem
 import com.computer.inu.myworkinggings.Jemin.Data.GuestBoardItem
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetData.GetActiveData
 import com.computer.inu.myworkinggings.R
 
-class GuestActAdapter(private var guestActItems : ArrayList<GuestActItem>) : RecyclerView.Adapter<GuestActViewHolder>() {
-
+class GuestActAdapter(var ctx : Context, private var guestActItems : ArrayList<GetActiveData>) : RecyclerView.Adapter<GuestActViewHolder>() {
 
     //내가 쓸 뷰홀더가 뭔지를 적어준다.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestActViewHolder {
@@ -22,11 +24,23 @@ class GuestActAdapter(private var guestActItems : ArrayList<GuestActItem>) : Rec
 
     //데이터클래스와 뷰홀더를 이어준다.
     override fun onBindViewHolder(holder: GuestActViewHolder, position: Int) {
-        holder.actTitle.text = guestActItems[position].actTitle
-        holder.actHashTag.text = guestActItems[position].actHashTag
-        holder.actTime.text = guestActItems[position].actTime
-        holder.actContent.text = guestActItems[position].actContent
-        holder.actName.text = guestActItems[position].actName
-        holder.actRole.text = guestActItems[position].actRole
+        holder.actCategory.text = guestActItems[position].category
+        holder.actTitle.text = guestActItems[position].title
+        for (i in 0..guestActItems[position].keywords.size - 1) {
+            if (i == 0) {
+                holder.actHashTag.text = "#" + guestActItems[position].keywords[i]
+            } else {
+                holder.actHashTag.append("    #" + guestActItems[position].keywords[i])
+            }
+        }
+        holder.actTime.text = guestActItems[position].time!!.substring(0,16).replace("T","")
+        holder.actContent.text = guestActItems[position].content
+        holder.actName.text = guestActItems[position].writer
+        holder.actRole.text = guestActItems[position].category
+        holder.actReplyRecom.text = guestActItems[position].recommender!!.toString()
+        holder.actReplySumNum.text = guestActItems[position].replys.size.toString()
+        if(guestActItems[position].images.size != 0){
+            Glide.with(ctx).load(guestActItems[position].images[0]).into(holder.actBackgroundImg)
+        }
     }
 }

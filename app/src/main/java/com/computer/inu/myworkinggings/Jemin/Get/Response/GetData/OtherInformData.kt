@@ -1,4 +1,4 @@
-package com.computer.inu.myworkinggings.Jemin.Get.Response
+package com.computer.inu.myworkinggings.Jemin.Get.Response.GetData
 
 data class OtherInformData (
      var id : Int?,

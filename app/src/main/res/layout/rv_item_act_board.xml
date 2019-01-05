@@ -10,7 +10,7 @@
         android:background="#ffffff">
 
         <TextView
-            android:id="@+id/item_act_question_tv"
+            android:id="@+id/item_act_category_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18.5dp"
@@ -26,14 +26,14 @@
             android:layout_height="15.6dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="19.8dp"
-            android:layout_toRightOf="@+id/item_act_question_tv"
+            android:layout_toRightOf="@+id/item_act_category_tv"
             android:background="#999999" />
 
         <TextView
             android:id="@+id/item_act_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/item_act_question_tv"
+            android:layout_alignTop="@+id/item_act_category_tv"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/item_act_view"
             android:text="창업하고 싶은데 어떻게 준비하면 좋을까요?"
@@ -43,7 +43,7 @@
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_alignTop="@+id/item_act_question_tv"
+            android:layout_alignTop="@+id/item_act_category_tv"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="17dp"
             android:layout_marginTop="3dp"
@@ -193,6 +193,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/iv_tiem_like_tv"
                     android:layout_toRightOf="@+id/iv_item_like_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -211,6 +212,7 @@
                     android:src="@drawable/ic_reple" />
 
                 <TextView
+                    android:id="@+id/iv_item_reply_tv"
                     android:layout_toRightOf="@+id/iv_item_reple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

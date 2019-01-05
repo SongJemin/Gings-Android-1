@@ -83,9 +83,6 @@ class MyPageFragment : Fragment() {
         val v : View = inflater.inflate(R.layout.fragment_my_page,container,false)
         v.mypage_act_view.visibility = View.INVISIBLE
 
-        requestManager = Glide.with(this)
-        requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
-
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
 
@@ -154,6 +151,9 @@ class MyPageFragment : Fragment() {
                     mypage_job_tv.text = response.body()!!.data.job
                     mypage_team_tv.text = response.body()!!.data.company
                     mypage_region_tv.text = response.body()!!.data.region
+
+                    Glide.with(context).load(response.body()!!.data.image)
+
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
 

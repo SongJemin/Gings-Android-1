@@ -112,4 +112,10 @@ interface NetworkService {
             @Path("myPageUserId") myPageUserId : Int,
             @Body() body : JsonObject
     ) : Call<PostResponse>
+
+    @GET("/mypage/others/active/{myPageUserId}")
+    fun getOtherActive(
+            @Header("Authorization") Authorization: String,
+            @Path("myPageUserId") myPageUserId : Int
+    ) : Call<GetOtherActiveResponse>
 }

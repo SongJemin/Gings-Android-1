@@ -65,7 +65,7 @@ class SignUp2Activity : AppCompatActivity() {
                     tv_sign_up2_available_pw.setTextColor(Color.parseColor("#ff6464"))
                 }
                 if (post_check != 1) {
-
+                      //여기다가 이메일 전송 하면된다!!!!~~
                     startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password))
 
                 }

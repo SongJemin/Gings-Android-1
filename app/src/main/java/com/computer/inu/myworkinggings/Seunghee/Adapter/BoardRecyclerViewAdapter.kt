@@ -96,17 +96,16 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
-            var intent = Intent(ctx, DetailBoardActivity::class.java)
+/*            var intent = Intent(ctx, DetailBoardActivity::class.java)
             intent.putExtra("boardId", dataList[position].boardId)
             Log.v("asdf", "보드 id 전송 = " + dataList[position].boardId)
-            ctx.startActivity(intent)
+            ctx.startActivity(intent)*/
             /*var intent = Intent(ctx, DetailBoardActivity::class.java)
             intent.putExtra("BoardId", dataList[position].boardId)
 
             //startActivity<>()
             ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
 */
-            //dataList[position].boardId
 
             ctx.toast(dataList[position].boardId!!.toString())
             ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)

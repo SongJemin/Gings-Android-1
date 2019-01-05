@@ -18,8 +18,11 @@ import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
+import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
+import org.jetbrains.anko.support.v4.ctx
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -57,7 +60,8 @@ class MypageIntroFragment : Fragment(){
         }
         v.mypage_intro_field_tv.text = field
         v.mypage_intro_status_tv.text = status
-        getOtherIntro()
+        /*getOtherIntro()*/ //타인
+      getMyIntro() //자신의 소개페이지
 
 
 
@@ -89,6 +93,26 @@ class MypageIntroFragment : Fragment(){
 
             override fun onFailure(call: Call<GetOtherIntroResponse>?, t: Throwable?) {
                 Log.v("TAG", "통신 실패 = " + t.toString())
+            }
+        })
+    }
+    fun getMyIntro() {
+        var getMypageIntroduceResponse = networkService.getMypageIntroduceResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg") // 네트워크 서비스의 getContent 함수를 받아옴
+       getMypageIntroduceResponse.enqueue(object : Callback<GetMypageIntroduceResponse> {
+            override fun onResponse(call: Call<GetMypageIntroduceResponse>?, response: Response<GetMypageIntroduceResponse>?) {
+                Log.v("TAG", "나의 소개 페이지 서버 통신 연결")
+                if (response!!.isSuccessful) {
+                    Log.v("MyTAG", "나의 소개 페이지 서버 통신 연결 성공")
+                    var temp = response.body()!!.data.imgs
+                    mypage_board_content_tv.text = response.body()!!.data.content
+                    mypage_board_datetime_tv.text = response.body()!!.data.time!!.substring(0, 16).replace("T", "   ")
+                    
+                    // 사진 넣어야함
+                }
+            }
+
+            override fun onFailure(call: Call<GetMypageIntroduceResponse>?, t: Throwable?) {
+                Log.v("MyTAG", "통신 실패 = " + t.toString())
             }
         })
     }

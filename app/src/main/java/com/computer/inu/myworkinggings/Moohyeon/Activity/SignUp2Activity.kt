@@ -32,7 +32,7 @@ class SignUp2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
         tv_sign_up2_available_pw.visibility = View.INVISIBLE
-        tv_sign_up2_available_email.visibility = View.INVISIBLE
+        tv_sign_up2_available_email.visibility = View.GONE
         tv_sign_up2_confirm_number_send_message.isEnabled = false
         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
 

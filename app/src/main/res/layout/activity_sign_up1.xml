@@ -9,16 +9,16 @@
     tools:context=".Moohyeon.Activity.SignUp1Activity">
     <TextView
         android:gravity="center"
-        android:background="#b0caea"
+        android:background="@drawable/top"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="57dp"
         android:textSize="14sp"
-        android:textColor="#ffffff"
+        android:textColor="#000000"
         android:lineSpacingExtra="6sp"
         android:text="이용약관"
         />
     <RelativeLayout
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="27dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
             android:id="@+id/cb_sign_up1_personal_check"/>
         <ScrollView
             android:layout_below="@+id/tv_sign_up_personal_info"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="80dp">
 
@@ -56,7 +56,7 @@
         </ScrollView>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
             android:id="@+id/cb_sign_up1_using_agree_check"/>
 
         <ScrollView
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_below="@+id/tv_sign_up1_using_agree"
             android:layout_height="80dp">
@@ -92,7 +92,7 @@
         </ScrollView>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:text="멤버십 원칙 동의"/>
         <ScrollView
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_below="@+id/tv_sign_up1_membership_agree"
             android:layout_height="80dp">
@@ -137,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="30dp">
 
         <TextView
@@ -159,12 +159,13 @@
         android:layout_marginTop="30dp"
         android:id="@+id/tv_sign_up1_next_btn"
         android:layout_gravity="center"
-        android:background="#b0caea"
+        android:background="@color/colorPrimary"
         android:layout_width="324dp"
         android:layout_height="48dp"
         android:textSize="15sp"
         android:textColor="#f6f9fd"
         android:lineSpacingExtra="5sp"
         android:gravity="center"
+        android:textStyle="bold"
       android:text="다음"/>
 </LinearLayout>

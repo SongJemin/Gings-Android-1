@@ -6,6 +6,7 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
@@ -102,4 +103,10 @@ interface NetworkService {
             @Header("Authorization") authorization  : String,
             @Path("boardId") boardId : Int
     ) : Call<GetDetailedBoardResponse>
+    @GET("/mypage/mine/introduce")
+    fun getMypageIntroduceResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String
+    ) : Call<GetMypageIntroduceResponse>
+
 }

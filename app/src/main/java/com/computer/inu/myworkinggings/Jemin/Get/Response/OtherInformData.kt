@@ -10,5 +10,5 @@ data class OtherInformData (
      var status : String?,
      var image : String?,
      var coworkingEnabled : Boolean?,
-     var keywords : ArrayList<OtherKeywordData>
+     var keywords : ArrayList<String>
 )

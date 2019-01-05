@@ -91,7 +91,7 @@ class MyPageFragment : Fragment() {
 
         getOtherPage()
 
-        getUserPagePost()
+        //getUserPagePost()
 
         // '소개' 클릭 시
         v.mypage_intro_btn.setOnClickListener {
@@ -163,20 +163,22 @@ class MyPageFragment : Fragment() {
                         coworkingEnabled = 0
                     }
 
-
                     for (i in 0..response.body()!!.data.keywords.size - 1) {
                         if (i == 0) {
-                            mypage_keyword_tv.text = "#" + response.body()!!.data.keywords[i].content
+                            mypage_keyword_tv.text = "#" + response.body()!!.data.keywords[i]
                         } else {
-                            mypage_keyword_tv.append("    #" + response.body()!!.data.keywords[i].content)
+                            mypage_keyword_tv.append("    #" + response.body()!!.data.keywords[i])
                         }
                     }
                     addFragment(MypageIntroFragment())
                 }
+                else{
+                    Log.v("TAG", "타인페이지 서버 값 전달 실패")
+                }
             }
 
             override fun onFailure(call: Call<GetOtherInformResponse>?, t: Throwable?) {
-
+                Log.v("TAG", "타인페이지 서버 통신 실패 = " + t.toString())
             }
         })
     }

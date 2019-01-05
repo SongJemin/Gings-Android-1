@@ -50,10 +50,10 @@ class MypageIntroFragment : Fragment(){
         status = extra!!.getString("status")
         coworkingEnabled = extra!!.getInt("coworkingEnabled")
         if(coworkingEnabled == 1){
-            v.mypage_intro_on_tv.text = "ON"
+            v.mypage_intro_collab_tv.text = "가능"
         }
         else{
-            v.mypage_intro_on_tv.text = "OFF"
+            v.mypage_intro_collab_tv.text = "불가능"
         }
         v.mypage_intro_field_tv.text = field
         v.mypage_intro_status_tv.text = status

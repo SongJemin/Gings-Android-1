@@ -13,6 +13,9 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
+import com.computer.inu.myworkinggings.Jemin.Adapter.GetImageUrlAdapter
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetMyIntroduceResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
@@ -41,6 +44,8 @@ class MypageUpdateActivity : AppCompatActivity() {
     lateinit var boardImageAdapter : BoardImageAdapter
     var urlSize : Int = 0
     lateinit var requestManager : RequestManager
+    lateinit var getImageUrlAdapter : GetImageUrlAdapter
+    var imgs = ArrayList<String>()
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -51,6 +56,7 @@ class MypageUpdateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mypage_update)
 
         requestManager = Glide.with(this)
+        getMyIntroduce()
 
         mypage_update_galley_btn.setOnClickListener {
             val tedBottomPicker = TedBottomPicker.Builder(this@MypageUpdateActivity)
@@ -149,6 +155,34 @@ class MypageUpdateActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
                 Toast.makeText(applicationContext,"서버 연결 실패", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    fun getMyIntroduce() {
+
+        val getMyIntroduceResponse = networkService.getMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+
+        getMyIntroduceResponse.enqueue(object : retrofit2.Callback<GetMyIntroduceResponse>{
+
+            override fun onResponse(call: Call<GetMyIntroduceResponse>, response: Response<GetMyIntroduceResponse>) {
+                if(response.isSuccessful){
+                    mypage_update_content_edit.hint = response.body()!!.data[0].content
+                    imgs = response.body()!!.data[0].imgs
+
+                    mypage_update_recyclerview.visibility = View.VISIBLE
+                    getImageUrlAdapter = GetImageUrlAdapter(imgs, requestManager)
+                    mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                    mypage_update_recyclerview.adapter = getImageUrlAdapter
+                }
+                else{
+                }
+            }
+
+            override fun onFailure(call: Call<GetMyIntroduceResponse>, t: Throwable?) {
+                Toast.makeText(applicationContext,"자기 소개 조회 서버 연결 실패", Toast.LENGTH_SHORT).show()
+                Log.v("asdf","실패 이유 = " + t.toString())
             }
 
         })

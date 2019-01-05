@@ -5,5 +5,5 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetData.GetIntroduceDa
 data class GetMyIntroduceResponse (
       var status : Int,
       var message : String,
-      var data : GetIntroduceData
+      var data : ArrayList<GetIntroduceData>
 )

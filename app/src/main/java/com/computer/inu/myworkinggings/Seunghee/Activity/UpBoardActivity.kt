@@ -1,6 +1,5 @@
 package com.computer.inu.myworkinggings.Seunghee.Activity
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.content.Context
@@ -8,12 +7,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -21,22 +18,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
-import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.AlbumRecyclerViewAdapter
-import com.sopt.gings.data.AlbumData
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.Request
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileNotFoundException
 import java.io.InputStream
 import java.util.ArrayList
 
@@ -255,9 +249,9 @@ class UpBoardActivity : AppCompatActivity() {
         Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + token + ", 제목 = " + et_up_board_title.text.toString() + ", 내용 = " + et_up_board_modify.text.toString()
                 + ", 카테고리 = " + selectedCategory + ", 키워드1 = " + keywords.get(0))
 
-        postBoardResponse.enqueue(object : retrofit2.Callback<PostBoardResponse>{
+        postBoardResponse.enqueue(object : retrofit2.Callback<PostResponse>{
 
-            override fun onResponse(call: Call<PostBoardResponse>, response: Response<PostBoardResponse>) {
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.v("TAG", "통신 성공")
                 if(response.isSuccessful){
                     Log.v("TAG", "보드 값 전달 성공")
@@ -271,7 +265,7 @@ class UpBoardActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<PostBoardResponse>, t: Throwable?) {
+            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
                 Toast.makeText(applicationContext,"서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 

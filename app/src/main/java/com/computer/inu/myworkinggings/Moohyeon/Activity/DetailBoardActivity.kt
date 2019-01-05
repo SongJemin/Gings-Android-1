@@ -13,9 +13,8 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
-import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.Adapter.DetailBoardRecyclerViewAdapter
-import com.computer.inu.myworkinggings.Moohyeon.Data.ReBoardData
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.R
 import gun0912.tedbottompicker.TedBottomPicker
@@ -257,9 +256,9 @@ class DetailBoardActivity : AppCompatActivity() {
 
         Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + token + ", 내용 = " + detail_board_reboard_edit.text.toString())
 
-        postReBoardResponse.enqueue(object : retrofit2.Callback<PostBoardResponse>{
+        postReBoardResponse.enqueue(object : retrofit2.Callback<PostResponse>{
 
-            override fun onResponse(call: Call<PostBoardResponse>, response: Response<PostBoardResponse>) {
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.v("TAG", "통신 성공")
                 if(response.isSuccessful){
                     Log.v("TAG", "보드 값 전달 성공")
@@ -272,7 +271,7 @@ class DetailBoardActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<PostBoardResponse>, t: Throwable?) {
+            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
                 Toast.makeText(applicationContext,"서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 

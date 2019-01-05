@@ -1,7 +1,7 @@
 package com.computer.inu.myworkinggings.Network
 
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
-import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
@@ -39,7 +39,7 @@ interface NetworkService {
             @Part("category") area: RequestBody,
             @Part images: ArrayList<MultipartBody.Part?>,
             @Part("keywords") keywords: ArrayList<RequestBody>
-    ): Call<PostBoardResponse>
+    ): Call<PostResponse>
 
     @Multipart
     @POST(" /reboards")
@@ -47,7 +47,7 @@ interface NetworkService {
             @Header("Authorization") Authorization : String,
             @Part("content") summary : RequestBody,
             @Part images : ArrayList<MultipartBody.Part?>
-    ) : Call<PostBoardResponse>
+    ) : Call<PostResponse>
 
 
     @POST("/login")
@@ -105,4 +105,11 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("myPageUserId") myPageUserId : Int
     ) : Call<GetOtherGuestBoardResponse>
+
+    @POST("/mypage/guestboard/{myPageUserId}")
+    fun postOtherGuestBoard(
+            @Header("Authorization") Authorization : String,
+            @Path("myPageUserId") myPageUserId : Int,
+            @Body() body : JsonObject
+    ) : Call<PostResponse>
 }

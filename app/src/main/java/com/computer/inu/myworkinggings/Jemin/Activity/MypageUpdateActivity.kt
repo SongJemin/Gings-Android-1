@@ -2,7 +2,7 @@ package com.computer.inu.myworkinggings.Jemin.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
+import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
@@ -34,9 +34,9 @@ class MypageUpdateActivity : AppCompatActivity() {
         //images.add(MultipartBody.Part.createFormData("img", img.name, photoBody))
 
         val postRoomTestResponse = networkService.postBoard("토큰",title, content,category,images, keywords)
-        postRoomTestResponse.enqueue(object : retrofit2.Callback<PostBoardResponse>{
+        postRoomTestResponse.enqueue(object : retrofit2.Callback<PostResponse>{
 
-            override fun onResponse(call: Call<PostBoardResponse>, response: Response<PostBoardResponse>) {
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 if(response.isSuccessful){
 
                 }
@@ -44,7 +44,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<PostBoardResponse>, t: Throwable?) {
+            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
             }
         })
     }

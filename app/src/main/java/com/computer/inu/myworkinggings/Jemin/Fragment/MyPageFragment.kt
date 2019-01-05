@@ -87,7 +87,7 @@ class MyPageFragment : Fragment() {
         requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
 
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
-        v.mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
+        v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
 
         getOtherPage()
 

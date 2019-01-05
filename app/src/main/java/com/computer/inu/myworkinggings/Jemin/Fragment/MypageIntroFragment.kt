@@ -14,14 +14,17 @@ import com.computer.inu.myworkinggings.Jemin.Data.GuestBoardItem
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherGuestBoardResponse
 
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
+import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
-import kotlinx.android.synthetic.main.fragment_home_board.*
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
+import org.json.JSONObject
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -62,7 +65,9 @@ class MypageIntroFragment : Fragment() {
         getOtherIntro()
 
 
-
+        v.mypage_board_more_btn.setOnClickListener {
+            postGuestBoard()
+        }
 
         requestManager = Glide.with(this)
 
@@ -144,6 +149,28 @@ class MypageIntroFragment : Fragment() {
             }
         })
 
+    }
+
+    fun postGuestBoard()
+    {
+
+        var jsonObject = JSONObject()
+        jsonObject.put("myPageUserId", 1)
+        jsonObject.put("content", "testContent")
+
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+        var postOtherGuestBoardResponse = networkService.postOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 1, gsonObject)
+        postOtherGuestBoardResponse.enqueue(object : Callback<PostResponse>{
+
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                if(response.isSuccessful){
+                    Log.v("asdf", "게스트보드 등록 성공")
+                }
+            }
+            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
+            }
+        })
     }
 
 }

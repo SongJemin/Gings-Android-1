@@ -3,6 +3,7 @@ package com.computer.inu.myworkinggings.Seunghee.Adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Adapter.ImageAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
@@ -33,6 +35,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
@@ -60,12 +65,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         for (i in 0..dataList[position].images.size - 1) {
             if (dataList[position].images.size == 0) {
                 Log.v("asdf", "사이즈 0" + dataList[position].images.size)
-                holder.contents_img.visibility = View.GONE
+                holder.contents_img_viewPager.visibility = View.GONE
             } else {
                 Log.v("asdf", "사이즈 있음 " + dataList[position].images.size)
-                requestManager.load(dataList[position].images[0]).centerCrop().into(holder.contents_img)
+                var adapter = ImageAdapter(ctx, requestManager, dataList[position].images)
+                holder.contents_img_viewPager.adapter = adapter
                 if (dataList[position].images[i] == "abcd") {
-                    holder.contents_img.visibility = View.GONE
+                    holder.contents_img_viewPager.visibility = View.GONE
                 }
             }
         }
@@ -139,7 +145,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val time: TextView = itemView.findViewById(R.id.tv_item_board_time) as TextView
 
         //contents
-        val contents_img: ImageView = itemView.findViewById(R.id.iv_item_board_contents_image) as ImageView
+        //val contents_img: ImageView = itemView.findViewById(R.id.iv_item_board_contents_image) as ImageView
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
         val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
@@ -159,6 +165,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //공유하기 val
         val share_btn: ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
+
+        var contents_img_viewPager : ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
 
     }
 

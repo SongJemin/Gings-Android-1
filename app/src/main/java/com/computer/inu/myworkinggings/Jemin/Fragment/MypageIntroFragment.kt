@@ -57,8 +57,10 @@ class MypageIntroFragment : Fragment() {
         coworkingEnabled = extra!!.getInt("coworkingEnabled")
         if (coworkingEnabled == 1) {
             v.mypage_intro_collab_tv.text = "가능"
+            v.mypage_intro_collab_layout.isSelected = true
         } else {
             v.mypage_intro_collab_tv.text = "불가능"
+            v.mypage_intro_collab_layout.isSelected = false
         }
         v.mypage_intro_field_tv.text = field
         v.mypage_intro_status_tv.text = status
@@ -155,7 +157,6 @@ class MypageIntroFragment : Fragment() {
     {
 
         var jsonObject = JSONObject()
-        jsonObject.put("myPageUserId", 1)
         jsonObject.put("content", "testContent")
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject

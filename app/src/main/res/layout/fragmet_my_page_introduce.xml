@@ -55,13 +55,14 @@
                         />
 
                     <RelativeLayout
+                        android:id="@+id/mypage_intro_collab_layout"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentBottom="true"
                         android:layout_width="48dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
                         android:gravity="center_horizontal"
-                        android:background="@drawable/box_on"
+                        android:background="@drawable/mypage_intro_box_selector"
                         >
                         <TextView
                             android:id="@+id/mypage_intro_collab_tv"
@@ -114,6 +115,7 @@
                         />
 
                     <RelativeLayout
+                        android:id="@+id/mypage_intro_field_layout"
                         android:layout_alignParentBottom="true"
                         android:layout_width="48dp"
                         android:layout_height="26dp"
@@ -171,6 +173,7 @@
                         />
 
                     <RelativeLayout
+                        android:id="@+id/mypage_intro_status_layout"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
                         android:layout_width="48dp"

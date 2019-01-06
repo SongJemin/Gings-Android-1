@@ -1,23 +1,34 @@
 package com.computer.inu.myworkinggings.Moohyeon.Adapter
 
 import android.content.Context
+import android.media.Image
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
+import com.computer.inu.myworkinggings.Seunghee.Post.PostReboardRecommendResponse
+import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.collections.ArrayList
 
 class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReplyData?>)
-    : RecyclerView.Adapter<DetailBoardRecyclerViewAdapter.Holder>(){
+    : RecyclerView.Adapter<DetailBoardRecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_detailboard, parent, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_detailboard, parent, false)
         return Holder(view)
     }
 
@@ -28,22 +39,54 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         holder.name.text = dataList[position]!!.writer
         holder.time.text = dataList[position]!!.writeTime
         holder.contents_text.text = dataList[position]!!.content
+        holder.reboard_like_cnt.text = dataList[position]!!.recommender.toString()
 
-        //이미지
-        lateinit var requestManager : RequestManager
-        requestManager = Glide.with(ctx)
+        holder.reboard_like.setOnClickListener {
 
-        for(i in 0..dataList[position]!!.images.size-1 )
-            requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
+
+            val networkService: NetworkService by lazy {
+                ApplicationController.instance.networkService
+            }
+
+
+            val postReBoardrecommendResponse = networkService.postReboardRecommendResponse("application/json",
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    dataList[position]!!.replyId!!
+            )
+            postReBoardrecommendResponse.enqueue(object : Callback<PostReboardRecommendResponse> {
+                override fun onFailure(call: Call<PostReboardRecommendResponse>, t: Throwable) {
+                    Log.e("sign up fail", t.toString())
+                }
+
+                //통신 성공 시 수행되는 메소드
+                override fun onResponse(call: Call<PostReboardRecommendResponse>, response: Response<PostReboardRecommendResponse>) {
+                    if (response.isSuccessful) {
+
+                        ctx.toast("성공!!")
+                    }
+                }
+            })
+
         }
 
+        //이미지
+        lateinit var requestManager: RequestManager
+        requestManager = Glide.with(ctx)
 
-    inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
+        for (i in 0..dataList[position]!!.images.size - 1)
+            requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
+    }
 
-        val time : TextView = itemView.findViewById(R.id.tv_item_detailboard_time) as TextView
-        val name : TextView = itemView.findViewById(R.id.tv_item_detailboard_profile_name) as TextView
-        val contents_text : TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView
-        val contents_images : ImageView = itemView.findViewById(R.id.iv_item_board_image_contents) as ImageView
+
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val time: TextView = itemView.findViewById(R.id.tv_item_detailboard_time) as TextView
+        val name: TextView = itemView.findViewById(R.id.tv_item_detailboard_profile_name) as TextView
+        val contents_text: TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView
+        val contents_images: ImageView = itemView.findViewById(R.id.iv_item_board_image_contents) as ImageView
+
+        val reboard_like: ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
+        val reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
 
     }
 }

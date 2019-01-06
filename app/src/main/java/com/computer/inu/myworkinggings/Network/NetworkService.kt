@@ -9,6 +9,7 @@ import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
+import com.computer.inu.myworkinggings.Seunghee.Post.PostReboardRecommendResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PutModifyBoardResponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -135,6 +136,12 @@ interface NetworkService {
             @Part postImages : ArrayList<MultipartBody.Part?>,
             @Part("prevKeywords") prevKeywords : ArrayList<String?>,
             @Part("postKeywords") postKeywords : ArrayList<String?>
-
     ) : Call<PutModifyBoardResponse>
+
+    @POST("reboards/{reboardId}/recommend")
+    fun postReboardRecommendResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("reboardId") reboardId : Int
+    ) : Call<PostReboardRecommendResponse>
 }

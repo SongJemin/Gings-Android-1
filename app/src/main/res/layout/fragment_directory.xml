@@ -10,16 +10,16 @@
     android:layout_width="match_parent"
     android:layout_height="56dp">
     <RelativeLayout
-        android:background="#f6f9fd"
+        android:background="#f9f9f9"
         android:layout_width="344dp"
         android:layout_height="34dp"
         android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/iv_directory_picture"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_width="17.8dp"
-                android:layout_height="17.8dp"
+                android:src="@drawable/bt_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
@@ -53,18 +53,18 @@
             android:src="@mipmap/ic_launcher_round"/>
         </RelativeLayout>
 </LinearLayout>
-    <TextView
+    <ImageView1
         android:id="@+id/tv_directory_welcome"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="13sp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/img_directorytop"
         android:textColor="#999999"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="9sp"
-        android:text="새로운 깅스 멤버를 반겨주세요!"
+
         />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_directory_user_list"

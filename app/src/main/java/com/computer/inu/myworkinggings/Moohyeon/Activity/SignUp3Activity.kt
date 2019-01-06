@@ -28,14 +28,13 @@ class SignUp3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up3)
-
+        toast(intent.getStringExtra("token"))
         tv_sign_up3_sign_up_complete.setOnClickListener {
             SignUpPost()
             finish()
         }
     }
     private fun SignUpPost() {
-
 //Json 형식의 객체 만들기
         var jsonObject = JSONObject()
         jsonObject.put("name", intent.getStringExtra("name"))

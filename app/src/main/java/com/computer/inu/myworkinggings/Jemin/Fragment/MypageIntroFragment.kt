@@ -78,11 +78,12 @@ class MypageIntroFragment : Fragment() {
             v.mypage_intro_collab_tv.text = "불가능"
             v.mypage_intro_collab_layout.isSelected = false
         }
+
         v.mypage_board_name_tv.text = name
         v.mypage_board_company.text = job
         v.mypage_board_job.text = "/" + company
         Glide.with(ctx).load(image).into(v.mypage_board_profile_img)
-
+        v.mypage_intro_activity_part.text =field
         v.mypage_intro_status.text = status
         /*getOtherIntro()*/ //타인
         getMyIntro() //자신의 소개페이지
@@ -95,7 +96,7 @@ class MypageIntroFragment : Fragment() {
         requestManager = Glide.with(this)
 
         getGuestBoardPost()
-        getOtherGuestBoard()
+       //getOtherGuestBoard()
 
         guestBoardAdapter = GuestBoardAdapter(context!!, guestBoardItem)
         v.mypage_guestboard_recyclerview.layoutManager = LinearLayoutManager(v.context)

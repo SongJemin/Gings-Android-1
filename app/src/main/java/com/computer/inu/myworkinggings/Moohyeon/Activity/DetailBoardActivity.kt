@@ -51,7 +51,10 @@ class DetailBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_board)
 
-        boardId = intent.getIntExtra("boardId", 0)
+
+        getDetailedBoardResponse()
+
+        boardId = intent.getIntExtra("BoardId", 0)
         requestManager = Glide.with(this)
         Log.v("asdf","전송 받은 보드 ID = " + boardId)
         //postReBoard()
@@ -106,7 +109,6 @@ class DetailBoardActivity : AppCompatActivity() {
                             /*
                             try {
                                 for(i in 0 .. urlSize){
-
                                 }
 
                             } catch (e: FileNotFoundException) {
@@ -137,29 +139,6 @@ class DetailBoardActivity : AppCompatActivity() {
             }
         }
     }
-
-    /*
-    private fun setRecyclerView() {
-        //val anyDataList : ArrayList<Any> = arrayListOf("dtdt")//자바의 object. 최상위 데이터타입
-        //임시데이터
-        var dataList: ArrayList<ReBoardData> = ArrayList()
-        dataList.add(ReBoardData("김무현", "3시간전", "안녕하세요!"))
-        dataList.add(ReBoardData("김무현1", "1시간전", "ㅎㅇ"))
-        dataList.add(ReBoardData("김무현2", "3시간전", "ㄱㄱ!"))
-        dataList.add(ReBoardData("김무현3", "8시간전", "ㄱㄱ!"))
-        dataList.add(ReBoardData("김무현4", "6시간전", "안녕하세요!"))
-        dataList.add(ReBoardData("김무현5", "3시간전", "ㄱㄱ세요!"))
-        dataList.add(ReBoardData("김무현6", "4시간전", "ㄱㄱㄱ!"))
-        dataList.add(ReBoardData("김무현7", "5시간전", "안녕하세요!"))
-        dataList.add(ReBoardData("김무현8", "6시간전", "ㅎㅎㅎㅎㅎㅎ!"))
-
-        //BoardRecyclerViewAdapter = BoardRecyclerViewAdapter(this, dataList)
-        detailBoardRecyclerViewAdapter = DetailBoardRecyclerViewAdapter(this, dataList)
-        getDetailedBoardResponse()
-
-    }
-    */
-
 
     private fun getDetailedBoardResponse() {
 

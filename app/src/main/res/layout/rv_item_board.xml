@@ -57,6 +57,7 @@
                 android:textSize="15sp" />
 
             <Button
+                android:id="@+id/btn_rv_item_more"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:background="@drawable/bt_more"

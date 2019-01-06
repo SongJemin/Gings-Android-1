@@ -19,7 +19,6 @@ class BottomNaviActivity : AppCompatActivity() {
 
         configureBottomNavigation()
 
-
     }
     private fun configureBottomNavigation(){
         vp_bottom_navi_act_frag_pager.adapter = MyFragmentStatePagerAdapter(supportFragmentManager, 5)

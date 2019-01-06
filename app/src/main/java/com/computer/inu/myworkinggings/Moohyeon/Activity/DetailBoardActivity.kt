@@ -69,9 +69,7 @@ class DetailBoardActivity : AppCompatActivity() {
                         for(i in 0 .. reboardUriList!!.size-1){
                             urlSize = reboardUriList!!.size-1
                             reboardUriList!!.add(reboardUriList.get(i))
-
                             reboardImageUrlList.add(reboardUriList.get(i))
-                            Log.v("TAG","re이미지 = " + reboardUriList.get(i))
 
                             val options = BitmapFactory.Options()
 
@@ -85,10 +83,6 @@ class DetailBoardActivity : AppCompatActivity() {
                             val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
                             val images = File(this.reboardImageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
 
-                            Log.v("asdf","re이미지3 = " + images)
-
-                            Log.v("asdf","re이미지5 = " + images.name)
-                            Log.v("asdf","re이미지6 = " + images.name.toString())
                             reboardImagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
 
                             for(i in 0 .. reboardImagesList.size-1){
@@ -98,26 +92,14 @@ class DetailBoardActivity : AppCompatActivity() {
 
                             if(reboardImageUrlList.size > 0){
                                 detail_board_reboard_img_recyclerview.visibility = View.VISIBLE
-                                boardImageAdapter = BoardImageAdapter(reboardImageUrlList, requestManager)
+                                boardImageAdapter = BoardImageAdapter(applicationContext, reboardImageUrlList, requestManager,2)
                                 detail_board_reboard_img_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                                 detail_board_reboard_img_recyclerview.adapter = boardImageAdapter
                             }
                             else{
                                 detail_board_reboard_img_recyclerview.visibility = View.GONE
                             }
-
-                            /*
-                            try {
-                                for(i in 0 .. urlSize){
-                                }
-
-                            } catch (e: FileNotFoundException) {
-                                e.printStackTrace()
-                            }
-                            */
-
                         }
-
                     }
                     .setSelectMaxCount(4)
                     .showCameraTile(false)
@@ -144,7 +126,6 @@ class DetailBoardActivity : AppCompatActivity() {
 
 
         val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", intent.getIntExtra("BoardId", 0).toInt())
-        //toast(intent.getIntExtra("BoardId",0))
 
         getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
             override fun onFailure(call: Call<GetDetailedBoardResponse>, t: Throwable) {

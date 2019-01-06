@@ -42,7 +42,7 @@ import java.io.InputStream
 class UpBoardActivity : AppCompatActivity() {
 
     lateinit var AlbumRecyclerViewAdapter: AlbumRecyclerViewAdapter
-    private var imagesList: ArrayList<MultipartBody.Part?> = ArrayList()
+    var imagesList: ArrayList<MultipartBody.Part?> = ArrayList()
     var urlSize: Int = 0
     var imageUrlList = ArrayList<Uri>()
     private var keywords = ArrayList<RequestBody>()
@@ -61,6 +61,7 @@ class UpBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_up_board)
 
+        upBoardActivity = this
 
         //수정으로 들어왔을 때
         val modifyBoardID = intent.getIntExtra("ModifyBoardID", -1)
@@ -168,7 +169,7 @@ class UpBoardActivity : AppCompatActivity() {
                             }
                             if (imageUrlList.size > 0) {
                                 upboard_pick_recyclerview.visibility = View.VISIBLE
-                                boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager)
+                                boardImageAdapter = BoardImageAdapter(applicationContext, imageUrlList, requestManager,0)
                                 upboard_pick_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                                 upboard_pick_recyclerview.adapter = boardImageAdapter
                             } else {
@@ -298,7 +299,18 @@ class UpBoardActivity : AppCompatActivity() {
                 rl_btn_up_board_category_selected.visibility = View.GONE
                 categoryListText[i].visibility = View.VISIBLE
 
-                selectedCategory = categoryListText[i].text.toString()
+                if(categoryListText[i].text.toString() == "질문")
+                {
+                    selectedCategory = "QUESTION"
+                }
+                else if(categoryListText[i].text.toString() == "영감")
+                {
+                    selectedCategory = "INSPIRATION"
+                }
+                else if(categoryListText[i].text.toString() == "협업")
+                {
+                    selectedCategory = "COWORKING"
+                }
 
                 ll_up_board_category_list.visibility = View.GONE
             }
@@ -338,9 +350,6 @@ class UpBoardActivity : AppCompatActivity() {
     fun postBoard() {
 
         var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
-        var titleValue: String = "TestTitle"
-        var contentValue: String = "TestContent"
-        var categoryValue: String = "#영감 #기획 #안드"
 
         var networkService = ApplicationController.instance.networkService
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())
@@ -372,6 +381,10 @@ class UpBoardActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    companion object {
+        lateinit var upBoardActivity: UpBoardActivity
     }
 
 }

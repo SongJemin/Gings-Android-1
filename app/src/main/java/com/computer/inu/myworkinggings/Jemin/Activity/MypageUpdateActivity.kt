@@ -39,7 +39,7 @@ import java.io.InputStream
 import java.util.ArrayList
 
 class MypageUpdateActivity : AppCompatActivity() {
-    private var imagesList : ArrayList<MultipartBody.Part?> = ArrayList()
+    var imagesList : ArrayList<MultipartBody.Part?> = ArrayList()
     var imageUrlList = ArrayList<Uri>()
     lateinit var boardImageAdapter : BoardImageAdapter
     var urlSize : Int = 0
@@ -54,6 +54,7 @@ class MypageUpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_update)
+        mypageUpdateActivity = this
 
         requestManager = Glide.with(this)
         getMyIntroduce()
@@ -70,9 +71,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                             imageUrlList.add(uriList.get(i))
 
                             val options = BitmapFactory.Options()
-
                             var input: InputStream? = null // here, you need to get your context.
-
 
                             input = contentResolver.openInputStream(imageUrlList.get(i))
                             val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
@@ -87,7 +86,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                             }
                             if(imageUrlList.size > 0){
                                 mypage_update_recyclerview.visibility = View.VISIBLE
-                                boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager)
+                                boardImageAdapter = BoardImageAdapter(applicationContext, imageUrlList, requestManager,1)
                                 mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                                 mypage_update_recyclerview.adapter = boardImageAdapter
                             }
@@ -109,7 +108,18 @@ class MypageUpdateActivity : AppCompatActivity() {
         }
 
         mypage_update_confirm_tv.setOnClickListener {
-            postMyIntroduce()
+
+            for(i in 0 .. GetImageUrlAdapter.getImageUrlAdapter.deleteImageUrl.size-1){
+                Log.v("asdf","어댑터 삭제 url 값 확인 = " + GetImageUrlAdapter.getImageUrlAdapter.deleteImageUrl[i])
+            }
+            // /postMyIntroduce()
+        }
+
+        mypage_test_btn.setOnClickListener {
+            for(i in 0 .. imageUrlList.size-1){
+                Log.v("asf", "사진 확인 " + i + " = " + imageUrlList[i])
+            }
+
         }
 
     }
@@ -154,7 +164,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                     imgs = response.body()!!.data[0].imgs
 
                     mypage_update_recyclerview.visibility = View.VISIBLE
-                    getImageUrlAdapter = GetImageUrlAdapter(imgs, requestManager)
+                    getImageUrlAdapter = GetImageUrlAdapter(applicationContext, imgs, requestManager)
                     mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                     mypage_update_recyclerview.adapter = getImageUrlAdapter
                 }
@@ -166,8 +176,10 @@ class MypageUpdateActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"자기 소개 조회 서버 연결 실패", Toast.LENGTH_SHORT).show()
                 Log.v("asdf","실패 이유 = " + t.toString())
             }
-
         })
     }
 
+    companion object {
+        lateinit var mypageUpdateActivity : MypageUpdateActivity
+    }
 }

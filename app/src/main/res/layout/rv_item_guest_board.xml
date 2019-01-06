@@ -91,17 +91,6 @@
         android:textColor="#999999"
         android:textSize="9sp" />
 
-    <TextView
-        android:id="@+id/item_guest_time_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="9dp"
-        android:layout_below="@+id/rl_item_guest_profile_board"
-        android:layout_toRightOf="@+id/item_guest_date_tv"
-        android:text="01:16"
-        android:layout_marginTop="4.8dp"
-        android:textColor="#999999"
-        android:textSize="9sp" />
 
     <TextView
         android:id="@+id/item_guest_content_tv"

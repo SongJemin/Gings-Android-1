@@ -10,5 +10,5 @@ data class UserPageData (
         var status : String,
         var image : String,
         var coworkingEnabled : Boolean,
-        var keywords : ArrayList<KewordData>
+        var keywords : ArrayList<String>
 )

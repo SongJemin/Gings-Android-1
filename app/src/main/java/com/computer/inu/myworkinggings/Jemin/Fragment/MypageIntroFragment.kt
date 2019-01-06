@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.toast
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,6 +35,10 @@ class MypageIntroFragment : Fragment(){
     lateinit var guestBoardAdapter : GuestBoardAdapter
     var field : String = ""
     var status : String = ""
+    var image : String? = ""
+    var name : String = ""
+    var job : String = ""
+    var company : String = ""
     var coworkingEnabled : Int = 0
     var checkFlag : Int = 0
 
@@ -46,11 +51,15 @@ class MypageIntroFragment : Fragment(){
         val v : View = inflater.inflate(R.layout.fragmet_my_page_introduce,container,false)
         val extra = arguments
 
-
-
+      job = extra!!.getString("job")
+      company = extra!!.getString("company")
+      image = extra!!.getString("image")
+        name = extra!!.getString("name")
         field = extra!!.getString("field")
+
         Log.v("asdf", "받는 필드 = " + field)
         status = extra!!.getString("status")
+
         coworkingEnabled = extra!!.getInt("coworkingEnabled")
         if(coworkingEnabled == 1){
             v.mypage_intro_collab_tv.text = "가능"
@@ -58,8 +67,12 @@ class MypageIntroFragment : Fragment(){
         else{
             v.mypage_intro_collab_tv.text = "불가능"
         }
-        v.mypage_intro_field_tv.text = field
-        v.mypage_intro_status_tv.text = status
+      v.mypage_board_name_tv.text=name
+      v.mypage_board_company.text=job
+      v.mypage_board_job.text="/"+company
+      Glide.with(ctx).load(image).into(v.mypage_board_profile_img)
+
+        v.mypage_intro_status.text = status
         /*getOtherIntro()*/ //타인
       getMyIntro() //자신의 소개페이지
 
@@ -103,11 +116,11 @@ class MypageIntroFragment : Fragment(){
                 Log.v("TAG", "나의 소개 페이지 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     Log.v("MyTAG", "나의 소개 페이지 서버 통신 연결 성공")
-                    var temp = response.body()!!.data.imgs
+
                     mypage_board_content_tv.text = response.body()!!.data.content
                     mypage_board_datetime_tv.text = response.body()!!.data.time!!.substring(0, 16).replace("T", "   ")
 
-                    // 사진 넣어야함
+                    Glide.with(ctx).load(response.body()!!.data.imgs!![0]).into( mypage_board_content_iv) // 한장만 넣을수 있음
                 }
             }
 
@@ -129,9 +142,6 @@ class MypageIntroFragment : Fragment(){
                         guestBoardAdapter.guestBoardItems.addAll(temp)
                         guestBoardAdapter.notifyItemInserted(position)
                     }
-
-
-
                 }
             }
 

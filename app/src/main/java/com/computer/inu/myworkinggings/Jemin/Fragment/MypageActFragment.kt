@@ -22,6 +22,8 @@ class MypageActFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v : View = inflater.inflate(R.layout.fragment_mypage_act,container,false)
 
+
+
         guestActItem.add(GuestActItem("창업하고 싶은데 어떻게 준비하면 좋을까요?", "#사업 #창업","3시간전","01:ㅁㄴㅇㅎㅁㄴㅇㄹㅎㅇㅁㄶㄴㅁㅇㄹㄴㅁㅎㅁㄴㅇㄻㅇㄶㅎㅇ","이충엽","깅스/PM"))
         guestActItem.add(GuestActItem("놀고싶은데 어떻게 해야해요?", "#놀기 #술술","3시간전","ㅁㄴㅇㅎㅁㄴㅇㄹㅎㅇㅁㄶㄴㅁㅇㄹㄴㅁㅎㅁㄴㅇㄻㅇㄶㅎㅇ","이충엽","깅스/PM"))
         guestActItem.add(GuestActItem("끝이 안나요", "#안녕 #집가기","3시간전","ㅁㄴㅇㅎㅁㄴㅇㄹㅎㅇㅁㄶㄴㅁㅇㄹㄴㅁㅎㅁㄴㅇㄻㅇㄶㅎㅇ","이충엽","깅스/PM"))

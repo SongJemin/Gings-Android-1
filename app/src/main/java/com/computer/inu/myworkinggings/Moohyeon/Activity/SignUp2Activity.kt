@@ -11,8 +11,7 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_sign_up2.*
-
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,32 +33,11 @@ class SignUp2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
         tv_sign_up2_available_pw.visibility = View.INVISIBLE
-        tv_sign_up2_available_email.visibility = View.INVISIBLE
+        tv_sign_up2_available_email.visibility = View.GONE
         tv_sign_up2_confirm_number_send_message.isEnabled = false
         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
 
         networkService = ApplicationController.instance.networkService
-
-
-        tv_sign_up2_overlap_check.setOnClickListener {
-            email = et_sign_up2_email.text.toString()
-            // 서버 통신하는 함수 만들어서 중복 확인하기
-            // 만약 중복이 아니라면
-            if (email.equals("naver")) {
-                tv_sign_up2_available_email.visibility = View.VISIBLE
-                tv_sign_up2_available_email.setText("사용 가능한 이메일 입니다.")
-                tv_sign_up2_available_email.setTextColor(Color.parseColor("#64dfff"))
-                tv_sign_up2_confirm_number_send_message.isEnabled = true
-                tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF20F26A"))
-
-            } else {
-                tv_sign_up2_available_email.setTextColor(Color.parseColor("#ff6464"))
-                tv_sign_up2_available_email.setText("이미 등록된 이메일 입니다.")
-                tv_sign_up2_available_email.setVisibility(View.VISIBLE)
-                tv_sign_up2_confirm_number_send_message.isEnabled = false
-                tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
-            }
-        }
 
         tv_sign_up2_overlap_check.setOnClickListener {
             getEmailRedundancy()
@@ -88,13 +66,14 @@ class SignUp2Activity : AppCompatActivity() {
                     tv_sign_up2_available_pw.setTextColor(Color.parseColor("#ff6464"))
                 }
                 if (post_check != 1) {
-                    startActivity<SignUp3Activity>()
+                      //여기다가 이메일 전송 하면된다!!!!~~
+                    getVerifyNumberData()
+                    startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password))
 
-                } else {
-                    toast("정보를 모두 입력해주세요.")
                 }
+            }else {
+                toast("정보를 모두 입력해주세요.")
             }
-            getVerifyNumberData()
         }
 
 
@@ -108,11 +87,12 @@ class SignUp2Activity : AppCompatActivity() {
 
     fun getVerifyNumberData() {
         System.out.println("network")
-        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("wqefsdf", "seunghx@gmail.com") // 네트워크 서비스의 getContent 함수를 받아옴
+        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds", "seunghx@gmail.com") // 네트워크 서비스의 getContent 함수를 받아옴
         getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
             override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
+                    toast("성공")
                     Log.v("TAG", "인증번호 통신 성공")
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
@@ -126,27 +106,34 @@ class SignUp2Activity : AppCompatActivity() {
     }
     fun getEmailRedundancy() {
         networkService = ApplicationController.instance.networkService
-        var getProjectResponse = networkService.getEmailRedundancyResponse("seunghx@naver.com") // 네트워크 서비스의 getContent 함수를 받아옴
+        var getProjectResponse = networkService.getEmailRedundancyResponse(et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
         getProjectResponse.enqueue(object : Callback<GetEmailRedundancyResponse> {
             override fun onResponse(call: Call<GetEmailRedundancyResponse>?, response: Response<GetEmailRedundancyResponse>?) {
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
-
+                    var header = response.headers()
                     Log.v("TAG", "이메일 중복 확인")
                     message = response.body()!!.message!!
                     if(message == "이미 등록된 이메일입니다"){
-                        // 이미 있는 아이디로 토스트 띄우기
+                      toast("이미 있는 아이디입니다.")  // 이미 있는 아이디로 토스트 띄우기
+                        tv_sign_up2_available_email.setText("이미 등록된 이메일 입니다.")
+                        tv_sign_up2_available_email.setVisibility(View.VISIBLE)
+                        tv_sign_up2_confirm_number_send_message.isEnabled = false
+                        tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
                     }
                     else{
-                        // 사용 가능한 아이디입니다 토스트 띄우기
+                      toast("사용 가능한 아이디입니다.")    // 사용 가능한 아이디입니다 토스트 띄우기
+                        tv_sign_up2_available_email.setText("사용 가능한 이메일 입니다.")
+                        tv_sign_up2_available_email.setTextColor(Color.parseColor("#64dfff"))
+                        tv_sign_up2_confirm_number_send_message.isEnabled = true
+                        tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#f7746b"))
+                          intent.putExtra("token",header.toString())
                     }
 
                     Log.v("TAG", "이메일 중복 확인 stats = " + status)
                     Log.v("TAG", "이메일 중복 확인 message = " + message)
                 }
-                else{
 
-                }
             }
 
             override fun onFailure(call: Call<GetEmailRedundancyResponse>?, t: Throwable?) {

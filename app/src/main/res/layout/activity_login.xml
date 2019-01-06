@@ -5,27 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff"
+    android:background="#f9f9f9"
     tools:context=".Moohyeon.Activity.LoginActivity">
-    <TextView
-        android:layout_marginTop="96dp"
+
+    <ImageView
+        android:src="@drawable/ic_gings"
+        android:layout_marginTop="69dp"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
+        android:layout_width="84.5dp"
+        android:layout_height="117dp"
         android:textColor="#222222"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="-20sp"
         android:gravity="center_horizontal"
-        android:text="GINGS"
+
 
         />
     <LinearLayout
         android:layout_gravity="center"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="52dp"
         android:layout_width="324dp"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/signup2_round_background"
+        >
         <TextView
             android:layout_marginTop="15dp"
             android:layout_marginLeft="21dp"
@@ -50,7 +53,10 @@
         android:layout_gravity="center"
         android:layout_width="324dp"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        android:background="@drawable/signup2_round_background"
+        >
         <TextView
             android:layout_marginTop="15dp"
             android:layout_marginLeft="21dp"
@@ -69,42 +75,46 @@
             android:layout_marginLeft="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="**********"/>
     </LinearLayout>
     <TextView
         android:id="@+id/tv_login_login_button"
-        android:background="@drawable/back"
+        android:background="#f7746b"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
         android:layout_width="324dp"
         android:layout_height="50dp"
-        android:textSize="16sp"
-        android:textColor="#173f72"
+        android:textSize="17sp"
+        android:textColor="#ffffff"
         android:lineSpacingExtra="0sp"
         android:gravity="center"
-       android:text="LOGIN"
+       android:text="로그인"
         android:textStyle="bold"
         />
     <LinearLayout
         android:layout_gravity="right"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="20dp"
+        android:layout_height="18dp">
         <TextView
-            android:layout_marginRight="27dp"
+            android:layout_marginRight="26dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#5c5c5c"
             android:lineSpacingExtra="4sp"
-            android:gravity="center_horizontal"
-           android:text="Remember Me"
+            android:layout_gravity="center"
+           android:text="자동 로그인"
             />
 <CheckBox
     android:layout_marginRight="36.5dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/cb_login_auto_check_box"/>
+    android:id="@+id/cb_login_auto_check_box"
+    android:layout_gravity="center"
+    />
     </LinearLayout>
 
     <LinearLayout
@@ -122,7 +132,7 @@
             android:textColor="#5c5c5c"
             android:lineSpacingExtra="4sp"
             android:gravity="center"
-            android:text="ABOUT GINGS"
+            android:text="깅스 안내"
             />
         <TextView
             android:id="@+id/tv_login_join_us"
@@ -134,7 +144,7 @@
             android:textColor="#5c5c5c"
             android:lineSpacingExtra="4sp"
             android:gravity="center"
-            android:text="JOIN US"
+            android:text="회원가입"
             />
 
     </LinearLayout>

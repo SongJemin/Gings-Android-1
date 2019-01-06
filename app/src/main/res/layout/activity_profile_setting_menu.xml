@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:id="@+id/ll_category_menu_bar"
-        android:layout_width="300dp"
+        android:layout_width="304dp"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -18,17 +18,19 @@
         <RelativeLayout
             android:id="@+id/rl_category_bar"
             android:layout_width="fill_parent"
-            android:layout_height="50dp"
+            android:layout_height="74dp"
             android:background="#ffffff">
+
 
             <ImageView
                 android:id="@+id/iv_btn_profile_setting_close"
+
                 android:background="#ffffff"
-                android:layout_marginStart="10dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_close_black_24dp" />
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_chevron_left_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,6 +44,11 @@
                 android:text="설정"
                 android:textColor="#040404"
                 android:textSize="15sp" />
+            <View
+                android:layout_alignParentBottom="true"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#e2e8ed" />
         </RelativeLayout>
 
         //이름,메일주소
@@ -55,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="40dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -88,16 +95,18 @@
             android:layout_height="40dp">
 
             <TextView
-                android:background="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="40dp"
+                android:background="#ffffff"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="알림"
-                android:textColor="#b0caea"
-                android:textSize="13sp" />
+
+                android:textStyle="bold"
+                android:textColor="#c45c55"
+                android:textSize="13sp"/>
 
             <Switch
                 android:id="@+id/sw_profile_setting_menu_alarm"
@@ -105,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="17dp"
+                android:layout_marginEnd="27dp"
                 android:shadowColor="#b0caea" />
         </RelativeLayout>
 
@@ -123,12 +132,13 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="40dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="프로필 관리"
-                android:textColor="#b0caea"
-                android:textSize="13sp" />
+
+                android:textStyle="bold"
+                android:textColor="#c45c55"                android:textSize="13sp" />
 
             //프로필 사진변경
             <RelativeLayout
@@ -140,7 +150,7 @@
 
                 <RelativeLayout
                     android:background="#ffffff"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -163,19 +173,22 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
+                        android:layout_marginEnd="30dp"
                         android:src="@drawable/ic_chevron_right_black_24dp" />
 
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
                 </RelativeLayout>
 
             </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#e2e8ed" />
+
 
             //프로필 정보 수정
             <RelativeLayout
+
                 android:id="@+id/rl_btn_profile_setting_menu_profile_info_update"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
@@ -183,7 +196,7 @@
 
                 <RelativeLayout
                     android:background="#ffffff"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -206,16 +219,17 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
+                        android:layout_marginEnd="30dp"
                         android:src="@drawable/ic_chevron_right_black_24dp" />
 
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
                 </RelativeLayout>
 
             </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#e2e8ed" />
 '
             //자기소개 수정
             <RelativeLayout
@@ -226,7 +240,7 @@
 
                 <RelativeLayout
                     android:background="#ffffff"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -249,17 +263,17 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
+                        android:layout_marginEnd="30dp"
                         android:src="@drawable/ic_chevron_right_black_24dp" />
 
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
                 </RelativeLayout>
 
             </RelativeLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#e2e8ed" />
 
         </LinearLayout>//프로필 관리
 
@@ -276,11 +290,12 @@
                 android:background="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="40dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="보안"
-                android:textColor="#b0caea"
+                android:textStyle="bold"
+                android:textColor="#c45c55"
                 android:textSize="13sp" />
 
             //비밀번호 변경
@@ -292,7 +307,7 @@
 
                 <RelativeLayout
                     android:background="#ffffff"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -315,16 +330,17 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
+                        android:layout_marginEnd="30dp"
                         android:src="@drawable/ic_chevron_right_black_24dp" />
 
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
                 </RelativeLayout>
 
             </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#e2e8ed" />
 
             //로그아웃
             <RelativeLayout
@@ -334,7 +350,7 @@
 
                 <RelativeLayout
                     android:background="#ffffff"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -368,17 +384,17 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
+                        android:layout_marginEnd="30dp"
                         android:src="@drawable/ic_chevron_right_black_24dp" />
 
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
                 </RelativeLayout>
 
             </RelativeLayout>
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#e2e8ed" />
-
             //탈퇴하기
             <RelativeLayout
                 android:id="@+id/rl_btn_profile_setting_menu_unsubscrible"
@@ -388,7 +404,7 @@
 
                 <RelativeLayout
                     android:background="#ffffff"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="40dp"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -411,17 +427,18 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="26dp"
+                        android:layout_marginEnd="30dp"
                         android:src="@drawable/ic_chevron_right_black_24dp" />
 
+                    <View
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed" />
                 </RelativeLayout>
 
             </RelativeLayout>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#e2e8ed" />
 
         </LinearLayout>//프로필 관리
 

@@ -37,6 +37,8 @@ class HomeBoardFragment : Fragment(){
         networkService = ApplicationController.instance.networkService
         requestManager = Glide.with(this)
 
+        //getBoard()
+
 
         getBoard()
         return view

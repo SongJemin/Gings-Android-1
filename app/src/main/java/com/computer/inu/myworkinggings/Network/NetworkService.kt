@@ -4,6 +4,13 @@ import android.app.ListActivity
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
+import com.computer.inu.myworkinggings.Hyunjin.Post.PostClubSignUp
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageActResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
@@ -35,6 +42,17 @@ interface NetworkService {
             @Query("offset") offset: Int?,
             @Query("limit") limit: Int?
     ): Call<GetBoardResponse>
+
+    @GET("/signup/authNumber")
+    fun getVerifyNumberData(
+            @Header("Authorization") Authorization : String,
+            @Query("email") email : String
+    ) : Call<GetVerifyNumberRequest>
+
+    @GET("/clubs")
+    fun getSearchClub(
+            @Header("Authorization") Authorization : String
+    ) : Call<GetSearchClub>
 
     @Multipart
     @POST("/boards")
@@ -197,4 +215,10 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("reboardId") reboardId : Int
     ) : Call<PostReboardRecommendResponse>
+
+    @POST("/clubs/{clubId}/join")
+    fun postClubSignUp(
+            @Header("Authorization") Authorization : String,
+            @Path("clubId") clubId : Int
+    ) : Call<PostClubSignUp>
 }

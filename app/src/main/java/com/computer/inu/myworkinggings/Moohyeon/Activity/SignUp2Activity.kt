@@ -5,19 +5,17 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
+import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_sign_up2.*
-import kotlinx.android.synthetic.main.activity_sign_up3.*
 import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Header
 import java.util.regex.Pattern
 
 class SignUp2Activity : AppCompatActivity() {
@@ -39,12 +37,15 @@ class SignUp2Activity : AppCompatActivity() {
         tv_sign_up2_confirm_number_send_message.isEnabled = false
         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
 
+        networkService = ApplicationController.instance.networkService
 
         tv_sign_up2_overlap_check.setOnClickListener {
             getEmailRedundancy()
         }
 
         tv_sign_up2_confirm_number_send_message.setOnClickListener {
+
+            System.out.println("push button")
             var post_check = 0
             name = et_sign_up2_name.text.toString()
             email = et_sign_up2_email.text.toString()
@@ -66,6 +67,7 @@ class SignUp2Activity : AppCompatActivity() {
                 }
                 if (post_check != 1) {
                       //여기다가 이메일 전송 하면된다!!!!~~
+                    getVerifyNumberData()
                     startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password))
 
                 }
@@ -73,6 +75,8 @@ class SignUp2Activity : AppCompatActivity() {
                 toast("정보를 모두 입력해주세요.")
             }
         }
+
+
     }
 
     fun Passwordvalidate(pw: String): Boolean {
@@ -81,6 +85,25 @@ class SignUp2Activity : AppCompatActivity() {
         return matcher.matches()
     }
 
+    fun getVerifyNumberData() {
+        System.out.println("network")
+        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds", "seunghx@gmail.com") // 네트워크 서비스의 getContent 함수를 받아옴
+        getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
+            override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
+                Log.v("TAG", "GET 통신 성공")
+                if (response!!.isSuccessful) {
+                    toast("성공")
+                    Log.v("TAG", "인증번호 통신 성공")
+                    Log.v("TAG", "status = " + response.body()!!.status)
+                    Log.v("TAG", "message = " + response.body()!!.message)
+                }
+            }
+
+            override fun onFailure(call: Call<GetVerifyNumberRequest>?, t: Throwable?) {
+                Log.v("TAG", "통신 실패")
+            }
+        })
+    }
     fun getEmailRedundancy() {
         networkService = ApplicationController.instance.networkService
         var getProjectResponse = networkService.getEmailRedundancyResponse(et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
@@ -118,4 +141,5 @@ class SignUp2Activity : AppCompatActivity() {
             }
         })
     }
+
 }

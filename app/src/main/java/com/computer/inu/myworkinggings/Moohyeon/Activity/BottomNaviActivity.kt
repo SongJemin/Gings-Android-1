@@ -1,17 +1,23 @@
 package com.computer.inu.myworkinggings.Moohyeon.Activity
 
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
+import android.widget.Toast
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.adapter.MyFragmentStatePagerAdapter
 import kotlinx.android.synthetic.main.activity_bottom_navi.*
+import kotlinx.android.synthetic.main.bottom_navigation_tab.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class BottomNaviActivity : AppCompatActivity() {
+class BottomNaviActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,4 +41,6 @@ class BottomNaviActivity : AppCompatActivity() {
         tl_bottom_navi_act_bottom_menu.getTabAt(3)!!.customView = bottomNaviLayout.findViewById(R.id.btn_bottom_navi_notice) as RelativeLayout
         tl_bottom_navi_act_bottom_menu.getTabAt(4)!!.customView = bottomNaviLayout.findViewById(R.id.btn_bottom_navi_my_page) as RelativeLayout
     }
+
+
 }

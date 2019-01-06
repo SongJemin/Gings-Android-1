@@ -29,7 +29,6 @@ import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
-import okhttp3.Request
 import okhttp3.RequestBody
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import org.jetbrains.anko.toast
@@ -39,7 +38,6 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.InputStream
-import java.util.ArrayList
 
 class UpBoardActivity : AppCompatActivity() {
 

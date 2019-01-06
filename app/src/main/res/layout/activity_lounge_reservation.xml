@@ -12,6 +12,13 @@
         android:layout_alignParentTop="true"
         android:background="#ffffff"
         >
+        <Button
+            android:layout_width="40dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_lounge_reservation_back"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +31,6 @@
             android:text="INNOVATOR CLUB"
             android:textStyle="bold"
             />
-
         <ImageView
             android:id="@+id/iv_btn_more"
             android:layout_width="wrap_content"
@@ -51,7 +57,7 @@
             android:lineSpacingExtra="6sp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="예약을 진행하기 위해 SafariㅣChrome으로 이동합니다."
+            android:text="예약을 진행하기 위해 \n SafariㅣChrome으로 이동합니다."
             />
     </RelativeLayout>
 

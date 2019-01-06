@@ -168,7 +168,7 @@
             android:textStyle="bold"
             android:text=""/>
 
-    <TextView
+    <Button
         android:layout_marginTop="26dp"
         android:id="@+id/tv_sign_up2_confirm_number_send_message"
         android:layout_gravity="center"

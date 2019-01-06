@@ -125,6 +125,7 @@ interface NetworkService {
 
     @POST("/clubs/{clubId}/join")
     fun postClubSignUp(
-            @Header("Authorization") Authorization : String
+            @Header("Authorization") Authorization : String,
+            @Path("clubId") clubId : Int
     ) : Call<PostClubSignUp>
 }

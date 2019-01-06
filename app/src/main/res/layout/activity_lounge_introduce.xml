@@ -138,6 +138,7 @@ INNOVATOR CLUB"
                 android:layout_marginTop="113dp"
                 android:background="#b0caea"
                 android:text="가입하기"
+
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
 
@@ -145,6 +146,7 @@ INNOVATOR CLUB"
     </LinearLayout>
 
     //일정
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ll_lounge_introduce_introduce_schedule"
         android:layout_width="match_parent"
@@ -236,6 +238,5 @@ INNOVATOR CLUB"
 
         </RelativeLayout>
     </LinearLayout>
-
 
 </RelativeLayout>

@@ -17,6 +17,7 @@ import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import kotlinx.android.synthetic.main.fragment_lounge.*
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,7 +49,7 @@ class LoungeFragment : Fragment(){
                     Log.v("TAG", "클럽조회  통신 성공")
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
-                    Toast.makeText(context,"success", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context,"success", Toast.LENGTH_SHORT).show()
 
                     LoungeDataRecyclerViewAdapter = LoungeDataRecyclerViewAdapter(activity!!, dataList)
                     rv_lounge_frag_lounge_list.adapter = LoungeDataRecyclerViewAdapter

@@ -61,7 +61,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
                 //통신 성공 시 수행되는 메소드
                 override fun onResponse(call: Call<PostReboardRecommendResponse>, response: Response<PostReboardRecommendResponse>) {
                     if (response.isSuccessful) {
-
+                        //holder.reboard_like_cnt
                         ctx.toast("성공!!")
                     }
                 }
@@ -86,7 +86,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         val contents_images: ImageView = itemView.findViewById(R.id.iv_item_board_image_contents) as ImageView
 
         val reboard_like: ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
-        val reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
+        var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
 
     }
 }

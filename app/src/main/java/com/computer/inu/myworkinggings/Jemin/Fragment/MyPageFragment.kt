@@ -29,14 +29,15 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherActiveResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
-import kotlinx.android.synthetic.main.fragment_mypage_act.*
 
 class MyPageFragment : Fragment() {
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
-
-    lateinit var requestManager: RequestManager
+    var image : String? = ""
+    var name : String = ""
+    var job : String = ""
+    var company : String = ""
     var field : String = ""
     var status : String = ""
     var coworkingEnabled : Int = 0
@@ -50,6 +51,10 @@ class MyPageFragment : Fragment() {
         val transaction = fm.beginTransaction()
         val myIntroFragment = MypageIntroFragment()
         val bundle = Bundle()
+        bundle.putString("name", name)
+        bundle.putString("job", job)
+        bundle.putString("company", company)
+        bundle.putString("image", image)
         bundle.putString("field", field)
         Log.v("asdf", "보내는필드 = " + field)
         bundle.putString("status", status)
@@ -68,6 +73,10 @@ class MyPageFragment : Fragment() {
         if(checkFlag == 0){
             val myIntroFragment = MypageIntroFragment()
             val bundle = Bundle()
+            bundle.putString("name", name)
+            bundle.putString("job", job)
+            bundle.putString("company", company)
+            bundle.putString("image", image)
             bundle.putString("field", field)
             Log.v("asdf", "보내는필드 = " + field)
             bundle.putString("status", status)
@@ -93,8 +102,15 @@ class MyPageFragment : Fragment() {
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
         getProfileImgUrl()
         getOtherPage()
+       /* requestManager = Glide.with(this)
+        requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
+*/
+        v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
+        v.mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
 
-        //getUserPagePost()
+                 //getOtherPage()
+
+      getUserPagePost()
 
         // '소개' 클릭 시
         v.mypage_intro_btn.setOnClickListener {
@@ -170,7 +186,10 @@ class MyPageFragment : Fragment() {
 
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
-
+                    image = response.body()!!.data.image!!
+                    name = response.body()!!.data.name!!
+                    job = response.body()!!.data.job!!
+                    company=response.body()!!.data.company!!
                     if (response.body()!!.data.coworkingEnabled == true) {
                         coworkingEnabled = 1
                     } else {
@@ -202,24 +221,46 @@ class MyPageFragment : Fragment() {
             override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
-                    val temp : UserPageData = response.body()!!.data
+                    val temp: UserPageData = response.body()!!.data
 
-                    mypage_name_tv.text=temp.name
-                    mypage_job_tv.text=temp.job
-                    mypage_team_tv.text=temp.company
-                    mypage_region_tv.text=temp.region
+                    mypage_name_tv.text = temp.name
+                    mypage_job_tv.text = temp.job
+                    mypage_team_tv.text = temp.company
+                    mypage_region_tv.text = temp.region
                     Glide.with(ctx).load(temp.image).into(mypage_background_img)
 
-                    for(i in 0..temp.keywords.size-1)
-                    {
+                    for (i in 0..temp.keywords.size - 1) {
                         keword += (temp.keywords[i] + " ")
+                        mypage_name_tv.text = response.body()!!.data.name
+                        mypage_job_tv.text = response.body()!!.data.job
+                        mypage_team_tv.text = response.body()!!.data.company
+                        mypage_region_tv.text = response.body()!!.data.region
+                        Glide.with(ctx).load(response.body()!!.data.image).into(mypage_background_img)
+                        field = response.body()!!.data.field!!
+                        status = response.body()!!.data.status
+                        image = response.body()!!.data.image!!
+                        name = response.body()!!.data.name!!
+                        job = response.body()!!.data.job!!
+                        company = response.body()!!.data.company!!
+                        if (response.body()!!.data.coworkingEnabled == true) {
+                            coworkingEnabled = 1
+                        } else {
+                            coworkingEnabled = 0
+                        }
+                        for (i in 0..response.body()!!.data.keywords.size - 1) {
+                            if (i == 0) {
+                                mypage_keyword_tv.text = "#" + response.body()!!.data.keywords[i]
+                            } else {
+                                mypage_keyword_tv.append("    #" + response.body()!!.data.keywords[i])
+                            }
+                            iv_btn_other_page_close.visibility = View.GONE
+                            iv_btn_my_page_setting.visibility = View.VISIBLE
+                            addFragment(MypageIntroFragment())
+                        }
                     }
-                    mypage_keyword_tv.text = keword
+
                 }
-
-
             }
-
             override fun onFailure(call: Call<GetMypageResponse>?, t: Throwable?) {
 
                 Log.v("TAG", "통신 실패 = " +t.toString())
@@ -244,4 +285,7 @@ class MyPageFragment : Fragment() {
             }
         })
     }
+
+
+
 }

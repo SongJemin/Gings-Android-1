@@ -4,6 +4,8 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageActResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
@@ -159,5 +161,15 @@ interface NetworkService {
             @Body postKeywords : PostKeywords
     ) : Call<PostResponse>
 
+    @GET("/mypage/mine/introduce")
+    fun getMypageIntroduceResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String
+    ) : Call<GetMypageIntroduceResponse>
+    @GET("/mypage/mine/active")
+    fun getMypageActResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String
+    ) : Call<GetMypageActResponse>
 
 }

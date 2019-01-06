@@ -6,6 +6,7 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostBoardResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageActResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
@@ -108,5 +109,10 @@ interface NetworkService {
             @Header("Content-type") content_type: String,
             @Header("Authorization") authorization  : String
     ) : Call<GetMypageIntroduceResponse>
+    @GET("/mypage/mine/active")
+    fun getMypageActResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String
+    ) : Call<GetMypageActResponse>
 
 }

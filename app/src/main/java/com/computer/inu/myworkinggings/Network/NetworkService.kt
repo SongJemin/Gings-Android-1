@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Network
 
+import android.app.ListActivity
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
@@ -8,6 +9,7 @@ import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
+import com.computer.inu.myworkinggings.Seunghee.Post.PutModifyBoardResponse
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -44,10 +46,10 @@ interface NetworkService {
     @Multipart
     @POST(" /reboards")
     fun postReBoard(
-            @Header("Authorization") Authorization : String,
-            @Part("content") summary : RequestBody,
-            @Part images : ArrayList<MultipartBody.Part?>
-    ) : Call<PostResponse>
+            @Header("Authorization") Authorization: String,
+            @Part("content") summary: RequestBody,
+            @Part images: ArrayList<MultipartBody.Part?>
+    ): Call<PostResponse>
 
 
     @POST("/login")
@@ -59,63 +61,80 @@ interface NetworkService {
     @GET("/mypage/others/{myPageUserId}")
     fun getOtherPageInform(
             @Header("Authorization") Authorization: String,
-            @Path("myPageUserId") myPageUserId : Int?
-    ) : Call<GetOtherInformResponse>
+            @Path("myPageUserId") myPageUserId: Int?
+    ): Call<GetOtherInformResponse>
 
     @GET("/mypage/others/introduce/{myPageUserId}")
     fun getOtherPageIntro(
             @Header("Authorization") Authorization: String,
-            @Path("myPageUserId") myPageUserId : Int?
-    ) : Call<GetOtherIntroResponse>
+            @Path("myPageUserId") myPageUserId: Int?
+    ): Call<GetOtherIntroResponse>
 
     @POST("boards/{boardId}/recommend")
     fun postBoardLikeResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
-            @Path("boardId") boardId : Int
-    ) : Call<PostBoardLikeResponse>
+            @Path("boardId") boardId: Int
+    ): Call<PostBoardLikeResponse>
+
     @POST("/signup")
     fun postSignUpResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
-            @Body() body : JsonObject
-    ) : Call<PostSignUpResponse>
+            @Body() body: JsonObject
+    ): Call<PostSignUpResponse>
 
     @GET("/mypage/mine/guestboard")
     fun getGuestBoardResponse(
             @Header("Content-type") content_type: String,
-            @Header("Authorization") Authorization : String
-    ) : Call<GetGuestBoardResponse>
+            @Header("Authorization") Authorization: String
+    ): Call<GetGuestBoardResponse>
 
     @GET("/mypage/mine")
     fun getMypageResponse(
             @Header("Content-type") content_type: String,
-            @Header("Authorization") Authorization : String
-    ) : Call<GetMypageResponse>
+            @Header("Authorization") Authorization: String
+    ): Call<GetMypageResponse>
 
     @GET("/boards/{boardId}")
     fun getDetailedBoardResponse(
             @Header("Content-type") content_type: String,
-            @Header("Authorization") authorization  : String,
-            @Path("boardId") boardId : Int
-    ) : Call<GetDetailedBoardResponse>
+            @Header("Authorization") authorization: String,
+            @Path("boardId") boardId: Int
+    ): Call<GetDetailedBoardResponse>
 
     @GET("/mypage/others/guestboard/{myPageUserId}")
     fun getOtherGuestBoard(
             @Header("Authorization") Authorization: String,
-            @Path("myPageUserId") myPageUserId : Int
-    ) : Call<GetOtherGuestBoardResponse>
+            @Path("myPageUserId") myPageUserId: Int
+    ): Call<GetOtherGuestBoardResponse>
 
     @POST("/mypage/guestboard/{myPageUserId}")
     fun postOtherGuestBoard(
-            @Header("Authorization") Authorization : String,
-            @Path("myPageUserId") myPageUserId : Int,
-            @Body() body : JsonObject
-    ) : Call<PostResponse>
+            @Header("Authorization") Authorization: String,
+            @Path("myPageUserId") myPageUserId: Int,
+            @Body() body: JsonObject
+    ): Call<PostResponse>
 
     @GET("/mypage/others/active/{myPageUserId}")
     fun getOtherActive(
             @Header("Authorization") Authorization: String,
-            @Path("myPageUserId") myPageUserId : Int
-    ) : Call<GetOtherActiveResponse>
+            @Path("myPageUserId") myPageUserId: Int
+    ): Call<GetOtherActiveResponse>
+
+    @Multipart
+    @PUT("/boards/{boardId}")
+    fun putModifyBoardResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId : Int,
+            @Part("title") title : RequestBody,
+            @Part("content") content : RequestBody,
+            @Part("category") category : RequestBody,
+            @Part("prevImagesUrl") prevImagesURL : ArrayList<RequestBody?>,
+            @Part postImages : ArrayList<MultipartBody.Part?>,
+            @Part("prevKeywords") prevKeywords : ArrayList<String?>,
+            @Part("postKeywords") postKeywords : ArrayList<String?>
+
+    ) : Call<PutModifyBoardResponse>
 }

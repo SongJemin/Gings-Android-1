@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -112,23 +113,22 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         }
 
-        /*
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
 
             //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>()
+            ctx.toast(dataList[position].boardId!!.toString())
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
 
             //일반 게시글 클릭
             ctx.startActivity<HomeBoardMoreBtnActivity>()
         }
-*/
+
         //좋아요 버튼
         holder.like_btn.setOnClickListener {
             BoardLikePost()
         }
         //댓글창=> 디테일보드
-
     }
 
 
@@ -167,6 +167,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         var contents_img_viewPager : ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
 
+        //
+        val more_btn : Button = itemView.findViewById(R.id.btn_rv_item_more) as Button
     }
 
     private fun BoardLikePost(){

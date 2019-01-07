@@ -200,6 +200,7 @@ class DetailBoardActivity : AppCompatActivity() {
         detail_board_reboard_recyclerview.adapter = detailBoardRecyclerViewAdapter
         detail_board_reboard_recyclerview.layoutManager = LinearLayoutManager(this)
         detail_board_reboard_recyclerview.canScrollVertically(0)
+        detailBoardRecyclerViewAdapter.notifyDataSetChanged()
 
     }
 
@@ -223,8 +224,8 @@ class DetailBoardActivity : AppCompatActivity() {
                     Log.v("TAG", "보드 값 전달 성공")
                     Log.v("TAG","보드 status = " + response.body()!!.status)
                     Log.v("TAG","보드 message = " + response.body()!!.message)
-                    var intent = Intent(applicationContext, DetailBoardActivity::class.java)
-                    startActivity(intent)
+                    getDetailedBoardResponse()
+
                 } else{
                     Log.v("TAG", "보드 값 전달 실패")
                 }

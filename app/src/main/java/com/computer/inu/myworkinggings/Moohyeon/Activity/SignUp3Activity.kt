@@ -28,10 +28,11 @@ class SignUp3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up3)
-        toast(intent.getStringExtra("token"))
+
         tv_sign_up3_sign_up_complete.setOnClickListener {
             SignUpPost()
             finish()
+            startActivity<LoginActivity>()
         }
     }
     private fun SignUpPost() {
@@ -39,7 +40,7 @@ class SignUp3Activity : AppCompatActivity() {
         var jsonObject = JSONObject()
         jsonObject.put("name", intent.getStringExtra("name"))
         jsonObject.put("pwd", intent.getStringExtra("password"))
-        jsonObject.put("authNumber", et_sign_up3_confirm_number)
+        jsonObject.put("authNumber", et_sign_up3_confirm_number.text.toString())
 
 //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject

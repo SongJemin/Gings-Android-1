@@ -11,7 +11,7 @@
         android:id="@+id/item_guest_profile_img"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@drawable/invalid_name"
+        android:src="@drawable/img_sample"
         android:layout_marginTop="21dp"
         android:layout_marginLeft="30dp"
         />

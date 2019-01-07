@@ -66,10 +66,7 @@ class SignUp2Activity : AppCompatActivity() {
                 }
                 if (post_check != 1) {
                       //여기다가 이메일 전송 하면된다!!!!~~
-
                     getVerifyNumberData()
-
-
                 }
             }else {
                 toast("정보를 모두 입력해주세요.")

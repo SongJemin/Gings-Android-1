@@ -24,7 +24,8 @@
 
         <!-- 탭바 -->
         //보드
-        <activity android:name=".Moohyeon.Activity.BottomNaviActivity" />
+        <activity android:name=".Moohyeon.Activity.BottomNaviActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
 
         <!-- 홈보드 -->
         //업보드

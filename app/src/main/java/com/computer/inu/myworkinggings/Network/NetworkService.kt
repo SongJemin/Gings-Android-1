@@ -11,10 +11,7 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
-import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
-import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageActResponse
-import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
-import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.*
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
@@ -220,4 +217,18 @@ interface NetworkService {
             @Header("Authorization") Authorization : String,
             @Path("clubId") clubId : Int
     ) : Call<PostClubSignUp>
+    @GET("/search/directory")
+    fun getDirectorySearchResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String,
+            @Query("keyword") keyword : String
+    ) : Call<GetDirectorySearchResponse>
+
+    @GET("/search/directory/new")
+    fun getDirectoryListResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") authorization  : String,
+            @Query("offset") offset: Int?,
+            @Query("limit") limit: Int?
+    ) : Call<GetDirectoryListResponse>
 }

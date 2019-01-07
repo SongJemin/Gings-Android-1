@@ -100,8 +100,8 @@ class MyPageFragment : Fragment() {
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
      //   getProfileImgUrl()
-     //  getOtherPage()
-        getUserPagePost()
+       //getOtherPage()
+       getUserPagePost()
 
         /* requestManager = Glide.with(this)
          requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)

@@ -54,6 +54,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         b_id = dataList[position].boardId!!
         //title
+        dataList
         holder.category.text = dataList[position].category
         holder.title.text = dataList[position].title
         for (i in 0..dataList[position].keywords.size - 1) {

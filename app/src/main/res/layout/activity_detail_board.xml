@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:paddingTop="4dp">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,13 +17,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="71dp">
+            android:layout_height="66.5dp">
 
             <RelativeLayout
                 android:id="@+id/rl_detail_board_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true">
+                android:layout_height="22dp"
+                android:layout_marginTop="13dp"
+                >
 
                 <TextView
                     android:id="@+id/tv_detail_board_category"
@@ -33,7 +36,8 @@
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="1sp"
                     android:text="질문"
-                    android:textColor="#b0caea"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
                     android:textSize="15sp" />
 
                 <View
@@ -57,77 +61,28 @@
                     android:lineSpacingExtra="1sp"
                     android:text="유능한 안드로이드 개발자 구하는 방법이 뭘까요?"
                     android:textColor="#222222"
+                    android:textStyle="bold"
                     android:textSize="15sp" />
 
             </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/ll_detail_board_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
                 android:layout_below="@id/rl_detail_board_title"
-                android:layout_marginStart="65dp"
+                android:layout_marginStart="63dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_detail_board_tag1"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_detail_board_tag"
+                    android:layout_width="175dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="12sp"
-                    android:paddingEnd="15dp"
-                    android:text="#사업"
+                    android:text="#태그를완전완전길게쓰면 #어떻게할것인가 #태그가길면 #안돼요 #제발길게쓰지말아주라"
                     android:textColor="#999999"
-                    android:textSize="10sp" />
+                    android:textSize="9sp" />
 
-                <TextView
-                    android:id="@+id/tv_detail_board_tag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="12sp"
-                    android:paddingEnd="15dp"
-                    android:text="#공모전"
-                    android:textColor="#999999"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/tv_detail_board_tag3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="12sp"
-                    android:paddingEnd="15dp"
-                    android:text="#준비"
-                    android:textColor="#999999"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/tv_detail_board_tag4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="12sp"
-                    android:paddingEnd="15dp"
-                    android:text="#정보"
-                    android:textColor="#999999"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/tv_detail_board_tag5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="12sp"
-                    android:paddingEnd="15dp"
-                    android:text="#팁"
-                    android:textColor="#999999"
-                    android:textSize="10sp" />
 
 
             </LinearLayout>
@@ -138,30 +93,36 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rl_detail_board_title"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="32dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="6sp"
-                android:text="2시간전"
+                android:text="2018/12/29  13:30"
                 android:textColor="#999999"
                 android:textSize="10sp" />
 
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#ededed"
+                />
         </RelativeLayout>
 
-        <ScrollView
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <ImageView
                     android:id="@+id/iv_detail_board_contents_image"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:background="#b0caea" />
+                    android:layout_height="200dp"
+                    android:background="@color/colorPrimary" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -182,53 +143,56 @@
                             android:text="안드로이드 잘하는사람 여기 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~안드로이드 잘하는사람 여기 붙어라~"
                             android:textColor="#000000" />
 
-                        <TextView
-                            android:id="@+id/tv_detail_board_contents_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_detail_board_contents_text"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginTop="0dp"
-                            android:letterSpacing="-0.01"
-                            android:lineSpacingExtra="6sp"
-                            android:text="더보기"
-                            android:textColor="#a7a7a7"
-                            android:textSize="10sp" />
-
                     </RelativeLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#ededed"
+                        />
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent" android:layout_height="64dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="52.5dp"
+                    >
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#ededed"
+                        android:layout_alignParentTop="true"
+                        />
 
-                    <ImageView
+
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/iv_item_board_profile_img"
-                        android:layout_width="32dp" android:layout_height="32dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_marginStart="19dp"
-                        android:src="#b0caea"
-                        android:layout_alignParentStart="true" android:layout_centerVertical="true"/>
+                        android:src="@color/colorPrimary"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"/>
 
                     <TextView
                         android:id="@+id/tv_item_board_profile_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="63.5dp"
+                        android:layout_marginStart="14.5dp"
                         android:letterSpacing="-0.01"
                         android:lineSpacingExtra="4sp"
                         android:text="이충엽"
+                        android:layout_toRightOf="@+id/iv_item_board_profile_img"
                         android:textColor="#222222"
+                        android:textStyle="bold"
                         android:textSize="12sp" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="7.6dp"
-                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="104dp"
+                        android:layout_toRightOf="@+id/tv_item_board_profile_name"
+                        android:layout_marginStart="7.2dp"
                         android:background="#999999" />
 
                     <TextView
@@ -284,7 +248,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentTop="true"
                                 android:layout_marginTop="0dp"
-                                android:src="@drawable/ic_thumb_up_black_24dp" />
+                                android:src="@drawable/ic_like" />
 
                             <TextView
                                 android:id="@+id/tv_item_board_like_cnt"
@@ -306,14 +270,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="15.7dp"
                             android:layout_toRightOf="@id/rl_item_board_like">
 
                             <ImageView
                                 android:id="@+id/iv_item_board_comment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_comment_black_24dp" />
+                                android:src="@drawable/ic_reple" />
 
                             <TextView
                                 android:id="@+id/tv_item_board_comment_cnt"
@@ -335,43 +299,43 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="10.3dp"
                             android:layout_toRightOf="@id/rl_item_board_comment"
-                            android:src="@drawable/ic_share_black_24dp" />
+                            android:src="@drawable/bt_share" />
 
                         <ImageView
                             android:id="@+id/iv_item_board_menu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
                             android:layout_centerVertical="true"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginStart="15dp"
                             android:layout_toRightOf="@id/iv_item_board_share"
-                            android:src="@drawable/ic_more_vert_black_24dp" />
-
+                            android:src="@drawable/bt_more" />
                     </RelativeLayout>
-
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e8ed"
+                        android:layout_alignParentBottom="true"
+                        />
                 </RelativeLayout>
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_item_detailboard_list"
+                    android:id="@+id/detail_board_reboard_recyclerview"
                     android:layout_width="match_parent"
-                    android:nestedScrollingEnabled="false"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_height="match_parent"
+                    android:background="#f9f9f9"
+                    >
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
-        </ScrollView>
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         >
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed"
-            />
         <android.support.v7.widget.RecyclerView
             android:id="@+id/detail_board_reboard_img_recyclerview"
             android:layout_width="match_parent"
@@ -380,40 +344,44 @@
             >
 
         </android.support.v7.widget.RecyclerView>
-        <LinearLayout
-            android:layout_width="match_parent"
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true"
+        >
+        <Button
+            android:id="@+id/detail_board_reboard_img_btn"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="#ffffff"
-            >
-            <Button
-                android:id="@+id/detail_board_reboard_img_btn"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:background="@drawable/invalid_name"
-                android:layout_marginLeft="17dp"
-                android:layout_gravity="center"
-                />
-            <EditText
-                android:id="@+id/detail_board_reboard_edit"
-                android:layout_width="255dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:hint="Write your message…"
-                android:textSize="12sp"
-                android:textColor="#6d6d6d"
-                android:textColorHint="#6d6d6d"
-                />
-            <Button
-                android:id="@+id/detail_board_reboard_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/invalid_name"
-                android:layout_marginLeft="16.4dp"
-                android:layout_gravity="center"
-                />
-        </LinearLayout>
+            android:background="@drawable/ic_image"
+            android:layout_marginLeft="1dp"
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/detail_board_reboard_edit"
+            android:layout_width="255dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="7dp"
+            android:hint="Write your message…"
+            android:textSize="12sp"
+            android:textColor="#6d6d6d"
+            android:paddingLeft="10.6dp"
+            android:textColorHint="#6d6d6d"
+            android:background="@drawable/reboard_edie_circle_background"
+            />
+        <Button
+            android:id="@+id/detail_board_reboard_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rebord_send_btn"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            />
     </LinearLayout>
 
 </RelativeLayout>

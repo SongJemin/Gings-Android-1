@@ -40,7 +40,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         holder.time.text = dataList[position]!!.writeTime
         holder.contents_text.text = dataList[position]!!.content
         holder.reboard_like_cnt.text = dataList[position]!!.recommender.toString()
-
+        Glide.with(ctx).load(dataList[position]!!.writerImage).into(holder.profileImg)
         holder.reboard_like.setOnClickListener {
 
 
@@ -80,6 +80,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val profileImg : ImageView = itemView.findViewById(R.id.iv_item_detailboard_profile_img)
         val time: TextView = itemView.findViewById(R.id.tv_item_detailboard_time) as TextView
         val name: TextView = itemView.findViewById(R.id.tv_item_detailboard_profile_name) as TextView
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView

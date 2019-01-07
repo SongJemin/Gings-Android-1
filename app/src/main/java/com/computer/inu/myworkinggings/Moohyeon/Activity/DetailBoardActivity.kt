@@ -156,32 +156,29 @@ class DetailBoardActivity : AppCompatActivity() {
     private fun bindBoardData(temp: DetailedBoardData) {
 
         /*타이틀*/
-        tv_detail_board_time.text = temp.time
+        tv_detail_board_time.text = temp.time!!.substring(0,16).replace("T"," ")
         tv_detail_board_category.text = temp.category
         tv_detail_board_title.text = temp.title
-        //태그
-        val TagList: Array<TextView> = arrayOf(tv_detail_board_tag1,
-                tv_detail_board_tag2,
-                tv_detail_board_tag3,
-                tv_detail_board_tag4,
-                tv_detail_board_tag5
-        )
-        for (i in TagList.indices) {
-            if (i < temp.keywords.size)
-                TagList[i].text = "#" + temp.keywords[i]
-            else
-                TagList[i].text = null
+        Log.v("at","프사url = " + temp.writerImage)
+        requestManager = Glide.with(this)
+        requestManager.load(temp.writerImage).into(iv_item_board_profile_img)
+
+        for(i in 0.. temp.keywords.size-1){
+            if(i==0){
+                tv_detail_board_tag.text = "#" + temp.keywords
+            }
+            else{
+                tv_detail_board_tag.append("   #" + temp.keywords[i])
+            }
         }
 
         /*contents*/
         //텍스트
         tv_detail_board_contents_text.text = temp.content
         //이미지
-        lateinit var requestManager : RequestManager
-        requestManager = Glide.with(this)
-        for(i in 0..temp.images.size-1 )
-            requestManager.load(temp.images[0]).into(iv_detail_board_contents_image)
 
+        for(i in 0..temp.images.size-1 )
+            requestManager.load(temp.images[0]).centerCrop().into(iv_detail_board_contents_image)
         /* profile */
         //개인정보
         tv_item_board_profile_name.text = temp.writer
@@ -200,9 +197,9 @@ class DetailBoardActivity : AppCompatActivity() {
     private fun bindReBoardData(temp : ArrayList<ReplyData?> ){
 
         detailBoardRecyclerViewAdapter = DetailBoardRecyclerViewAdapter(this, temp)
-        rv_item_detailboard_list.adapter = detailBoardRecyclerViewAdapter
-        rv_item_detailboard_list.layoutManager = LinearLayoutManager(this)
-        rv_item_detailboard_list.canScrollVertically(0)
+        detail_board_reboard_recyclerview.adapter = detailBoardRecyclerViewAdapter
+        detail_board_reboard_recyclerview.layoutManager = LinearLayoutManager(this)
+        detail_board_reboard_recyclerview.canScrollVertically(0)
 
     }
 
@@ -211,9 +208,10 @@ class DetailBoardActivity : AppCompatActivity() {
         var token : String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
 
         var networkService = ApplicationController.instance.networkService
+        val boardId = RequestBody.create(MediaType.parse("text.plain"), "193")
         val content = RequestBody.create(MediaType.parse("text.plain"), detail_board_reboard_edit.text.toString())
 
-        val postReBoardResponse = networkService.postReBoard(token, content, reboardImagesList)
+        val postReBoardResponse = networkService.postReBoard(token,boardId, content, reboardImagesList)
 
         Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + token + ", 내용 = " + detail_board_reboard_edit.text.toString())
 

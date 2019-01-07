@@ -4,6 +4,7 @@ data class DetailedBoardData(
         val boardId : Int?,
         val writerId : Int?,
         val writer : String?,
+        val writerImage : String?,
         val field : String?,
         val company : String?,
         val title : String?,

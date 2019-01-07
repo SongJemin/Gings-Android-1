@@ -83,6 +83,7 @@ interface NetworkService {
     @POST(" /reboards")
     fun postReBoard(
             @Header("Authorization") Authorization: String,
+            @Part("boardId") boardId : RequestBody,
             @Part("content") summary: RequestBody,
             @Part images: ArrayList<MultipartBody.Part?>
     ): Call<PostResponse>

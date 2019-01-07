@@ -59,8 +59,8 @@ interface NetworkService {
     fun postBoard(
             @Header("Authorization") Authorization: String,
             @Part("title") title: RequestBody,
-            @Part("content") summary: RequestBody,
-            @Part("category") area: RequestBody,
+            @Part("content") content: RequestBody,
+            @Part("category") category: RequestBody,
             @Part images: ArrayList<MultipartBody.Part?>,
             @Part("keywords") keywords: ArrayList<RequestBody>
     ): Call<PostResponse>
@@ -69,9 +69,10 @@ interface NetworkService {
     @PUT("/boards/{boardId}")
     fun updateBoard(
             @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId : Int,
             @Part("title") title: RequestBody,
-            @Part("content") summary: RequestBody,
-            @Part("category") area: RequestBody,
+            @Part("content") content : RequestBody,
+            @Part("category") category: RequestBody,
             @Part("prevImagesUrl") prevImagesUrl : ArrayList<RequestBody>,
             @Part postImages: ArrayList<MultipartBody.Part?>,
             @Part("prevKeywords") prevKeywords: ArrayList<RequestBody>,

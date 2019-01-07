@@ -66,6 +66,19 @@ interface NetworkService {
     ): Call<PostResponse>
 
     @Multipart
+    @PUT("/boards/{boardId}")
+    fun updateBoard(
+            @Header("Authorization") Authorization: String,
+            @Part("title") title: RequestBody,
+            @Part("content") summary: RequestBody,
+            @Part("category") area: RequestBody,
+            @Part("prevImagesUrl") prevImagesUrl : ArrayList<RequestBody>,
+            @Part postImages: ArrayList<MultipartBody.Part?>,
+            @Part("prevKeywords") prevKeywords: ArrayList<RequestBody>,
+            @Part("postKeywords") postKeywords: ArrayList<RequestBody>
+    ): Call<PostResponse>
+
+    @Multipart
     @POST(" /reboards")
     fun postReBoard(
             @Header("Authorization") Authorization: String,

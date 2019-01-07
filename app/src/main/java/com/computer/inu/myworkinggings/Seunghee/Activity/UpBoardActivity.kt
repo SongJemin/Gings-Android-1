@@ -45,6 +45,7 @@ import java.io.InputStream
 
 class UpBoardActivity : AppCompatActivity() {
 
+    lateinit var temp: DetailedBoardData
     lateinit var AlbumRecyclerViewAdapter: AlbumRecyclerViewAdapter
     var imagesList: ArrayList<MultipartBody.Part?> = ArrayList()
     var urlSize: Int = 0
@@ -58,6 +59,9 @@ class UpBoardActivity : AppCompatActivity() {
     var getServerImageUrl : Boolean = false
 
     lateinit var categoryListText: Array<TextView>
+    var prevKeywords = ArrayList<String>()
+    var postKeywords = ArrayList<String>()
+    var prevImagesUrl = ArrayList<String>()
     //lateinit var getImageUrlAdapter : GetImageUrlAdapter
 
     //private var postImages: MultipartBody.Part? = null
@@ -72,8 +76,6 @@ class UpBoardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_up_board)
         categoryListText = arrayOf(tv_up_board_question, tv_up_board_inspiration, tv_up_board_collaboration)
         upBoardActivity = this
-
-
             /*
 
             */
@@ -89,9 +91,11 @@ class UpBoardActivity : AppCompatActivity() {
             val tedBottomPicker = TedBottomPicker.Builder(this@UpBoardActivity)
                     .setOnMultiImageSelectedListener { uriList: ArrayList<Uri>? ->
                         //imageUrlList.clear()
+
                         for (i in 0..uriList!!.size - 1) {
 
                             if(getImageUrlSize > 0){
+                                prevImagesUrl.addAll(boardImageAdapter.deleteImageUrlList)
                                 Log.v("Asdf","뺀 값 = " + boardImageAdapter.urlRemovedCount)
                                 if(boardImageAdapter.urlRemovedCount > 0){
                                     // 서버로부터 받은 이미지리스트 갱신 = 서버로부터 받아온 이미지 리스트 개수 - 어댑터에서 제거한 사진 개수
@@ -229,12 +233,28 @@ class UpBoardActivity : AppCompatActivity() {
             }
         }
         iv_upboard_modify_tv.setOnClickListener {
-            val keywordList = et_up_board_tags.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val updatekeywordList = et_up_board_tags.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
-            for (keyword in keywordList) {
+
+            for (keyword in updatekeywordList) {
                 Log.v("Asdf", "키워드 자르기 = " + keyword.replace("#", ""))
-                keywords.add(RequestBody.create(MediaType.parse("text.plain"), keyword.replace("#", "")))
+                postKeywords.add(keyword.replace("#", ""))
             }
+
+            for(i in 0 .. temp.keywords.size-1){
+                Log.v("asdf","검사 [" + i + "] 번째 키워드 = " + temp.keywords[i])
+                if(postKeywords.contains(temp.keywords[i])){
+                    Log.v("asdf","해당 키워드 다시 등장")
+                    postKeywords.remove(temp.keywords[i])
+                }
+                else{
+                    Log.v("asdf","해당 키워드 삭제")
+                    prevKeywords.add(temp.keywords[i]!!)
+                }
+            }
+            updateBoard()
+            /*
+
             if (et_up_board_title.text.toString() == "" || et_up_board_modify.text.toString() == "" || selectedCategory == "" || imagesList.size == 0
                     || keywords.size == 0) {
                 if (et_up_board_title.text.toString() == "") {
@@ -252,6 +272,7 @@ class UpBoardActivity : AppCompatActivity() {
                 Log.v("asdf", "널값없이 잘 들어옴")
                 Toast.makeText(applicationContext, "수정 준비 완료",Toast.LENGTH_LONG).show()
             }
+        */
         }
 
     }
@@ -275,7 +296,7 @@ class UpBoardActivity : AppCompatActivity() {
                     Log.v("ggg", "board list success")
                     imageUrlList.clear()
                     //보드연결
-                    var temp: DetailedBoardData = response.body()!!.data
+                    temp = response.body()!!.data
 
                     if(temp.category == "QUESTION"){
                         categoryListText[0].visibility = View.VISIBLE
@@ -309,8 +330,6 @@ class UpBoardActivity : AppCompatActivity() {
                     if(temp.images.size>0)
                     {
                         getServerImageUrl = true
-                        Log.v("sadf", "삭제 카운트 = " + boardImageAdapter.urlRemovedCount)
-                        Log.v("sadf", "받아온 이미지 크기 = " + getImageUrlSize)
                         getImageUrlSize = temp.images.size - boardImageAdapter.urlRemovedCount
 
                     }
@@ -426,6 +445,62 @@ class UpBoardActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    fun updateBoard() {
+
+        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+
+        var networkService = ApplicationController.instance.networkService
+        val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())
+        val content = RequestBody.create(MediaType.parse("text.plain"), et_up_board_modify.text.toString())
+        val category = RequestBody.create(MediaType.parse("text.plain"), selectedCategory)
+
+        //val postBoardResponse = networkService.postBoard(token, title, content, category, imagesList, keywords)
+
+        var postImages : ArrayList<MultipartBody.Part?> = ArrayList()
+        postImages = imagesList
+
+        Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + token)
+        Log.v("TAG","제목 = " + et_up_board_title.text.toString())
+        Log.v("TAG", "내용 = " + et_up_board_modify.text.toString())
+        Log.v("TAG", "카테고리 = " + selectedCategory)
+        for(i in 0 .. prevKeywords.size-1){
+            Log.v("TAG", "이전 키워드 [" + i + "]번째 키워드 = " + prevKeywords.get(i))
+        }
+        for(i in 0 .. postKeywords.size-1){
+            Log.v("TAG", "추가된 키워드 [" + i + "]번째 키워드 = " + postKeywords.get(i))
+        }
+
+        for(i in 0 .. prevImagesUrl.size-1){
+            Log.v("TAG", "사라진 이미지 주소 [" + i + "]번째 url = " + prevImagesUrl.get(i))
+        }
+        for(i in 0 .. postImages.size-1){
+            Log.v("TAG", "새로 추가된 이미지 [" + i + "]번째 파일 = " + postImages.get(i).toString())
+        }
+
+        /*
+        postBoardResponse.enqueue(object : retrofit2.Callback<PostResponse> {
+
+            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                Log.v("TAG", "통신 성공")
+                if (response.isSuccessful) {
+                    Log.v("TAG", "보드 값 전달 성공")
+                    Log.v("TAG", "보드 status = " + response.body()!!.status)
+                    Log.v("TAG", "보드 message = " + response.body()!!.message)
+                    var intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Log.v("TAG", "보드 값 전달 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
+                Toast.makeText(applicationContext, "서버 연결 실패", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+        */
     }
 
     companion object {

@@ -90,7 +90,6 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
             }
             // 갤러리에서 올린 사진 지우기
             else{
-                // 잠시 제거 UpBoardActivity.upBoardActivity.imagesList.removeAt(position)
                 Log.v("ASdf","이미지 삭제 + uri")
                 Log.v("ASdf","이미지 삭제 포지션 = " + position)
                 UpBoardActivity.upBoardActivity.imagesList.removeAt(position)

@@ -13,6 +13,7 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.ImageHeaderParser
 import com.computer.inu.myworkinggings.Jemin.Activity.MypageUpdateActivity
 import com.computer.inu.myworkinggings.Jemin.Data.ImageType
+import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.UpBoardActivity
 
@@ -23,6 +24,7 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
     var checkUrlorUri : Int = 0 // 0 = url값, 1 = uri값
     var getImageUrlSize : Int = 0
     var urlRemovedCount : Int = 0
+    var reboardUrlRemovedCount : Int = 0
     var deleteImageUrlList = ArrayList<String>()
 
     //내가 쓸 뷰홀더가 뭔지를 적어준다.
@@ -41,6 +43,50 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
         checkUrlorUri = insertUrlorUri
         getImageUrlSize = insertImageUrlSize
         checkFlag = insertFlag
+
+        // 특정 사진 삭제 버튼  클릭시
+        holder.boardImageDeleteBtn.setOnClickListener {
+
+            // 업보드쪽
+            if(checkFlag == 0){
+                deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
+                boardImageItem.removeAt(position)
+
+                // 서버로부터 받은 사진 지우기
+                if(position <= getImageUrlSize-1-urlRemovedCount){
+
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, boardImageItem.size);
+                    urlRemovedCount += 1
+                }
+                // 갤러리에서 올린 사진 지우기
+                else{
+                    UpBoardActivity.upBoardActivity.imagesList.removeAt(position)
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, boardImageItem.size);
+                }
+                // 나중에 다시 추가 UpBoardActivity.upBoardActivity.imagesList.removeAt(position)
+            }
+            // 자기소개쪽
+            else if(checkFlag == 1){
+                MypageUpdateActivity.mypageUpdateActivity.imagesList.removeAt(position)
+            }
+
+            // 리보드쪽
+            else if(checkFlag == 2){
+                if(getImageUrlSize > 0){
+                    deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
+                    boardImageItem.removeAt(position)
+                    getImageUrlSize -= 1
+                }
+                else{
+                    boardImageItem.removeAt(position)
+                    DetailBoardActivity.detailBoardActivity.reboardImagesList.removeAt(position)
+                }
+                notifyItemRemoved(position)
+                notifyDataSetChanged();
+            }
+        }
 
         if(checkFlag==0){
             // 서버로부터 받은 이미지 리스트 개수가 0이면
@@ -62,43 +108,23 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
                 }
             }
 
-            // 특정 사진 삭제 버튼  클릭시
-            holder.boardImageDeleteBtn.setOnClickListener {
+        }
+        else if(checkFlag==2){
+            if(getImageUrlSize == 0){
+                // 차례대로 이미지 url을 통해서 리사이클러뷰에 등록
+                requestManager.load(boardImageItem[getImageUrlSize+position].imageUri).centerCrop().into(holder.boardImageView)
+            }
 
-                // 업보드쪽
-                if(checkFlag == 0){
-                    deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
-                    Log.v("asdf","해당 이미지 url 제거 " + boardImageItem[position].imageUrl)
-                    boardImageItem.removeAt(position)
-
-                    // 나중에 다시 추가 UpBoardActivity.upBoardActivity.imagesList.removeAt(position)
-                }
-                // 자기소개쪽
-                if(checkFlag == 1){
-                    MypageUpdateActivity.mypageUpdateActivity.imagesList.removeAt(position)
-                }
-
-                // 서버로부터 받은 사진 지우기
-                if(position <= getImageUrlSize-1-urlRemovedCount){
-                    Log.v("ASdf","이미지 삭제 + url")
-
-                    notifyItemRemoved(position)
-                    notifyItemRangeChanged(position, boardImageItem.size);
-                    urlRemovedCount += 1
-                    Log.v("ASdf","url 이미지 삭제 카운트 = " + urlRemovedCount)
-                }
-                // 갤러리에서 올린 사진 지우기
-                else{
-                    Log.v("ASdf","이미지 삭제 + uri")
-                    Log.v("ASdf","이미지 삭제 포지션 = " + position)
-                    UpBoardActivity.upBoardActivity.imagesList.removeAt(position)
-                    notifyItemRemoved(position)
-                    notifyItemRangeChanged(position, boardImageItem.size);
+            if(getImageUrlSize - urlRemovedCount > 0){
+                if(position == 0) {
+                    // 차례대로 이미지 url을 통해서 리사이클러뷰에 등록
+                    requestManager.load(boardImageItem[position].imageUrl).centerCrop().into(holder.boardImageView)
                 }
             }
-        }
-        if(checkFlag==2){
-            requestManager.load(boardImageItem[position].imageUri).centerCrop().into(holder.boardImageView)
+            else{
+                requestManager.load(boardImageItem[position].imageUri).centerCrop().into(holder.boardImageView)
+
+            }
         }
     }
 

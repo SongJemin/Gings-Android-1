@@ -15,8 +15,7 @@
 
         <!-- 로그인/가입창 -->
         //로그인 시작
-        <activity android:name=".Moohyeon.Activity.LoginActivity">
-        </activity>
+        <activity android:name=".Moohyeon.Activity.LoginActivity"></activity>
         //가입창
         <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
         <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
@@ -81,6 +80,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
     </application>
 
 </manifest>

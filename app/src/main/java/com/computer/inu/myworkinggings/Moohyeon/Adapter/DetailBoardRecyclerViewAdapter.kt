@@ -1,17 +1,20 @@
 package com.computer.inu.myworkinggings.Moohyeon.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Activity.ReboardMoreBtnMineActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
@@ -23,6 +26,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
+import android.app.Activity
+
+
 
 class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReplyData?>)
     : RecyclerView.Adapter<DetailBoardRecyclerViewAdapter.Holder>() {
@@ -34,6 +40,8 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
 
     override fun getItemCount(): Int = dataList.size
 
+
+
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
         holder.name.text = dataList[position]!!.writer
@@ -43,11 +51,9 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         Glide.with(ctx).load(dataList[position]!!.writerImage).into(holder.profileImg)
         holder.reboard_like.setOnClickListener {
 
-
             val networkService: NetworkService by lazy {
                 ApplicationController.instance.networkService
             }
-
 
             val postReBoardrecommendResponse = networkService.postReboardRecommendResponse("application/json",
                     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
@@ -69,6 +75,14 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
 
         }
 
+        holder.reboardMoreImg.setOnClickListener {
+            var intent = Intent(ctx, ReboardMoreBtnMineActivity::class.java)
+            intent.putExtra("reboardId", dataList[position]!!.replyId)
+            Log.v("asdf","선택 리보드 ID 값 = " + dataList[position]!!.replyId)
+
+            (ctx as Activity).startActivityForResult(intent, 30)
+        }
+
         //이미지
         lateinit var requestManager: RequestManager
         requestManager = Glide.with(ctx)
@@ -88,6 +102,12 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
 
         val reboard_like: ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
         var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
+        var reboardMoreImg : ImageView = itemView.findViewById(R.id.iv_item_rebord_more) as ImageView
 
     }
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        Log.d("MyAdapter", "onActivityResult")
+    }
+
 }

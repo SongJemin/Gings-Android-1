@@ -88,6 +88,16 @@ interface NetworkService {
             @Part images: ArrayList<MultipartBody.Part?>
     ): Call<PostResponse>
 
+    @Multipart
+    @PUT("/reboards/{reboardId}")
+    fun updateReBoard(
+            @Header("Authorization") Authorization: String,
+            @Path("reboardId") reboardId : Int,
+            @Part("content") content : RequestBody,
+            @Part("prevImagesUrl") prevImagesUrl: ArrayList<RequestBody>,
+            @Part postImages : ArrayList<MultipartBody.Part?>
+    ): Call<PostResponse>
+
 
     @POST("/login")
     fun postLoginResponse(

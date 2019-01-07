@@ -452,7 +452,7 @@ class UpBoardActivity : AppCompatActivity() {
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())
         val content = RequestBody.create(MediaType.parse("text.plain"), et_up_board_modify.text.toString())
         val category = RequestBody.create(MediaType.parse("text.plain"), selectedCategory)
-
+        var deleteImagesUrl = ArrayList<String>()
         for(i in 0 .. deleteImagesUrl.size-1){
             prevImagesUrl.add(RequestBody.create(MediaType.parse("text.plain"), deleteImagesUrl[i]))
         }

@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.R
 
-class ImageAdapter internal constructor(internal var context: Context, var requestManager: RequestManager, var data : ArrayList<String>) : PagerAdapter() {
+class ImageAdapter internal constructor(internal var context: Context, var requestManager: RequestManager, var data: ArrayList<String>) : PagerAdapter() {
 
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {

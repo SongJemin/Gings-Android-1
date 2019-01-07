@@ -2,6 +2,7 @@ package com.computer.inu.myworkinggings.Moohyeon.Adapter
 
 import android.content.Context
 import android.media.Image
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,9 +16,11 @@ import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Activity.ReBoardMoreBtnMineActivity
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
 import com.computer.inu.myworkinggings.Seunghee.Post.PostReboardRecommendResponse
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,6 +44,13 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         holder.contents_text.text = dataList[position]!!.content
         holder.reboard_like_cnt.text = dataList[position]!!.recommender.toString()
 
+
+        holder.btn_button.setOnClickListener{
+
+            ctx.startActivity<ReBoardMoreBtnMineActivity>("ReBoardId" to dataList[position]!!.replyId)
+        }
+
+
         holder.reboard_like.setOnClickListener {
 
 
@@ -55,7 +65,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
             )
             postReBoardrecommendResponse.enqueue(object : Callback<PostReboardRecommendResponse> {
                 override fun onFailure(call: Call<PostReboardRecommendResponse>, t: Throwable) {
-                    Log.e("sign up fail", t.toString())
+                    Log.e("fail", t.toString())
                 }
 
                 //통신 성공 시 수행되는 메소드
@@ -88,5 +98,6 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         val reboard_like: ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
         var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
 
+        val btn_button : ImageView = itemView.findViewById(R.id.btn_rv_item_detailedboard_more) as ImageView
     }
 }

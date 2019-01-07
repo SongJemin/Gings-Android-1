@@ -43,6 +43,10 @@
 
         //디테일보드
         <activity android:name=".Moohyeon.Activity.DetailBoardActivity" />
+        //디테일보드 더보기 버튼
+        <activity
+            android:name=".Seunghee.Activity.ReBoardMoreBtnMineActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
         //카테고리 메뉴창
         <activity
             android:name=".Seunghee.Activity.CategoryMenuActivity"

@@ -1,8 +1,6 @@
 package com.computer.inu.myworkinggings.Seunghee.Adapter
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -172,7 +170,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     }
 
     private fun BoardLikePost(){
-        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds"
+        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
                 , b_id)
 
         postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {

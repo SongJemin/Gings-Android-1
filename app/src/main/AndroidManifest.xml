@@ -27,6 +27,10 @@
         <activity android:name=".Moohyeon.Activity.BottomNaviActivity" />
 
         <!-- 홈보드 -->
+        //검색
+        <activity
+            android:name=".Seunghee.Activity.HomeBoardSearchActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
         //업보드
         <activity
             android:name=".Seunghee.Activity.UpBoardActivity"

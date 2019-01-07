@@ -17,6 +17,7 @@ import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
+import com.computer.inu.myworkinggings.Seunghee.GET.GetBoardSearchResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.*
@@ -242,4 +243,11 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("category") category: String
     ): Call<GetCategoryBoardResponse>
+
+    @GET("/search/boards/latest")
+    fun getBoardSearchResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Query("keyword") keyword: String
+    ): Call<GetBoardSearchResponse>
 }

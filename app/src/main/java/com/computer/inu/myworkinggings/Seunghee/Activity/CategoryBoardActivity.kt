@@ -24,10 +24,11 @@ import retrofit2.Response
 class CategoryBoardActivity : AppCompatActivity() {
 
     //adapter
-    lateinit var boardRecyclerViewAdapter : BoardRecyclerViewAdapter
+    lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
     val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService }
-    lateinit var requestManager : RequestManager
+        ApplicationController.instance.networkService
+    }
+    lateinit var requestManager: RequestManager
 
     //임시데이터
     var dataList: ArrayList<BoardData> = ArrayList()
@@ -44,12 +45,12 @@ class CategoryBoardActivity : AppCompatActivity() {
         var category_name: String = intent.getStringExtra("category_name")
         tv_category_board_category_name.setText(category_name)
 
-        val directoryListText : Array<String> = arrayOf("질문","영감","협업","샘플1","샘플2","샘플3","샘플4","샘플5","샘플6")
+        val directoryListText: Array<String> = arrayOf("질문", "영감", "협업", "샘플1", "샘플2", "샘플3", "샘플4", "샘플5", "샘플6")
         val directoryListCode: Array<String> = arrayOf("QUESTION", "INSPIRATION", "COWORKING")
 
-        for(i in directoryListCode.indices){
-            if(directoryListText[i] == category_name)
-                category_name =directoryListCode[i]
+        for (i in directoryListCode.indices) {
+            if (directoryListText[i] == category_name)
+                category_name = directoryListCode[i]
         }
 
         getCategoryBoardResponse(category_name)
@@ -75,26 +76,26 @@ class CategoryBoardActivity : AppCompatActivity() {
 
                     BoardData = response.body()!!.data
 
-                    for(i in 0..BoardData.size-1){
-                        Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+                    for (i in 0..BoardData.size - 1) {
+                        Log.v("asdf", "키워드 크기 = " + BoardData[i].keywords.size)
                         BoardItemList.add(BoardItem(BoardData[i].boardId,
                                 BoardData[i].writerId, BoardData[i].writer,
+                                BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
                                 BoardData[i].title, BoardData[i].content,
                                 BoardData[i].share, BoardData[i].time,
                                 BoardData[i].category, BoardData[i].images,
                                 BoardData[i].keywords, BoardData[i].numOfReply,
-                                BoardData[i].recommender )
+                                BoardData[i].recommender)
                         )
 
                     }
-                    Log.v("asdf","응답 바디 = " + response.body().toString())
+                    Log.v("asdf", "응답 바디 = " + response.body().toString())
 
                     boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
                     rv_item_category_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_category_board_list.layoutManager = LinearLayoutManager(ctx)
 
-                }
-                else{
+                } else {
                     ctx.toast("pleas")
                 }
             }

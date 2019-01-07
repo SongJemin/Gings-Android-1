@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Adapter.ImageAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
@@ -34,9 +35,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
-
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
@@ -82,8 +80,14 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.contents_text.text = dataList[position].content
 
         //profile
+        //프로필이미지 나중에확인해보기ㅣㅣㅣㅣ이ㅣㅣㅣ히ㅣㅣ
+        lateinit var requestManager: RequestManager
+        requestManager = Glide.with(ctx)
+        requestManager.load(dataList[position]!!.writerImage).into(holder.profile_img)
+
         holder.name.text = dataList[position].writer
-        holder.role.text = dataList[position].category
+        holder.role.text = dataList[position].field
+        holder.team.text = dataList[position].company
 
         // 좋아요 수
         holder.like_cnt.text = dataList[position].recommender!!.toString()
@@ -95,21 +99,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
-/*            var intent = Intent(ctx, DetailBoardActivity::class.java)
-            intent.putExtra("boardId", dataList[position].boardId)
-            Log.v("asdf", "보드 id 전송 = " + dataList[position].boardId)
-            ctx.startActivity(intent)*/
-            /*var intent = Intent(ctx, DetailBoardActivity::class.java)
-            intent.putExtra("BoardId", dataList[position].boardId)
-
-            //startActivity<>()
-            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
-*/
 
             ctx.toast(dataList[position].boardId!!.toString())
             ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
 
         }
+
 
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
@@ -142,12 +137,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val time: TextView = itemView.findViewById(R.id.tv_item_board_time) as TextView
 
         //contents
-        //val contents_img: ImageView = itemView.findViewById(R.id.iv_item_board_contents_image) as ImageView
+        var contents_img_viewPager : ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
         val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필
-        //val profile_img : ImageView = itemView.findViewById(R.id.iv_home_board_profile_img) as ImageView
+        val profile_img : ImageView = itemView.findViewById(R.id.iv_item_board_profile_img) as ImageView
         val name: TextView = itemView.findViewById(R.id.tv_item_board_profile_name) as TextView
         val team: TextView = itemView.findViewById(R.id.tv_item_board_profile_team) as TextView
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
@@ -163,15 +158,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //공유하기 val
         val share_btn: ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
 
-        var contents_img_viewPager : ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
-
-        //
         val more_btn : Button = itemView.findViewById(R.id.btn_rv_item_more) as Button
     }
 
     private fun BoardLikePost(){
-        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
-                , b_id)
+        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                b_id)
 
         postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
             override fun onFailure(call: Call<PostBoardLikeResponse>, t: Throwable) {

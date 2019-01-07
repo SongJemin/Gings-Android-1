@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.R
 
-class GetImageUrlAdapter(var ctx : Context, private var boardImageItem : ArrayList<String>, var requestManager : RequestManager) : RecyclerView.Adapter<BoardImageViewHolder>() {
+class GetImageUrlAdapter(var ctx : Context, var boardImageItem : ArrayList<String>, var requestManager : RequestManager) : RecyclerView.Adapter<BoardImageViewHolder>() {
     var deleteImageUrl = ArrayList<String>()
 
     //내가 쓸 뷰홀더가 뭔지를 적어준다.

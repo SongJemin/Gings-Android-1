@@ -11,7 +11,7 @@ data class DetailedBoardData(
         val share : Int?,
         val time : String?,
         val category : String?,
-        val images : ArrayList<String?>,
+        val images : ArrayList<String>,
         val keywords : ArrayList<String?>,
         val replys : ArrayList<ReplyData?>,
         val numOfReply : Int?,

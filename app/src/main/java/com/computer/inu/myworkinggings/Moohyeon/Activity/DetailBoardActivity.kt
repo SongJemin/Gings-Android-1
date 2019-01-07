@@ -29,6 +29,7 @@ import java.io.File
 import java.io.InputStream
 
 import android.widget.TextView
+import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Seunghee.GET.DetailedBoardData
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
@@ -37,7 +38,7 @@ import retrofit2.Callback
 class DetailBoardActivity : AppCompatActivity() {
     lateinit var  detailBoardRecyclerViewAdapter : DetailBoardRecyclerViewAdapter
     private var reboardImagesList : java.util.ArrayList<MultipartBody.Part?> = java.util.ArrayList()
-    var reboardImageUrlList = java.util.ArrayList<Uri>()
+    var reboardImageUrlList = java.util.ArrayList<ImageType>()
     var boardId : Int = 0
     var urlSize : Int = 0
     lateinit var boardImageAdapter : BoardImageAdapter
@@ -69,14 +70,14 @@ class DetailBoardActivity : AppCompatActivity() {
                         for(i in 0 .. reboardUriList!!.size-1){
                             urlSize = reboardUriList!!.size-1
                             reboardUriList!!.add(reboardUriList.get(i))
-                            reboardImageUrlList.add(reboardUriList.get(i))
+                            reboardImageUrlList.add(ImageType("null",reboardUriList.get(i)))
 
                             val options = BitmapFactory.Options()
 
                             var input: InputStream? = null // here, you need to get your context.
 
 
-                            input = contentResolver.openInputStream(reboardImageUrlList.get(i))
+                            input = contentResolver.openInputStream(reboardImageUrlList.get(i).imageUri)
                             val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
                             val baos = ByteArrayOutputStream()
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
@@ -92,7 +93,7 @@ class DetailBoardActivity : AppCompatActivity() {
 
                             if(reboardImageUrlList.size > 0){
                                 detail_board_reboard_img_recyclerview.visibility = View.VISIBLE
-                                boardImageAdapter = BoardImageAdapter(applicationContext, reboardImageUrlList, requestManager,2)
+                                boardImageAdapter = BoardImageAdapter(reboardImageUrlList, requestManager,2,1,0)
                                 detail_board_reboard_img_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                                 detail_board_reboard_img_recyclerview.adapter = boardImageAdapter
                             }

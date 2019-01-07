@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
 import com.computer.inu.myworkinggings.Jemin.Adapter.GetImageUrlAdapter
+import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetMyIntroduceResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
@@ -40,7 +41,7 @@ import java.util.ArrayList
 
 class MypageUpdateActivity : AppCompatActivity() {
     var imagesList : ArrayList<MultipartBody.Part?> = ArrayList()
-    var imageUrlList = ArrayList<Uri>()
+    var imageUrlList = ArrayList<ImageType>()
     lateinit var boardImageAdapter : BoardImageAdapter
     var urlSize : Int = 0
     lateinit var requestManager : RequestManager
@@ -68,12 +69,12 @@ class MypageUpdateActivity : AppCompatActivity() {
                             urlSize = uriList!!.size-1
                             uriList!!.add(uriList.get(i))
 
-                            imageUrlList.add(uriList.get(i))
+                            imageUrlList.add(ImageType("null",uriList.get(i)))
 
                             val options = BitmapFactory.Options()
                             var input: InputStream? = null // here, you need to get your context.
 
-                            input = contentResolver.openInputStream(imageUrlList.get(i))
+                            input = contentResolver.openInputStream(imageUrlList.get(i).imageUri)
                             val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
                             val baos = ByteArrayOutputStream()
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
@@ -86,7 +87,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                             }
                             if(imageUrlList.size > 0){
                                 mypage_update_recyclerview.visibility = View.VISIBLE
-                                boardImageAdapter = BoardImageAdapter(applicationContext, imageUrlList, requestManager,1)
+                                boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,1,1,0)
                                 mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                                 mypage_update_recyclerview.adapter = boardImageAdapter
                             }

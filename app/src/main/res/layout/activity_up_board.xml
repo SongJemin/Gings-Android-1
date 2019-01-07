@@ -6,7 +6,6 @@
     android:orientation="vertical"
     >
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -119,20 +118,6 @@
                             android:text="Category"
                             android:textColor="#b0caea"
                             android:textSize="13sp" />
-                        <!--
-
-                                <TextView
-                                    android:id="@+id/et_upboard_category_clicked"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginStart="83.5dp"
-                                    android:letterSpacing="-0.01"
-                                    android:lineSpacingExtra="1sp"
-                                    android:text="질문"
-                                    android:textColor="#333333"
-                                    android:textSize="15sp" />
-                        -->
 
                         <RelativeLayout
                             android:layout_width="wrap_content"

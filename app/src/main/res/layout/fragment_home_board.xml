@@ -145,7 +145,7 @@
         android:background="#e2e8ed" />
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_home_board_board_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -156,11 +156,14 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_board_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content">
 
-    </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/ll_home_board_board_view_for_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -171,10 +174,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_board_list_for_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:visibility="gone"

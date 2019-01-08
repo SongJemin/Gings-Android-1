@@ -217,6 +217,7 @@ class DetailBoardActivity : AppCompatActivity() {
         tv_item_board_profile_name.text = temp.writer
         tv_item_board_profile_role.text = temp.field
         tv_item_board_profile_team.text = temp.company
+
         //추천&댓글
         tv_item_board_like_cnt.text=temp.recommender.toString()
         tv_item_board_comment_cnt.text = temp.numOfReply.toString()

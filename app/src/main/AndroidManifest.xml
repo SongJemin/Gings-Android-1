@@ -13,9 +13,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        //카카오링크
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+        <activity android:name=".Jemin.Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <!-- 로그인/가입창 -->
-        //로그인 시작
-        <activity android:name=".Moohyeon.Activity.LoginActivity"></activity>
+        <activity android:name=".Moohyeon.Activity.LoginActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/kakao_scheme"
+                    android:host="@string/kakaolink_host" />
+            </intent-filter>
+        </activity>
+
         //가입창
         <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
         <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
@@ -23,8 +48,9 @@
 
         <!-- 탭바 -->
         //보드
-        <activity android:name=".Moohyeon.Activity.BottomNaviActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Moohyeon.Activity.BottomNaviActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 홈보드 -->
         //검색
@@ -82,14 +108,10 @@
         <activity android:name=".Jemin.Activity.MainActivity" />
         <activity android:name=".Jemin.Activity.TestActivity" />
         <activity android:name=".Jemin.Activity.Test2Activity" />
-        <activity android:name=".Jemin.Activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
+
+        <activity
+            android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
     </application>
 

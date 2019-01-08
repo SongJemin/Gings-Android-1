@@ -41,7 +41,6 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
     override fun getItemCount(): Int = dataList.size
 
 
-
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
         holder.name.text = dataList[position]!!.writer

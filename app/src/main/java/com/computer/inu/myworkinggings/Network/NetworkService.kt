@@ -1,6 +1,5 @@
 package com.computer.inu.myworkinggings.Network
 
-import android.app.ListActivity
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
@@ -16,6 +15,7 @@ import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetBoardSearchResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryBoardResponse
+import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryLikeRankResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.Post.*
 import com.google.gson.JsonObject
@@ -284,7 +284,7 @@ interface NetworkService {
             @Path("reboardId") reboardId: Int
     ): Call<DeleteReboardResponse>
 
-    @GET("boards/category/{category}")
+    @GET("boards/category/{category}/latest")
     fun getCategoryBoardResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
@@ -297,4 +297,11 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Query("keyword") keyword: String
     ): Call<GetBoardSearchResponse>
+
+    @GET("boards/category/{category}/recommend")
+    fun getCategoryLikeRankResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("category") category: String
+    ) : Call<GetCategoryLikeRankResponse>
 }

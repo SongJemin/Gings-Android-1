@@ -64,11 +64,12 @@
     android:layout_height="34dp">
 
     <TextView
+        android:gravity="center"
         android:id="@+id/tv_category_board_like_rank"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="5sp"
         android:textColor="#999999"
@@ -77,9 +78,10 @@
         android:text="추천수" />
 
     <TextView
+        android:gravity="center"
         android:id="@+id/tv_category_board_new_rank"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="0dp"
@@ -101,6 +103,21 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_category_board_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_category_board_new_rank_board_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_item_category_board_new_rank_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

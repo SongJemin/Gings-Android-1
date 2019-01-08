@@ -116,6 +116,12 @@ class MypageUpdateActivity : AppCompatActivity() {
                                 //val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
                                 postImagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
                             }
+                            if (postImagesList.size > 0) {
+                                mypage_update_recyclerview.visibility = View.VISIBLE
+
+                            } else {
+                                mypage_update_recyclerview.visibility = View.GONE
+                            }
 
                         }
 

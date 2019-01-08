@@ -37,7 +37,8 @@ import java.io.File
 import java.io.InputStream
 
 class UpBoardActivity : AppCompatActivity() {
-
+    var TAG = "UpBoardActivity"
+    
     lateinit var temp: DetailedBoardData
     lateinit var AlbumRecyclerViewAdapter: AlbumRecyclerViewAdapter
     var imagesList: ArrayList<MultipartBody.Part?> = ArrayList()
@@ -94,11 +95,10 @@ class UpBoardActivity : AppCompatActivity() {
 
                             if(getImageUrlSize > 0){
                                 deleteImagesUrl.addAll(boardImageAdapter.deleteImageUrlList)
-                                Log.v("Asdf","뺀 값 = " + boardImageAdapter.urlRemovedCount)
+                                Log.v(TAG,"뺀 값 = " + boardImageAdapter.urlRemovedCount)
                                 if(boardImageAdapter.urlRemovedCount > 0){
                                     // 서버로부터 받은 이미지리스트 갱신 = 서버로부터 받아온 이미지 리스트 개수 - 어댑터에서 제거한 사진 개수
                                     getImageUrlSize = getImageUrlSize - boardImageAdapter.urlRemovedCount
-                                    Log.v("asdf","서버 사진 개수 초기화 = " + getImageUrlSize)
                                     // 어댑터에서 제거한 사진 개수 초기화
                                     boardImageAdapter.urlRemovedCount = 0
                                 }
@@ -110,15 +110,12 @@ class UpBoardActivity : AppCompatActivity() {
                             //uriList!!.add(uriList.get(i))
                             //urlSize = uriList!!.size - 1
                             imageUrlList.add(ImageType("null",uriList.get(i)))
-                            Log.v("TAG", "이미지 = " + uriList.get(i))
 
                             val options = BitmapFactory.Options()
                             var input: InputStream? = null // here, you need to get your context.
 
                             // 이미 리사이클러뷰에 사진 존재할 경우 이미지 추가
                             if(getServerImageUrl == true){
-                                Log.v("tag", "서버로부터 이미지 사진 받음")
-                                Log.v("tag", "서버로부터 이미지 사진 받음 = " + getImageUrlSize)
                                 input = contentResolver.openInputStream(imageUrlList.get(getImageUrlSize+i).imageUri)
 
                             }
@@ -127,17 +124,16 @@ class UpBoardActivity : AppCompatActivity() {
                             }
 
                             if(modifyBoardID > 0){
-                              Log.v("ㅁㄴㅇㄹ","수정 이미지 저장")
+                              Log.v(TAG,"수정 이미지 저장")
                                 val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
                                 val baos = ByteArrayOutputStream()
                                 bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
                                 val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
                                 val postImages = File(this.imageUrlList.get(i).imageUri.toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
-                                //val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
                                 postImagesList.add(MultipartBody.Part.createFormData("postImages", postImages.name, photoBody))
                             }
                             else{
-                                Log.v("ㅁㄴㅇㄹ","최초 이미지 저장")
+                                Log.v(TAG,"최초 이미지 저장")
                                 val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
                                 val baos = ByteArrayOutputStream()
                                 bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
@@ -145,11 +141,6 @@ class UpBoardActivity : AppCompatActivity() {
                                 val images = File(this.imageUrlList.get(i).imageUri.toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
                                 //val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
                                 imagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
-                            }
-
-
-                            for (i in 0..imagesList.size - 1) {
-
                             }
 
                             if (imageUrlList.size > 0) {
@@ -162,10 +153,8 @@ class UpBoardActivity : AppCompatActivity() {
                         }
 
                         boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,0, 1, getImageUrlSize)
-
                         upboard_pick_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                         upboard_pick_recyclerview.adapter = boardImageAdapter
-
                     }
                     .setSelectMaxCount(4)
                     .showCameraTile(false)
@@ -205,21 +194,20 @@ class UpBoardActivity : AppCompatActivity() {
             val keywordList = et_up_board_tags.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
             for (keyword in keywordList) {
-                Log.v("Asdf", "키워드 자르기 = " + keyword.replace("#", ""))
                 keywords.add(RequestBody.create(MediaType.parse("text.plain"), keyword.replace("#", "")))
             }
             if (et_up_board_title.text.toString() == "" || et_up_board_modify.text.toString() == "" || selectedCategory == "" || imagesList.size == 0
                     || keywords.size == 0) {
                 if (et_up_board_title.text.toString() == "") {
-                    Log.v("ㅁㄴㅇㄹ", "제목 null값 들어감")
+                    Log.v(TAG, "제목 null값 들어감")
                 } else if (et_up_board_modify.text.toString() == "") {
-                    Log.v("ㅁㄴㅇㄹ", "내용 null값 들어감")
+                    Log.v(TAG, "내용 null값 들어감")
                 } else if (selectedCategory == "") {
-                    Log.v("ㅁㄴㅇㄹ", "카테고리null값 들어감")
+                    Log.v(TAG, "카테고리null값 들어감")
                 } else if (imagesList.size == 0) {
-                    Log.v("ㅁㄴㅇㄹ", "이미지 사이즈 null값 들어감")
+                    Log.v(TAG, "이미지 사이즈 null값 들어감")
                 } else if (keywords.size == 0) {
-                    Log.v("ㅁㄴㅇㄹ", "키워드 null값 들어감")
+                    Log.v(TAG, "키워드 null값 들어감")
                 }
             } else {
                 postBoard()
@@ -244,22 +232,21 @@ class UpBoardActivity : AppCompatActivity() {
             }
             for(i in 0 .. addKeywords.size-1){
                 postKeywords.add(RequestBody.create(MediaType.parse("text.plain"), addKeywords[i]))
-                Log.v("asdf", "추가된 키워드 = " + addKeywords[i])
             }
 
             if (et_up_board_title.text.toString() == "" || et_up_board_modify.text.toString() == "" || selectedCategory == ""
                     || (postImagesList.size == 0 && getImageUrlSize == 0)
                     || et_up_board_tags.text.toString() == "") {
                 if (et_up_board_title.text.toString() == "") {
-                    Log.v("ㅁㄴㅇㄹ", "제목 null값 들어감")
+                    Log.v(TAG, "제목 null값 들어감")
                 } else if (et_up_board_modify.text.toString() == "") {
-                    Log.v("ㅁㄴㅇㄹ", "내용 null값 들어감")
+                    Log.v(TAG, "내용 null값 들어감")
                 } else if (selectedCategory == "") {
-                    Log.v("ㅁㄴㅇㄹ", "카테고리null값 들어감")
+                    Log.v(TAG, "카테고리null값 들어감")
                 } else if (postImagesList.size == 0 && getImageUrlSize == 0) {
-                    Log.v("ㅁㄴㅇㄹ", "이미지 사이즈 null값 들어감")
+                    Log.v(TAG, "이미지 사이즈 null값 들어감")
                 } else if (et_up_board_tags.text.toString() == "") {
-                    Log.v("ㅁㄴㅇㄹ", "키워드 null값 들어감")
+                    Log.v(TAG, "키워드 null값 들어감")
                 }
             } else {
                 updateBoard()
@@ -330,7 +317,6 @@ class UpBoardActivity : AppCompatActivity() {
                     {
                         getServerImageUrl = true
                         getImageUrlSize = temp.images.size - boardImageAdapter.urlRemovedCount
-
                     }
                     for(i in 0 .. temp.images.size-1){
                         imageUrlList.add(ImageType(temp.images[i],null))
@@ -373,7 +359,6 @@ class UpBoardActivity : AppCompatActivity() {
                 {
                     selectedCategory = "COWORKING"
                 }
-
                 ll_up_board_category_list.visibility = View.GONE
             }
         }
@@ -423,15 +408,15 @@ class UpBoardActivity : AppCompatActivity() {
         postBoardResponse.enqueue(object : retrofit2.Callback<PostResponse> {
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
-                Log.v("TAG", "통신 성공")
+                Log.v(TAG, "통신 성공")
                 if (response.isSuccessful) {
-                    Log.v("TAG", "보드 값 전달 성공")
-                    Log.v("TAG", "보드 status = " + response.body()!!.status)
-                    Log.v("TAG", "보드 message = " + response.body()!!.message)
+                    Log.v(TAG, "보드 값 전달 성공")
+                    Log.v(TAG, "보드 status = " + response.body()!!.status)
+                    Log.v(TAG, "보드 message = " + response.body()!!.message)
                     var intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Log.v("TAG", "보드 값 전달 실패")
+                    Log.v(TAG, "보드 값 전달 실패")
                 }
             }
 
@@ -456,25 +441,18 @@ class UpBoardActivity : AppCompatActivity() {
 
         val updateBoardResponse = networkService.updateBoard(token, modifyBoardID, title, content, category, prevImagesUrl, postImagesList, prevKeywords, postKeywords)
 
-        Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + token)
-        Log.v("TAG","제목 = " + et_up_board_title.text.toString())
-        Log.v("TAG", "내용 = " + et_up_board_modify.text.toString())
-        Log.v("TAG", "카테고리 = " + selectedCategory)
-        Log.v("TAG", "삭제이미지 크기 = " + prevImagesUrl.size)
-        Log.v("TAG", "추가이미지 크기 = " + postImagesList.size)
-
         updateBoardResponse.enqueue(object : retrofit2.Callback<PostResponse> {
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
-                Log.v("TAG", "통신 성공")
+                Log.v(TAG, "통신 성공")
                 if (response.isSuccessful) {
-                    Log.v("TAG", "보드 수정 값 전달 성공")
-                    Log.v("TAG","보드 수정 응답 status = " + response.body()!!.status)
-                    Log.v("TAG","보드 수정 응답 message = " + response.body()!!.message)
+                    Log.v(TAG, "보드 수정 값 전달 성공")
+                    Log.v(TAG,"보드 수정 응답 status = " + response.body()!!.status)
+                    Log.v(TAG,"보드 수정 응답 message = " + response.body()!!.message)
                     var intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Log.v("TAG", "보드 값 수정 실패")
+                    Log.v(TAG, "보드 값 수정 실패")
                 }
             }
 

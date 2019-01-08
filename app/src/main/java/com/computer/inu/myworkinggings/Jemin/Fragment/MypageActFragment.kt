@@ -37,12 +37,13 @@ class MypageActFragment : Fragment(){
     }
 
     var getOtherActiveData = ArrayList<GetActiveData>()
-    var guestActItem =  ArrayList<GuestActItem>()
+    var getMyActiveData = ArrayList<GetActiveData>()
     lateinit var guestActAdapter : GuestActAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v : View = inflater.inflate(R.layout.fragment_mypage_act,container,false)
-        getOtherActive()
+       // getOtherActive()
+        getMyAct()
         return v
     }
 
@@ -54,7 +55,6 @@ class MypageActFragment : Fragment(){
                 if (response!!.isSuccessful) {
                     Log.v("TAG", "타인 활동 목록 조회 성공")
                     getOtherActiveData = response.body()!!.data
-
                     guestActAdapter = GuestActAdapter(context!!, getOtherActiveData)
                     mypage_act_recyclerview.layoutManager = LinearLayoutManager(activity)
                     mypage_act_recyclerview.adapter = guestActAdapter
@@ -74,8 +74,10 @@ class MypageActFragment : Fragment(){
                 Log.v("TAG", "나의 활동 페이지 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     Log.v("MyTAG", "나의 활동 페이지 서버 통신 연결 성공")
-                    val temp : ArrayList<MyActData> = response.body()!!.data
-
+                    getMyActiveData = response.body()!!.data
+                    guestActAdapter = GuestActAdapter(context!!,  getMyActiveData)
+                    mypage_act_recyclerview.layoutManager = LinearLayoutManager(activity)
+                    mypage_act_recyclerview.adapter = guestActAdapter
                 }
             }
 

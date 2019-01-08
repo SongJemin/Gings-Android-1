@@ -35,129 +35,179 @@ import android.support.v4.content.ContextCompat.getSystemService
 import com.computer.inu.myworkinggings.Moohyeon.Activity.BottomNaviActivity
 import android.support.v4.content.ContextCompat.getSystemService
 import android.support.v4.content.ContextCompat.getSystemService
+import android.widget.LinearLayout
+import com.bumptech.glide.Glide
+import com.computer.inu.myworkinggings.Jemin.Adapter.GuestBoardAdapter
+import com.computer.inu.myworkinggings.Jemin.Fragment.MypageIntroFragment
+import com.computer.inu.myworkinggings.Moohyeon.Data.DirectoryData
+import com.computer.inu.myworkinggings.Moohyeon.Data.DirectorySearchData
+import com.computer.inu.myworkinggings.Moohyeon.get.GetDirectoryListResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetDirectorySearchResponse
+import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
+import kotlinx.android.synthetic.main.fragment_directory.view.*
+import kotlinx.android.synthetic.main.fragment_my_page.*
+import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-
-
-
-
-class DirectoryFragment : Fragment(){
-    lateinit var directoryboardRecyclerViewAdapter : DirectoryBoardRecyclerViewAdapter
-     lateinit var searchingUserRecyclerViewAdapter: SearchingUserRecyclerViewAdapter
-
+class DirectoryFragment : Fragment() {
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+    lateinit var directoryboardRecyclerViewAdapter: DirectoryBoardRecyclerViewAdapter
+    lateinit var searchingUserRecyclerViewAdapter: SearchingUserRecyclerViewAdapter
+    var coworkingEnabled: Int = 0
+    var directorySearchData = ArrayList<DirectorySearchData>()
+    var directoryData = ArrayList<DirectoryData>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view : View = inflater.inflate(R.layout.fragment_directory, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_directory, container, false)
+        searchingUserRecyclerViewAdapter = SearchingUserRecyclerViewAdapter(context!!, directorySearchData)
+        view.rv_item_SearchingUserlist.layoutManager = GridLayoutManager(view.context, 2)
+        view.rv_item_SearchingUserlist.adapter = searchingUserRecyclerViewAdapter
+        view.rv_item_SearchingUserlist.setNestedScrollingEnabled(false)
+
+        directoryboardRecyclerViewAdapter = DirectoryBoardRecyclerViewAdapter(context!!, directoryData)
+        view.rv_directory_user_list.layoutManager = LinearLayoutManager(view.context)
+        view.rv_directory_user_list.adapter = directoryboardRecyclerViewAdapter
+        view.rv_directory_user_list.setNestedScrollingEnabled(false)
+       getDirectoryListResponse()
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        setRecyclerView()
-        setUserRecyclerView()
-        tv_directory_seaching_fail.visibility=View.GONE
-        rv_item_SearchingUserlist.visibility=View.GONE
-
-       et_directory_searching.addTextChangedListener(object : TextWatcher{
+        tv_directory_seaching_fail.visibility = View.GONE
+        rv_item_SearchingUserlist.visibility = View.GONE
+        iv_directory_searching.visibility=View.GONE
+        et_directory_searching.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                tv_directory_seaching_fail.visibility=View.GONE
+                tv_directory_seaching_fail.visibility = View.GONE
                 rv_directory_user_list.visibility = View.GONE
-                tv_directory_welcome.visibility=View.GONE
-                iv_directory_finish.visibility=View.VISIBLE
-                iv_directory_searching.visibility=View.VISIBLE
-                tv_directory_searching_text.visibility=View.VISIBLE
-                tv_directory_seaching_fail.visibility=View.GONE
+                tv_directory_welcome.visibility = View.GONE
+                iv_directory_finish.visibility = View.VISIBLE
+                iv_directory_searching.visibility = View.VISIBLE
+                tv_directory_searching_text.visibility = View.VISIBLE
+                tv_directory_seaching_fail.visibility = View.GONE
             }
+
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                rv_item_SearchingUserlist.visibility=View.GONE
+                rv_item_SearchingUserlist.visibility = View.GONE
 
             }
         })
 
-        iv_directory_finish.visibility=View.GONE
-        et_directory_searching.inputType=InputType.TYPE_CLASS_TEXT
-        et_directory_searching.imeOptions=EditorInfo.IME_ACTION_SEARCH
+        iv_directory_finish.visibility = View.GONE
+        et_directory_searching.inputType = InputType.TYPE_CLASS_TEXT
+        et_directory_searching.imeOptions = EditorInfo.IME_ACTION_SEARCH
 
+        et_directory_searching.setOnClickListener {
 
+            rv_directory_user_list.visibility = View.GONE
+            tv_directory_welcome.visibility = View.GONE
+            iv_directory_finish.visibility = View.VISIBLE
+
+        }
         et_directory_searching.setOnEditorActionListener({ textView, action, event ->
             var handled = false
             if (action == EditorInfo.IME_ACTION_SEARCH) {
-
-                if(et_directory_searching.text.toString().equals("검색")){
-                    iv_directory_searching.visibility=View.GONE
-                    tv_directory_searching_text.visibility=View.GONE
-                    rv_item_SearchingUserlist.visibility=View.VISIBLE
-
-                }
-
-                else{
-
-                    iv_directory_searching.visibility=View.GONE
-                    tv_directory_searching_text.visibility=View.GONE
-                    tv_directory_seaching_fail.visibility=View.VISIBLE
-
-                }
+                if (et_directory_searching.text.toString() == "") {
+                    iv_directory_searching.visibility = View.GONE
+                    tv_directory_searching_text.visibility = View.GONE
+                    tv_directory_seaching_fail.visibility = View.VISIBLE
+                } else
+                    getDirectorySearchResponse()
                 val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
                 imm!!.hideSoftInputFromWindow(et_directory_searching.getWindowToken(), 0)
             }
             handled
         })
- et_directory_searching.setOnClickListener {
-     rv_directory_user_list.visibility = View.GONE
-     tv_directory_welcome.visibility=View.GONE
-     iv_directory_finish.visibility=View.VISIBLE
-
- }
-
         iv_directory_finish.setOnClickListener {
             rv_directory_user_list.visibility = View.VISIBLE
-            tv_directory_welcome.visibility=View.VISIBLE
-            iv_directory_finish.visibility=View.GONE
-            iv_directory_searching.visibility=View.GONE
-            tv_directory_searching_text.visibility=View.GONE
-            rv_item_SearchingUserlist.visibility=View.GONE
-            tv_directory_seaching_fail.visibility=View.GONE
-            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            tv_directory_welcome.visibility = View.VISIBLE
+            iv_directory_finish.visibility = View.GONE
+            iv_directory_searching.visibility = View.GONE
+            tv_directory_searching_text.visibility = View.GONE
+            rv_item_SearchingUserlist.visibility = View.GONE
+            tv_directory_seaching_fail.visibility = View.GONE
+            var imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm!!.hideSoftInputFromWindow(iv_directory_finish.getWindowToken(), 0)
             et_directory_searching.text.clear()
         }
 
-}
-  private fun setUserRecyclerView(){
-      var UserDataList : ArrayList<SearchingUserData> = ArrayList()
-      UserDataList.add(SearchingUserData("이충엽","깅스","PM","기획","협업"))
-      UserDataList.add(SearchingUserData("김무현","깅스","안드","개발","능력"))
-      UserDataList.add(SearchingUserData("문현진","깅스","안드","개발","기술"))
-      UserDataList.add(SearchingUserData("송제민","깅스","안드","개발","힘"))
-      UserDataList.add(SearchingUserData("양승희","깅스","안드","개발","지식"))
-      UserDataList.add(SearchingUserData("이충엽","깅스","PM","기획","협업"))
-      UserDataList.add(SearchingUserData("김무현","깅스","안드","개발","능력"))
-      UserDataList.add(SearchingUserData("문현진","깅스","안드","개발","기술"))
-      UserDataList.add(SearchingUserData("송제민","깅스","안드","개발","힘"))
-      UserDataList.add(SearchingUserData("양승희","깅스","안드","개발","지식"))
-      UserDataList.add(SearchingUserData("이충엽","깅스","PM","기획","협업"))
-      UserDataList.add(SearchingUserData("김무현","깅스","안드","개발","능력"))
-      UserDataList.add(SearchingUserData("문현진","깅스","안드","개발","기술"))
-      UserDataList.add(SearchingUserData("송제민","깅스","안드","개발","힘"))
-      UserDataList.add(SearchingUserData("양승희","깅스","안드","개발","지식"))
-      searchingUserRecyclerViewAdapter = SearchingUserRecyclerViewAdapter(activity!!,UserDataList)
-      rv_item_SearchingUserlist.adapter = searchingUserRecyclerViewAdapter
-      rv_item_SearchingUserlist.layoutManager=GridLayoutManager(activity,2)
-  }
-    private fun setRecyclerView(){
-        //임시데이터
-        var dataList: ArrayList<DirectoryBoardData> = ArrayList()
-        dataList.add(DirectoryBoardData("김무현","2018/12/29/03:21","안녕하세요~ 저는 김무현입니다!"))
-        dataList.add(DirectoryBoardData("김바보","2018/12/27/05:21","안녕하세요~ 저는 김바보입니다!"))
-        dataList.add(DirectoryBoardData("김천재","2018/12/25/03:25","안녕하세요~ 저는 김천재입니다!"))
-        dataList.add(DirectoryBoardData("김김김","2018/12/26/05:26","안녕하세요~ 저는 김김김입니다!"))
+    }
 
-        directoryboardRecyclerViewAdapter =DirectoryBoardRecyclerViewAdapter(activity!!, dataList)
-        rv_directory_user_list.adapter = directoryboardRecyclerViewAdapter
-        rv_directory_user_list.layoutManager = LinearLayoutManager(activity)
+    fun getDirectorySearchResponse() {
+        var getSearchResponse: Call<GetDirectorySearchResponse> = networkService.getDirectorySearchResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", et_directory_searching.text.toString())
+        getSearchResponse.enqueue(object : Callback<GetDirectorySearchResponse> {
+            override fun onResponse(call: Call<GetDirectorySearchResponse>?, response: Response<GetDirectorySearchResponse>?) {
+                Log.v("TAG", "보드 서버 통신 연결")
+                if (response!!.isSuccessful) {
+
+                    var temp: ArrayList<DirectorySearchData> = response.body()!!.data
+                    if (temp != null) {
+                        var position = searchingUserRecyclerViewAdapter.itemCount
+
+                        searchingUserRecyclerViewAdapter.dataList.clear()
+                        searchingUserRecyclerViewAdapter.dataList.addAll(temp)
+                        searchingUserRecyclerViewAdapter.notifyItemInserted(position)
+
+                        // 여기부터
+
+                        iv_directory_searching.visibility = View.GONE
+                        tv_directory_searching_text.visibility = View.GONE
+                        rv_item_SearchingUserlist.visibility = View.VISIBLE
+                    } else {
+                        iv_directory_searching.visibility = View.GONE
+                        tv_directory_searching_text.visibility = View.GONE
+                        tv_directory_seaching_fail.visibility = View.VISIBLE
+                    }
+                } else {
+                    Log.v("TAG", "디렉토리 검색 실패")
+
+                }
+            }
+
+            override fun onFailure(call: Call<GetDirectorySearchResponse>?, t: Throwable?) {
+
+                Log.v("TAG", "통신 실패 = " + t.toString())
+            }
+        })
+    }
+
+    fun getDirectoryListResponse() {
+        var getDirectoryListResponse: Call<GetDirectoryListResponse> = networkService.getDirectoryListResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",0,10)
+        getDirectoryListResponse.enqueue(object : Callback<GetDirectoryListResponse> {
+            override fun onResponse(call: Call<GetDirectoryListResponse>?, response: Response<GetDirectoryListResponse>?) {
+                Log.v("TAG", "보드 서버 통신 연결")
+                if (response!!.isSuccessful) {
+                    rv_directory_user_list.visibility = View.VISIBLE
+                    directoryboardRecyclerViewAdapter.dataList.clear()
+                    var temp: ArrayList<DirectoryData> = response.body()!!.data
+                    if (temp != null) {
+                        var position = directoryboardRecyclerViewAdapter.itemCount
+                        directoryboardRecyclerViewAdapter.dataList.addAll(temp)
+                        directoryboardRecyclerViewAdapter.notifyItemInserted(position)
+                        iv_directory_searching.visibility = View.GONE
+                        tv_directory_searching_text.visibility = View.GONE
+                    }
+                } else {
+                    Log.v("TAG", "디렉토리 검색 실패")
+                    toast("통신 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<GetDirectoryListResponse>?, t: Throwable?) {
+                Log.v("TAG", "통신 실패 = " + t.toString())
+            }
+        })
     }
 }
+

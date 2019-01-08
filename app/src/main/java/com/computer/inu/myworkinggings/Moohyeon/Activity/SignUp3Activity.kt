@@ -32,15 +32,15 @@ class SignUp3Activity : AppCompatActivity() {
         tv_sign_up3_sign_up_complete.setOnClickListener {
             SignUpPost()
             finish()
+            startActivity<LoginActivity>()
         }
     }
     private fun SignUpPost() {
-
 //Json 형식의 객체 만들기
         var jsonObject = JSONObject()
         jsonObject.put("name", intent.getStringExtra("name"))
         jsonObject.put("pwd", intent.getStringExtra("password"))
-        jsonObject.put("authNumber", et_sign_up3_confirm_number)
+        jsonObject.put("authNumber", et_sign_up3_confirm_number.text.toString())
 
 //Gson 라이브러리의 Json Parser을 통해 객체를 Json으로!
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject

@@ -26,10 +26,10 @@ class SignUp2Activity : AppCompatActivity() {
     val Passwrod_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{7,16}$"
     var status : String = ""
     var message : String = ""
-
     lateinit var networkService : NetworkService
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
         tv_sign_up2_available_pw.visibility = View.INVISIBLE
@@ -45,7 +45,6 @@ class SignUp2Activity : AppCompatActivity() {
 
         tv_sign_up2_confirm_number_send_message.setOnClickListener {
 
-            System.out.println("push button")
             var post_check = 0
             name = et_sign_up2_name.text.toString()
             email = et_sign_up2_email.text.toString()
@@ -68,8 +67,6 @@ class SignUp2Activity : AppCompatActivity() {
                 if (post_check != 1) {
                       //여기다가 이메일 전송 하면된다!!!!~~
                     getVerifyNumberData()
-                    startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password))
-
                 }
             }else {
                 toast("정보를 모두 입력해주세요.")
@@ -86,16 +83,13 @@ class SignUp2Activity : AppCompatActivity() {
     }
 
     fun getVerifyNumberData() {
-        System.out.println("network")
-        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds", "seunghx@gmail.com") // 네트워크 서비스의 getContent 함수를 받아옴
+        var getVerifyNumberDataResponse = networkService.getVerifyNumberData( et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
         getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
             override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
-                    toast("성공")
-                    Log.v("TAG", "인증번호 통신 성공")
-                    Log.v("TAG", "status = " + response.body()!!.status)
-                    Log.v("TAG", "message = " + response.body()!!.message)
+             var token =response.headers()!!.toString()
+                    startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password,"token" to token))
                 }
             }
 
@@ -111,7 +105,7 @@ class SignUp2Activity : AppCompatActivity() {
             override fun onResponse(call: Call<GetEmailRedundancyResponse>?, response: Response<GetEmailRedundancyResponse>?) {
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
-                    var header = response.headers()
+
                     Log.v("TAG", "이메일 중복 확인")
                     message = response.body()!!.message!!
                     if(message == "이미 등록된 이메일입니다"){
@@ -127,7 +121,7 @@ class SignUp2Activity : AppCompatActivity() {
                         tv_sign_up2_available_email.setTextColor(Color.parseColor("#64dfff"))
                         tv_sign_up2_confirm_number_send_message.isEnabled = true
                         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#f7746b"))
-                          intent.putExtra("token",header.toString())
+
                     }
 
                     Log.v("TAG", "이메일 중복 확인 stats = " + status)

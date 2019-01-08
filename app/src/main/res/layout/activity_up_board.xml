@@ -55,8 +55,9 @@
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="5sp"
                         android:text="작성"
-                        android:textColor="#b0caea"
                         android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#c45c55"
                         />
 
                     <TextView
@@ -116,7 +117,8 @@
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="1sp"
                             android:text="Category"
-                            android:textColor="#b0caea"
+                            android:textStyle="bold"
+                            android:textColor="#c45c55"
                             android:textSize="13sp" />
 
                         <RelativeLayout
@@ -357,7 +359,8 @@
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="1sp"
                             android:text="Title"
-                            android:textColor="#b0caea"
+                            android:textStyle="bold"
+                            android:textColor="#c45c55"
                             android:textSize="13sp" />
 
                         <EditText
@@ -395,7 +398,8 @@
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="1sp"
                             android:text="Tags"
-                            android:textColor="#b0caea"
+                            android:textStyle="bold"
+                            android:textColor="#c45c55"
                             android:textSize="13sp" />
 
                         <EditText
@@ -485,20 +489,20 @@
 
                     <ImageView
                         android:id="@+id/iv_upboard_input_image"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:src="@drawable/ic_close_black_24dp" />
+                        android:src="@drawable/ic_image_picture" />
 
                     <ImageView
                         android:id="@+id/iv_upboard_input_link"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
                         android:layout_toRightOf="@+id/iv_upboard_input_image"
-                        android:src="@drawable/ic_close_black_24dp" />
+                        android:src="@drawable/bt_camera" />
 
                 </RelativeLayout>
             </LinearLayout>

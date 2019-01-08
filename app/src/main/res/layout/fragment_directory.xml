@@ -10,16 +10,16 @@
     android:layout_width="match_parent"
     android:layout_height="56dp">
     <RelativeLayout
-        android:background="#f6f9fd"
+        android:background="#f9f9f9"
         android:layout_width="344dp"
         android:layout_height="34dp"
         android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/iv_directory_picture"
-                android:src="@mipmap/ic_launcher_round"
-                android:layout_width="17.8dp"
-                android:layout_height="17.8dp"
+                android:src="@drawable/bt_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
@@ -43,40 +43,41 @@
                 android:textColor="#222222"
                 android:textSize="15sp"
                 android:hint="이름,역할,소속,협업 분야,키워드" />
+
         <ImageView
             android:id="@+id/iv_directory_finish"
-            android:layout_marginRight="12dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:layout_marginRight="15dp"
+            android:src="@drawable/bt_x" />
         </RelativeLayout>
 </LinearLayout>
-    <TextView
+    <ImageView
         android:id="@+id/tv_directory_welcome"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="13sp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/img_directorytop"
         android:textColor="#999999"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="9sp"
-        android:text="새로운 깅스 멤버를 반겨주세요!"
+
         />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_directory_user_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 <ImageView
     android:layout_marginTop="158.7dp"
     android:layout_gravity="center"
-    android:src="@mipmap/ic_launcher_round"
+    android:src="@drawable/bt_search_gray"
     android:id="@+id/iv_directory_searching"
-    android:layout_width="77.2dp"
-    android:layout_height="77.2dp" />
+    android:layout_width="114dp"
+    android:layout_height="114dp" />
     <TextView
         android:id="@+id/tv_directory_searching_text"
         android:layout_marginTop="41dp"
@@ -96,17 +97,13 @@
         android:id="@+id/rv_item_SearchingUserlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-    <TextView
+    <ImageView
         android:id="@+id/tv_directory_seaching_fail"
-android:layout_marginTop="277dp"
+android:layout_marginTop="115dp"
         android:layout_gravity="center"
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="#999999"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:text="검색 결과가 없습니다."
+        android:layout_height="match_parent"
+     android:src="@drawable/img_fail"
         />
 </LinearLayout>

@@ -10,7 +10,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="19dp"
-        android:src="@drawable/invalid_name"/>
+        android:src="@drawable/img_sample"/>
 
     <TextView
         android:layout_marginTop="12dp"
@@ -36,7 +36,7 @@
 
     <TextView
         android:layout_toRightOf="@+id/v_item_directory_v"
-        android:id="@+id/tv_item_directory_team_name"
+        android:id="@+id/tv_item_directory_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -47,7 +47,7 @@
         android:layout_marginLeft="8.8dp"
         android:text="깅스" />
     <TextView
-        android:layout_toRightOf="@+id/tv_item_directory_team_name"
+        android:layout_toRightOf="@+id/tv_item_directory_company"
         android:id="@+id/tv_item_directory_slash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         android:text="/" />
     <TextView
         android:layout_toRightOf="@+id/tv_item_directory_slash"
-        android:id="@+id/tv_item_directory_role"
+        android:id="@+id/tv_item_directory_job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -81,21 +81,23 @@
         android:lineSpacingExtra="6sp"
        android:text="2018/12/29 03:00"
         />
+
     <ImageView
-        android:layout_below="@+id/tv_item_directory_time"
-        android:src="@drawable/invalid_name"
-        android:layout_marginTop="15dp"
-        android:id="@+id/iv_item_directory_contents"
+        android:id="@+id/iv_item_directory_contents_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:textColor="#222222"
+        android:layout_below="@+id/tv_item_directory_time"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp"
         android:letterSpacing="-0.01"
-        android:lineSpacingExtra="9sp" />
+        android:lineSpacingExtra="9sp"
+        android:src="@drawable/img_default"
+        android:textColor="#222222"
+        android:textSize="13sp" />
     <TextView
         android:id="@+id/tv_item_directory_contents"
         android:layout_marginTop="10.5dp"
-        android:layout_below="@+id/iv_item_directory_contents"
+        android:layout_below="@+id/iv_item_directory_contents_image"
         android:layout_marginStart="65dp"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
@@ -105,28 +107,50 @@
         android:lineSpacingExtra="9sp"
         android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
         />
-    <LinearLayout
-        android:layout_marginTop="20dp"
+    <View
         android:layout_below="@+id/tv_item_directory_contents"
+        android:layout_marginTop="20dp"
+        android:id="@+id/v_item_directory_user"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e2e8ed"
+        />
+    <LinearLayout
+
+        android:id="@+id/ll_item_message_guest_board"
+        android:layout_below="@+id/v_item_directory_user"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <Button
-        android:id="@+id/btn_item_directory_message"
-        android:background="#ffffff"
-        android:text="메세지"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        <Button
+            android:id="@+id/btn_item_directory_message"
+            android:background="#ffffff"
+            android:text="메세지"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <View
 
-    <Button
-        android:id="@+id/btn_item_directory_guest_board"
-        android:layout_weight="1"
-        android:background="#ffffff"
-        android:text="게스트 보드"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+            android:id="@+id/v_item_directory_user2"
+            android:layout_width="1dp"
+            android:layout_height="50dp"
+            android:background="#e2e8ed"
+            />
+        <Button
+            android:id="@+id/btn_item_directory_guest_board"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:text="게스트 보드"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
     </LinearLayout>
+    <View
+        android:layout_below="@+id/ll_item_message_guest_board"
 
+        android:id="@+id/v_item_directory_user3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e2e8ed"
+        />
 </RelativeLayout>

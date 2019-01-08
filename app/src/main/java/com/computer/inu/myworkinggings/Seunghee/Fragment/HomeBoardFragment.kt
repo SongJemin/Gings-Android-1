@@ -47,8 +47,6 @@ class HomeBoardFragment : Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //리사이클러뷰
-        setRecyclerView()
 
         //게시글 작성 버튼
         tv_home_board_write_board.setOnClickListener{
@@ -59,14 +57,6 @@ class HomeBoardFragment : Fragment(){
         iv_btn_home_board_category.setOnClickListener {
             startActivity<CategoryMenuActivity>()
         }
-
-
-    }
-
-    private fun setRecyclerView(){
-
-
-
 
     }
 

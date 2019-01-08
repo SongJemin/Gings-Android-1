@@ -19,6 +19,19 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
+        //카카오스플레시
+        <activity android:name=".Seunghee.Activity.KakaoSplashActivity">
+            //카카오링크 실행
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/kakao_scheme"
+                    android:host="@string/kakaolink_host" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".Jemin.Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,14 +44,6 @@
         <!-- 로그인/가입창 -->
         <activity android:name=".Moohyeon.Activity.LoginActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/kakao_scheme"
-                    android:host="@string/kakaolink_host" />
-            </intent-filter>
         </activity>
 
         //가입창

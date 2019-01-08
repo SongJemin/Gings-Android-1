@@ -234,7 +234,7 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="18dp">
@@ -301,9 +301,10 @@
             </RelativeLayout>
 
             <ImageView
+                android:padding="5dp"
                 android:id="@+id/iv_item_board_share"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="19dp"
                 android:layout_alignParentRight="true"

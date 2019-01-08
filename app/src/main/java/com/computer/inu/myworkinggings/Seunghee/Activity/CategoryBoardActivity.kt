@@ -69,14 +69,14 @@ class CategoryBoardActivity : AppCompatActivity() {
 
         tv_category_board_new_rank.setOnClickListener {
             getCategoryBoardResponse(category_code)
-            tv_category_board_like_rank.setFontVariationSettings("normal")
-            tv_category_board_new_rank.setFontVariationSettings("bold")
+            //tv_category_board_like_rank.setFontVariationSettings("normal")
+            //.setFontVariationSettings("bold")
         }
 
         tv_category_board_like_rank.setOnClickListener {
             getCategoryLikeRankResponse(category_code)
-            tv_category_board_new_rank.setFontVariationSettings("normal")
-            tv_category_board_like_rank.setFontVariationSettings("bold")
+            //tv_category_board_new_rank.setFontVariationSettings("normal")
+            //tv_category_board_like_rank.setFontVariationSettings("bold")
         }
 
     }

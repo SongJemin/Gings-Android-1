@@ -108,7 +108,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //공유
         holder.share_btn.setOnClickListener {
-            //sendLink()
+            sendLink(dataList[position])
         }
 
         /*이벤트 처리*/
@@ -196,18 +196,31 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         })
     }
 
-/*    private fun sendLink() {
+    //카카오톡 링크 공유
+    private fun sendLink(dataList: BoardItem) {
+
+
+        var images : String?
+
+        Log.v("ㅎ;;ㅎ;ㅎ;;ㅎ;ㅎㅎ 너의크기는무엇이늬",dataList.images.size.toString())
+
+        if(dataList.images.size == 0){
+            images = "https://s3.ap-northeast-2.amazonaws.com/gings-storage/gings.png"
+        }else
+            images = dataList.images[0]
+
         val params = FeedTemplate
-                .newBuilder(ContentObject.newBuilder("카카오~!",
-                        "http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg",
+                .newBuilder(ContentObject.newBuilder(dataList.title,
+                        images,
                         LinkObject.newBuilder().setWebUrl("")
                                 .setMobileWebUrl("").build())
-                        .setDescrption("깅스에 초대받으셨습니다.")
+                        .setDescrption("혁신적인 창업가들을 위한 멤버쉽 커뮤니티, 깅스")
+
                         .build())
 
                 .addButton(ButtonObject("깅스 앱으로 열기", LinkObject.newBuilder()
                         //.setWebUrl("'https://developers.kakao.com")
-                        //.setAndroidExecutionParams("roomIDValue="+roomIDValue)
+                        .setAndroidExecutionParams("boardIDValue="+dataList.boardId)
                         .build()))
                 .build()
 
@@ -216,12 +229,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             override fun onFailure(errorResult: ErrorResult) {
                 Logger.e(errorResult.toString())
             }
-
             override fun onSuccess(result: KakaoLinkResponse) {}
         })
-
-
-    }*/
+    }
 }
 
 

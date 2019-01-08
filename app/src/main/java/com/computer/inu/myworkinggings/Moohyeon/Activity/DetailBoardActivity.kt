@@ -29,10 +29,21 @@ import java.io.InputStream
 
 import android.widget.TextView
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
+import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Seunghee.GET.DetailedBoardData
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
+import com.kakao.kakaolink.v2.KakaoLinkResponse
+import com.kakao.kakaolink.v2.KakaoLinkService
+import com.kakao.message.template.ButtonObject
+import com.kakao.message.template.ContentObject
+import com.kakao.message.template.FeedTemplate
+import com.kakao.message.template.LinkObject
+import com.kakao.network.ErrorResult
+import com.kakao.network.callback.ResponseCallback
+import com.kakao.util.helper.log.Logger
+import org.jetbrains.anko.ctx
 import retrofit2.Callback
 
 class DetailBoardActivity : AppCompatActivity() {
@@ -222,6 +233,19 @@ class DetailBoardActivity : AppCompatActivity() {
         tv_item_board_like_cnt.text=temp.recommender.toString()
         tv_item_board_comment_cnt.text = temp.numOfReply.toString()
 
+        iv_item_board_share.setOnClickListener {
+
+            var images : String?
+
+            if(temp.images.size == 0){
+                images = "https://s3.ap-northeast-2.amazonaws.com/gings-storage/gings.png"
+            }else
+                images = temp.images[0]
+
+            sendLink(temp.title,images,temp.boardId)
+
+        }
+
         //tv_item_board_profile_role.text = temp.
         //tv_item_board_profile_team.text = temp.
     }
@@ -267,6 +291,32 @@ class DetailBoardActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 
+        })
+    }
+
+    //카카오톡 링크 공유
+    private fun sendLink(title : String?, title_img : String?, boardId : Int?) {
+        val params = FeedTemplate
+                .newBuilder(ContentObject.newBuilder(title,
+                        title_img,
+                        LinkObject.newBuilder().setWebUrl("")
+                                .setMobileWebUrl("").build())
+                        .setDescrption("혁신적인 창업가들을 위한 멤버쉽 커뮤니티, 깅스")
+
+                        .build())
+
+                .addButton(ButtonObject("깅스 앱으로 열기", LinkObject.newBuilder()
+                        //.setWebUrl("'https://developers.kakao.com")
+                        .setAndroidExecutionParams("boardIDValue="+ boardId)
+                        .build()))
+                .build()
+
+        KakaoLinkService.getInstance().sendDefault(ctx, params, object : ResponseCallback<KakaoLinkResponse>() {
+
+            override fun onFailure(errorResult: ErrorResult) {
+                Logger.e(errorResult.toString())
+            }
+            override fun onSuccess(result: KakaoLinkResponse) {}
         })
     }
 

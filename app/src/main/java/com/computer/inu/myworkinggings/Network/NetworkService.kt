@@ -299,10 +299,16 @@ interface NetworkService {
     ): Call<GetBoardSearchResponse>
 
 
-    @GET("/mypage/setting/modifyPwd")
-    fun getCurrentPasswordConfirm(
+    @POST("/mypage/setting/modifyPwd")
+    fun postCurrentPasswordConfirm(
             @Header("Authorization") Authorization: String,
             @Body() body: JsonObject
-    ): Call<GetPasswdConfirmResponse>
+    ): Call<PostResponse>
+
+    @PATCH("/mypage/setting/modifyPwd")
+    fun patchPassword(
+            @Header("Authorization") Authorization: String,
+            @Body() body: JsonObject
+    ): Call<PostResponse>
 
 }

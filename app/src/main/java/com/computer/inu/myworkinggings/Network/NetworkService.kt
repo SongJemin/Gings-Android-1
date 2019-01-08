@@ -297,4 +297,12 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Query("keyword") keyword: String
     ): Call<GetBoardSearchResponse>
+
+
+    @GET("/mypage/setting/modifyPwd")
+    fun getCurrentPasswordConfirm(
+            @Header("Authorization") Authorization: String,
+            @Body() body: JsonObject
+    ): Call<GetPasswdConfirmResponse>
+
 }

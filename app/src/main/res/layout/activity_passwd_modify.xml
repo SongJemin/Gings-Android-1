@@ -60,6 +60,7 @@
                 />
 
             <EditText
+                android:id="@+id/passwd_modify_passwd_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"

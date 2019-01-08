@@ -85,7 +85,7 @@ class CategoryBoardActivity : AppCompatActivity() {
                                 BoardData[i].share, BoardData[i].time,
                                 BoardData[i].category, BoardData[i].images,
                                 BoardData[i].keywords, BoardData[i].numOfReply,
-                                BoardData[i].recommender)
+                                BoardData[i].recommender,BoardData[i].likeChk)
                         )
 
                     }

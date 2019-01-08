@@ -15,5 +15,6 @@ data class BoardItem (
         var images: ArrayList<String>,
         var keywords: ArrayList<String>,
         var numOfReply: Int?,
-        var recommender: Int?
+        var recommender: Int?,
+        var likeChk : Boolean?
 )

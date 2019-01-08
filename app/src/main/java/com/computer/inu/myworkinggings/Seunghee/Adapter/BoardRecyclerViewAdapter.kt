@@ -28,13 +28,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
+import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
+import android.R.attr.onClick
+
+
+
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
-    :RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>() {
-    var b_id: Int = 0
+    : RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>() {
+
+
+
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
@@ -48,7 +57,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //인스턴스 객체 - 데이터 연결
 
-        b_id = dataList[position].boardId!!
         //title
         dataList
         holder.category.text = dataList[position].category
@@ -119,8 +127,46 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         }
 
         //좋아요 버튼
+        if(dataList[position].likeChk==true)
+        {
+            Log.v("like_on","on error")
+        holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)}
+        else {
+            Log.v("like_off","off error")
+            holder.like_btn.setBackgroundResource(R.drawable.ic_like)
+        }
+
         holder.like_btn.setOnClickListener {
-            BoardLikePost()
+            val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
+                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    dataList[position].boardId)
+
+            postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
+                override fun onFailure(call: Call<PostBoardLikeResponse>, t: Throwable) {
+                    Log.e("통신 fail", t.toString())
+                }
+
+                override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
+                    if (response.isSuccessful) {
+
+                        Log.e("통신성공","  통신 성공")
+                        if(response.body()!!.message=="보드 추천 성공"){
+                            ctx.toast("좋아요 성공")
+                            holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)
+                            var cnt =Integer.parseInt(holder.like_cnt.getText().toString())+1
+                            holder.like_cnt.setText(cnt.toString())
+                        }
+                        else if (response.body()!!.message=="보드 추천 해제 성공"){
+                            ctx.toast("좋아요 해제")
+                            holder.like_btn.setBackgroundResource(R.drawable.ic_like)
+                            var cnt =Integer.parseInt(holder.like_cnt.getText().toString())-1
+
+                            holder.like_cnt.setText(cnt.toString())
+                        }
+                    }
+                }
+
+            })
         }
         //댓글창=> 디테일보드
     }
@@ -149,8 +195,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
 
         //좋아요
-        val like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
-        val like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
+        var like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
+        var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 
         //댓글아이콘
         val comment_btn: ImageView = itemView.findViewById(R.id.iv_item_board_comment) as ImageView
@@ -162,21 +208,4 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val more_btn : Button = itemView.findViewById(R.id.btn_rv_item_more) as Button
     }
 
-    private fun BoardLikePost(){
-        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
-                b_id)
-
-        postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
-            override fun onFailure(call: Call<PostBoardLikeResponse>, t: Throwable) {
-                Log.e("통신 fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
-                if (response.isSuccessful) {
-                    Log.e("통신성공","  통신 성공")
-                }
-            }
-        })
-    }
 }

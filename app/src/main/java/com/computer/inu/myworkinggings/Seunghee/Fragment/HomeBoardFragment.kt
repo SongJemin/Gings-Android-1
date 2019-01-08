@@ -13,9 +13,11 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetData.BoardData
+import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
@@ -29,6 +31,9 @@ import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
+import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
 
 
 class HomeBoardFragment : Fragment(){
@@ -37,8 +42,6 @@ class HomeBoardFragment : Fragment(){
     lateinit var networkService : NetworkService
 
     var BoardItemListForSearch = ArrayList<BoardItem>()
-
-
     var BoardData = ArrayList<BoardData>()
     var BoardItemList = ArrayList<BoardItem>()
     lateinit var requestManager : RequestManager
@@ -47,9 +50,6 @@ class HomeBoardFragment : Fragment(){
         val view : View = inflater.inflate(R.layout.fragment_home_board, container, false)
         networkService = ApplicationController.instance.networkService
         requestManager = Glide.with(this)
-
-        //getBoard()
-
 
         getBoard()
         return view
@@ -125,7 +125,7 @@ class HomeBoardFragment : Fragment(){
                         BoardItemListForSearch.add(BoardItem(BoardDataForSearch[i].boardId, BoardDataForSearch[i].writerId, BoardDataForSearch[i].writer,
                                 BoardDataForSearch[i].writerImage, BoardDataForSearch[i].field, BoardDataForSearch[i].company,
                                 BoardDataForSearch[i].title, BoardDataForSearch[i].content, BoardDataForSearch[i].share, BoardDataForSearch[i].time, BoardDataForSearch[i].category, BoardDataForSearch[i].images,
-                                BoardDataForSearch[i].keywords, BoardDataForSearch[i].numOfReply, BoardDataForSearch[i].recommender ))
+                                BoardDataForSearch[i].keywords, BoardDataForSearch[i].numOfReply, BoardDataForSearch[i].recommender,BoardItemListForSearch[i].likeChk ))
 
                     }
 
@@ -153,15 +153,13 @@ class HomeBoardFragment : Fragment(){
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     BoardData = response.body()!!.data
-
                     for(i in 0..BoardData.size-1){
                         //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
                         Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
                         BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer,
                                 BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
                                 BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images,
-                                BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender ))
-
+                                BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender,BoardData[i].likeChk ))
                     }
                     Log.v("asdf","응답 바디 = " + response.body().toString())
                     boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)

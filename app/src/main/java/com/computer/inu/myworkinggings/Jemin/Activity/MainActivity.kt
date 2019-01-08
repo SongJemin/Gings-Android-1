@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun callFragment(frament_no: Int) {
+    public fun callFragment(frament_no: Int) {
 
         // 프래그먼트 사용을 위해
         val transaction = supportFragmentManager.beginTransaction()

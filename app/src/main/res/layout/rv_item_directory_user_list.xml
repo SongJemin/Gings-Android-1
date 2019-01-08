@@ -22,7 +22,7 @@
         android:lineSpacingExtra="4sp"
         android:textColor="#222222"
         android:textSize="12sp"
-        android:text="이충엽" />
+        android:text="" />
 
 
     <View
@@ -45,7 +45,7 @@
         android:textColor="#525252"
         android:textSize="10sp"
         android:layout_marginLeft="8.8dp"
-        android:text="깅스" />
+        android:text="" />
     <TextView
         android:layout_toRightOf="@+id/tv_item_directory_company"
         android:id="@+id/tv_item_directory_slash"
@@ -67,7 +67,7 @@
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
         android:textSize="10sp"
-        android:text="PM" />
+        android:text="" />
     <TextView
         android:layout_marginTop="2dp"
         android:layout_marginStart="63.5dp"
@@ -105,7 +105,7 @@
         android:textColor="#222222"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="9sp"
-        android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
+        android:text=""
         />
     <View
         android:layout_below="@+id/tv_item_directory_contents"

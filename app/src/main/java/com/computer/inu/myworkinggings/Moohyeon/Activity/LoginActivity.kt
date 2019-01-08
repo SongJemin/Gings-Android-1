@@ -34,17 +34,36 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
+        val boardID = intent.getIntExtra("BoardId",-1)
+        if(boardID> 0)
+        {
+            Log.v("카카오로그인", "으로들어옴")
+
+            tv_login_login_button.setOnClickListener {
+                startActivity<DetailBoardActivity>("BoardId" to boardID)
+            }
+
+        }else{
+            //***로그인 통신***
+            Log.v("카카오로그인", "으로들어오지않음")
+
+            tv_login_login_button.setOnClickListener {
+                startActivity<MainActivity>()
+                //sendLink()
+            }
+
+        }
+
+
+        //startActivity<DetailBoardActivity>("BoardId" to boardID)
+
+
         tv_login_join_us.setOnClickListener {
             startActivity<SignUp1Activity>()
         }
         tv_login_about_gings.setOnClickListener {
             startActivity<DetailBoardActivity>()
-        }
-
-        //***로그인 통신***
-        tv_login_login_button.setOnClickListener {
-            startActivity<MainActivity>()
-            //sendLink()
         }
 
         //startActivity<BottomNaviActivity>()

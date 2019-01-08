@@ -113,7 +113,6 @@ class UpBoardActivity : AppCompatActivity() {
                             Log.v("TAG", "이미지 = " + uriList.get(i))
 
                             val options = BitmapFactory.Options()
-
                             var input: InputStream? = null // here, you need to get your context.
 
                             // 이미 리사이클러뷰에 사진 존재할 경우 이미지 추가
@@ -180,7 +179,6 @@ class UpBoardActivity : AppCompatActivity() {
 
         requestManager = Glide.with(this)
         //수정으로 들어왔을 때
-
 
         if (modifyBoardID > 0) {
 

@@ -169,6 +169,15 @@ interface NetworkService {
             @Part images: ArrayList<MultipartBody.Part?>
     ): Call<PostResponse>
 
+    @Multipart
+    @POST("/mypage/setting/introduce")
+    fun updateMyIntroduce(
+            @Header("Authorization") Authorization: String,
+            @Part("content") content: RequestBody,
+            @Part images: ArrayList<MultipartBody.Part?>,
+            @Part ("prevImagesUrl") prevImagesUrl : ArrayList<RequestBody>
+    ): Call<PostResponse>
+
     @GET("/mypage/others/active/{myPageUserId}")
     fun getOtherActive(
             @Header("Authorization") Authorization: String,

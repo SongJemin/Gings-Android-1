@@ -452,7 +452,6 @@ class UpBoardActivity : AppCompatActivity() {
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())
         val content = RequestBody.create(MediaType.parse("text.plain"), et_up_board_modify.text.toString())
         val category = RequestBody.create(MediaType.parse("text.plain"), selectedCategory)
-        var deleteImagesUrl = ArrayList<String>()
         for(i in 0 .. deleteImagesUrl.size-1){
             prevImagesUrl.add(RequestBody.create(MediaType.parse("text.plain"), deleteImagesUrl[i]))
         }
@@ -463,12 +462,17 @@ class UpBoardActivity : AppCompatActivity() {
         Log.v("TAG","제목 = " + et_up_board_title.text.toString())
         Log.v("TAG", "내용 = " + et_up_board_modify.text.toString())
         Log.v("TAG", "카테고리 = " + selectedCategory)
+        Log.v("TAG", "삭제이미지 크기 = " + prevImagesUrl.size)
+        Log.v("TAG", "추가이미지 크기 = " + postImagesList.size)
 
         updateBoardResponse.enqueue(object : retrofit2.Callback<PostResponse> {
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 Log.v("TAG", "통신 성공")
                 if (response.isSuccessful) {
+                    Log.v("TAG", "보드 수정 값 전달 성공")
+                    Log.v("TAG","보드 수정 응답 status = " + response.body()!!.status)
+                    Log.v("TAG","보드 수정 응답 message = " + response.body()!!.message)
                     var intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                 } else {

@@ -16,7 +16,7 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_sample"/>
+        android:src="@drawable/default_circle_background"/>
 <RelativeLayout
     android:layout_centerHorizontal="true"
     android:layout_below="@id/iv_item_directory_searching_profile_img"

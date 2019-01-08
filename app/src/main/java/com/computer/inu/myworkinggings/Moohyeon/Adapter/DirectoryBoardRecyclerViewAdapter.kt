@@ -28,15 +28,20 @@ class DirectoryBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayLis
         holder.company.text =dataList[position]!!.company
         holder.job.text = dataList[position]!!.job
         holder.time.text = dataList[position]!!.writeTime
-        holder.contents_text.text = dataList[position]!!.introduce[0].content// 자기소기개 여러개 ???
+        if(dataList[position]!!.introduce.size != 0){
+            holder.contents_text.text = dataList[position]!!.introduce[0].content// 자기소기개 여러개 ???
+        }
         holder.name.text = dataList[position]!!.name
         Glide.with(ctx)
                 .load(dataList[position].image)
                 .into(holder.profile_img)
 
-       Glide.with(ctx)
-                .load(dataList[position].introduce[0].imgs[0]) //나중에 뷰페이저로 수정해야한다 .
-                .into(holder.contents_img)
+        if(dataList[position].introduce.size != 0){
+            Glide.with(ctx)
+                    .load(dataList[position].introduce[0].imgs[0]) //나중에 뷰페이저로 수정해야한다 .
+                    .into(holder.contents_img)
+        }
+
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){

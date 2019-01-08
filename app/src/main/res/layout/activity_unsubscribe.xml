@@ -31,7 +31,7 @@
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
-                android:src="@drawable/invalid_name"
+                android:src="@drawable/back_btn"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 />
@@ -44,30 +44,12 @@
             android:background="#e2e8ed"
             />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="#f9f9f9"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="정말로 깅스를 떠나실건가요 ?ㅠㅅㅠ"
-                android:textSize="13sp"
-                android:textColor="#333333"
-                android:layout_centerInParent="true"
-                />
-
-        </RelativeLayout>
-
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="149dp"
-            android:src="@drawable/invalid_name"
+            android:layout_height="210dp"
+            android:layout_marginTop="6dp"
             android:scaleType="fitXY"
-            />
-
+            android:src="@drawable/img_sad" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,9 +62,9 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/invalid_name"
+                android:src="@drawable/ic_x"
                 android:layout_marginTop="28.1dp"
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="31dp"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -90,9 +72,9 @@
                 android:text="- 멤버십 탈퇴 시 모든 정보가 삭제됩니다.
 - 이용내역 및 멤버십 포인트 등은 모두 소멸됩니다.
 - 탈퇴 후 동일 아이디로 신규 가입이 ~일 간 제한됩니다."
-                android:layout_marginLeft="36dp"
+                android:layout_marginLeft="31dp"
                 android:layout_marginRight="35dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="10dp"
                 android:textSize="13sp"
                 android:textColor="#333333"
                 />
@@ -101,79 +83,77 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorPrimary"
+            android:background="#c45c55"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="127dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="23.9dp"
             android:background="#ffffff"
             >
 
             <TextView
+                android:layout_marginTop="50dp"
+                android:id="@+id/tv_unsubscribe_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="탈퇴할 계정의 비밀번호를 입력해주세요."
-                android:textColor="#999999"
+                android:textColor="#333333"
                 android:textSize="13sp"
-                android:layout_marginLeft="66dp"
-                android:layout_marginTop="22.1dp"
+                android:layout_centerHorizontal="true"
                 />
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="32.5dp"
-                android:hint="비밀번호"
-                android:textSize="13sp"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginTop="22dp"
-                />
-
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimary"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="46.4dp"
-            >
-            <CheckBox
-                android:layout_width="14.3dp"
-                android:layout_height="14.3dp"
-                android:layout_marginLeft="55.4dp"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/et_unsubscribe_pwd"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12.4dp"
-                android:text="주의사항을 확인하였으며, 깅스 탈퇴 처리에 동의합니다."
-                android:textSize="10sp"
-                android:textColor="#333333"
-                android:layout_gravity="center"
-                />
+                android:layout_below="@+id/tv_unsubscribe_input"
+                android:hint="비밀번호를 입력하세요"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textSize="13sp"
+                android:layout_marginTop="50dp"/>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_below="@+id/et_unsubscribe_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="27dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="55.4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="12.4dp"
+                    android:text="주의사항을 확인하였으며, 깅스 탈퇴 처리에 동의합니다."
+                    android:textColor="#333333"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
 
         <Button
+            android:layout_marginTop="8dp"
             android:id="@+id/unsubscribe_confirm_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:background="@color/colorPrimary"
-            android:text="확인"
+            android:text="탈퇴하기"
             android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:layout_marginTop="19dp"
-            />
+            android:textSize="15sp" />
 
     </LinearLayout>
 

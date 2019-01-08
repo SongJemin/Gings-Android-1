@@ -1,24 +1,30 @@
 package com.computer.inu.myworkinggings.Seunghee.Fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetData.BoardData
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetData.BoardData
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
-import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.CategoryMenuActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.UpBoardActivity
+import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
+import com.computer.inu.myworkinggings.Seunghee.GET.GetBoardSearchResponse
 import kotlinx.android.synthetic.main.fragment_home_board.*
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,8 +32,13 @@ import retrofit2.Response
 
 
 class HomeBoardFragment : Fragment(){
+    lateinit var searchBoardRecyclerViewAdapter : BoardRecyclerViewAdapter
     lateinit var boardRecyclerViewAdapter : BoardRecyclerViewAdapter
     lateinit var networkService : NetworkService
+
+    var BoardItemListForSearch = ArrayList<BoardItem>()
+
+
     var BoardData = ArrayList<BoardData>()
     var BoardItemList = ArrayList<BoardItem>()
     lateinit var requestManager : RequestManager
@@ -47,7 +58,6 @@ class HomeBoardFragment : Fragment(){
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
         //게시글 작성 버튼
         tv_home_board_write_board.setOnClickListener{
             startActivity<UpBoardActivity>()
@@ -57,6 +67,82 @@ class HomeBoardFragment : Fragment(){
         iv_btn_home_board_category.setOnClickListener {
             startActivity<CategoryMenuActivity>()
         }
+
+        iv_btn_home_board_search.setOnClickListener{
+
+            rl_home_board_main_bar.visibility=View.GONE
+            rl_home_board_main_bar_for_search.visibility=View.VISIBLE
+        }
+
+        /*검색*/
+        et_home_board_search.inputType = InputType.TYPE_CLASS_TEXT
+        et_home_board_search.imeOptions = EditorInfo.IME_ACTION_SEARCH
+
+        et_home_board_search.setOnEditorActionListener({ textView, action, event ->
+            var handled = false
+            if (action == EditorInfo.IME_ACTION_SEARCH) {
+
+                if(et_home_board_search.text.toString()==""){
+                    et_home_board_search.visibility=View.GONE
+                    iv_home_board_search_fail.visibility=View.VISIBLE
+                }
+                else{
+                    getHomeBoardSearchResponse(et_home_board_search.text.toString())
+
+                    ll_home_board_board_view.visibility=View.GONE
+                }
+
+
+                ll_home_board_board_view_for_search.visibility = View.VISIBLE
+
+                val imm = ctx?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+                imm!!.hideSoftInputFromWindow(et_home_board_search.getWindowToken(), 0)
+            }
+            handled
+        })
+
+    }
+
+    private fun getHomeBoardSearchResponse(text : String){
+
+        val getHomeboardSearchResponse = networkService.getBoardSearchResponse("application/json",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                text)
+        getHomeboardSearchResponse.enqueue(object : Callback<GetBoardSearchResponse> {
+
+            override fun onFailure(call: Call<GetBoardSearchResponse>, t: Throwable) {
+                Log.e("Login fail", t.toString())
+            }
+            override fun onResponse(call: Call<GetBoardSearchResponse>, response: Response<GetBoardSearchResponse>) {
+                if (response!!.isSuccessful) {
+
+                    Log.v("Search","sucess")
+                    val BoardDataForSearch: ArrayList<BoardData> = response.body()!!.data
+
+                    for(i in 0..BoardDataForSearch.size-1){
+                        //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+                        Log.v("asdf","키워드 크기 = " + BoardDataForSearch[i].keywords.size)
+                        BoardItemListForSearch.add(BoardItem(BoardDataForSearch[i].boardId, BoardDataForSearch[i].writerId, BoardDataForSearch[i].writer,
+                                BoardDataForSearch[i].writerImage, BoardDataForSearch[i].field, BoardDataForSearch[i].company,
+                                BoardDataForSearch[i].title, BoardDataForSearch[i].content, BoardDataForSearch[i].share, BoardDataForSearch[i].time, BoardDataForSearch[i].category, BoardDataForSearch[i].images,
+                                BoardDataForSearch[i].keywords, BoardDataForSearch[i].numOfReply, BoardDataForSearch[i].recommender ))
+
+                    }
+
+                    Log.v("asdf","응답 바디 = " + response.body().toString())
+
+                    searchBoardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemListForSearch, requestManager)
+                    rv_item_board_list_for_search.adapter = searchBoardRecyclerViewAdapter
+                    rv_item_board_list_for_search.layoutManager = LinearLayoutManager(ctx)
+                }
+/*
+                rv_item_board_list.visibility=View.GONE
+                rv_item_board_list_for_search.visibility=View.GONE
+                iv_home_board_search_fail.visibility=View.VISIBLE*/
+
+                //여기서
+            }
+        })
 
     }
 
@@ -69,16 +155,18 @@ class HomeBoardFragment : Fragment(){
                     BoardData = response.body()!!.data
 
                     for(i in 0..BoardData.size-1){
+                        //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
                         Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
-                        Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
-                        BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer, BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images, BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender ))
+                        BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer,
+                                BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
+                                BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images,
+                                BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender ))
 
                     }
                     Log.v("asdf","응답 바디 = " + response.body().toString())
-
-                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(activity!!, BoardItemList, requestManager)
+                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
-                    rv_item_board_list.layoutManager = LinearLayoutManager(activity)
+                    rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
                 }
             }
 

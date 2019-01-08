@@ -83,7 +83,7 @@ class SignUp2Activity : AppCompatActivity() {
     }
 
     fun getVerifyNumberData() {
-        var getVerifyNumberDataResponse = networkService.getVerifyNumberData( et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
         getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
             override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
                 Log.v("TAG", "GET 통신 성공")

@@ -8,7 +8,7 @@
         >
         <de.hdodenhof.circleimageview.CircleImageView android:layout_width="43dp"
             android:layout_height="43dp"
-            android:src="@drawable/img_sample"
+            android:src="@drawable/default_circle_background"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="15dp"
             android:id="@+id/iv_rv_item_message_image"

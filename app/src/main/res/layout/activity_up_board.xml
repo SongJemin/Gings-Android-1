@@ -6,6 +6,7 @@
     android:orientation="vertical"
     >
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -54,10 +55,9 @@
                         android:layout_marginEnd="23dp"
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="5sp"
-                        android:text="작성"
-                        android:textSize="15sp"
                         android:textStyle="bold"
                         android:textColor="#c45c55"
+                        android:textSize="15sp"
                         />
 
                     <TextView
@@ -120,6 +120,20 @@
                             android:textStyle="bold"
                             android:textColor="#c45c55"
                             android:textSize="13sp" />
+                        <!--
+
+                                <TextView
+                                    android:id="@+id/et_upboard_category_clicked"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="83.5dp"
+                                    android:letterSpacing="-0.01"
+                                    android:lineSpacingExtra="1sp"
+                                    android:text="질문"
+                                    android:textColor="#333333"
+                                    android:textSize="15sp" />
+                        -->
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -232,9 +246,10 @@
 
                     //카테고리 메뉴선택
                     //
+
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/ll_up_board_category_list"
+                        android:visibility="visible"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#eceff0"
@@ -242,6 +257,7 @@
 
                         //질문아이콘
                         <RelativeLayout
+                            android:background="@drawable/bt_question"
                             android:id="@+id/rl_btn_up_board_category_question"
                             android:layout_weight="1"
                             android:layout_width="match_parent" android:layout_height="120dp">
@@ -254,8 +270,7 @@
                                 <ImageView
                                     android:id="@+id/iv_up_board_category_question"
                                     android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:src="@drawable/ic_face_black_24dp" />
+                                    android:layout_height="50dp" />
 
                                 <TextView
                                     android:layout_marginTop="13dp"
@@ -266,6 +281,7 @@
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="1sp"
                                     android:text="질문"
+                                    android:textStyle="bold"
                                     android:textColor="#999999"
                                     android:textSize="15sp" />
                             </RelativeLayout>
@@ -273,8 +289,13 @@
 
                         </RelativeLayout>
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#e2e8ed"/>
                         //영감아이콘
                         <RelativeLayout
+                            android:background="@drawable/bt_insight"
                             android:id="@+id/rl_btn_up_board_category_inspriation"
                             android:layout_weight="1"
                             android:layout_width="match_parent" android:layout_height="120dp">
@@ -287,8 +308,7 @@
                                 <ImageView
                                     android:id="@+id/iv_up_board_category_inspiration"
                                     android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:src="@drawable/ic_face_black_24dp" />
+                                    android:layout_height="50dp" />
 
                                 <TextView
                                     android:layout_marginTop="13dp"
@@ -299,6 +319,7 @@
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="1sp"
                                     android:text="영감"
+                                    android:textStyle="bold"
                                     android:textColor="#999999"
                                     android:textSize="15sp" />
                             </RelativeLayout>
@@ -306,8 +327,14 @@
 
                         </RelativeLayout>
 
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="#e2e8ed"/>
+
                         //협업아이콘
                         <RelativeLayout
+                            android:background="@drawable/bt_cowork"
                             android:id="@+id/rl_btn_up_board_category_collaboration"
                             android:layout_weight="1"
                             android:layout_width="match_parent" android:layout_height="120dp">
@@ -320,8 +347,7 @@
                                 <ImageView
                                     android:id="@+id/iv_up_board_category_collaboration"
                                     android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:src="@drawable/ic_face_black_24dp" />
+                                    android:layout_height="50dp"/>
 
                                 <TextView
                                     android:layout_marginTop="13dp"
@@ -332,6 +358,7 @@
                                     android:letterSpacing="-0.01"
                                     android:lineSpacingExtra="1sp"
                                     android:text="협업"
+                                    android:textStyle="bold"
                                     android:textColor="#999999"
                                     android:textSize="15sp" />
 
@@ -367,14 +394,14 @@
                             android:id="@+id/et_up_board_title"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerVertical="true"
+                            android:layout_alignParentTop="true"
                             android:layout_marginStart="83.5dp"
                             android:background="@null"
                             android:hint="제목을 입력하세요"
                             android:letterSpacing="-0.01"
                             android:lineSpacingExtra="1sp"
-                            android:textColor="#999999"
 
+                            android:textColor="#999999"
                             android:textSize="15sp" />
                     </RelativeLayout>
 
@@ -489,20 +516,20 @@
 
                     <ImageView
                         android:id="@+id/iv_upboard_input_image"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
-                        android:src="@drawable/ic_image_picture" />
+                        android:src="@drawable/ic_close_black_24dp" />
 
                     <ImageView
                         android:id="@+id/iv_upboard_input_link"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="16dp"
                         android:layout_toRightOf="@+id/iv_upboard_input_image"
-                        android:src="@drawable/bt_camera" />
+                        android:src="@drawable/ic_close_black_24dp" />
 
                 </RelativeLayout>
             </LinearLayout>

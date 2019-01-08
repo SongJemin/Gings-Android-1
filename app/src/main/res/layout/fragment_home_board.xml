@@ -1,98 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="#f4f4f4"
-    android:orientation="vertical"
-    android:layout_height="match_parent" android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:background="#FFFFFF"
-        android:layout_width="match_parent" android:layout_height="54dp"
-         >
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="#FFFFFF">
 
-        <ImageView
-            android:layout_width="52dp"
-            android:layout_height="20dp"
-            android:src="@drawable/main_typo"
-            android:layout_marginLeft="13dp"
-            android:layout_alignParentStart="true" android:layout_centerVertical="true"/>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_home_board_main_bar_for_search"
+            android:layout_width="344dp"
+            android:layout_height="34dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/box_searchfield">
 
-        <ImageView
-            android:layout_toLeftOf="@+id/iv_btn_home_board_category"
-            android:id="@+id/iv_btn_home_board_search"
-            android:layout_centerVertical="true"
-            android:layout_width="30dp" android:layout_height="30dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/bt_search"/>
-        <ImageView
-            android:id="@+id/iv_btn_home_board_category"
-            android:layout_centerVertical="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/bt_category"
-            android:layout_marginRight="12dp"
-            android:layout_alignParentEnd="true" />
+            <EditText
+                android:id="@+id/et_home_board_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="50dp"
+                android:layout_toRightOf="@+id/iv_home_board_search_btn"
+                android:background="@null"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="8sp"
+                android:paddingStart="8dp"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_home_board_search_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:background="#f6f6f6"
+                android:src="@drawable/bt_searchcolor" />
+
+            <ImageView
+                android:id="@+id/iv_home_board_close_btn"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:background="#f6f6f6"
+                android:src="@drawable/bt_x_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="visible"
+            android:id="@+id/rl_home_board_main_bar"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="#FFFFFF">
+
+            <ImageView
+                android:layout_width="52dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="13dp"
+                android:src="@drawable/main_typo" />
+
+            <ImageView
+                android:id="@+id/iv_btn_home_board_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/iv_btn_home_board_category"
+                android:src="@drawable/bt_search" />
+
+            <ImageView
+                android:id="@+id/iv_btn_home_board_category"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/bt_category" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#888888"
-        />
+        android:background="#e2e8ed" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="8dp">
-        
+
     </LinearLayout>
 
 
-
     <RelativeLayout
-        android:background="#FFFFFF"
-        android:layout_width="match_parent" android:layout_height="48dp">
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#FFFFFF">
+
         <ImageView
             android:id="@+id/iv_home_board_profile_img"
-            android:layout_width="32dp" android:layout_height="32dp"
-             android:layout_marginStart="12.7dp"
-            android:src="@drawable/gings_icon"
-            android:layout_alignParentStart="true" android:layout_centerVertical="true"/>
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12.7dp"
+            android:src="@drawable/gings_icon" />
 
         <View
             android:id="@+id/home_board_top_view"
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:background="#f8bab6"
             android:layout_marginLeft="12.3dp"
             android:layout_toRightOf="@+id/iv_home_board_profile_img"
-            />
+            android:background="#f8bab6" />
+
         <TextView
             android:id="@+id/tv_home_board_write_board"
-            android:layout_marginLeft="6.5dp"
-            android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="6.5dp"
+            android:layout_toRightOf="@+id/home_board_top_view"
+            android:background="@null"
+            android:hint="공유하고싶은 소식을 입력하세요"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="2sp"
-            android:layout_toRightOf="@+id/home_board_top_view"
-            android:hint="공유하고싶은 소식을 입력하세요"
-            android:layout_centerVertical="true"/>
+            android:textSize="14sp" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#999999"
-        />
-
+        android:background="#e2e8ed" />
 
 
     <LinearLayout
         android:id="@+id/ll_home_board_board_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_marginTop="9.5dp"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_board_list"
@@ -100,6 +159,32 @@
             android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_home_board_board_view_for_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="9.5dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_item_board_list_for_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/iv_home_board_search_fail"
+        android:background="#f6f6f6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="61dp"
+        android:src="@drawable/img_fail"
+        />
 
 
 </LinearLayout>

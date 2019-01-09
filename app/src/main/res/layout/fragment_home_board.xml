@@ -145,9 +145,24 @@
         android:background="#e2e8ed" />
 
 
-    <RelativeLayout
-
+    <LinearLayout
         android:id="@+id/ll_home_board_board_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="9.5dp"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_item_board_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_home_board_board_view_for_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="9.5dp"
@@ -155,31 +170,12 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_item_board_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/ll_home_board_board_view_for_search"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="9.5dp"
-        android:background="#FFFFFF"
-        android:orientation="vertical">''
-
-        <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_item_board_list_for_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:visibility="gone"></android.support.v7.widget.RecyclerView>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <ImageView
         android:visibility="gone"

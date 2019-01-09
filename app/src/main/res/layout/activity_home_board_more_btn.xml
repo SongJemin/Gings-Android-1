@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/rl_btn_home_board_more_btn_"
+            android:id="@+id/rl_btn_home_board_more_btn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#ffffff">

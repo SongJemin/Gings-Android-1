@@ -13,15 +13,13 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.*
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetBoardSearchResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryBoardResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryLikeRankResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
+import com.computer.inu.myworkinggings.Seunghee.GET.*
 import com.computer.inu.myworkinggings.Seunghee.Post.*
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface NetworkService {
@@ -304,4 +302,34 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("category") category: String
     ) : Call<GetCategoryLikeRankResponse>
+
+    @GET("/search/boards/category/{category}/latest")
+    fun getCategorySearchResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("category") category: String,
+            @Query("keyword") keyword: String
+    ) : Call<GetCategorySearchResponse>
+
+    @GET("/search/boards/category/{category}/recommend")
+    fun getCategorySearchLikeRankResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("category") category: String,
+            @Query("keyword") keyword: String
+    ) : Call<GetCategorySearchLikeRankResponse>
+
+    @POST("boards/{boardId}/share")
+    fun postBoardShareResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId: Int
+    ) : Call<PostBoardShareResponse>
+
+    @POST("boards/{boardId}/block")
+    fun postBlockBoardIDResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId: Int
+    ) : Call<PostBlockBoardIDResponse>
 }

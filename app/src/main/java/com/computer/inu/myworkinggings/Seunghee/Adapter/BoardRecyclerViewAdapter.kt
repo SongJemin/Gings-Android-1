@@ -22,6 +22,7 @@ import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
+import com.computer.inu.myworkinggings.Seunghee.Post.PostBoardShareResponse
 import com.kakao.kakaolink.v2.KakaoLinkResponse
 import com.kakao.kakaolink.v2.KakaoLinkService
 import com.kakao.message.template.ButtonObject
@@ -54,6 +55,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        holder.item_box
 
         //인스턴스 객체 - 데이터 연결
 
@@ -109,6 +112,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //공유
         holder.share_btn.setOnClickListener {
             sendLink(dataList[position])
+
+            getBoardShareResponse()
         }
 
         /*이벤트 처리*/
@@ -125,12 +130,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
 
-            //본인 게시글 클릭
             ctx.toast(dataList[position].boardId!!.toString())
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
+
+            //본인 게시글 클릭
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "ㅎ" to this)
 
             //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>()
+            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
         }
 
         //좋아요 버튼
@@ -144,6 +150,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     //layout의 view를 인스턴스 변수로 만들어 줌
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val item_box : LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
         val gotoDetailedBoard: LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
 
         //title
@@ -175,6 +182,29 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val share_btn: ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
 
         val more_btn: Button = itemView.findViewById(R.id.btn_rv_item_more) as Button
+
+    }
+
+
+    //보드공유 통신
+    private fun getBoardShareResponse(){
+        val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                b_id)
+
+        postBoardshareResponse.enqueue(object : Callback<PostBoardShareResponse> {
+            override fun onFailure(call: Call<PostBoardShareResponse>, t: Throwable) {
+                Log.e("보드공유 통신 fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostBoardShareResponse>, response: Response<PostBoardShareResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("보드공유 통신성공", "  통신 성공")
+                    ctx.toast("공유@")
+                }
+            }
+        })
+
     }
 
 

@@ -194,7 +194,7 @@ class CategoryBoardActivity : AppCompatActivity() {
                             CategoryBoardItemListForSearch.add(BoardItem(CategoryBoardDataForSearch[i].boardId, CategoryBoardDataForSearch[i].writerId, CategoryBoardDataForSearch[i].writer,
                                     CategoryBoardDataForSearch[i].writerImage, CategoryBoardDataForSearch[i].field, CategoryBoardDataForSearch[i].company,
                                     CategoryBoardDataForSearch[i].title, CategoryBoardDataForSearch[i].content, CategoryBoardDataForSearch[i].share, CategoryBoardDataForSearch[i].time, CategoryBoardDataForSearch[i].category, CategoryBoardDataForSearch[i].images,
-                                    CategoryBoardDataForSearch[i].keywords, CategoryBoardDataForSearch[i].numOfReply, CategoryBoardDataForSearch[i].recommender))
+                                    CategoryBoardDataForSearch[i].keywords, CategoryBoardDataForSearch[i].numOfReply, CategoryBoardDataForSearch[i].recommender,CategoryBoardDataForSearch[i].likeChk))
                         }
 
                         Log.v("asdf", "응답 바디 = " + response.body().toString())
@@ -257,7 +257,7 @@ class CategoryBoardActivity : AppCompatActivity() {
                             CategoryBoardItemListForSearchLike.add(BoardItem(CategoryBoardDataForSearchLike[i].boardId, CategoryBoardDataForSearchLike[i].writerId, CategoryBoardDataForSearchLike[i].writer,
                                     CategoryBoardDataForSearchLike[i].writerImage, CategoryBoardDataForSearchLike[i].field, CategoryBoardDataForSearchLike[i].company,
                                     CategoryBoardDataForSearchLike[i].title, CategoryBoardDataForSearchLike[i].content, CategoryBoardDataForSearchLike[i].share, CategoryBoardDataForSearchLike[i].time, CategoryBoardDataForSearchLike[i].category, CategoryBoardDataForSearchLike[i].images,
-                                    CategoryBoardDataForSearchLike[i].keywords, CategoryBoardDataForSearchLike[i].numOfReply, CategoryBoardDataForSearchLike[i].recommender))
+                                    CategoryBoardDataForSearchLike[i].keywords, CategoryBoardDataForSearchLike[i].numOfReply, CategoryBoardDataForSearchLike[i].recommender, CategoryBoardDataForSearchLike[i].likeChk))
                         }
 
                         Log.v("asdf", "응답 바디 = " + response.body().toString())
@@ -336,7 +336,7 @@ class CategoryBoardActivity : AppCompatActivity() {
                                 LikeBoardData[i].share, LikeBoardData[i].time,
                                 LikeBoardData[i].category, LikeBoardData[i].images,
                                 LikeBoardData[i].keywords, LikeBoardData[i].numOfReply,
-                                LikeBoardData[i].recommender)
+                                LikeBoardData[i].recommender, LikeBoardData[i].likeChk)
                         )
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
@@ -437,7 +437,7 @@ class CategoryBoardActivity : AppCompatActivity() {
                                 BoardData[i].share, BoardData[i].time,
                                 BoardData[i].category, BoardData[i].images,
                                 BoardData[i].keywords, BoardData[i].numOfReply,
-                                BoardData[i].recommender)
+                                BoardData[i].recommender,BoardData[i].likeChk)
                         )
 
                     }

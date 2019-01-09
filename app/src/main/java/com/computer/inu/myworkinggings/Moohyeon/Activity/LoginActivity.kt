@@ -73,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
 
         //***로그인 통신***
         tv_login_login_button.setOnClickListener {
+            //startActivity<MainActivity>()
             getLoginResponse()
         }
 
@@ -110,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
             jsonObject.put("email", input_email)
             jsonObject.put("pwd", input_pw)
             val gsonObject: JsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-
+            Log.v("LoginActivity", "확인")
 
             val postLogInResponse = networkService.postLoginResponse("application/json", gsonObject)
 
@@ -121,8 +122,9 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
+                    Log.v("LoginActivity", "확인2")
                     if (response.isSuccessful) {
-
+                        Log.v("LoginActivity", "확인3")
                         if(response.body()!!.message == "로그인 성공"){
                             userID = response.body()!!.data.userId
                             var pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
@@ -134,6 +136,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity<MainActivity>()
                         }
                         else{
+                            Log.v("LoginActivity", "확인4")
                             Toast.makeText(applicationContext,"회원 정보가 틀렸습니다.", Toast.LENGTH_LONG).show()
                         }
 
@@ -149,6 +152,7 @@ class LoginActivity : AppCompatActivity() {
                         //startActivity<BottomNaviActivity>()
                     }
                     else{
+                        Log.v("LoginActivity", "확인5")
                         Toast.makeText(applicationContext,"회원 정보가 틀렸습니다.", Toast.LENGTH_LONG).show()
                     }
                 }

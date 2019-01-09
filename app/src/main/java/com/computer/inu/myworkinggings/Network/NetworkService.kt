@@ -120,7 +120,7 @@ interface NetworkService {
     fun postBoardLikeResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
-            @Path("boardId") boardId: Int
+            @Path("boardId") boardId: Int?
     ): Call<PostBoardLikeResponse>
 
     @POST("/signup")

@@ -37,7 +37,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
-                        android:background="@drawable/invalid_name"
+                       android:src="@drawable/ic_cowork"
                         android:layout_gravity="center"
                         />
 

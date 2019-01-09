@@ -48,6 +48,7 @@ class SignUp3Activity : AppCompatActivity() {
                 networkService.postSignUpResponse("application/json",intent.getStringExtra("token"), gsonObject)
         postSignUpResponse.enqueue(object : Callback<PostSignUpResponse> {
             override fun onFailure(call: Call<PostSignUpResponse>, t: Throwable) {
+                toast(intent.getStringExtra("token"))
                           toast("알수 없는 오류")
             }
             //통신 성공 시 수행되는 메소드

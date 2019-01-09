@@ -22,7 +22,7 @@ class SplashActivity : Activity() {
         setContentView(R.layout.activity_splash)
         val gifImage = GlideDrawableImageViewTarget(splash_all_background)
 
-        Glide.with(this).load(R.drawable.splash).into(gifImage)
+        Glide.with(this).load(R.drawable.new_splash2).into(gifImage)
 /*
         val animationView = findViewById<View>(R.id.animation_view) as LottieAnimationView
         animationView.setAnimation("gings_splash.json")

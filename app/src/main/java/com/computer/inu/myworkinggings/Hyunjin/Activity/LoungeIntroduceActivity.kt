@@ -65,9 +65,9 @@ class LoungeIntroduceActivity : AppCompatActivity() {
         var postClubSignUpResponse = networkService.postClubSignUp("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds",intent.getIntExtra("clubId",-1)) // 네트워크 서비스의 getContent 함수를 받아옴
         postClubSignUpResponse.enqueue(object : Callback<PostClubSignUp> {
             override fun onResponse(call: Call<PostClubSignUp>?, response: Response<PostClubSignUp>?) {
-                Log.v("TAG", "POST 통신 성공")
+                Log.v("TAG", "POST 클럽 가입 통신 성공")
                 if (response!!.isSuccessful) {
-                    Log.v("TAG", "클럽가입 통신 성공")
+                    Log.v("TAG", "클럽 가입 승인 신청 성공")
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
                     var message = response.body()!!.message!!

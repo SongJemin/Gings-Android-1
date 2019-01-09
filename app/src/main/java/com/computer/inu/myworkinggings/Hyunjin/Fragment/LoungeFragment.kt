@@ -44,11 +44,11 @@ class LoungeFragment : Fragment(){
         var getSearchClubDataResponse = networkService.getSearchClub("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds")
         getSearchClubDataResponse.enqueue(object : Callback<GetSearchClub> {
             override fun onResponse(call: Call<GetSearchClub>?, response: Response<GetSearchClub>?) {
-                Log.v("TAG", "GET 통신 성공")
+                Log.v("TAG", "GET 클럽 조회 통신 성공")
                 if (response!!.isSuccessful) {
                     dataList = response.body()!!.data
                     //response.body()!!.data[].clubId
-                    Log.v("TAG", "클럽 조회 통신 성공")
+                    Log.v("TAG", "클럽 조회 성공")
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
 

@@ -8,6 +8,7 @@
         android:background="#f9f9f9"
         >
     <ImageView
+        android:id="@+id/rl_iv_lounge_event_eventImg"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:background="@drawable/lounge_event"

@@ -1,12 +1,15 @@
 package com.computer.inu.myworkinggings.Network
 
 import android.app.ListActivity
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetDetailSearchClub
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetEventSearch
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
 import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
 import com.computer.inu.myworkinggings.Hyunjin.Post.PostClubSignUp
+import com.computer.inu.myworkinggings.Hyunjin.Post.PostJoinEvent
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
@@ -221,4 +224,23 @@ interface NetworkService {
             @Header("Authorization") Authorization : String,
             @Path("clubId") clubId : Int
     ) : Call<PostClubSignUp>
+
+    @GET("/clubs/{clubId}")
+    fun getDetailSearchClub(
+            @Header("Authorization") Authorization : String,
+            @Path("clubId") clubId : Int
+    ) : Call<GetDetailSearchClub>
+
+    @GET("/clubs/{clubId}/{eventId}")
+    fun getEventSearch(
+            @Header("Authorization") Authorization : String,
+            @Path("clubId") clubId : Int,
+            @Path("eventId") eventId : Int
+    ) : Call<GetEventSearch>
+
+    @POST("/events/{eventId}")
+    fun postJoinEvent(
+            @Header("Authorization") Authorization : String,
+            @Path("eventId") eventId: Int
+    ) : Call<PostJoinEvent>
 }

@@ -17,10 +17,13 @@
             android:id="@+id/btn_lounge_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_keyboard_arrow_left_black_24dp" />
 
         <TextView
+            android:id="@+id/rl_top_bar_lounge_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -38,8 +41,15 @@
         android:id="@+id/rl_lounge_image"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:layout_below="@id/rl_top_bar_lounge_innobatorclub"
-        android:background="@drawable/rounge">
+        android:layout_below="@id/rl_top_bar_lounge_innobatorclub">
+
+        <ImageView
+            android:id="@+id/rl_iv_lounge_backImg"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/rounge"
+            android:src="@drawable/gradient"
+            />
 
         <RelativeLayout
             android:id="@+id/rl_lounge_introuce_introudeuce_bar"
@@ -56,7 +66,7 @@
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="5sp"
                 android:text="소개"
-                android:textColor="#ffffff"
+                android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -76,8 +86,9 @@
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="5sp"
                 android:text="일정"
-                android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textColor="#000000"
+                android:textSize="15sp"
+                />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -100,27 +111,43 @@
             android:background="#f9f9f9">
 
             <TextView
+                android:id="@+id/tv_lounge_intro_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="31.7dp"
                 android:lineSpacingExtra="7sp"
-                android:text="ABOUT
-INNOVATOR CLUB"
+                android:text="ABOUT"
                 android:textColor="#040404"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tv_lounge_intro_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="INNOVATOR CLUB"
+                android:layout_marginTop="50.7dp"
+                android:textColor="#040404"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+
+
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="328dp"
-            android:layout_height="292dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@id/rl_lounge_introducetext"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_gravity="center"
             android:background="#ffffff">
 
             <TextView
+                android:id="@+id/tv_rl_lounge_introdata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
@@ -131,17 +158,27 @@ INNOVATOR CLUB"
                 android:textColor="#000000" />
 
             <Button
-                android:id="@+id/btn_lounge_introduce"
+                android:id="@+id/btn_lounge_introduce_signup"
+                android:visibility="visible"
                 android:layout_width="164dp"
                 android:layout_height="48dp"
-                android:layout_marginLeft="82dp"
-                android:layout_marginTop="113dp"
-                android:background="#b0caea"
-                android:text="가입하기"
-
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/bt_join_signup"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
-
+            <Button
+                android:id="@+id/btn_lounge_introduce_signup_waiting"
+                android:visibility="invisible"
+                android:layout_width="164dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/bt_join_signup_waiting"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -231,10 +268,14 @@ INNOVATOR CLUB"
             android:layout_height="170dp"
             android:layout_below="@id/rl_lounge_event_text">
 
-            <FrameLayout
-                android:id="@+id/fl_event_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_lounge_frag_lounge_event_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                >
+            </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
     </LinearLayout>

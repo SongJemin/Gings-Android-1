@@ -25,10 +25,10 @@ class LoungeEventFragment : Fragment(){
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setRecyclerView()
+ /*       setRecyclerView()*/
 
     }
-    private fun setRecyclerView() {
+ /*   private fun setRecyclerView() {
 //임시 데이터
         var dataList: ArrayList<LoungeEventData> = ArrayList()
         dataList.add(LoungeEventData("혁신콘서트","2019/04/13(목)","12:00 - 17:00","서울청년창업허브"))
@@ -38,6 +38,5 @@ class LoungeEventFragment : Fragment(){
         rv_lounge_frag_lounge_event_list.adapter = LoungeEventDataRecyclerViewAdapter
         rv_lounge_frag_lounge_event_list.layoutManager = LinearLayoutManager(activity)
     }
-
-
+*/
 }

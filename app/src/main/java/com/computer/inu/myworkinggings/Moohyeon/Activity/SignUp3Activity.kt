@@ -35,7 +35,6 @@ class SignUp3Activity : AppCompatActivity() {
         }
     }
     private fun SignUpPost() {
-
 //Json 형식의 객체 만들기
         var jsonObject = JSONObject()
         jsonObject.put("name", intent.getStringExtra("name"))

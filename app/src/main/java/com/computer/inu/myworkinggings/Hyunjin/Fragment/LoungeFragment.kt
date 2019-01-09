@@ -11,13 +11,11 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Hyunjin.Adapter.LoungeDataRecyclerViewAdapter
-import com.computer.inu.myworkinggings.Hyunjin.Data.LoungeData
 import com.computer.inu.myworkinggings.Hyunjin.Get.ClubData
 import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import kotlinx.android.synthetic.main.fragment_lounge.*
-import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,7 +34,6 @@ class LoungeFragment : Fragment(){
         super.onActivityCreated(savedInstanceState)
         networkService = ApplicationController.instance.networkService
         getSearchClub()
-
     }
 
     fun getSearchClub(){
@@ -46,9 +43,12 @@ class LoungeFragment : Fragment(){
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
                     dataList = response.body()!!.data
-                    Log.v("TAG", "클럽조회  통신 성공")
+                    //response.body()!!.data[].clubId
+                    Log.v("TAG", "클럽 조회 통신 성공")
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
+
+
                     //Toast.makeText(context,"success", Toast.LENGTH_SHORT).show()
 
                     LoungeDataRecyclerViewAdapter = LoungeDataRecyclerViewAdapter(activity!!, dataList)
@@ -64,6 +64,5 @@ class LoungeFragment : Fragment(){
             }
         })
     }
-
 
 }

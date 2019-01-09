@@ -136,7 +136,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             ctx.toast(dataList[position].boardId!!.toString())
 
             //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "ㅎ" to this)
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
 
             //일반 게시글 클릭
             ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)

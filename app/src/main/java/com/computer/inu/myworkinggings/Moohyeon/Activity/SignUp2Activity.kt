@@ -88,7 +88,7 @@ class SignUp2Activity : AppCompatActivity() {
             override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
-             var token =response.headers()!!.toString()
+             var token =response.headers().toString()
                     startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password,"token" to token))
                 }
             }

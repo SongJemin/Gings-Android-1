@@ -10,10 +10,12 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,36 +40,41 @@ class LoginActivity : AppCompatActivity() {
 
         //***로그인 통신***
         tv_login_login_button.setOnClickListener {
+           //getLoginResponse()
             startActivity<MainActivity>()
         }
 
-            //startActivity<BottomNaviActivity>()
-            getLoginResponse()
         }
 
 
     //로그인 통신
     private fun getLoginResponse() {
         if (et_login_id.text.toString().isNotEmpty() && et_login_pw.text.toString().isNotEmpty()) {
+            var fcm_token = FirebaseInstanceId.getInstance().getToken();
             val input_email = et_login_id.text.toString()
             val input_pw = et_login_pw.text.toString()
             val jsonObject: JSONObject = JSONObject()
             jsonObject.put("email", input_email)
             jsonObject.put("pwd", input_pw)
+            jsonObject.put("fcm",fcm_token)
             val gsonObject: JsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-
-
             val postLogInResponse = networkService.postLoginResponse("application/json", gsonObject)
-
             postLogInResponse.enqueue(object : Callback<PostLogInResponse> {
 
                 override fun onFailure(call: Call<PostLogInResponse>, t: Throwable) {
                     Log.e("Login fail", t.toString())
+                    toast("통신 실패")
                 }
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
                     if (response.isSuccessful) {
-
+                        if(response.body()!!.message=="로그인 성공"){
+                            toast("로그인 성공")
+                           startActivity<MainActivity>()
+                        }
+                        else{
+                            toast("로그인 실패")
+                        }
                         Log.v("ttt", "Login-!-!-!")
 
                         //자동 로그인
@@ -77,8 +84,10 @@ class LoginActivity : AppCompatActivity() {
                             //SharedPreferenceController.setAuthorization(this@LoginActivity, firstLogIn)
                             //toast(SharedPreferenceController.getAuthorization(this@LoginActivity))
                         }
-*/
-                        startActivity<BottomNaviActivity>()
+                       */
+                    }
+                    else{
+                        toast("비밀번호 또는 아이디가 알맞지 않습니다.")
                     }
                 }
             })

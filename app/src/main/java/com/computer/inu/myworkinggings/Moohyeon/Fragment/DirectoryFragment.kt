@@ -150,17 +150,15 @@ class DirectoryFragment : Fragment() {
             override fun onResponse(call: Call<GetDirectorySearchResponse>?, response: Response<GetDirectorySearchResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
-
-                    var temp: ArrayList<DirectorySearchData> = response.body()!!.data
+                        var temp: ArrayList<DirectorySearchData> = response.body()!!.data
                     if (temp != null) {
                         var position = searchingUserRecyclerViewAdapter.itemCount
-
                         searchingUserRecyclerViewAdapter.dataList.clear()
+                        searchingUserRecyclerViewAdapter.notifyItemInserted(searchingUserRecyclerViewAdapter.itemCount)
                         searchingUserRecyclerViewAdapter.dataList.addAll(temp)
-                        searchingUserRecyclerViewAdapter.notifyItemInserted(position)
+                        searchingUserRecyclerViewAdapter.notifyDataSetChanged()
 
                         // 여기부터
-
                         iv_directory_searching.visibility = View.GONE
                         tv_directory_searching_text.visibility = View.GONE
                         rv_item_SearchingUserlist.visibility = View.VISIBLE

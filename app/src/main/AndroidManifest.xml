@@ -15,31 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--fcm을 받았을 때 동작하기 위한 리시버-->
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name = "com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="net.saltfactory.demo.gcm"/>
-            </intent-filter>
-        </receiver>
-
-        <!-- fcm 요청을 대기하고 있는 리스너 서비스 -->
-        <service
-            android:name=".Firebase.FirebaseInstanceIDService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID" />
-            </intent-filter>
-        </service>
-        <service android:name=".Firebase.FirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
         <!-- 로그인/가입창 -->
         //로그인 시작
         <activity android:name=".Moohyeon.Activity.LoginActivity"></activity>
@@ -55,9 +30,6 @@
 
         <!-- 홈보드 -->
         //검색
-        <activity
-            android:name=".Seunghee.Activity.HomeBoardSearchActivity"
-            android:theme="@style/Theme.AppCompat.Translucent" />
         //업보드
         <activity
             android:name=".Seunghee.Activity.UpBoardActivity"
@@ -99,7 +71,6 @@
             android:name=".Seunghee.Activity.ProfileSettingMenuActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
         //프로필
-        <activity android:name=".Seunghee.Activity.ProfileImageUpdateActivity" />
         <activity android:name=".Seunghee.Activity.ProfileInfoUpdateActivity" />
         <activity android:name=".Jemin.Activity.MypageUpdateActivity" />
         //보안
@@ -118,6 +89,18 @@
         </activity>
         <activity android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

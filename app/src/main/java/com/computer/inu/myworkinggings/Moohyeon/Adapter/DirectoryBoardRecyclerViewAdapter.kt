@@ -17,9 +17,12 @@ import com.computer.inu.myworkinggings.R
 import java.util.ArrayList
 import android.R.attr.fragment
 import android.support.v4.app.FragmentActivity
+import android.util.Log
 import com.computer.inu.myworkinggings.Hyunjin.Activity.TopNaviMessageNoticeActivity
 import com.computer.inu.myworkinggings.R.id.*
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.imageResource
+import java.lang.IndexOutOfBoundsException
 
 
 class DirectoryBoardRecyclerViewAdapter (val ctx: Context, var dataList: ArrayList<DirectoryData>)
@@ -66,16 +69,16 @@ class DirectoryBoardRecyclerViewAdapter (val ctx: Context, var dataList: ArrayLi
             holder.contents_text.text = dataList[position]!!.introduce[0].content// 자기소기개 여러개 ???
         }
         holder.name.text = dataList[position]!!.name
-        Glide.with(ctx)
-                .load(dataList[position].image)
-                .into(holder.profile_img)
-
-        if(dataList[position].introduce.size != 0){
+        if(dataList[position].image!=null) {
+            Glide.with(ctx)
+                    .load(dataList[position].image)
+                    .into(holder.profile_img)
+        }
+        if(dataList[position].introduce.size != 0 && dataList[position].introduce[0].imgs[0]!=null){
             Glide.with(ctx)
                     .load(dataList[position].introduce[0].imgs[0]) //나중에 뷰페이저로 수정해야한다 .
                     .into(holder.contents_img)
         }
-
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){

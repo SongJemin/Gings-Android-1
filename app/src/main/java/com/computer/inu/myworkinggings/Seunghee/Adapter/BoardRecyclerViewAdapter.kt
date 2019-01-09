@@ -7,10 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Adapter.ImageAdapter
@@ -30,8 +26,7 @@ import retrofit2.Response
 import java.util.ArrayList
 import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import android.R.attr.onClick
-
-
+import android.widget.*
 
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
@@ -136,7 +131,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             holder.like_btn.setBackgroundResource(R.drawable.ic_like)
         }
 
-        holder.like_btn.setOnClickListener {
+        holder.like_rl.setOnClickListener {
             val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
                     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
                     dataList[position].boardId)
@@ -195,6 +190,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
 
         //좋아요
+        var like_rl : RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
         var like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
         var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 

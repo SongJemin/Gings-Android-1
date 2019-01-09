@@ -142,7 +142,7 @@
                             android:id="@+id/mypage_keyword_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="#"
+                            android:text=""
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />

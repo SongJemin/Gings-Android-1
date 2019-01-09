@@ -157,6 +157,11 @@
             </RelativeLayout>
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed" />
+
     </LinearLayout>
 
     //profile

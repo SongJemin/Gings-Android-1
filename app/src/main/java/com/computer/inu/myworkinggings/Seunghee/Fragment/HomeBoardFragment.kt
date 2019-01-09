@@ -26,6 +26,7 @@ import com.computer.inu.myworkinggings.Seunghee.GET.GetBoardSearchResponse
 import kotlinx.android.synthetic.main.fragment_home_board.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,15 +34,17 @@ import retrofit2.Response
 
 class HomeBoardFragment : Fragment() {
 
-    var searchCnt = 0
+    private var isinSearchData = false
+
+
+    lateinit var searchBoardRecyclerViewAdapter: BoardRecyclerViewAdapter
 
     lateinit var requestManager: RequestManager
     lateinit var networkService: NetworkService
 
-    lateinit var BoardDataForSearch: ArrayList<BoardData>
 
     //검색 리사이클러뷰
-    lateinit var searchBoardRecyclerViewAdapter: BoardRecyclerViewAdapter
+    lateinit var BoardDataForSearch: ArrayList<BoardData>
     var BoardItemListForSearch = ArrayList<BoardItem>()
 
     //홈보드 리사이클러뷰
@@ -90,7 +93,7 @@ class HomeBoardFragment : Fragment() {
                     et_home_board_search.visibility = View.GONE
                     iv_home_board_search_fail.visibility = View.VISIBLE
                 } else {
-                    //검색
+                    //검색통신
                     getHomeBoardSearchResponse(et_home_board_search.text.toString())
 
                     ll_home_board_board_view.visibility = View.GONE
@@ -105,6 +108,25 @@ class HomeBoardFragment : Fragment() {
 
         onSearchClickListener()
 
+    }
+
+    private fun onSearchClickListener() {
+
+        /*엑스버튼 누를 경우*/
+        //edittext에 있는 내용들 다 지우고, 다시 메인창 띄우기
+        iv_home_board_close_btn.setOnClickListener {
+
+            //텍스트 내용지움
+            et_home_board_search.text.clear()
+
+            //상단바
+            rl_home_board_main_bar_for_search.visibility = View.GONE
+            rl_home_board_main_bar.visibility = View.VISIBLE
+
+            //리사이클러뷰
+            ll_home_board_board_view_for_search.visibility = View.GONE
+            ll_home_board_board_view.visibility = View.VISIBLE
+        }
     }
 
     private fun getHomeBoardSearchResponse(text: String) {
@@ -122,21 +144,38 @@ class HomeBoardFragment : Fragment() {
                 if (response!!.isSuccessful) {
 
 
-                    Log.v("Search", "sucess")
+                    Log.v("Search", "success")
 
+
+                    //데이터가 없을 때
                     if (response.body()!!.data == null) {
+
+                        ll_home_board_board_view_for_search.visibility = View.GONE
                         iv_home_board_search_fail.visibility = View.VISIBLE
 
+                        isinSearchData = false
+
                     } else {
+                        //데이터 있을 경우
+
+
                         ll_home_board_board_view_for_search.visibility = View.VISIBLE
 
-                        if (searchCnt > 0)
+                        if (isinSearchData == true){
                             BoardDataForSearch.clear()
+
+                            searchBoardRecyclerViewAdapter.dataList.clear()
+                            for(i in 0..searchBoardRecyclerViewAdapter.getItemCount()-1) {
+                                searchBoardRecyclerViewAdapter.getItemCount()
+                                rv_item_board_list_for_search.removeItemDecorationAt(i)
+
+                            }
+                        }
 
                         BoardDataForSearch = response.body()!!.data
 
                         for (i in 0..BoardDataForSearch.size - 1) {
-                            //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+
                             Log.v("asdf", "키워드 크기 = " + BoardDataForSearch[i].keywords.size)
                             BoardItemListForSearch.add(BoardItem(BoardDataForSearch[i].boardId, BoardDataForSearch[i].writerId, BoardDataForSearch[i].writer,
                                     BoardDataForSearch[i].writerImage, BoardDataForSearch[i].field, BoardDataForSearch[i].company,
@@ -144,43 +183,30 @@ class HomeBoardFragment : Fragment() {
                                     BoardDataForSearch[i].keywords, BoardDataForSearch[i].numOfReply, BoardDataForSearch[i].recommender))
                         }
 
-                        Log.v("asdf", "응답 바디 = " + response.body().toString())
 
                         searchBoardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemListForSearch, requestManager)
                         rv_item_board_list_for_search.adapter = searchBoardRecyclerViewAdapter
                         rv_item_board_list_for_search.layoutManager = LinearLayoutManager(ctx)
 
+                        //getItemCount()
+                        //searchBoardRecyclerViewAdapter.notifyDataSetChanged()
+
                         if (response.body()!!.data.size > 0)
-                            searchCnt++
+                            isinSearchData = true
+                        else
+                            isinSearchData = false
+
+                        Log.v("데이터길이", response.body()!!.data.size.toString())
+
+
                     }
                 }
-/*                rv_item_board_list.visibility=View.GONE
-                rv_item_board_list_for_search.visibility=View.GONE
-                iv_home_board_search_fail.visibility=View.VISIBLE*/
-
                 //여기서
             }
         })
     }
 
-    private fun onSearchClickListener() {
 
-        /*엑스버튼 누를 경우*/
-        //edittext에 있는 내용들 다 지우고, 다시 메인창 띄우기
-        iv_home_board_close_btn.setOnClickListener {
-
-            //텍스트 내용지움
-            et_home_board_search.setText("")
-
-            //상단바
-            rl_home_board_main_bar_for_search.visibility = View.GONE
-            rl_home_board_main_bar.visibility = View.VISIBLE
-
-            //리사이클러뷰
-            ll_home_board_board_view_for_search.visibility = View.GONE
-            ll_home_board_board_view.visibility = View.VISIBLE
-        }
-    }
 
     fun getBoard() {
         var getBoardResponse = networkService.getBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
@@ -191,7 +217,7 @@ class HomeBoardFragment : Fragment() {
                     BoardData = response.body()!!.data
 
                     for (i in 0..BoardData.size - 1) {
-                        //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+
                         Log.v("asdf", "키워드 크기 = " + BoardData[i].keywords.size)
                         BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer,
                                 BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
@@ -200,9 +226,13 @@ class HomeBoardFragment : Fragment() {
 
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
+
+                    //rv_item_board_list.removeItemDecorationAt()
                     boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
+
+
                 }
             }
 

@@ -9,6 +9,8 @@
     android:focusableInTouchMode="true"
     >
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -83,8 +85,6 @@
                     android:text="#태그를완전완전길게쓰면 #어떻게할것인가 #태그가길면 #안돼요 #제발길게쓰지말아주라"
                     android:textColor="#999999"
                     android:textSize="9sp" />
-
-
 
             </LinearLayout>
 

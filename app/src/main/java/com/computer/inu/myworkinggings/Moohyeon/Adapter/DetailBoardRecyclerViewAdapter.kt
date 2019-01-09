@@ -2,16 +2,13 @@ package com.computer.inu.myworkinggings.Moohyeon.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Activity.ReboardMoreBtnMineActivity
@@ -20,7 +17,6 @@ import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
 import com.computer.inu.myworkinggings.Seunghee.Post.PostReboardRecommendResponse
-import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -39,7 +35,6 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
     }
 
     override fun getItemCount(): Int = dataList.size
-
 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {

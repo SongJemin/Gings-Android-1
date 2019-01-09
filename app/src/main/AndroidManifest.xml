@@ -13,9 +13,39 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
+        //카카오링크
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+        //카카오스플레시
+        <activity android:name=".Seunghee.Activity.KakaoSplashActivity">
+            //카카오링크 실행
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/kakao_scheme"
+                    android:host="@string/kakaolink_host" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Jemin.Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <!-- 로그인/가입창 -->
-        //로그인 시작
-        <activity android:name=".Moohyeon.Activity.LoginActivity" />
+        <activity android:name=".Moohyeon.Activity.LoginActivity">
+
+        </activity>
+
         //가입창
         <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
         <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
@@ -83,18 +113,11 @@
         <activity android:name=".Jemin.Activity.MainActivity" />
         <activity android:name=".Jemin.Activity.TestActivity" />
         <activity android:name=".Jemin.Activity.Test2Activity" />
-        <activity android:name=".Jemin.Activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+
         <activity
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".Jemin.Activity.ChatActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            />
     </application>
 
 </manifest>

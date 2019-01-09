@@ -2,13 +2,12 @@ package com.computer.inu.myworkinggings.Moohyeon.Activity
 
 import android.app.Activity
 import android.content.SharedPreferences
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
-
 import android.util.Log
 import android.widget.Toast
-
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
@@ -21,6 +20,12 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.pm.PackageManager
+import android.util.Base64
+import com.kakao.util.helper.Utility.getPackageInfo
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,6 +38,31 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+        val boardID = intent.getIntExtra("BoardId",-1)
+        if(boardID> 0)
+        {
+            Log.v("카카오로그인", "으로들어옴")
+
+            tv_login_login_button.setOnClickListener {
+                startActivity<DetailBoardActivity>("BoardId" to boardID)
+            }
+
+        }else{
+            //***로그인 통신***
+            Log.v("카카오로그인", "으로들어오지않음")
+
+            tv_login_login_button.setOnClickListener {
+                startActivity<MainActivity>()
+                //sendLink()
+            }
+
+        }
+
+
+        //startActivity<DetailBoardActivity>("BoardId" to boardID)
+
 
         tv_login_join_us.setOnClickListener {
             startActivity<SignUp1Activity>()
@@ -48,8 +78,28 @@ class LoginActivity : AppCompatActivity() {
 
             //startActivity<BottomNaviActivity>()
             //getLoginResponse()
-        }
+        //startActivity<BottomNaviActivity>()
 
+        //getKeyHash(applicationContext)
+        //Log.v("카카오",getKeyHash(applicationContext))
+    }
+
+    fun getKeyHash(context: Context): String? {
+        val packageInfo = getPackageInfo(context, PackageManager.GET_SIGNATURES) ?: return null
+
+        for (signature in packageInfo!!.signatures) {
+            try {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                return Base64.encodeToString(md.digest(), Base64.NO_WRAP)
+            } catch (e: NoSuchAlgorithmException) {
+
+                //Log.w(FragmentActivity.TAG, "Unable to get MessageDigest. signature=$signature", e)
+            }
+
+        }
+        return null
+    }
 
     //로그인 통신
     private fun getLoginResponse() {

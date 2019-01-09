@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Jemin.Activity.SplashActivity">
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_view"
+    tools:context=".Jemin.Activity.SplashActivity"
+    >
+    <ImageView
+        android:id="@+id/splash_all_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="gings_splash_new.json"
-        app:lottie_imageAssetsFolder="images/"
-        app:lottie_loop="true"/>
+        android:src="@drawable/image_background"
+        />
+
 
 </LinearLayout>

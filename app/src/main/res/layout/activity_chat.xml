@@ -61,6 +61,7 @@
         android:layout_alignParentBottom="true"
         >
         <EditText
+            android:id="@+id/chat_message_edit"
             android:layout_width="283dp"
             android:layout_height="32dp"
             android:background="@drawable/box_textfleld"

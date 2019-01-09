@@ -93,7 +93,9 @@
         <activity
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".Jemin.Activity.ChatActivity"></activity>
+        <activity android:name=".Jemin.Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
     </application>
 
 </manifest>

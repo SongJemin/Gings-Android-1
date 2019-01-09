@@ -25,6 +25,7 @@ class LoungeReservationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lounge_reservation)
         getEventSearch()
+
         btn_lounge_event_detail_join.setOnClickListener{
             btn_lounge_event_detail_join.visibility=View.GONE
             btn_lounge_event_detail_waiting.visibility=View.VISIBLE
@@ -35,6 +36,7 @@ class LoungeReservationActivity : AppCompatActivity() {
         }
     }
 
+    //이벤트 조회 통신
     fun getEventSearch(){
         var getEventSearchResponse = networkService.getEventSearch("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds",intent.getIntExtra("clubId",0),intent.getIntExtra("eventId",0)) // 네트워크 서비스의 getContent 함수를 받아옴
         getEventSearchResponse.enqueue(object : Callback<GetEventSearch> {
@@ -53,13 +55,12 @@ class LoungeReservationActivity : AppCompatActivity() {
                     tv_lounge_detail_price.text=response.body()!!.data.price
                     Glide.with(ctx).load(response.body()!!.data.eventImg).centerCrop().into(iv_lounge_event_search_eventImg)
                     Glide.with(ctx).load(response.body()!!.data.detailImg).centerCrop().into(iv_rl_lounge_detail_program)
-                    //Glide.with(ctx).load(response.body()!!.data.eventImg).centerCrop().into(iv_lounge_event_detail_complete)
+
                     if(response.body()!!.data.eventStatus=="참여하기"){
                         btn_lounge_event_detail_join.visibility=View.VISIBLE
-
                     }
                     else if(response.body()!!.data.eventStatus=="참여완료"){
-                        btn_lounge_event_detail_join.visibility=View.GONE
+                        btn_lounge_event_detail_waiting.visibility=View.GONE
                     }
 
                 }
@@ -74,6 +75,8 @@ class LoungeReservationActivity : AppCompatActivity() {
         })
 
     }
+
+    //이벤트 참여 통신
     fun postJoinEvent(){
         var postJoinResponse = networkService.postJoinEvent("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds",intent.getIntExtra("eventId",0)) // 네트워크 서비스의 getContent 함수를 받아옴
         postJoinResponse.enqueue(object : Callback<PostJoinEvent> {

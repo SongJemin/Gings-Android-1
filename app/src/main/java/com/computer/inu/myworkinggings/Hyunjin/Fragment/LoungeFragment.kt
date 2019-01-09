@@ -26,7 +26,10 @@ class LoungeFragment : Fragment(){
     lateinit var LoungeDataRecyclerViewAdapter: LoungeDataRecyclerViewAdapter
 
     lateinit var networkService : NetworkService
+
+    //통신에 필요한 데이터로 데이터리스트를 다시 생성
     var dataList: ArrayList<ClubData> = ArrayList()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_lounge,container,false)
     }
@@ -36,8 +39,9 @@ class LoungeFragment : Fragment(){
         getSearchClub()
     }
 
+    //클럽 조회 통신
     fun getSearchClub(){
-        var getSearchClubDataResponse = networkService.getSearchClub("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds") // 네트워크 서비스의 getContent 함수를 받아옴
+        var getSearchClubDataResponse = networkService.getSearchClub("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds")
         getSearchClubDataResponse.enqueue(object : Callback<GetSearchClub> {
             override fun onResponse(call: Call<GetSearchClub>?, response: Response<GetSearchClub>?) {
                 Log.v("TAG", "GET 통신 성공")

@@ -25,18 +25,17 @@ class LoungeDataRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<
     override fun getItemCount(): Int = dataList.size
     override fun onBindViewHolder(holder: Holder, position: Int) {
 //뷰 바인딩!!
-        Glide.with(ctx).load(dataList[position].backImg).into(holder.backImg)
         Glide.with(ctx).load(dataList[position].backImg).centerCrop().into(holder.backImg)
         holder.title.text = dataList[position].title
         holder.all.setOnClickListener {
-            ctx.startActivity<LoungeIntroduceActivity>()
+            ctx.startActivity<LoungeIntroduceActivity>("clubId" to dataList[position].clubId)
         }
 
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val backImg : ImageView = itemView.findViewById(R.id.rl_iv_lounge_image) as ImageView
-        val title : TextView = itemView.findViewById(R.id.tv_rv_item_lounge_title) as TextView
+        val title : TextView = itemView.findViewById(R.id.tv_rl_lounge_main_club_name) as TextView
         val all : RelativeLayout = itemView.findViewById(R.id.iv_rv_item_lounge_image) as RelativeLayout
     }
 }

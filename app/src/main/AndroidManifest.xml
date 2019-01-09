@@ -15,7 +15,7 @@
 
         <!-- 로그인/가입창 -->
         //로그인 시작
-        <activity android:name=".Moohyeon.Activity.LoginActivity"></activity>
+        <activity android:name=".Moohyeon.Activity.LoginActivity" />
         //가입창
         <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
         <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
@@ -23,8 +23,9 @@
 
         <!-- 탭바 -->
         //보드
-        <activity android:name=".Moohyeon.Activity.BottomNaviActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".Moohyeon.Activity.BottomNaviActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 홈보드 -->
         //검색
@@ -89,8 +90,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
+        <activity
+            android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".Jemin.Activity.ChatActivity"></activity>
     </application>
 
 </manifest>

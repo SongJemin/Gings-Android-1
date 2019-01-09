@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Jemin.Activity.ChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/chat_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="#ffffff"
+        >
+        <TextView
+            android:id="@+id/chat_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lucy Lee"
+            android:layout_marginTop="14.2dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="#040404"
+            />
+
+        <TextView
+            android:id="@+id/chat_position_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="깅스 PM"
+            android:layout_marginTop="2.8dp"
+            android:textSize="12sp"
+            android:textColor="#707070"
+            android:layout_below="@+id/chat_name_tv"
+            android:layout_centerHorizontal="true"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chat_chat_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f9f9f9"
+        android:layout_below="@+id/chat_top_layout"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true"
+        >
+        <EditText
+            android:layout_width="283dp"
+            android:layout_height="32dp"
+            android:background="@drawable/box_textfleld"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:hint="Write your message…"
+            android:textSize="12sp"
+            android:textColor="#6d6d6d"
+            android:paddingLeft="10dp"
+            />
+
+        <Button
+            android:id="@+id/chat_send_btn"
+            android:layout_width="48dp"
+            android:layout_height="48.8dp"
+            android:background="@drawable/bt_send"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5.1dp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e2e8ed"
+            android:layout_alignParentTop="true"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

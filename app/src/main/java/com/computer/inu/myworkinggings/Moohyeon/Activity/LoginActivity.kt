@@ -10,7 +10,6 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Post.PostLogInResponse
-import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -50,13 +49,13 @@ class LoginActivity : AppCompatActivity() {
     //로그인 통신
     private fun getLoginResponse() {
         if (et_login_id.text.toString().isNotEmpty() && et_login_pw.text.toString().isNotEmpty()) {
-            var fcm_token = FirebaseInstanceId.getInstance().getToken();
+
             val input_email = et_login_id.text.toString()
             val input_pw = et_login_pw.text.toString()
             val jsonObject: JSONObject = JSONObject()
             jsonObject.put("email", input_email)
             jsonObject.put("pwd", input_pw)
-            jsonObject.put("fcm",fcm_token)
+
             val gsonObject: JsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
             val postLogInResponse = networkService.postLoginResponse("application/json", gsonObject)
             postLogInResponse.enqueue(object : Callback<PostLogInResponse> {

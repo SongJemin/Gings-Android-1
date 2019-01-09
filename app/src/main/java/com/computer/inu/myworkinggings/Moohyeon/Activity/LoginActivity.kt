@@ -1,10 +1,13 @@
 package com.computer.inu.myworkinggings.Moohyeon.Activity
 
+import android.app.Activity
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 
 import android.util.Log
+import android.widget.Toast
 
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
@@ -20,6 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+
+    var userID : Int = 0
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -38,11 +43,11 @@ class LoginActivity : AppCompatActivity() {
 
         //***로그인 통신***
         tv_login_login_button.setOnClickListener {
-            startActivity<MainActivity>()
+            getLoginResponse()
         }
 
             //startActivity<BottomNaviActivity>()
-            getLoginResponse()
+            //getLoginResponse()
         }
 
 
@@ -68,7 +73,20 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
                     if (response.isSuccessful) {
 
-                        Log.v("ttt", "Login-!-!-!")
+                        if(response.body()!!.message == "로그인 성공"){
+                            userID = response.body()!!.data.userId
+                            var pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
+                            var editor : SharedPreferences.Editor = pref.edit()
+                            editor.putInt("userID", userID) //userID란  key값으로 userID 데이터를 저장한다.
+                            Log.v("LoginActivity", "유저 번호 = " + userID)
+                            editor.commit()
+                            Log.v("ttt", "Login-!-!-!")
+                            startActivity<MainActivity>()
+                        }
+                        else{
+                            Toast.makeText(applicationContext,"회원 정보가 틀렸습니다.", Toast.LENGTH_LONG).show()
+                        }
+
 
                         //자동 로그인
                         /*val firstLogIn = response.body()!!.data.firstLogIn
@@ -78,10 +96,16 @@ class LoginActivity : AppCompatActivity() {
                             //toast(SharedPreferenceController.getAuthorization(this@LoginActivity))
                         }
 */
-                        startActivity<BottomNaviActivity>()
+                        //startActivity<BottomNaviActivity>()
+                    }
+                    else{
+                        Toast.makeText(applicationContext,"회원 정보가 틀렸습니다.", Toast.LENGTH_LONG).show()
                     }
                 }
             })
+        }
+        else{
+            Toast.makeText(applicationContext,"빈칸 없이 입력해주세요.", Toast.LENGTH_LONG).show()
         }
 
     }

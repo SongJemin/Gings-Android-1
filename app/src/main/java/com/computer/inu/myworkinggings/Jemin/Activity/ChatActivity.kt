@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Jemin.Activity
 
+import android.app.Activity
 import android.os.*
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -10,6 +11,10 @@ import com.computer.inu.myworkinggings.Hyunjin.Adapter.MessageSendDataRecyclerVi
 import com.computer.inu.myworkinggings.Hyunjin.Data.MessageSendData
 import com.computer.inu.myworkinggings.Jemin.Adapter.ChatAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.ChatListItem
+import com.computer.inu.myworkinggings.Jemin.Data.UserData
+import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
+import com.computer.inu.myworkinggings.Network.ApplicationController
+import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import io.reactivex.CompletableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,6 +22,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.fragment_messagesend1.*
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompHeader
 import ua.naiksoftware.stomp.client.StompClient
@@ -27,6 +35,10 @@ class ChatActivity : AppCompatActivity() {
 
     val TAG = "ChatActivity"
 
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
+
     lateinit var mStompClient : StompClient
     var sendMessage : String = ""
     var receiveMessage : String = ""
@@ -36,6 +48,11 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
+        val pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
+        var userID : Int = 0
+        userID = pref.getInt("userID",0)
+
         sendMessage = "메세지 보냅니다."
         chat_send_btn.setOnClickListener {
             sendMessage = chat_message_edit.text.toString()
@@ -57,7 +74,6 @@ class ChatActivity : AppCompatActivity() {
         mStompClient.topic("/topic/temp").subscribe { topicMessage ->
             {
                 Log.d("SubscribeLog222", topicMessage.payload)
-
             }
             Log.v(TAG, "Recieve Json Data = " + topicMessage.payload)
             var jObject = JSONObject(topicMessage.payload)
@@ -65,15 +81,15 @@ class ChatActivity : AppCompatActivity() {
             Log.v(TAG, "Receive Message = " + receiveMessage)
 
 
-                if(receiveMessage.isNotEmpty()){
-                    Log.v(TAG,"수신 메세지 not null2")
-                    Log.v(TAG,"채팅 데이터 크기 = " + chatData.size)
-                    chatData.add(ChatListItem(1,"받는 메세지 = " + receiveMessage))
+            if(receiveMessage.isNotEmpty()){
+                Log.v(TAG,"수신 메세지 not null2")
+                Log.v(TAG,"채팅 데이터 크기 = " + chatData.size)
+                chatData.add(ChatListItem(1,"받는 메세지 = " + receiveMessage))
 
-                    chatAdapter = ChatAdapter(chatData)
-                    setAdapter()
+                chatAdapter = ChatAdapter(chatData)
+                setAdapter()
 
-                }
+            }
 
         }
 
@@ -173,6 +189,5 @@ class ChatActivity : AppCompatActivity() {
         }
 
     }
-
 
 }

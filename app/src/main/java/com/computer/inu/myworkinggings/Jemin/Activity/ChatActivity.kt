@@ -11,10 +11,6 @@ import com.computer.inu.myworkinggings.Hyunjin.Adapter.MessageSendDataRecyclerVi
 import com.computer.inu.myworkinggings.Hyunjin.Data.MessageSendData
 import com.computer.inu.myworkinggings.Jemin.Adapter.ChatAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.ChatListItem
-import com.computer.inu.myworkinggings.Jemin.Data.UserData
-import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
-import com.computer.inu.myworkinggings.Network.ApplicationController
-import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import io.reactivex.CompletableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,9 +18,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.fragment_messagesend1.*
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompHeader
 import ua.naiksoftware.stomp.client.StompClient
@@ -35,10 +28,6 @@ class ChatActivity : AppCompatActivity() {
 
     val TAG = "ChatActivity"
 
-    val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
-    }
-
     lateinit var mStompClient : StompClient
     var sendMessage : String = ""
     var receiveMessage : String = ""
@@ -48,11 +37,6 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-
-        val pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
-        var userID : Int = 0
-        userID = pref.getInt("userID",0)
-
         sendMessage = "메세지 보냅니다."
         chat_send_btn.setOnClickListener {
             sendMessage = chat_message_edit.text.toString()
@@ -61,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
         }
 
         var headers = java.util.ArrayList<StompHeader>()
-        headers.add(StompHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds"))
+        headers.add(StompHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjExLCJyb2xlIjoiVVNFUiIsImlzcyI6IkdpbmdzIFVzZXIgQXV0aCBNYW5hZ2VyIiwiZXhwIjoxNTQ5NTU1MjQ0fQ.Scr9KOVbfIM34s4Ez6vquutEk6uO_Xavk55fyob2Org"))
 
 
         //서버연결
@@ -71,27 +55,34 @@ class ChatActivity : AppCompatActivity() {
         //소켓 연결
         mStompClient.connect(headers)
         //채팅방 연결
-        mStompClient.topic("/topic/temp").subscribe { topicMessage ->
+        mStompClient.topic("/user/queue/chat-notice").subscribe { topicMessage ->
             {
                 Log.d("SubscribeLog222", topicMessage.payload)
             }
-            Log.v(TAG, "Recieve Json Data = " + topicMessage.payload)
-            var jObject = JSONObject(topicMessage.payload)
-            receiveMessage = jObject.getString("message")
-            Log.v(TAG, "Receive Message = " + receiveMessage)
-
-
-            if(receiveMessage.isNotEmpty()){
-                Log.v(TAG,"수신 메세지 not null2")
-                Log.v(TAG,"채팅 데이터 크기 = " + chatData.size)
-                chatData.add(ChatListItem(1,"받는 메세지 = " + receiveMessage))
-
-                chatAdapter = ChatAdapter(chatData)
-                setAdapter()
-
-            }
 
         }
+//        mStompClient.topic("/topic/temp").subscribe { topicMessage ->
+//            {
+//                Log.d("SubscribeLog222", topicMessage.payload)
+//
+//            }
+//            Log.v(TAG, "Recieve Json Data = " + topicMessage.payload)
+//            var jObject = JSONObject(topicMessage.payload)
+//            receiveMessage = jObject.getString("message")
+//            Log.v(TAG, "Receive Message = " + receiveMessage)
+//
+//
+//            if(receiveMessage.isNotEmpty()){
+//                Log.v(TAG,"수신 메세지 not null2")
+//                Log.v(TAG,"채팅 데이터 크기 = " + chatData.size)
+//                chatData.add(ChatListItem(1,"받는 메세지 = " + receiveMessage))
+//
+//                chatAdapter = ChatAdapter(chatData)
+//                setAdapter()
+//
+//            }
+//
+//        }
 
         // edittext 클릭 시 채팅리스트 맨 아래로 가도록
         if (Build.VERSION.SDK_INT >= 11) {
@@ -146,9 +137,13 @@ class ChatActivity : AppCompatActivity() {
         chatData.add(ChatListItem(0,"보낸 메세지 = " + sendMessage))
         var mTimeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         var jsonObject = JSONObject()
-        jsonObject.put("message", sendMessage)
+        val pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
+        var userID : ArrayList<Int>  = ArrayList<Int>()
+        userID.add(pref.getInt("userID",0))
+        jsonObject.put("users", userID)
+        jsonObject.put("roomType","OneToOne")
 
-        mStompClient.send("/temp", jsonObject.toString() + mTimeFormat.format(Date()))
+        mStompClient.send("/chat/create", jsonObject.toString() + mTimeFormat.format(Date()))
                 .compose(applySchedulers())
                 .subscribe({ Log.d("SendLog", "STOMP echo send successfully") }, { throwable ->
                     Log.e("SendLogError", "Error send STOMP echo", throwable)
@@ -184,10 +179,11 @@ class ChatActivity : AppCompatActivity() {
             chat_chat_recyclerview.adapter = chatAdapter
             chat_chat_recyclerview.layoutManager = LinearLayoutManager(applicationContext)
             chat_chat_recyclerview.scrollToPosition(chatData.size-1)
-            // 원래 하고싶었던 일들 (UI변경작업 등...)
+            // 원래 하고싶었던 일들 (UI변경작업 등…)
 
         }
 
     }
+
 
 }

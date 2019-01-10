@@ -18,6 +18,16 @@ import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
+import com.computer.inu.myworkinggings.Seunghee.Post.PostBoardShareResponse
+import com.kakao.kakaolink.v2.KakaoLinkResponse
+import com.kakao.kakaolink.v2.KakaoLinkService
+import com.kakao.message.template.ButtonObject
+import com.kakao.message.template.ContentObject
+import com.kakao.message.template.FeedTemplate
+import com.kakao.message.template.LinkObject
+import com.kakao.network.ErrorResult
+import com.kakao.network.callback.ResponseCallback
+import com.kakao.util.helper.log.Logger
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -29,9 +39,9 @@ import android.R.attr.onClick
 import android.widget.*
 
 
-class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager : RequestManager)
+class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager: RequestManager)
     : RecyclerView.Adapter<BoardRecyclerViewAdapter.Holder>() {
-
+    var b_id: Int = 0
 
 
     val networkService: NetworkService by lazy {
@@ -49,6 +59,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        holder.item_box
 
         //인스턴스 객체 - 데이터 연결
 
@@ -99,6 +111,14 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         // 댓글 수
         holder.comment_cnt.text = dataList[position].numOfReply.toString()
 
+
+        //공유
+        holder.share_btn.setOnClickListener {
+            sendLink(dataList[position])
+
+            getBoardShareResponse()
+        }
+
         /*이벤트 처리*/
 
         //디테일 보드 창으로 넘어가기
@@ -113,12 +133,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
 
-            //본인 게시글 클릭
             ctx.toast(dataList[position].boardId!!.toString())
+
+            //본인 게시글 클릭
             ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
 
             //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>()
+            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
         }
 
         //좋아요 버튼
@@ -170,6 +191,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     //layout의 view를 인스턴스 변수로 만들어 줌
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val item_box : LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
         val gotoDetailedBoard: LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
 
         //title
@@ -179,12 +201,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val time: TextView = itemView.findViewById(R.id.tv_item_board_time) as TextView
 
         //contents
-        var contents_img_viewPager : ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
+        var contents_img_viewPager: ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
         val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필
-        val profile_img : ImageView = itemView.findViewById(R.id.iv_item_board_profile_img) as ImageView
+        val profile_img: ImageView = itemView.findViewById(R.id.iv_item_board_profile_img) as ImageView
         val name: TextView = itemView.findViewById(R.id.tv_item_board_profile_name) as TextView
         val team: TextView = itemView.findViewById(R.id.tv_item_board_profile_team) as TextView
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
@@ -201,7 +223,89 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //공유하기 val
         val share_btn: ImageView = itemView.findViewById(R.id.iv_item_board_share) as ImageView
 
-        val more_btn : Button = itemView.findViewById(R.id.btn_rv_item_more) as Button
+        val more_btn: Button = itemView.findViewById(R.id.btn_rv_item_more) as Button
+
     }
 
+
+    //보드공유 통신
+    private fun getBoardShareResponse(){
+        val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                b_id)
+
+        postBoardshareResponse.enqueue(object : Callback<PostBoardShareResponse> {
+            override fun onFailure(call: Call<PostBoardShareResponse>, t: Throwable) {
+                Log.e("보드공유 통신 fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostBoardShareResponse>, response: Response<PostBoardShareResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("보드공유 통신성공", "  통신 성공")
+                    ctx.toast("공유@")
+                }
+            }
+        })
+
+    }
+
+
+    private fun BoardLikePost() {
+        val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                b_id)
+
+        postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
+            override fun onFailure(call: Call<PostBoardLikeResponse>, t: Throwable) {
+                Log.e("통신 fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("통신성공", "  통신 성공")
+                }
+            }
+        })
+    }
+
+    //카카오톡 링크 공유
+    private fun sendLink(dataList: BoardItem) {
+
+
+        var images : String?
+
+        Log.v("ㅎ;;ㅎ;ㅎ;;ㅎ;ㅎㅎ 너의크기는무엇이늬",dataList.images.size.toString())
+
+        if(dataList.images.size == 0){
+            images = "https://s3.ap-northeast-2.amazonaws.com/gings-storage/gings.png"
+        }else
+            images = dataList.images[0]
+
+        val params = FeedTemplate
+                .newBuilder(ContentObject.newBuilder(dataList.title,
+                        images,
+                        LinkObject.newBuilder().setWebUrl("")
+                                .setMobileWebUrl("").build())
+                        .setDescrption("혁신적인 창업가들을 위한 멤버쉽 커뮤니티, 깅스")
+
+                        .build())
+
+                .addButton(ButtonObject("깅스 앱으로 열기", LinkObject.newBuilder()
+                        //.setWebUrl("'https://developers.kakao.com")
+                        .setAndroidExecutionParams("boardIDValue="+dataList.boardId)
+                        .build()))
+                .build()
+
+        KakaoLinkService.getInstance().sendDefault(ctx, params, object : ResponseCallback<KakaoLinkResponse>() {
+
+            override fun onFailure(errorResult: ErrorResult) {
+                Logger.e(errorResult.toString())
+            }
+            override fun onSuccess(result: KakaoLinkResponse) {}
+        })
+    }
 }
+
+
+
+

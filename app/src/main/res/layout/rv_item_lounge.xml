@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
+    android:id="@+id/rl_lounge_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,30 +9,50 @@
     <RelativeLayout
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="258dp"
+        android:layout_height="match_parent"
         android:background="#ffffff"
         android:id="@+id/iv_rv_item_lounge_image"
         >
-        <ImageView
-            android:id="@+id/rl_iv_lounge_image"
-            android:layout_centerInParent="true"
-            android:layout_width="290dp"
-            android:layout_height="210dp"
-            android:src="@drawable/rounge"
-            />
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/rl_iv_lounge_image"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/rounge"
+        android:scaleType="fitXY"
+        />
+    <RelativeLayout
+        android:id="@+id/rl_lounge_main_button"
+        android:background="@drawable/round"
+        android:layout_width="289dp"
+        android:layout_height="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        >
         <TextView
-            android:id="@+id/tv_rv_item_lounge_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#000000"
+            android:id="@+id/tv_rl_lounge_main_club_name"
+            android:layout_width="131dp"
+            android:layout_height="22dp"
+            android:textSize="15sp"
+            android:textColor="#222222"
             android:letterSpacing="-0.01"
-            android:lineSpacingExtra="7sp"
-            android:layout_marginBottom="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="65dp"
+            android:lineSpacingExtra="5sp"
             android:text="INNOVATOR CLUB"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
             android:textStyle="bold"
+            />
+        <ImageView
+            android:id="@+id/btn_lounge_main_arrow_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_black_arrow_24dp"
             />
     </RelativeLayout>
 

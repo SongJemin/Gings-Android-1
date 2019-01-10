@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Moohyeon.Data.UserPageData
@@ -31,6 +32,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     lateinit var regionSpinner : Spinner
     lateinit var collabSpinner : Spinner
     lateinit var statusSpinner : Spinner
+    var regionValue : String = ""
     var keywords = ArrayList<String>()
 
     val networkService: NetworkService by lazy {
@@ -39,16 +41,96 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_info_update)
+        regionSpinner.setSelection(0)
+        regionValue = "SEOUL"
         getProfileInform()
 
         bt_profile_info_update_complete.setOnClickListener {
-            val keywordList = et_profile_info_update_keyword.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-
-            for (keyword in keywordList) {
-                Log.v("Asdf", "키워드 자르기 = " +   keyword.replace("#", ""))
-                keywords.add(keyword.replace("#", ""))
+            if(et_profile_info_update_role.text.toString().isEmpty()
+            || et_profile_info_update_part.text.toString().isEmpty()
+            || et_profile_info_update_co_part.text.toString().isEmpty()
+                    || et_profile_info_update_keyword.text.toString().isEmpty()
+            ){
+                if(et_profile_info_update_role.text.toString().isEmpty()){
+                    Toast.makeText(applicationContext,"역할을 입력하세요.",Toast.LENGTH_LONG).show()
+                }
+                else if(et_profile_info_update_part.text.toString().isEmpty()){
+                    Toast.makeText(applicationContext,"소속을 입력하세요.",Toast.LENGTH_LONG).show()
+                }
+                else if(et_profile_info_update_co_part.text.toString().isEmpty()){
+                    Toast.makeText(applicationContext,"활동 분야를 입력하세요.",Toast.LENGTH_LONG).show()
+                }
+                else if(et_profile_info_update_keyword.text.toString().isEmpty() || et_profile_info_update_role.text.toString().isEmpty()){
+                    Toast.makeText(applicationContext,"키워드를 입력하세요.",Toast.LENGTH_LONG).show()
+                }
             }
-            putProfileInfo()
+            else{
+                if(regionSpinner.getSelectedItem().toString() == "서울"){
+                    regionValue = "SEOUL"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "세종"){
+                    regionValue = "SEJONG"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "부산"){
+                    regionValue = "PUSAN"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "대구"){
+                    regionValue = "DAEGU"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "대전"){
+                    regionValue = "DAEJEON"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "인천"){
+                    regionValue = "INCHEON"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "울산"){
+                    regionValue = "ULSAN"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "광주"){
+                    regionValue = "GWANGJU"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "강원"){
+                    regionValue = "GANGWON"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "경기"){
+                    regionValue = "GYEONGGI"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "충남"){
+                    regionValue = "CHUNGNAM"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "충북"){
+                    regionValue = "CHUNGBUK"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "전북"){
+                    regionValue = "JEONBUK"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "전남"){
+                    regionValue = "JEONNAM"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "경남"){
+                    regionValue = "GYEONGNAM"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "경북"){
+                    regionValue = "GYEONGBUK"
+                }
+                else if(regionSpinner.getSelectedItem().toString() == "제주"){
+                    regionValue = "JEJU"
+                }
+                else{
+                    regionValue = "NONE"
+                }
+
+                val keywordList = et_profile_info_update_keyword.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+                for (keyword in keywordList) {
+                    Log.v("Asdf", "키워드 자르기 = " +   keyword.replace("#", ""))
+                    keywords.add(keyword.replace("#", ""))
+                }
+
+                putProfileInfo()
+            }
+
+
         }
 
     }

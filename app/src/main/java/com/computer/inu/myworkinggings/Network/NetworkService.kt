@@ -1,12 +1,15 @@
 package com.computer.inu.myworkinggings.Network
 
 import android.app.ListActivity
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetDetailSearchClub
+import com.computer.inu.myworkinggings.Hyunjin.Get.GetEventSearch
 import com.computer.inu.myworkinggings.Jemin.Get.Response.*
 import com.computer.inu.myworkinggings.Jemin.POST.PostKeywords
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Hyunjin.Get.GetSearchClub
 import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
 import com.computer.inu.myworkinggings.Hyunjin.Post.PostClubSignUp
+import com.computer.inu.myworkinggings.Hyunjin.Post.PostJoinEvent
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetBoardResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetEmailRedundancyResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherInformResponse
@@ -14,14 +17,13 @@ import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.*
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetBoardSearchResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryBoardResponse
-import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
+import com.computer.inu.myworkinggings.Seunghee.GET.*
 import com.computer.inu.myworkinggings.Seunghee.Post.*
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface NetworkService {
@@ -169,6 +171,15 @@ interface NetworkService {
             @Part images: ArrayList<MultipartBody.Part?>
     ): Call<PostResponse>
 
+    @Multipart
+    @POST("/mypage/setting/introduce")
+    fun updateMyIntroduce(
+            @Header("Authorization") Authorization: String,
+            @Part("content") content: RequestBody,
+            @Part images: ArrayList<MultipartBody.Part?>,
+            @Part ("prevImagesUrl") prevImagesUrl : ArrayList<RequestBody>
+    ): Call<PostResponse>
+
     @GET("/mypage/others/active/{myPageUserId}")
     fun getOtherActive(
             @Header("Authorization") Authorization: String,
@@ -245,6 +256,7 @@ interface NetworkService {
             @Header("Authorization") Authorization : String,
             @Path("clubId") clubId : Int
     ) : Call<PostClubSignUp>
+
     @GET("/search/directory")
     fun getDirectorySearchResponse(
             @Header("Content-type") content_type: String,
@@ -275,7 +287,7 @@ interface NetworkService {
             @Path("reboardId") reboardId: Int
     ): Call<DeleteReboardResponse>
 
-    @GET("boards/category/{category}")
+    @GET("boards/category/{category}/latest")
     fun getCategoryBoardResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
@@ -288,4 +300,73 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Query("keyword") keyword: String
     ): Call<GetBoardSearchResponse>
+
+
+    @POST("/mypage/setting/modifyPwd")
+    fun postCurrentPasswordConfirm(
+            @Header("Authorization") Authorization: String,
+            @Body() body: JsonObject
+    ): Call<PostResponse>
+
+    @PATCH("/mypage/setting/modifyPwd")
+    fun patchPassword(
+            @Header("Authorization") Authorization: String,
+            @Body() body: JsonObject
+    ): Call<PostResponse>
+
+    @GET("/clubs/{clubId}")
+    fun getDetailSearchClub(
+            @Header("Authorization") Authorization : String,
+            @Path("clubId") clubId : Int
+    ) : Call<GetDetailSearchClub>
+
+    @GET("/clubs/{clubId}/{eventId}")
+    fun getEventSearch(
+            @Header("Authorization") Authorization : String,
+            @Path("clubId") clubId : Int,
+            @Path("eventId") eventId : Int
+    ) : Call<GetEventSearch>
+
+    @POST("/events/{eventId}")
+    fun postJoinEvent(
+            @Header("Authorization") Authorization : String,
+            @Path("eventId") eventId: Int
+    ) : Call<PostJoinEvent>
+
+    @GET("boards/category/{category}/recommend")
+    fun getCategoryLikeRankResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("category") category: String
+    ) : Call<GetCategoryLikeRankResponse>
+
+    @GET("/search/boards/category/{category}/latest")
+    fun getCategorySearchResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("category") category: String,
+            @Query("keyword") keyword: String
+    ) : Call<GetCategorySearchResponse>
+
+    @GET("/search/boards/category/{category}/recommend")
+    fun getCategorySearchLikeRankResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("category") category: String,
+            @Query("keyword") keyword: String
+    ) : Call<GetCategorySearchLikeRankResponse>
+
+    @POST("boards/{boardId}/share")
+    fun postBoardShareResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId: Int
+    ) : Call<PostBoardShareResponse>
+
+    @POST("boards/{boardId}/block")
+    fun postBlockBoardIDResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String,
+            @Path("boardId") boardId: Int
+    ) : Call<PostBlockBoardIDResponse>
 }

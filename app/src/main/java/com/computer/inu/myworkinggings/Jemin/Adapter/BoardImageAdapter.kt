@@ -69,7 +69,23 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
             }
             // 자기소개쪽
             else if(checkFlag == 1){
-                MypageUpdateActivity.mypageUpdateActivity.imagesList.removeAt(position)
+                deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
+                boardImageItem.removeAt(position)
+
+                // 서버로부터 받은 사진 지우기
+                if(position <= getImageUrlSize-1-urlRemovedCount){
+
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, boardImageItem.size);
+                    urlRemovedCount += 1
+                }
+                // 갤러리에서 올린 사진 지우기
+                else{
+                    MypageUpdateActivity.mypageUpdateActivity.postImagesList.removeAt(position)
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, boardImageItem.size);
+                }
+
             }
 
             // 리보드쪽
@@ -108,6 +124,26 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
                 }
             }
 
+        }
+        else if(checkFlag == 1){
+            // 서버로부터 받은 이미지 리스트 개수가 0이면
+            if(getImageUrlSize == 0){
+                // 차례대로 이미지 url을 통해서 리사이클러뷰에 등록
+                requestManager.load(boardImageItem[getImageUrlSize+position].imageUri).centerCrop().into(holder.boardImageView)
+            }
+            // 서버로부터 받은 이미지 리스트 개수가 0보다 크다면
+            else{
+                // 서버로부터 받은 이미지들부터 먼저 리사이클러뷰에 등록
+                if(position <= getImageUrlSize-1-urlRemovedCount) {
+                    // 차례대로 이미지 url을 통해서 리사이클러뷰에 등록
+                    requestManager.load(boardImageItem[position].imageUrl).centerCrop().into(holder.boardImageView)
+                }
+                // 그다음 갤러리에서 추가된 이미지 리스트 리사이클러뷰에 등록
+                else{
+                    // 차례대로 이미지 uri를 통해서 리사이클러뷰에 등록
+                    requestManager.load(boardImageItem[position].imageUri).centerCrop().into(holder.boardImageView)
+                }
+            }
         }
         else if(checkFlag==2){
             if(getImageUrlSize == 0){

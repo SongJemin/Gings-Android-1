@@ -16,6 +16,7 @@ import com.computer.inu.myworkinggings.Moohyeon.Data.DirectoryData
 import com.computer.inu.myworkinggings.R
 import java.util.ArrayList
 import android.R.attr.fragment
+import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.util.Log
 import com.computer.inu.myworkinggings.Hyunjin.Activity.TopNaviMessageNoticeActivity
@@ -56,6 +57,9 @@ class DirectoryBoardRecyclerViewAdapter (val ctx: Context, var dataList: ArrayLi
         holder.guestboard.setOnClickListener {
             val transaction = (ctx as FragmentActivity).getSupportFragmentManager().beginTransaction()
             val mypageFragment = MyPageFragment()
+            val bundle = Bundle()
+            bundle.putInt("userID", dataList[position].id!!)
+            mypageFragment.setArguments(bundle)
             transaction.replace(R.id.main_fragment_container, mypageFragment)
             transaction.commit()
             ctx.main_mypage_btn.setSelected(true)

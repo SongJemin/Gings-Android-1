@@ -44,6 +44,9 @@ class MyPageFragment : Fragment() {
     var checkFlag : Int = 0
     var keword : String= ""
     var profileImgUrl : String = ""
+    var userID : Int = 0
+
+    var my_or_other_flag : Int = 0
 
     // 처음 프래그먼트 추가
     fun addFragment(fragment : Fragment){
@@ -97,6 +100,15 @@ class MyPageFragment : Fragment() {
         val v : View = inflater.inflate(R.layout.fragment_my_page,container,false)
         v.mypage_act_view.visibility = View.INVISIBLE
 
+        val extra = arguments
+        if(extra != null){
+            userID = extra!!.getInt("userID")
+            my_or_other_flag = 1
+        }
+        else{
+            my_or_other_flag = 0
+        }
+        Log.v("MypageFragent", "받아온 유저 아이디 = " +userID)
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
      //   getProfileImgUrl()

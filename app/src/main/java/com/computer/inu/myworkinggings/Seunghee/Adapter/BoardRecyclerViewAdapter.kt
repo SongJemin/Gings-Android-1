@@ -220,11 +220,11 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //좋아요
         var like_rl : RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
-        var like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
+        var like_btn: Button = itemView.findViewById(R.id.iv_item_like_btn) as Button
         var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 
         //댓글아이콘
-        val comment_btn: ImageView = itemView.findViewById(R.id.iv_item_board_comment) as ImageView
+        val comment_btn: RelativeLayout = itemView.findViewById(R.id.rl_item_board_comment) as RelativeLayout
         val comment_cnt: TextView = itemView.findViewById(R.id.tv_item_board_comment_cnt) as TextView //int
 
         //공유하기 val

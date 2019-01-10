@@ -85,6 +85,7 @@ class DetailBoardActivity : AppCompatActivity() {
         Log.v(TAG,"전송 받은 보드 ID = " + boardId)
         //postReBoard()
         detail_board_reboard_img_recyclerview.visibility = View.GONE
+        
         //setRecyclerView()
 
         tv_item_board_profile_name.setOnClickListener {
@@ -108,6 +109,7 @@ class DetailBoardActivity : AppCompatActivity() {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
             detail_board_reboard_img_recyclerview.visibility = View.GONE
+            
         }
 
         detail_board_reboard_img_btn.setOnClickListener {
@@ -164,6 +166,7 @@ class DetailBoardActivity : AppCompatActivity() {
                             }
                             else{
                                 detail_board_reboard_img_recyclerview.visibility = View.GONE
+                                
                             }
                         }
                     }
@@ -183,11 +186,12 @@ class DetailBoardActivity : AppCompatActivity() {
             }
             else{
                 Log.v("asdf", "리보드 준비 완료" + detail_board_reboard_edit.text.toString())
+                postReBoard()
                 detail_board_reboard_img_recyclerview.visibility = View.GONE
+                
                 detail_board_reboard_edit.setText("")
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
-                postReBoard()
             }
         }
     }
@@ -217,8 +221,12 @@ class DetailBoardActivity : AppCompatActivity() {
 
                     //보드연결
                     temp = response.body()!!.data
+
                     getUserID = temp.writerId!!
                     bindBoardData(temp)
+                    if(temp.writerImage != null){
+                        requestManager.load(temp.writerImage).into(iv_item_board_profile_img)
+                    }
 
                     //리보드연결
                     val reboardtemp : ArrayList<ReplyData?> = response.body()!!.data.replys
@@ -237,7 +245,15 @@ class DetailBoardActivity : AppCompatActivity() {
 
         /*타이틀*/
         tv_detail_board_time.text = temp.time!!.substring(0,16).replace("T"," ")
-        tv_detail_board_category.text = temp.category
+        if(temp.category == "QUESTION") {
+            tv_detail_board_category.text = "질문"
+        }
+        else if(temp.category == "INSPIRATION") {
+            tv_detail_board_category.text = "영감"
+        }
+        else if(temp.category == "COWORKING"){
+            tv_detail_board_category.text = "협업"
+        }
         tv_detail_board_title.text = temp.title
         Log.v("at","프사url = " + temp.writerImage)
         requestManager = Glide.with(this)
@@ -379,6 +395,7 @@ class DetailBoardActivity : AppCompatActivity() {
                     Log.v("TAG","리보드 수정 응답 status = " + response.body()!!.status)
                     Log.v("TAG","리보드 수정 응답 message = " + response.body()!!.message)
                     detail_board_reboard_img_recyclerview.visibility = View.GONE
+                    
                     reboardImageUrlList.clear()
                     detail_board_reboard_edit.setText("")
                     getDetailedBoardResponse(0)
@@ -411,8 +428,8 @@ class DetailBoardActivity : AppCompatActivity() {
                 }
             }
             reboardImageUrlList.clear()
-            if(temp.images.size == 0){
-                detail_board_reboard_img_recyclerview.visibility = View.VISIBLE
+            if(temp.replys[seletectedPostion]!!.images.size == 0){
+                detail_board_reboard_img_recyclerview.visibility = View.GONE
             }
             else{
                 detail_board_reboard_img_recyclerview.visibility = View.VISIBLE

@@ -105,4 +105,14 @@
             android:layout_width="245dp"
             android:layout_height="245dp"
             android:src="@mipmap/ic_launcher_round"/>
+    <LinearLayout
+        android:id="@+id/rv_item_detail_board_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/iv_item_board_image_contents"
+        >
+
+    </LinearLayout>
+
 </RelativeLayout>

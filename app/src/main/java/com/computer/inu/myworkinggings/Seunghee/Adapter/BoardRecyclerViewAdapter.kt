@@ -71,9 +71,18 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.item_box
 
         //인스턴스 객체 - 데이터 연결
-
         //title
-        dataList
+
+        if(dataList[position].category == "QUESTION") {
+            holder.category.text = "질문"
+        }
+        else if(dataList[position].category == "INSPIRATION") {
+            holder.category.text = "영감"
+        }
+        else if(dataList[position].category == "COWORKING"){
+            holder.category.text = "협업"
+        }
+
         holder.category.text = dataList[position].category
         holder.title.text = dataList[position].title
         for (i in 0..dataList[position].keywords.size - 1) {

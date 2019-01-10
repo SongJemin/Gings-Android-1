@@ -23,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 import android.app.Activity
-
+import android.widget.LinearLayout
 
 
 class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReplyData?>)
@@ -38,7 +38,10 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-
+        holder.reboardBottomLayout.visibility = View.GONE
+        if(position == dataList.size-1){
+            holder.reboardBottomLayout.visibility = View.VISIBLE
+        }
         holder.name.text = dataList[position]!!.writer
         holder.time.text = dataList[position]!!.writeTime
         holder.contents_text.text = dataList[position]!!.content
@@ -98,6 +101,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         val reboard_like: ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
         var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
         var reboardMoreImg : ImageView = itemView.findViewById(R.id.iv_item_rebord_more) as ImageView
+        var reboardBottomLayout : LinearLayout = itemView.findViewById(R.id.rv_item_detail_board_layout) as LinearLayout
 
     }
 

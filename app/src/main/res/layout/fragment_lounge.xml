@@ -27,7 +27,27 @@
 
         </RelativeLayout>
 
-    <LinearLayout
+
+
+    <RelativeLayout
+            android:id="@+id/iv_rv_item_lounge_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_top_bar_lounge"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_lounge_frag_lounge_list"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+    <RelativeLayout
         android:background="#ffffff"
         android:layout_width="191dp"
         android:layout_height="160dp"
@@ -57,30 +77,11 @@
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="7sp"
             android:layout_marginLeft="19.5dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="71dp"
             android:text="관심 있는 클럽에 가입 해
 멤버들과 더욱 긴밀한 교류를
 경험해 보세요."
             />
-    </LinearLayout>
-
-    <RelativeLayout
-            android:id="@+id/iv_rv_item_lounge_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/rl_top_bar_lounge"
-            >
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_lounge_frag_lounge_list"
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
-
-            </android.support.v7.widget.RecyclerView>
-
-        </RelativeLayout>
+    </RelativeLayout>
 
     </RelativeLayout>

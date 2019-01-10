@@ -186,11 +186,12 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ll_lounge_introduce_introduce_schedule"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="292dp"
         android:orientation="vertical"
-        android:visibility="gone">
+        >
 
         <RelativeLayout
             android:id="@+id/rl_lounge_schedule_text"
@@ -235,9 +236,9 @@
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/calendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:mcv_showOtherDates="all"
+                android:layout_width="328dp"
+                android:layout_height="217dp"
+                app:mcv_showOtherDates="defaults"
                 app:mcv_selectionColor="#00F"
                 />
         </RelativeLayout>
@@ -278,6 +279,6 @@
             </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 </RelativeLayout>

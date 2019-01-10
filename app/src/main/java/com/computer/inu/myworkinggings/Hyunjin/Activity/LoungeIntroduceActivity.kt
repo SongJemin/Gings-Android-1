@@ -72,7 +72,7 @@ class LoungeIntroduceActivity : AppCompatActivity() {
                     Log.v("TAG", "message = " + response.body()!!.message)
                     var message = response.body()!!.message!!
 
-                    if(message == "클럽 가입 승인 신청 성공"){
+                    if(message == "가입완료"){
                         btn_lounge_introduce_signup_waiting.visibility=View.GONE
                     }
                     else{

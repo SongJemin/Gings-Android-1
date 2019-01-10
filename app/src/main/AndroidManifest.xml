@@ -9,9 +9,15 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
+<<<<<<< HEAD
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+=======
+        android:icon="@drawable/invalid_name"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/invalid_name"
+>>>>>>> 329f92a103bcc387311757abc10782bf20f22599
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -116,18 +122,37 @@
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
 
+<<<<<<< HEAD
         <service
             android:name=".Moohyeon.Firebase.MyFirebaseInstanceIDService">
+=======
+        <activity android:name=".Jemin.Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
+        <!-- FCM 관련 서비스 -->
+        <service
+            android:name=".Jemin.Firebase.FireBaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+>>>>>>> 329f92a103bcc387311757abc10782bf20f22599
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
+<<<<<<< HEAD
             android:name=".Moohyeon.Firebase.MyFirebaseMessagingService">
+=======
+            android:name=".Jemin.Firebase.FirebaseInstanceIDService"
+            android:enabled="true"
+            android:exported="true">
+>>>>>>> 329f92a103bcc387311757abc10782bf20f22599
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <!-- 여기까지 -->
+
     </application>
 
 </manifest>

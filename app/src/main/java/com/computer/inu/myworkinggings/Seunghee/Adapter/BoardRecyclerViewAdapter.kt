@@ -44,8 +44,8 @@ import android.support.v4.app.FragmentActivity
 import android.widget.*
 import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
-import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.rv_item_board.*
 
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager: RequestManager)
@@ -83,16 +83,21 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                 holder.tag.append("    #" + dataList[position].keywords[i])
             }
         }
-        for (i in 0..dataList[position].images.size - 1) {
-            if (dataList[position].images.size == 0) {
-                Log.v("asdf", "사이즈 0" + dataList[position].images.size)
-                holder.contents_img_viewPager.visibility = View.GONE
-            } else {
-                Log.v("asdf", "사이즈 있음 " + dataList[position].images.size)
-                var adapter = ImageAdapter(ctx, requestManager, dataList[position].images)
-                holder.contents_img_viewPager.adapter = adapter
-                if (dataList[position].images[i] == "abcd") {
+        if(dataList[position].images.size == 0){
+            holder.imageLayout.visibility = View.GONE
+        }
+        else{
+            for (i in 0..dataList[position].images.size - 1) {
+                if (dataList[position].images.size == 0) {
+                    Log.v("asdf", "사이즈 0" + dataList[position].images.size)
                     holder.contents_img_viewPager.visibility = View.GONE
+                } else {
+                    Log.v("asdf", "사이즈 있음 " + dataList[position].images.size)
+                    var adapter = ImageAdapter(ctx, requestManager, dataList[position].images)
+                    holder.contents_img_viewPager.adapter = adapter
+                    if (dataList[position].images[i] == "abcd") {
+                        holder.contents_img_viewPager.visibility = View.GONE
+                    }
                 }
             }
         }
@@ -240,6 +245,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         val item_box : LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
         val gotoDetailedBoard: LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
+        val imageLayout : RelativeLayout = itemView.findViewById(R.id.item_board_img_layout) as RelativeLayout
 
         //title
         val category: TextView = itemView.findViewById(R.id.tv_item_board_category) as TextView
@@ -250,7 +256,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //contents
         var contents_img_viewPager: ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
-        val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필
         val profile_img: ImageView = itemView.findViewById(R.id.iv_item_board_profile_img) as ImageView

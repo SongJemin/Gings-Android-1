@@ -160,7 +160,6 @@ class HomeBoardFragment : Fragment() {
             override fun onResponse(call: Call<GetBoardSearchResponse>, response: Response<GetBoardSearchResponse>) {
                 if (response!!.isSuccessful) {
 
-
                     Log.v("Search", "success")
                     for(i in 0..BoardDataForSearch.size-1){
                         //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)

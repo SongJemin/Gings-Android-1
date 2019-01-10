@@ -32,6 +32,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
+import android.support.design.R.id.scrollView
+import android.support.v4.widget.NestedScrollView
+import android.widget.ScrollView
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
 
 
@@ -64,6 +67,17 @@ class HomeBoardFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        //최상단으로
+        rl_logo_goto_top.setOnClickListener {
+
+            /*
+            rv_item_board_list_for_search.smoothScrollToPosition( 0 )
+            rv_item_board_list.smoothScrollToPosition( 0 )*/
+
+            //nested_home_board.fullScroll(View.FOCUS_UP)
+            nested_home_board.smoothScrollTo(0,0)
+        }
 
         //게시글 작성 버튼
         tv_home_board_write_board.setOnClickListener {

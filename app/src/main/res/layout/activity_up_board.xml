@@ -244,7 +244,7 @@
 
             <LinearLayout
                 android:id="@+id/ll_up_board_category_list"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#eceff0"

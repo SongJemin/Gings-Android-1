@@ -369,4 +369,5 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("boardId") boardId: Int
     ) : Call<PostBlockBoardIDResponse>
+
 }

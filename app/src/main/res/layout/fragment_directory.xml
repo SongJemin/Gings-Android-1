@@ -29,6 +29,7 @@
                 android:textSize="15sp" />
 
             <EditText
+                android:fontFamily="@font/noto_regular"
                 android:background="@null"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -38,10 +39,11 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                android:layout_marginStart="18.2dp"
-                android:letterSpacing="-0.01"
+                android:letterSpacing="-0.14"
+                android:lineHeight="22sp"
                 android:lineSpacingExtra="1sp"
                 android:textColor="#222222"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:hint="이름,역할,소속,협업 분야,키워드" />
 
         <ImageView
@@ -70,7 +72,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_directory_user_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 <ImageView
     android:layout_marginTop="158.7dp"
     android:layout_gravity="center"
@@ -80,6 +84,7 @@
     android:layout_height="114dp" />
     <TextView
         android:id="@+id/tv_directory_searching_text"
+        android:fontFamily="@font/noto_regular"
         android:layout_marginTop="41dp"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -96,7 +101,9 @@
         android:layout_gravity="center"
         android:id="@+id/rv_item_SearchingUserlist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
     <ImageView
         android:id="@+id/tv_directory_seaching_fail"
 android:layout_marginTop="115dp"

@@ -42,14 +42,14 @@
                         />
 
                     <TextView
+                        android:fontFamily="@font/noto_bold"
+                        android:lineHeight="15sp"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="협업여부"
                         android:textSize="10sp"
-                        android:textStyle="bold"
                         android:layout_gravity="center"
                         />
 
@@ -64,6 +64,8 @@
                         android:background="@drawable/mypage_intro_box_selector"
                         >
                         <TextView
+                            android:fontFamily="@font/noto_regular"
+                            android:lineHeight="16sp"
                             android:id="@+id/mypage_intro_collab_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -100,6 +102,8 @@
                         android:background="@drawable/ic_category" />
 
                     <TextView
+                        android:fontFamily="@font/noto_bold"
+                        android:lineHeight="15sp"
                         android:id="@+id/mypage_intro_field_tv"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
@@ -122,6 +126,8 @@
                         android:background="@drawable/box_on"
                         >
                         <TextView
+                            android:fontFamily="@font/noto_regular"
+                            android:lineHeight="16sp"
                             android:id="@+id/mypage_intro_activity_part"
                             android:layout_centerHorizontal="true"
                             android:layout_width="wrap_content"
@@ -158,6 +164,8 @@
                         />
 
                     <TextView
+                        android:fontFamily="@font/noto_bold"
+                        android:lineHeight="15sp"
                         android:id="@+id/mypage_intro_status_tv"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
@@ -181,6 +189,8 @@
                         android:background="@drawable/box_on"
                         >
                         <TextView
+                            android:fontFamily="@font/noto_regular"
+                            android:lineHeight="16sp"
                             android:id="@+id/mypage_intro_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -233,6 +243,9 @@
 
                     >
                     <TextView
+                        android:fontFamily="@font/noto_bold"
+                        android:lineHeight="16sp"
+                        android:letterSpacing="-0.12"
                         android:id="@+id/mypage_board_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -254,6 +267,9 @@
                         />
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
+                        android:lineHeight="16sp"
+                        android:letterSpacing="-0.1"
                         android:id="@+id/mypage_board_company"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -265,6 +281,9 @@
                         android:textColor="#525252"
                         />
                     <TextView
+                        android:fontFamily="@font/noto_regular"
+                        android:lineHeight="16sp"
+                        android:letterSpacing="-0.1"
                         android:id="@+id/mypage_board_job"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -277,6 +296,9 @@
 
                 </LinearLayout>
                 <TextView
+                    android:fontFamily="@font/noto_regular"
+                    android:lineHeight="16sp"
+                    android:letterSpacing="-0.09"
                     android:id="@+id/mypage_board_datetime_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -299,13 +321,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
             <TextView
+                android:fontFamily="@font/noto_regular"
+                android:lineHeight="22sp"
+                android:letterSpacing="-0.13"
                 android:id="@+id/mypage_board_content_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="안녕하세요! 깅스의 런칭을 기다려온 이충엽입니다. 깅스!"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="38dp"
-
                 android:layout_marginTop="10dp"
                 android:textSize="13sp"
                 android:textColor="#222222"
@@ -335,11 +359,12 @@
             android:background="#ffffff"
             >
             <TextView
+                android:fontFamily="@font/noto_black"
+                android:lineHeight="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guest Board"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="30dp"
                 android:layout_centerVertical="true"

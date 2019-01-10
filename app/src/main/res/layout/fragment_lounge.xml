@@ -15,6 +15,7 @@
             android:background="#ffffff">
 
             <TextView
+                android:fontFamily="@font/noto_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -23,7 +24,8 @@
                 android:lineSpacingExtra="5sp"
                 android:text="라운지"
                 android:textColor="#000000"
-                android:textSize="15sp" />
+                android:lineHeight="20sp"
+                android:textSize="20sp" />
 
         </RelativeLayout>
 
@@ -58,23 +60,26 @@
         android:orientation="vertical"
         >
         <TextView
+            android:fontFamily="@font/noto_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:lineHeight="20sp"
             android:textColor="#f7746b"
             android:lineSpacingExtra="2sp"
             android:gravity="center_horizontal"
-            android:textStyle="bold"
             android:text="CLUB"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="28dp"
             />
         <TextView
+            android:fontFamily="@font/noto_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
+            android:lineHeight="20sp"
             android:textColor="#000000"
-            android:letterSpacing="-0.01"
+            android:letterSpacing="-0.13"
             android:lineSpacingExtra="7sp"
             android:layout_marginLeft="19.5dp"
             android:layout_marginTop="71dp"

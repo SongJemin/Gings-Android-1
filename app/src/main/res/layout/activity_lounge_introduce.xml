@@ -15,8 +15,8 @@
 
         <Button
             android:id="@+id/btn_lounge_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -24,16 +24,18 @@
 
         <TextView
             android:id="@+id/rl_top_bar_lounge_text"
+            android:fontFamily="@font/noto_black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"
-            android:letterSpacing="0.05"
+            android:letterSpacing="-0.17"
             android:lineSpacingExtra="5sp"
             android:text="INNOVATOR CLUB"
+            android:lineHeight="20sp"
             android:textColor="#000000"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textSize="20sp"
+            />
 
     </RelativeLayout>
 
@@ -59,6 +61,7 @@
             android:layout_marginTop="182.7dp">
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_introduce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,8 +70,9 @@
                 android:lineSpacingExtra="5sp"
                 android:text="소개"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:lineHeight="20sp"
+                android:textSize="17sp"
+                />
         </RelativeLayout>
 
         <RelativeLayout
@@ -79,6 +83,7 @@
             android:layout_marginTop="182.7dp">
 
             <TextView
+                android:fontFamily="@font/noto_regular"
                 android:id="@+id/tv_lounge_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,8 +91,9 @@
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="5sp"
                 android:text="일정"
+                android:lineHeight="20sp"
                 android:textColor="#000000"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 />
         </RelativeLayout>
     </RelativeLayout>
@@ -111,6 +117,7 @@
             android:background="#f9f9f9">
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_intro_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,10 +126,12 @@
                 android:lineSpacingExtra="7sp"
                 android:text="ABOUT"
                 android:textColor="#040404"
-                android:textSize="15sp"
+                android:lineHeight="22sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_intro_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,8 +139,8 @@
                 android:text="INNOVATOR CLUB"
                 android:layout_marginTop="50.7dp"
                 android:textColor="#040404"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:lineHeight="22sp"
+                android:textSize="16sp"
                 />
 
 
@@ -147,10 +156,14 @@
             android:background="#ffffff">
 
             <TextView
+                android:fontFamily="@font/noto_regular"
+                android:textSize="13sp"
+                android:lineHeight="24sp"
                 android:id="@+id/tv_rl_lounge_introdata"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
+                android:letterSpacing="-0.13"
                 android:layout_marginTop="30dp"
                 android:text="이노베이터 클럽은 혁신을 추구하는
 창업가, 스타트업 관계자, 개발자, 디자이너 등
@@ -201,6 +214,7 @@
             android:background="#f9f9f9">
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_calendar_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -209,10 +223,11 @@
                 android:lineSpacingExtra="7sp"
                 android:text="April"
                 android:textColor="#040404"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:lineHeight="20sp"
+                android:textSize="16sp" />
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_calendar_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -221,8 +236,7 @@
                 android:lineSpacingExtra="7sp"
                 android:text="2019"
                 android:textColor="#040404"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textSize="15sp" />
 
         </RelativeLayout>
 
@@ -251,15 +265,17 @@
             android:background="#f9f9f9">
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20.7dp"
                 android:lineSpacingExtra="7sp"
-                android:text="EVENT"
+                android:text="PROGRAM"
                 android:textColor="#040404"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:lineHeight="20sp"
+                />
 
         </RelativeLayout>
 

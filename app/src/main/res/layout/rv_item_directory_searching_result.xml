@@ -7,123 +7,176 @@
     android:layout_width="match_parent"
     android:layout_height="205dp"
     android:background="#ffffff">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:fontFamily="@font/noto_bold"
+            android:id="@+id/tv_item_directory_searching_part_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#f7746b"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="5sp"
+            android:textStyle="bold"
+            android:text="소속 |"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="11dp"
+            />
+        <TextView
+            android:fontFamily="@font/noto_regular"
+            android:textSize="9sp"
+            android:lineHeight="15sp"
+            android:letterSpacing="-0.09"
+            android:id="@+id/tv_item_directory_searching_team_name"
+            android:layout_below="@id/tv_item_directory_searching_part_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#525252"
+            android:lineSpacingExtra="6sp"
+            android:text="깅스회사는이름길어요
+깅스회사는이름길어요"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            />
+        <TextView
+            android:fontFamily="@font/noto_bold"
+            android:textSize="10sp"
+            android:lineHeight="15sp"
+            android:letterSpacing="-0.1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#f7746b"
+            android:lineSpacingExtra="5sp"
+            android:text="역할 |"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="70dp"
+            />
+        <TextView
+            android:fontFamily="@font/noto_regular"
+            android:textSize="9sp"
+            android:lineHeight="15sp"
+            android:letterSpacing="-0.09"
+            android:id="@+id/tv_item_directory_searching_role"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#525252"
+            android:lineSpacingExtra="6sp"
+            android:text="역할은최대열글자임다"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="88dp"
+            />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-       android:layout_centerInParent="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="8dp"
-        android:id="@+id/iv_item_directory_searching_profile_img"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/default_circle_background"/>
-<RelativeLayout
-    android:layout_centerHorizontal="true"
-    android:layout_below="@id/iv_item_directory_searching_profile_img"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_marginTop="15dp"
-        android:id="@+id/tv_item_directory_searching_profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="4sp"
-        android:textSize="15sp"
-        android:textColor="#222222"
-        android:text="이충엽" />
 
+    </RelativeLayout>
 
-    <View
-        android:id="@+id/v_item_directory_searching_v"
-        android:layout_toRightOf="@+id/tv_item_directory_searching_profile_name"
-        android:layout_marginTop="19.5dp"
-        android:layout_width="1dp"
-        android:layout_height="15dp"
-        android:layout_marginLeft="8dp"
-        android:background="#999999" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_toRightOf="@+id/v_item_directory_searching_v"
-        android:id="@+id/tv_item_directory_searching_team_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:textColor="#525252"
-        android:textSize="15sp"
-        android:layout_marginLeft="8dp"
-        android:text="깅스" />
-    <TextView
-        android:layout_toRightOf="@+id/tv_item_directory_searching_team_name"
-        android:id="@+id/tv_item_directory_searching_slash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:textSize="15sp"
-        android:textColor="#525252"
-        android:text="" />
-    <TextView
-        android:layout_toRightOf="@+id/tv_item_directory_searching_slash"
-        android:id="@+id/tv_item_directory_searching_role"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:textSize="15sp"
-        android:textColor="#525252"
-        android:text="PM" />
-    <TextView
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="4dp"
-        android:layout_below="@+id/tv_item_directory_searching_profile_name"
-        android:id="@+id/tv_item_directory_searching_part"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:textColor="#999999"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:text="기획" />
-    <TextView
-        android:id="@+id/tv_item_directory_searching_slash2"
-        android:layout_toRightOf="@id/tv_item_directory_searching_part"
-        android:layout_below="@+id/tv_item_directory_searching_profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10dp"
-        android:layout_marginTop="4dp"
-        android:text=""/>
-    <TextView
-        android:layout_marginTop="4dp"
-        android:id="@+id/tv_item_directory_searching_ablity"
-        android:layout_toRightOf="@id/tv_item_directory_searching_slash2"
-        android:layout_below="@+id/tv_item_directory_searching_profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:textColor="#999999"
-        android:text=""/>
-    <TextView
-        android:id="@+id/tv_item_directory_searching_available_coworker"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/tv_item_directory_searching_team_name"
-        android:layout_toRightOf="@+id/tv_item_directory_searching_ablity"
-        android:gravity="center"
-        android:background="@drawable/box_on"
-        android:layout_width="39dp"
-        android:layout_height="14dp"
-        android:textSize="8sp"
-        android:layout_marginLeft="6dp"
-        android:textColor="#ffffff"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="8sp"
-        android:text="ON"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_item_directory_searching_available_coworker"
+            android:layout_width="36dp"
+            android:layout_height="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="142.9dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@id/iv_item_directory_searching_profile_img"
+            android:background="#f7746b"
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="ON"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/noto_bold"
+            android:textSize="10sp"
+            android:lineHeight="15sp"
+            android:letterSpacing="-0.1"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_item_directory_searching_profile_img"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="131dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/invalid_name" />
+
+        <TextView
+            android:id="@+id/tv_item_directory_searching_part"
+            android:fontFamily="@font/noto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tv_item_directory_searching_available_coworker"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3.1dp"
+            android:layout_marginRight="92dp"
+            android:layout_toLeftOf="@id/iv_item_directory_searching_profile_img"
+            android:letterSpacing="-0.09"
+            android:lineHeight="16sp"
+            android:lineSpacingExtra="6sp"
+            android:text="기획"
+            android:textColor="#999999"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/tv_item_directory_searching_slash2"
+            android:fontFamily="@font/noto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_item_directory_searching_available_coworker"
+            android:layout_alignParentRight="true"
+            android:lineHeight="16sp"
+            android:layout_marginTop="3.1dp"
+            android:letterSpacing="-0.09"
+            android:layout_marginRight="87dp"
+            android:layout_toLeftOf="@id/iv_item_directory_searching_profile_img"
+            android:text="/"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/tv_item_directory_searching_ablity"
+            android:fontFamily="@font/noto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineHeight="16sp"
+            android:layout_below="@+id/tv_item_directory_searching_available_coworker"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="3.1dp"
+            android:layout_marginRight="68dp"
+            android:layout_toLeftOf="@id/iv_item_directory_searching_profile_img"
+            android:letterSpacing="-0.09"
+            android:lineSpacingExtra="6sp"
+            android:text="설계"
+            android:textColor="#999999"
+            android:textSize="9sp" />
+
+        <TextView
+            android:fontFamily="@font/noto_bold"
+            android:lineHeight="16sp"
+            android:letterSpacing="-0.12"
+            android:textSize="12sp"
+            android:id="@+id/tv_item_directory_searching_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_item_directory_searching_slash2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="68dp"
+            android:layout_toLeftOf="@id/iv_item_directory_searching_profile_img"
+            android:lineSpacingExtra="4sp"
+            android:text="이충엽은이름이야"
+            android:textColor="#222222"
+             />
+
+    </RelativeLayout>
+
 </RelativeLayout>

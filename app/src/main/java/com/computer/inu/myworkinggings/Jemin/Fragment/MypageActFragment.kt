@@ -32,6 +32,9 @@ import retrofit2.Response
 
 class MypageActFragment : Fragment(){
 
+    var my_or_other_flag : Int = 0
+    var userID : Int = 0
+
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
@@ -43,7 +46,18 @@ class MypageActFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v : View = inflater.inflate(R.layout.fragment_mypage_act,container,false)
        // getOtherActive()
-        getMyAct()
+
+        val extra = arguments
+
+        my_or_other_flag = extra!!.getInt("my_or_other_flag")
+        if(my_or_other_flag == 1){
+            userID = extra!!.getInt("userID")
+            getOtherActive()
+        }
+        else{
+            getMyAct()
+        }
+
         return v
     }
 

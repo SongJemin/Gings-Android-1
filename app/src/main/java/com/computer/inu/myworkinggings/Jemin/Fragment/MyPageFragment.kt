@@ -59,6 +59,12 @@ class MyPageFragment : Fragment() {
         bundle.putString("company", company)
         bundle.putString("image", image)
         bundle.putString("field", field)
+        bundle.putInt("my_or_other_flag", my_or_other_flag)
+
+        if(my_or_other_flag != 0){
+            bundle.putInt("userID", userID)
+        }
+
         Log.v("asdf", "보내는필드 = " + field)
         bundle.putString("status", status)
         bundle.putInt("coworkingEnabled", coworkingEnabled)
@@ -68,18 +74,26 @@ class MyPageFragment : Fragment() {
     }
 
     // 프래그먼트 교체
-    fun replaceFragment(fragment: Fragment, checkFlag : Int) {
+    fun replaceFragment(fragment: Fragment) {
         val fm = childFragmentManager
         val transaction = fm.beginTransaction()
 
         if(checkFlag == 0){
             val myIntroFragment = MypageIntroFragment()
             val bundle = Bundle()
+
             bundle.putString("name", name)
             bundle.putString("job", job)
             bundle.putString("company", company)
             bundle.putString("image", image)
             bundle.putString("field", field)
+            bundle.putInt("userID", userID)
+            bundle.putInt("my_or_other_flag", my_or_other_flag)
+
+            if(my_or_other_flag != 0){
+                bundle.putInt("userID", userID)
+            }
+
             Log.v("asdf", "보내는필드 = " + field)
             bundle.putString("status", status)
             bundle.putInt("coworkingEnabled", coworkingEnabled)
@@ -88,7 +102,15 @@ class MyPageFragment : Fragment() {
             transaction.commit()
         }
         else{
-            transaction.replace(R.id.mypage_content_layout, fragment)
+            val mypageActFragment = MypageActFragment()
+            val bundle = Bundle()
+
+            if(my_or_other_flag != 0){
+                bundle.putInt("userID", userID)
+            }
+            bundle.putInt("my_or_other_flag", my_or_other_flag)
+            mypageActFragment.setArguments(bundle)
+            transaction.replace(R.id.mypage_content_layout, mypageActFragment)
             transaction.commit()
         }
 
@@ -135,7 +157,7 @@ class MyPageFragment : Fragment() {
             mypage_intro_view.setVisibility(View.VISIBLE)
             mypage_act_view.setVisibility(View.INVISIBLE)
             checkFlag=0
-            replaceFragment(MypageIntroFragment(), checkFlag)
+            replaceFragment(MypageIntroFragment())
         }
 
         // '활동' 클릭 시
@@ -149,7 +171,7 @@ class MyPageFragment : Fragment() {
             mypage_intro_view.setVisibility(View.INVISIBLE)
             checkFlag=1
 
-            replaceFragment(MypageActFragment(), checkFlag)
+            replaceFragment(MypageActFragment())
         }
 
         v.iv_btn_my_page_setting.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Jemin.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
+import com.computer.inu.myworkinggings.Jemin.Activity.GuestboardWriteActivity
 import com.computer.inu.myworkinggings.Jemin.Adapter.GuestBoardAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.GuestBoardItem
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherGuestBoardResponse
@@ -43,6 +45,7 @@ class MypageIntroFragment : Fragment() {
     var getOtherGuestBoard = ArrayList<GuestBoardItem>()
     var guestBoardItem = ArrayList<GuestBoardItem>()
     lateinit var guestBoardAdapter: GuestBoardAdapter
+    var userID : Int = 0
     var field: String = ""
     var status: String = ""
     var image: String? = ""
@@ -51,6 +54,7 @@ class MypageIntroFragment : Fragment() {
     var company: String = ""
     var coworkingEnabled: Int = 0
     var checkFlag: Int = 0
+    var my_or_other_flag : Int = 0
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -60,6 +64,15 @@ class MypageIntroFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v: View = inflater.inflate(R.layout.fragmet_my_page_introduce, container, false)
         val extra = arguments
+
+        my_or_other_flag = extra!!.getInt("my_or_other_flag")
+        if(my_or_other_flag == 1){
+            userID = extra!!.getInt("userID")
+            getOtherIntro()
+        }
+        else{
+            getMyIntro() //자신의 소개페이지
+        }
 
         job = extra!!.getString("job")
         company = extra!!.getString("company")
@@ -86,11 +99,18 @@ class MypageIntroFragment : Fragment() {
         v.mypage_intro_activity_part.text =field
         v.mypage_intro_status.text = status
         /*getOtherIntro()*/ //타인
-        getMyIntro() //자신의 소개페이지
+
 
 
         v.mypage_board_more_btn.setOnClickListener {
-            postGuestBoard()
+            var intent = Intent(activity, GuestboardWriteActivity::class.java)
+            intent.putExtra("name", name)
+            intent.putExtra("userID", userID)
+            startActivity(intent)
+        }
+
+        v.mypage_board_more_btn.setOnClickListener {
+
         }
 
         requestManager = Glide.with(this)
@@ -127,7 +147,7 @@ class MypageIntroFragment : Fragment() {
 
 
     fun getOtherIntro() {
-        var getOtherIntroResponse = networkService.getOtherPageIntro("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 1) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherIntroResponse = networkService.getOtherPageIntro("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", userID) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherIntroResponse.enqueue(object : Callback<GetOtherIntroResponse> {
             override fun onResponse(call: Call<GetOtherIntroResponse>?, response: Response<GetOtherIntroResponse>?) {
                 Log.v("TAG", "타인 소개 페이지 서버 통신 연결")
@@ -174,7 +194,7 @@ class MypageIntroFragment : Fragment() {
     }
 
     fun getOtherGuestBoard(){
-        var getOtherGuestBoardResponse: Call<GetOtherGuestBoardResponse>  = networkService.getOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",1)
+        var getOtherGuestBoardResponse: Call<GetOtherGuestBoardResponse>  = networkService.getOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",userID)
         getOtherGuestBoardResponse.enqueue(object : Callback<GetOtherGuestBoardResponse> {
             override fun onResponse(call: Call<GetOtherGuestBoardResponse>?, response: Response<GetOtherGuestBoardResponse>?) {
                 Log.v("TAG", "타인 게스트 보드 조회 서버 통신 연결")
@@ -195,27 +215,5 @@ class MypageIntroFragment : Fragment() {
             }
         })
 
-    }
-
-
-    fun postGuestBoard()
-    {
-
-        var jsonObject = JSONObject()
-        jsonObject.put("content", "testContent")
-
-        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-
-        var postOtherGuestBoardResponse = networkService.postOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 1, gsonObject)
-        postOtherGuestBoardResponse.enqueue(object : Callback<PostResponse>{
-
-            override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
-                if(response.isSuccessful){
-                    Log.v("asdf", "게스트보드 등록 성공")
-                }
-            }
-            override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
-            }
-        })
     }
 }

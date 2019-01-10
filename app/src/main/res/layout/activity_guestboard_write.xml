@@ -20,10 +20,10 @@
             >
 
             <TextView
-                android:id="@+id/mypage_update_title_tv"
-                android:layout_width="wrap_content"
+                android:id="@+id/guest_board_write_title_tv"
+                android:layout_width="162dp"
                 android:layout_height="wrap_content"
-                android:text="자기소개 수정"
+                android:text="ㅇㅇㅇ님의 Guest Board"
                 android:layout_centerInParent="true"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -38,17 +38,16 @@
                 android:layout_marginLeft="10dp"
                 />
 
-
             <Button
-                android:id="@+id/mypage_update_confirm_btn"
+                android:id="@+id/guest_board_write_confirm_btn"
                 android:layout_width="28dp"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
                 android:text="완료"
                 android:textColor="@color/colorPrimary"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="24dp"
                 android:layout_alignParentRight="true"
+                android:background="#ffffff"
                 android:textStyle="bold"
                 />
 
@@ -61,12 +60,12 @@
             />
 
         <EditText
-            android:id="@+id/mypage_update_content_edit"
+            android:id="@+id/guest_board_write_content_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#ffffff"
             android:layout_marginTop="32dp"
-            android:hint="자기소개를 입력해주세요."
+            android:hint="안부글을 남겨보세요."
             android:gravity="top"
             android:textSize="13sp"
             android:padding="20dp"
@@ -74,47 +73,5 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        >
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mypage_update_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginBottom="20.1dp"
-            android:background="@color/transparent"
-            >
-
-        </android.support.v7.widget.RecyclerView>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e2e8ed"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="#ffffff"
-            >
-
-            <Button
-                android:id="@+id/mypage_update_galley_btn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
-                android:background="@drawable/ic_image"
-                />
-
-
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </RelativeLayout>

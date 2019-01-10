@@ -140,7 +140,7 @@ class MypageUpdateActivity : AppCompatActivity() {
             tedBottomPicker.show(supportFragmentManager)
         }
 
-        mypage_update_confirm_tv.setOnClickListener {
+        mypage_update_confirm_btn.setOnClickListener {
             if (mypage_update_content_edit.text.toString() == "" || (postImagesList.size == 0 && getImageUrlSize == 0)) {
                 if (postImagesList.size == 0 && getImageUrlSize == 0) {
                     Toast.makeText(applicationContext, "이미지를 넣어주세요", Toast.LENGTH_LONG).show()

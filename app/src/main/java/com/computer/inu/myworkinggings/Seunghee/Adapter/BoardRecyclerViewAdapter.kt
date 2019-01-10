@@ -57,7 +57,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         ApplicationController.instance.networkService
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
 
@@ -83,7 +82,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             holder.category.text = "협업"
         }
 
-        holder.category.text = dataList[position].category
         holder.title.text = dataList[position].title
         for (i in 0..dataList[position].keywords.size - 1) {
             if (i == 0) {

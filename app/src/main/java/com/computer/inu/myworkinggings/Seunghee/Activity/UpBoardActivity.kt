@@ -190,7 +190,6 @@ class UpBoardActivity : AppCompatActivity() {
         }
 
         iv_upboard_confirm_tv.setOnClickListener {
-
             val keywordList = et_up_board_tags.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
             for (keyword in keywordList) {
@@ -211,7 +210,6 @@ class UpBoardActivity : AppCompatActivity() {
                 }
             } else {
                 postBoard()
-
             }
         }
         iv_upboard_modify_tv.setOnClickListener {

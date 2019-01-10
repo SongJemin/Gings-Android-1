@@ -82,6 +82,7 @@ class DetailBoardActivity : AppCompatActivity() {
 
         detail_board_reboard_modify_btn.setOnClickListener {
             updateReBoard()
+            detail_board_reboard_img_recyclerview.visibility = View.GONE
         }
 
         detail_board_reboard_img_btn.setOnClickListener {
@@ -90,13 +91,15 @@ class DetailBoardActivity : AppCompatActivity() {
                         reboardUriList: java.util.ArrayList<Uri>? ->
                         for(i in 0 .. reboardUriList!!.size-1){
 
-                            if(temp.replys[seletectedPostion]!!.images.size > 0){
-                                deleteImagesUrl = boardImageAdapter.deleteImageUrlList
-                                if(deleteImagesUrl.size > 0){
-                                    Log.v("asdf"," 지운 사진 = " +deleteImagesUrl[0])
-                                }
-                                else{
-                                    Log.v("asdf","지운 사진 0")
+                            if(modifyFlag == 1){
+                                if(temp.replys[seletectedPostion]!!.images.size > 0){
+                                    deleteImagesUrl = boardImageAdapter.deleteImageUrlList
+                                    if(deleteImagesUrl.size > 0){
+                                        Log.v("asdf"," 지운 사진 = " +deleteImagesUrl[0])
+                                    }
+                                    else{
+                                        Log.v("asdf","지운 사진 0")
+                                    }
                                 }
                             }
 
@@ -155,6 +158,7 @@ class DetailBoardActivity : AppCompatActivity() {
             }
             else{
                 Log.v("asdf", "리보드 준비 완료" + detail_board_reboard_edit.text.toString())
+                detail_board_reboard_img_recyclerview.visibility = View.GONE
                 postReBoard()
             }
         }
@@ -192,7 +196,11 @@ class DetailBoardActivity : AppCompatActivity() {
                     val reboardtemp : ArrayList<ReplyData?> = response.body()!!.data.replys
                     bindReBoardData(reboardtemp)
                 }
+                else{
+                    Log.v("Detail", "error = " + response.errorBody().toString())
+                }
             }
+
 
         })
     }
@@ -265,7 +273,8 @@ class DetailBoardActivity : AppCompatActivity() {
         var token : String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
 
         var networkService = ApplicationController.instance.networkService
-        val boardId = RequestBody.create(MediaType.parse("text.plain"), "193")
+        Log.v("Detail", "보드 넘버 = " + boardId)
+        val boardId = RequestBody.create(MediaType.parse("text.plain"), boardId.toString())
         val content = RequestBody.create(MediaType.parse("text.plain"), detail_board_reboard_edit.text.toString())
 
         val postReBoardResponse = networkService.postReBoard(token,boardId, content, reboardImagesList)

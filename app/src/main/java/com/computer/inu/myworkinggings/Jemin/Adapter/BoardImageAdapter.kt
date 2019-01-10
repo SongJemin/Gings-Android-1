@@ -16,6 +16,9 @@ import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Activity.UpBoardActivity
+import kotlinx.android.synthetic.main.activity_detail_board.*
+import kotlinx.android.synthetic.main.activity_mypage_update.*
+import kotlinx.android.synthetic.main.activity_up_board.*
 
 
 class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestManager : RequestManager, var insertFlag : Int, var insertUrlorUri : Int, var insertImageUrlSize : Int) : RecyclerView.Adapter<BoardImageViewHolder>() {
@@ -51,6 +54,9 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
             if(checkFlag == 0){
                 deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
                 boardImageItem.removeAt(position)
+                if(boardImageItem.size==0){
+                    UpBoardActivity.upBoardActivity.upboard_pick_recyclerview.visibility = View.GONE
+                }
 
                 // 서버로부터 받은 사진 지우기
                 if(position <= getImageUrlSize-1-urlRemovedCount){
@@ -71,6 +77,9 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
             else if(checkFlag == 1){
                 deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
                 boardImageItem.removeAt(position)
+                if(boardImageItem.size==0){
+                    MypageUpdateActivity.mypageUpdateActivity.mypage_update_recyclerview.visibility = View.GONE
+                }
 
                 // 서버로부터 받은 사진 지우기
                 if(position <= getImageUrlSize-1-urlRemovedCount){
@@ -93,10 +102,16 @@ class BoardImageAdapter(var boardImageItem : ArrayList<ImageType>, var requestMa
                 if(getImageUrlSize > 0){
                     deleteImageUrlList.add(boardImageItem[position].imageUrl!!)
                     boardImageItem.removeAt(position)
+                    if(boardImageItem.size==0){
+                        DetailBoardActivity.detailBoardActivity.detail_board_reboard_img_recyclerview.visibility = View.GONE
+                    }
                     getImageUrlSize -= 1
                 }
                 else{
                     boardImageItem.removeAt(position)
+                    if(boardImageItem.size==0){
+                        DetailBoardActivity.detailBoardActivity.detail_board_reboard_img_recyclerview.visibility = View.GONE
+                    }
                     DetailBoardActivity.detailBoardActivity.reboardImagesList.removeAt(position)
                 }
                 notifyItemRemoved(position)

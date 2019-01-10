@@ -36,6 +36,7 @@ import retrofit2.Response
 import java.util.ArrayList
 import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import android.R.attr.onClick
+import android.content.Intent
 import android.widget.*
 
 
@@ -47,7 +48,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
     }
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -140,6 +140,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
             //일반 게시글 클릭
             ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
+        }
+
+        //댓글 버튼
+        holder.comment_btn.setOnClickListener {
+            var intent = Intent(ctx, DetailBoardActivity::class.java)
+            intent.putExtra("BoardId", dataList[position].boardId)
+            ctx.startActivity(intent)
         }
 
         //좋아요 버튼

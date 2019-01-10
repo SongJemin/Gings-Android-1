@@ -9,8 +9,6 @@
     android:focusableInTouchMode="true"
     >
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -333,7 +331,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="140dp"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
         >
@@ -341,9 +339,8 @@
             android:id="@+id/detail_board_reboard_img_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#ffffff"
+            android:background="@color/transparent"
             >
-
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>

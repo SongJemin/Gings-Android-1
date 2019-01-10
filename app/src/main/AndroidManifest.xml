@@ -9,9 +9,9 @@
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/icon_gings"
+        android:icon="@drawable/invalid_name"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon_gings"
+        android:roundIcon="@drawable/invalid_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -116,18 +116,29 @@
         <activity
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
+
+        <activity android:name=".Jemin.Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
+        <!-- FCM 관련 서비스 -->
         <service
-            android:name=".MyFirebaseInstanceIDService">
+            android:name=".Jemin.Firebase.FireBaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".MyFirebaseMessagingService">
+            android:name=".Jemin.Firebase.FirebaseInstanceIDService"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <!-- 여기까지 -->
+
     </application>
 
 </manifest>

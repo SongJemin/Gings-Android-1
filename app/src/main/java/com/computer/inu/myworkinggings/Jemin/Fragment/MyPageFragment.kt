@@ -104,16 +104,19 @@ class MyPageFragment : Fragment() {
         if(extra != null){
             userID = extra!!.getInt("userID")
             my_or_other_flag = 1
+            Log.v("MypageFragent", "받아온 유저 아이디 = " +userID)
+            getOtherPage()
         }
         else{
             my_or_other_flag = 0
+            getUserPagePost()
         }
-        Log.v("MypageFragent", "받아온 유저 아이디 = " +userID)
+
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
      //   getProfileImgUrl()
        //getOtherPage()
-       getUserPagePost()
+
 
         /* requestManager = Glide.with(this)
          requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
@@ -172,7 +175,7 @@ class MyPageFragment : Fragment() {
 
 
     fun getOtherPage() {
-        var getOtherInformResponse = networkService.getOtherPageInform("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",1) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherInformResponse = networkService.getOtherPageInform("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",userID) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherInformResponse.enqueue(object : Callback<GetOtherInformResponse> {
             override fun onResponse(call: Call<GetOtherInformResponse>?, response: Response<GetOtherInformResponse>?) {
                 Log.v("TAG", "타인페이지 서버 통신 연결")
@@ -259,7 +262,7 @@ class MyPageFragment : Fragment() {
                     addFragment(MypageIntroFragment())
                 }
                 else{
-                    Log.v("TAG", "타인페이지 서버 값 전달 실패")
+                    Log.v("TAG", "마이페이지 서버 값 전달 실패")
                 }
             }
             override fun onFailure(call: Call<GetMypageResponse>?, t: Throwable?) {
@@ -286,7 +289,5 @@ class MyPageFragment : Fragment() {
             }
         })
     }
-
-
 
 }

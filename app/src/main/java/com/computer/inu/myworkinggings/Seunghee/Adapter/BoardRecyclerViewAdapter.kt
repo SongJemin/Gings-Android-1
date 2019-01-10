@@ -37,7 +37,10 @@ import java.util.ArrayList
 import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import android.R.attr.onClick
 import android.content.Intent
+import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.widget.*
+import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
 
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager: RequestManager)
@@ -157,6 +160,26 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         else {
             Log.v("like_off","off error")
             holder.like_btn.setBackgroundResource(R.drawable.ic_like)
+        }
+
+        holder.name.setOnClickListener {
+            val transaction = (ctx as FragmentActivity).getSupportFragmentManager().beginTransaction()
+            val mypageFragment = MyPageFragment()
+            val bundle = Bundle()
+            bundle.putInt("userID", dataList[position].writerId!!)
+            mypageFragment.setArguments(bundle)
+            transaction.replace(R.id.main_fragment_container, mypageFragment)
+            transaction.commit()
+        }
+
+        holder.profile_img.setOnClickListener {
+            val transaction = (ctx as FragmentActivity).getSupportFragmentManager().beginTransaction()
+            val mypageFragment = MyPageFragment()
+            val bundle = Bundle()
+            bundle.putInt("userID", dataList[position].writerId!!)
+            mypageFragment.setArguments(bundle)
+            transaction.replace(R.id.main_fragment_container, mypageFragment)
+            transaction.commit()
         }
 
         holder.like_rl.setOnClickListener {

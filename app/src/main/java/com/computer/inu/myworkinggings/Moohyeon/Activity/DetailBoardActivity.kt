@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Moohyeon.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -47,6 +49,9 @@ import org.jetbrains.anko.ctx
 import retrofit2.Callback
 
 class DetailBoardActivity : AppCompatActivity() {
+
+    val TAG = "DetailBoardActivity"
+
     lateinit var  detailBoardRecyclerViewAdapter : DetailBoardRecyclerViewAdapter
     var reboardImagesList : java.util.ArrayList<MultipartBody.Part?> = java.util.ArrayList()
     var reboardImageUrlList = java.util.ArrayList<ImageType>()
@@ -60,6 +65,8 @@ class DetailBoardActivity : AppCompatActivity() {
     var seletectedPostion : Int = 0
     var deleteImagesUrl = ArrayList<String>()
     var prevImagesUrl = ArrayList<RequestBody>()
+
+    var getUserID : Int = 0
 
     val networkService: com.computer.inu.myworkinggings.Network.NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -75,13 +82,31 @@ class DetailBoardActivity : AppCompatActivity() {
         requestManager = Glide.with(this)
         detail_board_reboard_btn.visibility = View.VISIBLE
         detail_board_reboard_modify_btn.visibility = View.GONE
-        Log.v("asdf","전송 받은 보드 ID = " + boardId)
+        Log.v(TAG,"전송 받은 보드 ID = " + boardId)
         //postReBoard()
         detail_board_reboard_img_recyclerview.visibility = View.GONE
         //setRecyclerView()
 
+        tv_item_board_profile_name.setOnClickListener {
+            var intent = Intent()
+            intent.putExtra("boardID", boardId)
+            intent.putExtra("userID", getUserID)
+            setResult(20, intent)
+            finish()
+        }
+        iv_item_board_profile_img.setOnClickListener {
+            var intent = Intent()
+            intent.putExtra("boardID", boardId)
+            intent.putExtra("userID", getUserID)
+            setResult(20, intent)
+            finish()
+        }
+
         detail_board_reboard_modify_btn.setOnClickListener {
             updateReBoard()
+            detail_board_reboard_edit.setText("")
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
             detail_board_reboard_img_recyclerview.visibility = View.GONE
         }
 
@@ -159,6 +184,9 @@ class DetailBoardActivity : AppCompatActivity() {
             else{
                 Log.v("asdf", "리보드 준비 완료" + detail_board_reboard_edit.text.toString())
                 detail_board_reboard_img_recyclerview.visibility = View.GONE
+                detail_board_reboard_edit.setText("")
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
                 postReBoard()
             }
         }
@@ -183,13 +211,13 @@ class DetailBoardActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetDetailedBoardResponse>, response: Response<GetDetailedBoardResponse>) {
                 if (response.isSuccessful) {
-
                     //toast(intent.getIntExtra("BoardId",0))
                     Log.v("ggg", "board list success")
                     //Toast.makeText(applicationContext,"성공",Toast.LENGTH_SHORT).show()
 
                     //보드연결
                     temp = response.body()!!.data
+                    getUserID = temp.writerId!!
                     bindBoardData(temp)
 
                     //리보드연결
@@ -398,6 +426,13 @@ class DetailBoardActivity : AppCompatActivity() {
 
     companion object {
         lateinit var detailBoardActivity: DetailBoardActivity
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent()
+        Log.v(TAG, "백버튼 클릭")
+        setResult(20, intent)
+        finish()
     }
 
 }

@@ -25,15 +25,19 @@ import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeFragment
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
 import com.computer.inu.myworkinggings.Moohyeon.Fragment.DirectoryFragment
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_exit.*
 import kotlinx.android.synthetic.main.dialog_exit.view.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    val TAG = "MainActivity"
+
     val FINISH_INTERVAL_TIME = 2000
     var backPressedTime : Long = 0
-
+    lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
 
     private val FRAGMENT1 = 1
     private val FRAGMENT2 = 2
@@ -105,7 +109,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 main_hometab_btn.setSelected(false)
                 main_alarm_btn.setSelected(false)
                 main_mypage_btn.setSelected(false)
-                // '추천 탭' 클릭 시 '추천 프래그먼트' 호출
+                // '라운지 탭' 클릭 시 '라운지 프래그먼트' 호출
                 callFragment(FRAGMENT3)
             }
 
@@ -195,6 +199,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         exitDialog.show()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.v(TAG,"메인 액티비티 리턴")
+        if(requestCode == 20){
+            // 보드 상세에서 이름이나 프로필사진 선택으로 넘어올 경우
+            if(data!!.getIntExtra("userID",0) != 0){
+                Log.v(TAG,"리턴 번호 값 = " + data!!.getIntExtra("boardID",0))
+                Log.v(TAG,"리턴 유저 값 = " + data!!.getIntExtra("userID",0))
+                main_mypage_btn.setSelected(true)
+                main_directory_btn.setSelected(false)
+                main_lounge_btn.setSelected(false)
+                main_alarm_btn.setSelected(false)
+                main_hometab_btn.setSelected(false)
+                callFragment(FRAGMENT5)
+            }
+            // 보드 상세에서 백버튼으로 넘어올 경우
+            else{
 
+            }
 
+        }
+    }
 }

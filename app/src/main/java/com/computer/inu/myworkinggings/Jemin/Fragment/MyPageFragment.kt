@@ -158,11 +158,7 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }
 
-        v.iv_btn_other_page_close.setOnClickListener {
-            var intent = Intent(activity, ProfileSettingMenuActivity::class.java)
-            intent.putExtra("profileImgUrl", profileImgUrl)
-            startActivity(intent)
-        }
+
 
         // 테스트 연결
         v.mypage_background_img.setOnClickListener {
@@ -183,9 +179,7 @@ class MyPageFragment : Fragment() {
                     Log.v("TAG", "타인페이지 서버 통신 연결 성공")
                     if (response!!.body()!!.message == "자격 없음") {
                         iv_btn_my_page_setting.visibility = View.GONE
-                        iv_btn_other_page_close.visibility = View.VISIBLE
                     } else {
-                        iv_btn_other_page_close.visibility = View.GONE
                         iv_btn_my_page_setting.visibility = View.VISIBLE
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
@@ -198,7 +192,9 @@ class MyPageFragment : Fragment() {
 
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
-                    image = response.body()!!.data.image!!
+                    if(response.body()!!.data.image != null){
+                        image = response.body()!!.data.image!!
+                    }
                     name = response.body()!!.data.name!!
                     job = response.body()!!.data.job!!
                     company=response.body()!!.data.company!!

@@ -36,11 +36,16 @@ import retrofit2.Response
 import java.util.ArrayList
 import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import android.R.attr.onClick
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.widget.*
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
+import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager: RequestManager)
@@ -126,15 +131,17 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
-
+            var intent = Intent(ctx, DetailBoardActivity::class.java)
             ctx.toast(dataList[position].boardId!!.toString())
-            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
+            intent.putExtra("BoardId", dataList[position].boardId)
+            (ctx as MainActivity).startActivityForResult(intent, 20);
 
         }
 
 
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
+
 
             ctx.toast(dataList[position].boardId!!.toString())
 
@@ -170,6 +177,11 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             mypageFragment.setArguments(bundle)
             transaction.replace(R.id.main_fragment_container, mypageFragment)
             transaction.commit()
+            ctx.main_mypage_btn.setSelected(true)
+            ctx.main_directory_btn.setSelected(false)
+            ctx.main_lounge_btn.setSelected(false)
+            ctx.main_alarm_btn.setSelected(false)
+            ctx.main_hometab_btn.setSelected(false)
         }
 
         holder.profile_img.setOnClickListener {
@@ -180,6 +192,11 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             mypageFragment.setArguments(bundle)
             transaction.replace(R.id.main_fragment_container, mypageFragment)
             transaction.commit()
+            ctx.main_mypage_btn.setSelected(true)
+            ctx.main_directory_btn.setSelected(false)
+            ctx.main_lounge_btn.setSelected(false)
+            ctx.main_alarm_btn.setSelected(false)
+            ctx.main_hometab_btn.setSelected(false)
         }
 
         holder.like_rl.setOnClickListener {
@@ -243,7 +260,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         //좋아요
         var like_rl : RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
-        var like_btn: Button = itemView.findViewById(R.id.iv_item_like_btn) as Button
+        var like_btn: ImageView = itemView.findViewById(R.id.iv_item_like_btn) as ImageView
         var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 
         //댓글아이콘
@@ -334,6 +351,11 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             override fun onSuccess(result: KakaoLinkResponse) {}
         })
     }
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        Log.d("BoardAdapter", "onActivityResult")
+    }
+
 }
 
 

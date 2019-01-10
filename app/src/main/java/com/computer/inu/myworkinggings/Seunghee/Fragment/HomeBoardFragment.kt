@@ -34,7 +34,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
+import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
+import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
+import kotlinx.android.synthetic.main.activity_detail_board.*
 
 
 class HomeBoardFragment : Fragment() {
@@ -48,6 +51,7 @@ class HomeBoardFragment : Fragment() {
     lateinit var networkService: NetworkService
 
 
+
     //검색 리사이클러뷰
     lateinit var BoardDataForSearch: ArrayList<BoardData>
 
@@ -56,6 +60,9 @@ class HomeBoardFragment : Fragment() {
     var BoardItemListForSearch = ArrayList<BoardItem>()
     var BoardData = ArrayList<BoardData>()
     var BoardItemList = ArrayList<BoardItem>()
+
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_home_board, container, false)
@@ -136,6 +143,7 @@ class HomeBoardFragment : Fragment() {
             ll_home_board_board_view_for_search.visibility = View.GONE
             ll_home_board_board_view.visibility = View.VISIBLE
         }
+
     }
 
     private fun getHomeBoardSearchResponse(text: String) {
@@ -244,7 +252,7 @@ class HomeBoardFragment : Fragment() {
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
 
                     //rv_item_board_list.removeItemDecorationAt()
-                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
+                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(context!!, BoardItemList, requestManager)
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
 

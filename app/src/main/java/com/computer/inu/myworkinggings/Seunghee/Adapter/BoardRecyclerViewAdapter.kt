@@ -121,9 +121,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         /*이벤트 처리*/
 
+        val REQUEST_CODE_SUB_ACTIVITY = 7777
+
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
 
+
+            ///******
             ctx.toast(dataList[position].boardId!!.toString())
             ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
 
@@ -248,7 +252,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         })
 
     }
-
 
     private fun BoardLikePost() {
         val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",

@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         //카카오링크
         <meta-data
             android:name="com.kakao.sdk.AppKey"

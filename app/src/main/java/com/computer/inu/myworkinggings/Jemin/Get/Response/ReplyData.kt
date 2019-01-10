@@ -7,5 +7,6 @@ data class ReplyData (
      var content : String?,
      var writeTime : String?,
      var images : ArrayList<String>?,
-     var recommender : Int?
+     var recommender : Int?,
+     var likeChk : Boolean?
 )

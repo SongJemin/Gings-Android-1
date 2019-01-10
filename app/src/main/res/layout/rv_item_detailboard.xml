@@ -53,35 +53,57 @@
                 android:textColor="#525252"
                 android:textSize="10sp" />
 
-            <TextView
-                android:id="@+id/iv_item_reboard_like_cnt"
+            <LinearLayout
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_item_rebord_more"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="5.5dp"
-                android:layout_toLeftOf="@+id/iv_item_reboard_like"
-                android:text="999+"
-                android:textColor="#222222"
-                android:textSize="10sp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/iv_item_reboard_like_cnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5.5dp"
+                    android:layout_toRightOf="@+id/rl_item_reboard_ike"
+                    android:text="999+"
+                    android:textColor="#222222"
+                    android:textSize="10sp" />
 
-            <ImageView
-                android:id="@+id/iv_item_reboard_like"
-                android:layout_width="11.9dp"
-                android:layout_height="10.4dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10.6dp"
-                android:layout_toLeftOf="@+id/iv_item_rebord_more"
-                android:src="@drawable/ic_like" />
+                <RelativeLayout
+                    android:layout_gravity="center"
+                    android:id="@+id/rl_item_reboard_ike"
+                    android:layout_width="11.9dp"
+                    android:layout_height="10.4dp"
+                    android:layout_centerVertical="true"
 
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/iv_item_reboard_like_red"
-                android:layout_width="11.9dp"
-                android:layout_height="10.4dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10.6dp"
-                android:layout_toLeftOf="@+id/iv_item_rebord_more"
-                android:src="@drawable/ic_like_red" />
+                    >
+
+                    <ImageView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/iv_item_reboard_like"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_like" />
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:layout_centerInParent="true"
+                        android:id="@+id/iv_item_reboard_like_red"
+                        android:layout_width="11.9dp"
+                        android:layout_height="10.4dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_like_red" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
 
 
             <ImageView

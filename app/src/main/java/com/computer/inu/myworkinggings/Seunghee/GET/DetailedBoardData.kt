@@ -16,5 +16,6 @@ data class DetailedBoardData(
         val keywords : ArrayList<String?>,
         val replys : ArrayList<ReplyData?>,
         val numOfReply : Int?,
-        val recommender : Int?
+        val recommender : Int?,
+        val likeChk : Boolean?
 )

@@ -116,7 +116,7 @@ class CategoryBoardActivity : AppCompatActivity() {
                         getCategoryBoardSearchResponse(et_category_board_search.text.toString(), category_name)
                     }
 
-                    tv_category_board_like_rank.setOnClickListener {
+                    tv_category_board_new_rank.setOnClickListener {
 
                         getCategorySearchLikeRankResponse(et_category_board_search.text.toString(), category_name)
                     }

@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_example"
-    tools:context=".Jemin.Activity.SplashActivity">
+    tools:context=".Jemin.Activity.SplashActivity"
+    android:background="@color/colorPrimary"
+    >
+    <ImageView
+        android:id="@+id/splash_all_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/image_background"
+        />
+
 
 </LinearLayout>

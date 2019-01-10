@@ -17,6 +17,7 @@ import android.view.View
 import android.widget.ImageButton
 
 import android.util.Log
+import android.widget.Toast
 import com.computer.inu.myworkinggings.Hyunjin.Activity.TopNaviMessageNoticeActivity
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeFragment
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
@@ -26,7 +27,19 @@ import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    val FINISH_INTERVAL_TIME = 2000
+    var backPressedTime : Long = 0
+    override fun onBackPressed() {
+        var tempTime = System.currentTimeMillis()
+        var intervalTime = tempTime-backPressedTime
 
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed()
+        } else {
+            backPressedTime = tempTime
+            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private val FRAGMENT1 = 1
     private val FRAGMENT2 = 2
@@ -124,7 +137,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun callFragment(frament_no: Int) {
+    public fun callFragment(frament_no: Int) {
 
         // 프래그먼트 사용을 위해
         val transaction = supportFragmentManager.beginTransaction()
@@ -164,4 +177,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
 }

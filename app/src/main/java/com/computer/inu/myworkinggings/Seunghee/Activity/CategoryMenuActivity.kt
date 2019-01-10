@@ -7,7 +7,9 @@ import android.widget.RelativeLayout
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.R.anim.stay
 import kotlinx.android.synthetic.main.activity_category_menu.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class CategoryMenuActivity : AppCompatActivity() {
 
@@ -34,14 +36,11 @@ class CategoryMenuActivity : AppCompatActivity() {
                 )
         val directoryListText : Array<String> = arrayOf("질문","영감","협업","샘플1","샘플2","샘플3","샘플4","샘플5","샘플6")
 
-
-        for(i in directoryList.indices)
-        {
+        for(i in directoryList.indices){
             directoryList[i].setOnClickListener{
                 startActivity<CategoryBoardActivity>("category_name" to directoryListText[i])
             }
         }
-
 
     }
 

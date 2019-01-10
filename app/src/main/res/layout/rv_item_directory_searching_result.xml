@@ -15,7 +15,8 @@
         android:id="@+id/iv_item_directory_searching_profile_img"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/invalid_name"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_circle_background"/>
 <RelativeLayout
     android:layout_centerHorizontal="true"
     android:layout_below="@id/iv_item_directory_searching_profile_img"
@@ -64,7 +65,7 @@
         android:lineSpacingExtra="6sp"
         android:textSize="15sp"
         android:textColor="#525252"
-        android:text="/" />
+        android:text="" />
     <TextView
         android:layout_toRightOf="@+id/tv_item_directory_searching_slash"
         android:id="@+id/tv_item_directory_searching_role"
@@ -96,7 +97,7 @@
         android:layout_height="wrap_content"
         android:textSize="10dp"
         android:layout_marginTop="4dp"
-        android:text="/"/>
+        android:text=""/>
     <TextView
         android:layout_marginTop="4dp"
         android:id="@+id/tv_item_directory_searching_ablity"
@@ -108,14 +109,14 @@
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="6sp"
         android:textColor="#999999"
-        android:text="설계"/>
+        android:text=""/>
     <TextView
         android:id="@+id/tv_item_directory_searching_available_coworker"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/tv_item_directory_searching_team_name"
         android:layout_toRightOf="@+id/tv_item_directory_searching_ablity"
         android:gravity="center"
-        android:background="#b0caea"
+        android:background="@drawable/box_on"
         android:layout_width="39dp"
         android:layout_height="14dp"
         android:textSize="8sp"

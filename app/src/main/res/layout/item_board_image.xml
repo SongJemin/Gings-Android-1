@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="101dp"
+    android:layout_height="101dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
+    android:background="@drawable/image_background"
     >
     <ImageView
         android:id="@+id/item_board_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:src="@drawable/invalid_name"
         />
 
+    <Button
+        android:id="@+id/item_image_board_delete_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bt_x"
+        android:layout_alignParentRight="true"
+        />
 
-</LinearLayout>
+</RelativeLayout>

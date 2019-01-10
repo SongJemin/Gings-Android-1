@@ -6,6 +6,13 @@ import android.os.Bundle
 import android.os.Handler
 import com.computer.inu.myworkinggings.Moohyeon.Activity.LoginActivity
 import com.computer.inu.myworkinggings.R
+import android.os.Looper.loop
+import android.view.View
+import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
+import kotlinx.android.synthetic.main.activity_splash.*
+
 
 class SplashActivity : Activity() {
 
@@ -13,9 +20,19 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_splash)
+        val gifImage = GlideDrawableImageViewTarget(splash_all_background)
 
+        Glide.with(this).load(R.drawable.real_final_splash).into(gifImage)
+/*
+        val animationView = findViewById<View>(R.id.animation_view) as LottieAnimationView
+        animationView.setAnimation("gings_splash.json")
+        animationView.loop(true)
+        animationView.playAnimation()
+*/
+        //var intent = Intent(applicationContext, LoginActivity::class.java)
+        //startActivity(intent)
         val hd = Handler()
-        hd.postDelayed(splashhandler(), 1000) // 3000ms=3초후에 핸들러 실행 //딜레이 3000
+        hd.postDelayed(splashhandler(), 3000) // 3000ms=3초후에 핸들러 실행 //딜레이 3000
     }
 
     private inner class splashhandler : Runnable {

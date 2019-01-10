@@ -22,7 +22,7 @@
                     android:id="@+id/mypage_background_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/invalid_name"
+                    android:src="@drawable/img_default"
                     android:scaleType="fitXY"
                     />
 
@@ -67,7 +67,7 @@
                             android:id="@+id/mypage_name_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이충엽"
+                            android:text=""
                             android:textSize="20sp"
                             android:textColor="#ffffff"
                             android:textStyle="bold"
@@ -90,7 +90,7 @@
                             android:id="@+id/mypage_job_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="CEO"
+                            android:text=""
                             android:textSize="13sp"
                             android:textColor="#ffffff"
                             />
@@ -105,7 +105,7 @@
                             android:id="@+id/mypage_team_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gings"
+                            android:text=""
                             android:textSize="13sp"
                             android:textColor="#ffffff"
                             />
@@ -127,7 +127,7 @@
                             android:id="@+id/mypage_region_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="대한민국 서울"
+                            android:text=""
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />
@@ -142,7 +142,7 @@
                             android:id="@+id/mypage_keyword_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="#기획 #PM #안드"
+                            android:text=""
                             android:textSize="10sp"
                             android:textColor="#ffffff"
                             />

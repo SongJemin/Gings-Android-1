@@ -47,7 +47,7 @@
         android:textSize="14dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="gingsdesign@gmail.com"/>
+        android:text="ywooo21@gmail.com"/>
     </LinearLayout>
     <LinearLayout
         android:layout_gravity="center"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="**********"/>
+            android:text="1234567"/>
     </LinearLayout>
     <TextView
         android:id="@+id/tv_login_login_button"

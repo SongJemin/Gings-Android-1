@@ -9,6 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.computer.inu.myworkinggings.Hyunjin.Data.MessageData
 import com.computer.inu.myworkinggings.Hyunjin.Activity.MessageSend1Activity
+import com.computer.inu.myworkinggings.Jemin.Activity.ChatActivity
 import com.computer.inu.myworkinggings.R
 import org.jetbrains.anko.startActivity
 
@@ -27,7 +28,7 @@ class MessageDataRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList
         holder.content.text = dataList[position].content
         holder.time.text = dataList[position].time
         holder.all.setOnClickListener {
-            ctx.startActivity<MessageSend1Activity>()
+            ctx.startActivity<ChatActivity>()
         }
     }
 

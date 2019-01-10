@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
 import com.computer.inu.myworkinggings.Jemin.Adapter.GetImageUrlAdapter
+import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetMyIntroduceResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
@@ -39,13 +40,18 @@ import java.io.InputStream
 import java.util.ArrayList
 
 class MypageUpdateActivity : AppCompatActivity() {
-    private var imagesList : ArrayList<MultipartBody.Part?> = ArrayList()
-    var imageUrlList = ArrayList<Uri>()
+    var imageUrlList = ArrayList<ImageType>()
     lateinit var boardImageAdapter : BoardImageAdapter
-    var urlSize : Int = 0
     lateinit var requestManager : RequestManager
-    lateinit var getImageUrlAdapter : GetImageUrlAdapter
     var imgs = ArrayList<String>()
+    var getImageUrlSize : Int = 0
+    var deleteImagesUrl = ArrayList<String>()
+    var getServerImageUrl : Boolean = false
+    var postImagesList: ArrayList<MultipartBody.Part?> = ArrayList()
+    var prevImagesUrl = ArrayList<RequestBody>()
+    var getServerData : Boolean = false
+    
+    var TAG = "MypageUdateActivity"
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -54,6 +60,7 @@ class MypageUpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypage_update)
+        mypageUpdateActivity = this
 
         requestManager = Glide.with(this)
         getMyIntroduce()
@@ -62,41 +69,66 @@ class MypageUpdateActivity : AppCompatActivity() {
             val tedBottomPicker = TedBottomPicker.Builder(this@MypageUpdateActivity)
                     .setOnMultiImageSelectedListener {
                         uriList: ArrayList<Uri>? ->
-                        imageUrlList.clear()
-                        for(i in 0 .. uriList!!.size-1){
-                            urlSize = uriList!!.size-1
-                            uriList!!.add(uriList.get(i))
 
-                            imageUrlList.add(uriList.get(i))
-
-                            val options = BitmapFactory.Options()
-
-                            var input: InputStream? = null // here, you need to get your context.
-
-
-                            input = contentResolver.openInputStream(imageUrlList.get(i))
-                            val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
-                            val baos = ByteArrayOutputStream()
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
-                            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
-                            val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
-
-                            imagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
-
-                            for(i in 0 .. imagesList.size-1){
-                            }
-                            if(imageUrlList.size > 0){
-                                mypage_update_recyclerview.visibility = View.VISIBLE
-                                boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager)
-                                mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-                                mypage_update_recyclerview.adapter = boardImageAdapter
+                        for (i in 0..uriList!!.size - 1) {
+                            if(getImageUrlSize > 0){
+                                deleteImagesUrl.addAll(boardImageAdapter.deleteImageUrlList)
+                                if(boardImageAdapter.urlRemovedCount > 0){
+                                    // 서버로부터 받은 이미지리스트 갱신 = 서버로부터 받아온 이미지 리스트 개수 - 어댑터에서 제거한 사진 개수
+                                    getImageUrlSize = getImageUrlSize - boardImageAdapter.urlRemovedCount
+                                    // 어댑터에서 제거한 사진 개수 초기화
+                                    boardImageAdapter.urlRemovedCount = 0
+                                }
                             }
                             else{
+                                boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,0, 1, getImageUrlSize)
+                            }
+                            imageUrlList.add(ImageType("null",uriList.get(i)))
+
+                            val options = BitmapFactory.Options()
+                            var input: InputStream? = null // here, you need to get your context.
+
+                            // 이미 리사이클러뷰에 사진 존재할 경우 이미지 추가
+                            if(getServerImageUrl == true){
+                                input = contentResolver.openInputStream(imageUrlList.get(getImageUrlSize+i).imageUri)
+                            }
+                            else{
+                                input = contentResolver.openInputStream(imageUrlList.get(i).imageUri)
+                            }
+
+                            if(getServerImageUrl == true){
+                                Log.v(TAG,"수정 이미지 저장")
+                                val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
+                                val baos = ByteArrayOutputStream()
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
+                                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
+                                val images = File(this.imageUrlList.get(i).imageUri.toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
+                                //val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
+                                postImagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
+                            }
+                            else{
+                                Log.v(TAG,"최초 이미지 저장")
+                                val bitmap = BitmapFactory.decodeStream(input, null, options) // InputStream 으로부터 Bitmap 을 만들어 준다.
+                                val baos = ByteArrayOutputStream()
+                                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
+                                val photoBody = RequestBody.create(MediaType.parse("image/jpg"), baos.toByteArray())
+                                val images = File(this.imageUrlList.get(i).imageUri.toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
+                                //val images = File(this.imageUrlList.get(i).toString()) // 가져온 파일의 이름을 알아내려고 사용합니다
+                                postImagesList.add(MultipartBody.Part.createFormData("images", images.name, photoBody))
+                            }
+                            if (postImagesList.size > 0) {
+                                mypage_update_recyclerview.visibility = View.VISIBLE
+
+                            } else {
                                 mypage_update_recyclerview.visibility = View.GONE
                             }
 
                         }
 
+                        boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,1, 1, getImageUrlSize)
+
+                        mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                        mypage_update_recyclerview.adapter = boardImageAdapter
                     }
                     .setSelectMaxCount(4)
                     .showCameraTile(false)
@@ -109,29 +141,55 @@ class MypageUpdateActivity : AppCompatActivity() {
         }
 
         mypage_update_confirm_tv.setOnClickListener {
-            postMyIntroduce()
-        }
+            if (mypage_update_content_edit.text.toString() == "" || (postImagesList.size == 0 && getImageUrlSize == 0)) {
+                if (postImagesList.size == 0 && getImageUrlSize == 0) {
+                    Toast.makeText(applicationContext, "이미지를 넣어주세요", Toast.LENGTH_LONG).show()
+                } else if (mypage_update_content_edit.text.toString() == "") {
+                    Toast.makeText(applicationContext, "내용을 적어주세요", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    if (getServerData != true) {
+                        Log.v(TAG, "최초 등록 준비 완료")
+                        postMyIntroduce(0)
+                    } else {
+                        Log.v(TAG, "수정 등록 준비 완료")
+                        postMyIntroduce(1)
+                    }
+                }
+                
+            }
 
+        }
     }
 
-    fun postMyIntroduce() {
+    fun postMyIntroduce(modifyFlag : Int) {
 
-        val content = RequestBody.create(MediaType.parse("text.plain"), "ㅎㅇㅎㅇ")
-        val postBoardResponse = networkService.postMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", content, imagesList)
+        val content = RequestBody.create(MediaType.parse("text.plain"), mypage_update_content_edit.text.toString())
+        var postBoardResponse : Call<PostResponse>
+        if(modifyFlag == 0){
+            postBoardResponse = networkService.postMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", content, postImagesList)
+        }
+        else{
+            for(i in 0 .. deleteImagesUrl.size-1){
+                prevImagesUrl.add(RequestBody.create(MediaType.parse("text.plain"), deleteImagesUrl[i]))
+            }
+            postBoardResponse = networkService.updateMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", content, postImagesList, prevImagesUrl)
+        }
 
         postBoardResponse.enqueue(object : retrofit2.Callback<PostResponse>{
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
-                Log.v("TAG", "통신 성공")
+                Log.v(TAG, "통신 성공")
                 if(response.isSuccessful){
-                    Log.v("TAG", "보드 값 전달 성공")
-                    Log.v("TAG","보드 status = " + response.body()!!.status)
-                    Log.v("TAG","보드 message = " + response.body()!!.message)
+                    Toast.makeText(applicationContext,"값 전달 성공" ,Toast.LENGTH_LONG).show()
+                    Log.v(TAG, "소개 값 전달 성공")
+                    Log.v(TAG,"소개 응답 status = " + response.body()!!.status)
+                    Log.v(TAG,"소개 응답 message = " + response.body()!!.message)
                     var intent = Intent(applicationContext, MainActivity::class.java)
                     startActivity(intent)
                 }
                 else{
-                    Log.v("TAG", "보드 값 전달 실패")
+                    Log.v(TAG, "소개 값 전달 실패")
                 }
             }
 
@@ -145,18 +203,37 @@ class MypageUpdateActivity : AppCompatActivity() {
     fun getMyIntroduce() {
 
         val getMyIntroduceResponse = networkService.getMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
-
         getMyIntroduceResponse.enqueue(object : retrofit2.Callback<GetMyIntroduceResponse>{
 
             override fun onResponse(call: Call<GetMyIntroduceResponse>, response: Response<GetMyIntroduceResponse>) {
                 if(response.isSuccessful){
+                    if(response.body()!!.data.size > 0){
+                        Log.v(TAG, "수정 버튼 활성화")
+                        mypage_update_title_tv.text = "자기소개 수정"
+                        getServerData = true
+                        imgs = response.body()!!.data[0].imgs
+                    }
+                    else{
+                        Log.v(TAG, "최초 등록 버튼 활성화")
+                        mypage_update_title_tv.text = "자기소개 등록"
+                    }
+
+                    Log.v(TAG, "받은 데이터 = " + response.body()!!.data[0])
                     mypage_update_content_edit.hint = response.body()!!.data[0].content
-                    imgs = response.body()!!.data[0].imgs
+                    boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,0, 1, getImageUrlSize)
+
+                    if(imgs.size > 0){
+                        getServerImageUrl = true
+                        getImageUrlSize = imgs.size - boardImageAdapter.urlRemovedCount
+                    }
+                    for(i in 0 .. imgs.size-1){
+                        imageUrlList.add(ImageType(imgs[i],null))
+                    }
 
                     mypage_update_recyclerview.visibility = View.VISIBLE
-                    getImageUrlAdapter = GetImageUrlAdapter(imgs, requestManager)
+                    boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,1, 0, getImageUrlSize)
                     mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-                    mypage_update_recyclerview.adapter = getImageUrlAdapter
+                    mypage_update_recyclerview.adapter = boardImageAdapter
                 }
                 else{
                 }
@@ -164,10 +241,13 @@ class MypageUpdateActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<GetMyIntroduceResponse>, t: Throwable?) {
                 Toast.makeText(applicationContext,"자기 소개 조회 서버 연결 실패", Toast.LENGTH_SHORT).show()
-                Log.v("asdf","실패 이유 = " + t.toString())
+                Log.v(TAG,"실패 이유 = " + t.toString())
             }
-
         })
     }
 
+    companion object {
+        lateinit var mypageUpdateActivity : MypageUpdateActivity
+    }
+        
 }

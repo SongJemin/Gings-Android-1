@@ -3,20 +3,51 @@
     package="com.computer.inu.myworkinggings">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEVIVE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:name=".Network.ApplicationController"
         android:allowBackup="true"
-        android:icon="@drawable/icon_gings"
+        android:icon="@drawable/invalid_name"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon_gings"
+        android:roundIcon="@drawable/invalid_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- 로그인/가입창 -->
-        //로그인 시작
-        <activity android:name=".Moohyeon.Activity.LoginActivity">
+
+        //카카오링크
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+
+        //카카오스플레시
+        <activity android:name=".Seunghee.Activity.KakaoSplashActivity">
+            //카카오링크 실행
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/kakao_scheme"
+                    android:host="@string/kakaolink_host" />
+            </intent-filter>
         </activity>
+
+        <activity android:name=".Jemin.Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!-- 로그인/가입창 -->
+        <activity android:name=".Moohyeon.Activity.LoginActivity">
+
+        </activity>
+
         //가입창
         <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
         <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
@@ -24,9 +55,12 @@
 
         <!-- 탭바 -->
         //보드
-        <activity android:name=".Moohyeon.Activity.BottomNaviActivity" />
+        <activity
+            android:name=".Moohyeon.Activity.BottomNaviActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <!-- 홈보드 -->
+        //검색
         //업보드
         <activity
             android:name=".Seunghee.Activity.UpBoardActivity"
@@ -43,6 +77,10 @@
 
         //디테일보드
         <activity android:name=".Moohyeon.Activity.DetailBoardActivity" />
+        //디테일보드 더보기 버튼
+        <activity
+            android:name=".Seunghee.Activity.ReBoardMoreBtnMineActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
         //카테고리 메뉴창
         <activity
             android:name=".Seunghee.Activity.CategoryMenuActivity"
@@ -64,7 +102,6 @@
             android:name=".Seunghee.Activity.ProfileSettingMenuActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
         //프로필
-        <activity android:name=".Seunghee.Activity.ProfileImageUpdateActivity" />
         <activity android:name=".Seunghee.Activity.ProfileInfoUpdateActivity" />
         <activity android:name=".Jemin.Activity.MypageUpdateActivity" />
         //보안
@@ -74,13 +111,34 @@
         <activity android:name=".Jemin.Activity.MainActivity" />
         <activity android:name=".Jemin.Activity.TestActivity" />
         <activity android:name=".Jemin.Activity.Test2Activity" />
-        <activity android:name=".Jemin.Activity.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+
+        <activity
+            android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+
+        <activity android:name=".Jemin.Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            />
+        <!-- FCM 관련 서비스 -->
+        <service
+            android:name=".Jemin.Firebase.FireBaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </activity>
+        </service>
+        <service
+            android:name=".Jemin.Firebase.FirebaseInstanceIDService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- 여기까지 -->
+
     </application>
 
 </manifest>

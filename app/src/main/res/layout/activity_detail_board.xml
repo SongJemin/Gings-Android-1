@@ -254,14 +254,14 @@
                                 <ImageView
                                     android:id="@+id/iv_item_board_like"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
 
                                     android:src="@drawable/ic_like" />
                                 <ImageView
                                     android:visibility="gone"
                                     android:id="@+id/iv_item_board_like_on"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
 
                                     android:src="@drawable/ic_like_on" />
 
@@ -295,7 +295,7 @@
                                 android:id="@+id/iv_item_board_comment"
                                 android:layout_centerVertical="true"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:src="@drawable/ic_reple" />
 
                             <TextView

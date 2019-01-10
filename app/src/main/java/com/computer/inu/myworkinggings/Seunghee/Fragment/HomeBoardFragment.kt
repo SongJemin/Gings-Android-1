@@ -85,6 +85,10 @@ class HomeBoardFragment : Fragment() {
             rl_home_board_main_bar_for_search.visibility = View.VISIBLE
         }
 
+        home_gings_iv.setOnClickListener {
+            rv_item_board_list.smoothScrollToPosition(0)
+        }
+
         /*검색*/
         et_home_board_search.inputType = InputType.TYPE_CLASS_TEXT
         et_home_board_search.imeOptions = EditorInfo.IME_ACTION_SEARCH

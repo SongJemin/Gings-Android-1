@@ -1,10 +1,12 @@
 package com.computer.inu.myworkinggings.Jemin.Activity
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -25,21 +27,13 @@ import com.computer.inu.myworkinggings.Moohyeon.Fragment.DirectoryFragment
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_exit.*
+import kotlinx.android.synthetic.main.dialog_exit.view.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     val FINISH_INTERVAL_TIME = 2000
     var backPressedTime : Long = 0
-    override fun onBackPressed() {
-        var tempTime = System.currentTimeMillis()
-        var intervalTime = tempTime-backPressedTime
 
-        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-            super.onBackPressed()
-        } else {
-            backPressedTime = tempTime
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     private val FRAGMENT1 = 1
     private val FRAGMENT2 = 2
@@ -177,5 +171,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+    // 백버튼 클릭 시
+    override fun onBackPressed() {
+        showExitDialog()
+    }
+
+    protected fun showExitDialog() {
+        var exitDialog = Dialog(this)
+        exitDialog.setCancelable(true)
+        exitDialog.getWindow().setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
+        val exitDialogView = this!!.layoutInflater.inflate(R.layout.dialog_exit, null)
+        exitDialog.setContentView(exitDialogView)
+
+        exitDialog.exit_dialog_cancel_tv.setOnClickListener {
+            exitDialog.dismiss()
+        }
+        exitDialog.exit_dialog_exit_tv.setOnClickListener {
+            moveTaskToBack(true)
+            finish()
+            android.os.Process.killProcess(android.os.Process.myPid())
+        }
+        exitDialog.show()
+    }
+
+
 
 }

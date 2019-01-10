@@ -80,11 +80,12 @@
             //질문
             <RelativeLayout
                 android:id="@+id/rl_btn_category_menu_question"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
-                android:background="#ffffff">
+                android:background="#ffffff"
+                >
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -98,8 +99,7 @@
                         android:layout_height="40dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:background="#ffffff"
-                        android:src="@drawable/ic_face_black_24dp" />
+                        android:background="#ffffff" />
 
                     <TextView
                         android:layout_marginTop="6.5dp"
@@ -140,8 +140,7 @@
                         android:layout_height="40dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:background="#ffffff"
-                        android:src="@drawable/ic_face_black_24dp" />
+                        android:background="#ffffff" />
 
                     <TextView
                         android:layout_marginTop="6.5dp"
@@ -183,8 +182,7 @@
                         android:layout_height="40dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:background="#ffffff"
-                        android:src="@drawable/ic_face_black_24dp" />
+                        android:background="#ffffff"/>
 
                     <TextView
                         android:layout_marginTop="6.5dp"

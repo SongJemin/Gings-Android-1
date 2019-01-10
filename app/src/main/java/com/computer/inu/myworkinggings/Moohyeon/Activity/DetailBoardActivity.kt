@@ -31,9 +31,12 @@ import android.widget.TextView
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.BoardItem
 import com.computer.inu.myworkinggings.Jemin.Data.ImageType
+import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
+import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnMineActivity
 import com.computer.inu.myworkinggings.Seunghee.GET.DetailedBoardData
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
+import com.computer.inu.myworkinggings.Seunghee.Post.PostBoardShareResponse
 import com.kakao.kakaolink.v2.KakaoLinkResponse
 import com.kakao.kakaolink.v2.KakaoLinkService
 import com.kakao.message.template.ButtonObject
@@ -44,6 +47,8 @@ import com.kakao.network.ErrorResult
 import com.kakao.network.callback.ResponseCallback
 import com.kakao.util.helper.log.Logger
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Callback
 
 class DetailBoardActivity : AppCompatActivity() {
@@ -242,12 +247,47 @@ class DetailBoardActivity : AppCompatActivity() {
             }else
                 images = temp.images[0]
 
-            sendLink(temp.title,images,temp.boardId)
+            getBoardShareResponse(temp.boardId!!)
 
+            sendLink(temp.title,images,temp.boardId)
+        }
+
+        //더보기 버튼 클릭 시
+        iv_item_board_menu.setOnClickListener {
+
+            toast(temp.boardId!!.toString())
+
+            //본인 게시글 클릭
+            startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to temp.boardId)
+
+            //일반 게시글 클릭
+            startActivity<HomeBoardMoreBtnActivity>("BoardId" to temp.boardId)
         }
 
         //tv_item_board_profile_role.text = temp.
         //tv_item_board_profile_team.text = temp.
+    }
+
+
+    //보드공유 통신
+    private fun getBoardShareResponse(b_id : Int){
+        val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
+                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                b_id)
+
+        postBoardshareResponse.enqueue(object : Callback<PostBoardShareResponse> {
+            override fun onFailure(call: Call<PostBoardShareResponse>, t: Throwable) {
+                Log.e("보드공유 통신 fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostBoardShareResponse>, response: Response<PostBoardShareResponse>) {
+                if (response.isSuccessful) {
+                    Log.e("보드공유 통신성공", "  통신 성공")
+                    ctx.toast("공유@")
+                }
+            }
+        })
+
     }
 
     private fun bindReBoardData(temp : ArrayList<ReplyData?> ){

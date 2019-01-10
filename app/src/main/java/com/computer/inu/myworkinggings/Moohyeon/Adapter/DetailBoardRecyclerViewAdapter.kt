@@ -50,6 +50,9 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
                 ApplicationController.instance.networkService
             }
 
+
+
+            //댓글좋아요
             val postReBoardrecommendResponse = networkService.postReboardRecommendResponse("application/json",
                     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
                     dataList[position]!!.replyId!!

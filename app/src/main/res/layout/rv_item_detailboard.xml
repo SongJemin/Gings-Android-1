@@ -1,108 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_marginTop="20dp"
-            android:id="@+id/iv_item_detailboard_profile_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="19dp"
-            android:src="@color/colorPrimary"/>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_item_detailboard_profile_img"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="20dp"
+        android:src="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:id="@+id/iv_item_detailboard_top_layout"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_item_detailboard_profile_img"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/iv_item_detailboard_profile_img">
 
         <RelativeLayout
-            android:id="@+id/iv_item_detailboard_top_layout"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_item_detailboard_profile_img"
-            android:layout_marginLeft="16dp"
-            android:layout_alignTop="@+id/iv_item_detailboard_profile_img"
-            >
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp">
-                        <TextView
-                            android:id="@+id/tv_item_detailboard_profile_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#222222"
-                            android:textSize="12sp"
-                            android:text="이충엽"
-                            android:textStyle="bold"
-                            android:layout_centerVertical="true"
-                            />
-                        <View
-                            android:id="@+id/v_item_detailboard_v"
-                            android:layout_toRightOf="@id/tv_item_detailboard_profile_name"
-                            android:layout_width="1dp"
-                            android:layout_height="7.6dp"
-                            android:layout_marginLeft="7.2dp"
-                            android:layout_centerVertical="true"
-                            android:background="#999999" />
+            android:layout_width="match_parent"
+            android:layout_height="18dp">
 
-                        <TextView
-                            android:layout_marginLeft="7.8dp"
-                            android:layout_toRightOf="@+id/v_item_detailboard_v"
-                            android:id="@+id/tv_item_detailboard_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#525252"
-                            android:layout_centerVertical="true"
-                            android:textSize="10sp"
-                            android:text="2018/12/21  18:30" />
+            <TextView
+                android:id="@+id/tv_item_detailboard_profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="이충엽"
+                android:textColor="#222222"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/iv_item_reboard_like_cnt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toLeftOf="@+id/iv_item_reboard_like"
-                        android:layout_marginRight="5.5dp"
-                        android:textColor="#222222"
-                        android:textSize="10sp"
-                        android:layout_centerVertical="true"
-                        android:text="999+"
-                        />
+            <View
+                android:id="@+id/v_item_detailboard_v"
+                android:layout_width="1dp"
+                android:layout_height="7.6dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7.2dp"
+                android:layout_toRightOf="@id/tv_item_detailboard_profile_name"
+                android:background="#999999" />
 
-                        <ImageView
-                            android:id="@+id/iv_item_reboard_like"
-                            android:layout_width="11.9dp"
-                            android:layout_height="10.4dp"
-                            android:src="@drawable/ic_like"
-                            android:layout_toLeftOf="@+id/iv_item_rebord_more"
-                            android:layout_marginRight="10.6dp"
-                            android:layout_centerVertical="true"
-                            />
+            <TextView
+                android:id="@+id/tv_item_detailboard_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7.8dp"
+                android:layout_toRightOf="@+id/v_item_detailboard_v"
+                android:text="2018/12/21  18:30"
+                android:textColor="#525252"
+                android:textSize="10sp" />
 
-                        <ImageView
-                            android:id="@+id/iv_item_rebord_more"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
-                            android:layout_marginTop="1dp"
-                            android:src="@drawable/bt_more"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            />
-                </RelativeLayout>
+            <TextView
+                android:id="@+id/iv_item_reboard_like_cnt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5.5dp"
+                android:layout_toLeftOf="@+id/iv_item_reboard_like"
+                android:text="999+"
+                android:textColor="#222222"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:id="@+id/iv_item_reboard_like"
+                android:layout_width="11.9dp"
+                android:layout_height="10.4dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.6dp"
+                android:layout_toLeftOf="@+id/iv_item_rebord_more"
+                android:src="@drawable/ic_like" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_item_reboard_like_red"
+                android:layout_width="11.9dp"
+                android:layout_height="10.4dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10.6dp"
+                android:layout_toLeftOf="@+id/iv_item_rebord_more"
+                android:src="@drawable/ic_like_red" />
+
+
+            <ImageView
+                android:id="@+id/iv_item_rebord_more"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="1dp"
+                android:src="@drawable/bt_more" />
         </RelativeLayout>
+    </RelativeLayout>
 
-        <TextView
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="65dp"
-            android:id="@+id/tv_item_detailboard_contents"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#222222"
-            android:lineSpacingExtra="5sp"
-            android:layout_below="@+id/iv_item_detailboard_top_layout"
-            android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
-            />
-        <ImageView
-            android:id="@+id/iv_item_board_image_contents"
-            android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/tv_item_detailboard_contents"
-            android:layout_width="245dp"
-            android:layout_height="245dp"
-            android:src="@mipmap/ic_launcher_round"/>
+    <TextView
+        android:id="@+id/tv_item_detailboard_contents"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_item_detailboard_top_layout"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="5sp"
+        android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
+        android:textColor="#222222"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/iv_item_board_image_contents"
+        android:layout_width="245dp"
+        android:layout_height="245dp"
+        android:layout_below="@id/tv_item_detailboard_contents"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/ic_launcher_round" />
 </RelativeLayout>

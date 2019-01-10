@@ -41,12 +41,10 @@ class HomeBoardFragment : Fragment() {
 
     private var isinSearchData = false
 
-
     lateinit var searchBoardRecyclerViewAdapter: BoardRecyclerViewAdapter
 
     lateinit var requestManager: RequestManager
     lateinit var networkService: NetworkService
-
 
     //검색 리사이클러뷰
     lateinit var BoardDataForSearch: ArrayList<BoardData>
@@ -104,7 +102,6 @@ class HomeBoardFragment : Fragment() {
                     ll_home_board_board_view.visibility = View.GONE
                 }
 
-
                 val imm = ctx?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
                 imm!!.hideSoftInputFromWindow(et_home_board_search.getWindowToken(), 0)
             }
@@ -115,6 +112,7 @@ class HomeBoardFragment : Fragment() {
 
     }
 
+    //검색클릭리스너
     private fun onSearchClickListener() {
 
         /*엑스버튼 누를 경우*/
@@ -134,8 +132,8 @@ class HomeBoardFragment : Fragment() {
         }
     }
 
+    //검색
     private fun getHomeBoardSearchResponse(text: String) {
-
         val getHomeboardSearchResponse = networkService.getBoardSearchResponse("application/json",
                 "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
                 text)
@@ -148,41 +146,30 @@ class HomeBoardFragment : Fragment() {
             override fun onResponse(call: Call<GetBoardSearchResponse>, response: Response<GetBoardSearchResponse>) {
                 if (response!!.isSuccessful) {
 
+                    if (isinSearchData == true) {
 
-                    Log.v("Search", "success")
-                    for(i in 0..BoardDataForSearch.size-1){
-                        //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
-                        Log.v("asdf","키워드 크기 = " + BoardDataForSearch[i].keywords.size)
-                        BoardItemListForSearch.add(BoardItem(BoardDataForSearch[i].boardId, BoardDataForSearch[i].writerId, BoardDataForSearch[i].writer,
-                                BoardDataForSearch[i].writerImage, BoardDataForSearch[i].field, BoardDataForSearch[i].company,
-                                BoardDataForSearch[i].title, BoardDataForSearch[i].content, BoardDataForSearch[i].share, BoardDataForSearch[i].time, BoardDataForSearch[i].category, BoardDataForSearch[i].images,
-                                BoardDataForSearch[i].keywords, BoardDataForSearch[i].numOfReply, BoardDataForSearch[i].recommender,BoardItemListForSearch[i].likeChk ))
+                        BoardItemListForSearch.clear()
+                        BoardDataForSearch.clear()
 
+                        searchBoardRecyclerViewAdapter.dataList.clear()
+
+                        for (i in 0..searchBoardRecyclerViewAdapter.getItemCount() - 1) {
+                            rv_item_board_list_for_search.removeItemDecorationAt(i)
+                        }
+                    }
 
                     //데이터가 없을 때
                     if (response.body()!!.data == null) {
 
                         ll_home_board_board_view_for_search.visibility = View.GONE
+                        ll_home_board_board_view.visibility = View.GONE
+
                         iv_home_board_search_fail.visibility = View.VISIBLE
 
                         isinSearchData = false
 
                     } else {
                         //데이터 있을 경우
-
-
-                        ll_home_board_board_view_for_search.visibility = View.VISIBLE
-
-                        if (isinSearchData == true){
-                            BoardDataForSearch.clear()
-
-                            searchBoardRecyclerViewAdapter.dataList.clear()
-                            for(i in 0..searchBoardRecyclerViewAdapter.getItemCount()-1) {
-                                searchBoardRecyclerViewAdapter.getItemCount()
-                                rv_item_board_list_for_search.removeItemDecorationAt(i)
-
-                            }
-                        }
 
                         BoardDataForSearch = response.body()!!.data
 
@@ -195,31 +182,28 @@ class HomeBoardFragment : Fragment() {
                                     BoardDataForSearch[i].keywords, BoardDataForSearch[i].numOfReply, BoardDataForSearch[i].recommender, BoardDataForSearch[i].likeChk))
                         }
 
-
                         searchBoardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemListForSearch, requestManager)
                         rv_item_board_list_for_search.adapter = searchBoardRecyclerViewAdapter
                         rv_item_board_list_for_search.layoutManager = LinearLayoutManager(ctx)
 
-                        //getItemCount()
-                        //searchBoardRecyclerViewAdapter.notifyDataSetChanged()
+                        iv_home_board_search_fail.visibility = View.GONE
+                        ll_home_board_board_view.visibility = View.GONE
 
-                        if (response.body()!!.data.size > 0)
-                            isinSearchData = true
-                        else
-                            isinSearchData = false
+                        ll_home_board_board_view_for_search.visibility = View.VISIBLE
 
-                        Log.v("데이터길이", response.body()!!.data.size.toString())
+                        isinSearchData = true
 
 
                     }
-                }
-                //여기서
-            }
 
-        }
-    })
+                    //여기서
+                }
+
+            }
+        })
     }
 
+    //보드 통신
     fun getBoard() {
         var getBoardResponse = networkService.getBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
@@ -231,11 +215,11 @@ class HomeBoardFragment : Fragment() {
                     for (i in 0..BoardData.size - 1) {
 
                         //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
-                        Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+                        Log.v("asdf", "키워드 크기 = " + BoardData[i].keywords.size)
                         BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer,
                                 BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
                                 BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images,
-                                BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender,BoardData[i].likeChk ))
+                                BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender, BoardData[i].likeChk))
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
 

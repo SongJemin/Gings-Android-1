@@ -21,6 +21,7 @@ import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetCategoryLikeRankResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetCategorySearchLikeRankResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.GetCategorySearchResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_category_board.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.toast
@@ -159,7 +160,7 @@ class CategoryBoardActivity : AppCompatActivity() {
     //카테고리 검색_최신순
     private fun getCategoryBoardSearchResponse(text: String, category_code : String) {
         val getCategoryBoardsearchResponse = networkService.getCategorySearchResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(this),
                 category_code,
                 text
         )
@@ -225,7 +226,7 @@ class CategoryBoardActivity : AppCompatActivity() {
     //카테고리 '검색'_추천순
     private fun getCategorySearchLikeRankResponse(text: String, category_code : String) {
         val getCategorySearchLikerankResponse = networkService.getCategorySearchLikeRankResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(this),
                 category_code,
                 text
         )

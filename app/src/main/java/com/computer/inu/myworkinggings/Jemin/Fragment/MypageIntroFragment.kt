@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
 import org.json.JSONObject
 
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
@@ -105,17 +106,21 @@ class MypageIntroFragment : Fragment() {
         return v
     }
     fun getMyIntro() {
-        var getMypageIntroduceResponse = networkService.getMypageIntroduceResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg") // 네트워크 서비스의 getContent 함수를 받아옴
+        var getMypageIntroduceResponse = networkService.getMypageIntroduceResponse("application/json", SharedPreferenceController.getAuthorization(context!!)) // 네트워크 서비스의 getContent 함수를 받아옴
         getMypageIntroduceResponse.enqueue(object : Callback<GetMypageIntroduceResponse> {
             override fun onResponse(call: Call<GetMypageIntroduceResponse>?, response: Response<GetMypageIntroduceResponse>?) {
                 Log.v("TAG", "나의 소개 페이지 서버 통신 연결")
                 if (response!!.isSuccessful) {
-                    Log.v("MyTAG", "나의 소개 페이지 서버 통신 연결 성공")
+                    Log.v("MyTAG", "나의 소개 페이지 서버 통신 연결 성공 = " + response.body().toString())
 
-                    mypage_board_content_tv.text = response.body()!!.data.content
-                    mypage_board_datetime_tv.text = response.body()!!.data.time!!.substring(0, 16).replace("T", "   ")
+                    if(response.body()!!.data != null){
+                        mypage_board_content_tv.text = response.body()!!.data!!.content!!
+                        mypage_board_datetime_tv.text = response.body()!!.data!!.time!!.substring(0, 16).replace("T", "   ")
+                        Glide.with(ctx).load(response.body()!!.data!!.imgs!![0]).into( mypage_board_content_iv) // 한장만 넣을수 있음
+                    }
 
-                    Glide.with(ctx).load(response.body()!!.data.imgs!![0]).into( mypage_board_content_iv) // 한장만 넣을수 있음
+
+
                 }
             }
 
@@ -127,7 +132,7 @@ class MypageIntroFragment : Fragment() {
 
 
     fun getOtherIntro() {
-        var getOtherIntroResponse = networkService.getOtherPageIntro("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 1) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherIntroResponse = networkService.getOtherPageIntro( SharedPreferenceController.getAuthorization(context!!), 1) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherIntroResponse.enqueue(object : Callback<GetOtherIntroResponse> {
             override fun onResponse(call: Call<GetOtherIntroResponse>?, response: Response<GetOtherIntroResponse>?) {
                 Log.v("TAG", "타인 소개 페이지 서버 통신 연결")
@@ -148,7 +153,7 @@ class MypageIntroFragment : Fragment() {
 
 
     fun getGuestBoardPost() {
-        var getGuestResponse: Call<GetGuestBoardResponse> = networkService.getGuestBoardResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+        var getGuestResponse: Call<GetGuestBoardResponse> = networkService.getGuestBoardResponse("application/json",  SharedPreferenceController.getAuthorization(context!!))
         getGuestResponse.enqueue(object : Callback<GetGuestBoardResponse> {
             override fun onResponse(call: Call<GetGuestBoardResponse>?, response: Response<GetGuestBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
@@ -174,7 +179,7 @@ class MypageIntroFragment : Fragment() {
     }
 
     fun getOtherGuestBoard(){
-        var getOtherGuestBoardResponse: Call<GetOtherGuestBoardResponse>  = networkService.getOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",1)
+        var getOtherGuestBoardResponse: Call<GetOtherGuestBoardResponse>  = networkService.getOtherGuestBoard( SharedPreferenceController.getAuthorization(context!!),1)
         getOtherGuestBoardResponse.enqueue(object : Callback<GetOtherGuestBoardResponse> {
             override fun onResponse(call: Call<GetOtherGuestBoardResponse>?, response: Response<GetOtherGuestBoardResponse>?) {
                 Log.v("TAG", "타인 게스트 보드 조회 서버 통신 연결")
@@ -206,7 +211,7 @@ class MypageIntroFragment : Fragment() {
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-        var postOtherGuestBoardResponse = networkService.postOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 1, gsonObject)
+        var postOtherGuestBoardResponse = networkService.postOtherGuestBoard( SharedPreferenceController.getAuthorization(context!!), 1, gsonObject) // 이거 어케받지?
         postOtherGuestBoardResponse.enqueue(object : Callback<PostResponse>{
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {

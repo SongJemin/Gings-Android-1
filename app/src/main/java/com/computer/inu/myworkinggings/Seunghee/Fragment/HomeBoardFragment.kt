@@ -35,6 +35,7 @@ import retrofit2.Response
 import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 
 
 class HomeBoardFragment : Fragment() {
@@ -63,12 +64,17 @@ class HomeBoardFragment : Fragment() {
         requestManager = Glide.with(this)
 
         getBoard()
+        toast( SharedPreferenceController.getAuthorization(context!!).toString())
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        // 당겨서 새로 고침 기능
+        sr_homeboard_refresh.setOnRefreshListener {
+            getBoard()
+            sr_homeboard_refresh.isRefreshing=false
+        }
         //게시글 작성 버튼
         tv_home_board_write_board.setOnClickListener {
             startActivity<UpBoardActivity>()
@@ -137,7 +143,7 @@ class HomeBoardFragment : Fragment() {
     private fun getHomeBoardSearchResponse(text: String) {
 
         val getHomeboardSearchResponse = networkService.getBoardSearchResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(context!!),
                 text)
         getHomeboardSearchResponse.enqueue(object : Callback<GetBoardSearchResponse> {
 
@@ -221,13 +227,14 @@ class HomeBoardFragment : Fragment() {
     }
 
     fun getBoard() {
-        var getBoardResponse = networkService.getBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
             override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
+                    BoardItemList.clear()
+                    BoardData.clear()
                     BoardData = response.body()!!.data
-
                     for (i in 0..BoardData.size - 1) {
 
                         //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
@@ -241,8 +248,10 @@ class HomeBoardFragment : Fragment() {
 
                     //rv_item_board_list.removeItemDecorationAt()
                     boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
+                    boardRecyclerViewAdapter.notifyDataSetChanged()
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
+                    toast("통신")
 
 
                 }

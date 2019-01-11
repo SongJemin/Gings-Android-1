@@ -8,6 +8,7 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Post.DeleteReboardResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_home_board_more_btn_mine.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.toast
@@ -34,7 +35,7 @@ class ReBoardMoreBtnMineActivity : AppCompatActivity() {
 
             val deleteReBoardID: Int = intent.getIntExtra("ReBoardId", 0).toInt()
             val deleteReboardResponse: Call<DeleteReboardResponse> = networkService.deleteReboardResponse("application/json",
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    SharedPreferenceController.getAuthorization(this),
                     deleteReBoardID)
 
             deleteReboardResponse.enqueue(object : Callback<DeleteReboardResponse>{

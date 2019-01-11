@@ -18,15 +18,18 @@ import com.computer.inu.myworkinggings.Jemin.Activity.MypageUpdateActivity
 import com.computer.inu.myworkinggings.Jemin.Activity.PasswdModifyActivity
 import com.computer.inu.myworkinggings.Jemin.Activity.UnsubscribeActivity
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
+import com.computer.inu.myworkinggings.Moohyeon.Activity.LoginActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_profile_setting_menu.*
 import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -50,6 +53,10 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile_setting_menu)
 
         /*프로필 정보*/
+
+        tv_profile_name.setText(intent.getStringExtra("name"))
+        tv_profile_userId.setText(SharedPreferenceController.getUserId(this).toString()+"번째 깅스의 가족입니다.")
+        tv_userID.setText("UserId : "+SharedPreferenceController.getUserId(this).toString())
         //프로필 사진 수정
         rl_btn_profile_setting_menu_image_modify.setOnClickListener {
             changeImage()
@@ -72,7 +79,13 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
             startActivity<PasswdModifyActivity>()
         }
         //로그아웃
-
+        rl_btn_profile_setting_menu_signout.setOnClickListener {
+            SharedPreferenceController.AutoclearSPC(this)
+            SharedPreferenceController.clearSPC(this)
+            SharedPreferenceController.userIdclearSPC(this)
+            startActivity<LoginActivity>()
+            finish()
+        }
         //탈퇴하기
         rl_btn_profile_setting_menu_unsubscrible.setOnClickListener{
             startActivity<UnsubscribeActivity>()

@@ -25,10 +25,15 @@ import com.computer.inu.myworkinggings.Moohyeon.Fragment.DirectoryFragment
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import android.app.Activity
+
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
     val FINISH_INTERVAL_TIME = 2000
     var backPressedTime : Long = 0
+
     override fun onBackPressed() {
         var tempTime = System.currentTimeMillis()
         var intervalTime = tempTime-backPressedTime
@@ -52,6 +57,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // 탭 버튼에 대한 리스너 연결
         main_hometab_btn!!.setOnClickListener(this)

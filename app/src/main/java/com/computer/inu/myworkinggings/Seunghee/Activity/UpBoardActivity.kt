@@ -24,11 +24,13 @@ import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.AlbumRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.GET.DetailedBoardData
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import gun0912.tedbottompicker.TedBottomPicker
 import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.ctx
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -263,7 +265,7 @@ class UpBoardActivity : AppCompatActivity() {
 
         //toast("토오스트")
         val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(ctx),
                 modifyBoardID)
 
         getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
@@ -396,7 +398,7 @@ class UpBoardActivity : AppCompatActivity() {
 
     fun postBoard() {
 
-        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+        var token: String =  SharedPreferenceController.getAuthorization(ctx)
 
         var networkService = ApplicationController.instance.networkService
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())
@@ -429,7 +431,7 @@ class UpBoardActivity : AppCompatActivity() {
 
     fun updateBoard() {
 
-        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+        var token: String =  SharedPreferenceController.getAuthorization(ctx)
 
         var networkService = ApplicationController.instance.networkService
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())

@@ -44,7 +44,6 @@ interface NetworkService {
 
     @GET("/signup/authNumber")
     fun getVerifyNumberData(
-            @Header("Authorization") Authorization: String,
             @Query("email") email: String
     ): Call<GetVerifyNumberRequest>
 

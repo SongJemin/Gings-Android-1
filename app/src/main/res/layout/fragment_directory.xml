@@ -70,7 +70,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_directory_user_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 <ImageView
     android:layout_marginTop="158.7dp"
     android:layout_gravity="center"
@@ -91,11 +91,12 @@
        android:text="깅스의 멤버를 검색합니다."
         />
     <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="4.5dp"
-        android:layout_marginRight="4.5dp"
-        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="center_horizontal"
         android:id="@+id/rv_item_SearchingUserlist"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
     <ImageView
         android:id="@+id/tv_directory_seaching_fail"

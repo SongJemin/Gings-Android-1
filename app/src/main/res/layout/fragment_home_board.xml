@@ -144,7 +144,10 @@
         android:layout_height="1dp"
         android:background="#e2e8ed" />
 
-
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/sr_homeboard_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/ll_home_board_board_view"
         android:layout_width="match_parent"
@@ -159,8 +162,13 @@
 
         </android.support.v7.widget.RecyclerView>
 
-    </LinearLayout>
+    </LinearLayout> // home view
+</android.support.v4.widget.SwipeRefreshLayout>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sr_homeboard_searching_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/ll_home_board_board_view_for_search"
         android:layout_width="match_parent"
@@ -175,7 +183,8 @@
             android:layout_height="wrap_content"
             android:visibility="gone"></android.support.v7.widget.RecyclerView>
 
-    </LinearLayout>
+    </LinearLayout> //search
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <ImageView
         android:visibility="gone"

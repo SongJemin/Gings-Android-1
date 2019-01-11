@@ -8,8 +8,11 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Post.DeleteBoardResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_home_board_more_btn_mine.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,18 +37,21 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
         rl_btn_home_board_more_btn_mine_delete.setOnClickListener {
 
             val modifyBoardID: Int = intent.getIntExtra("BoardId", 0).toInt()
+
             val deleteBoardResponse: Call<DeleteBoardResponse> = networkService.deleteBoardResponse("application/json",
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    SharedPreferenceController.getAuthorization(this),
                     modifyBoardID)
 
             deleteBoardResponse.enqueue(object : Callback<DeleteBoardResponse> {
                 override fun onFailure(call: Call<DeleteBoardResponse>, t: Throwable) {
                     Log.e("sign up fail", t.toString())
+                    toast("삭제 실패")
                 }
 
                 //통신 성공 시 수행되는 메소드
                 override fun onResponse(call: Call<DeleteBoardResponse>, response: Response<DeleteBoardResponse>) {
                     if (response.isSuccessful) {
+                        toast("삭제 성공")
                         finish()
                     }
                 }

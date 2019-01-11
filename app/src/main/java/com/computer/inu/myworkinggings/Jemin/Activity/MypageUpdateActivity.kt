@@ -22,6 +22,7 @@ import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import gun0912.tedbottompicker.TedBottomPicker
@@ -31,6 +32,7 @@ import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.ctx
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
@@ -167,13 +169,13 @@ class MypageUpdateActivity : AppCompatActivity() {
         val content = RequestBody.create(MediaType.parse("text.plain"), mypage_update_content_edit.text.toString())
         var postBoardResponse : Call<PostResponse>
         if(modifyFlag == 0){
-            postBoardResponse = networkService.postMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", content, postImagesList)
+            postBoardResponse = networkService.postMyIntroduce(SharedPreferenceController.getAuthorization(this), content, postImagesList)
         }
         else{
             for(i in 0 .. deleteImagesUrl.size-1){
                 prevImagesUrl.add(RequestBody.create(MediaType.parse("text.plain"), deleteImagesUrl[i]))
             }
-            postBoardResponse = networkService.updateMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", content, postImagesList, prevImagesUrl)
+            postBoardResponse = networkService.updateMyIntroduce(SharedPreferenceController.getAuthorization(this), content, postImagesList, prevImagesUrl)
         }
 
         postBoardResponse.enqueue(object : retrofit2.Callback<PostResponse>{
@@ -202,7 +204,7 @@ class MypageUpdateActivity : AppCompatActivity() {
 
     fun getMyIntroduce() {
 
-        val getMyIntroduceResponse = networkService.getMyIntroduce("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+        val getMyIntroduceResponse = networkService.getMyIntroduce(SharedPreferenceController.getAuthorization(this))
         getMyIntroduceResponse.enqueue(object : retrofit2.Callback<GetMyIntroduceResponse>{
 
             override fun onResponse(call: Call<GetMyIntroduceResponse>, response: Response<GetMyIntroduceResponse>) {
@@ -211,7 +213,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                         Log.v(TAG, "수정 버튼 활성화")
                         mypage_update_title_tv.text = "자기소개 수정"
                         getServerData = true
-                        imgs = response.body()!!.data[0].imgs
+                        imgs = response.body()!!.data[0].imgs!!
                     }
                     else{
                         Log.v(TAG, "최초 등록 버튼 활성화")

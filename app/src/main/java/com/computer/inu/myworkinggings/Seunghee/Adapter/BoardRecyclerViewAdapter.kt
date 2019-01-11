@@ -37,6 +37,7 @@ import java.util.ArrayList
 import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import android.R.attr.onClick
 import android.widget.*
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager: RequestManager)
@@ -134,12 +135,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.more_btn.setOnClickListener {
 
             ctx.toast(dataList[position].boardId!!.toString())
-
-            //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
-
-            //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
+if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    //본인 게시글 클릭
+    ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
+}else {
+    //일반 게시글 클릭
+    ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
+}
         }
 
         //좋아요 버튼
@@ -154,7 +155,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         holder.like_rl.setOnClickListener {
             val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    SharedPreferenceController.getAuthorization(ctx),
                     dataList[position].boardId)
 
             postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
@@ -231,7 +232,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     //보드공유 통신
     private fun getBoardShareResponse(){
         val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(ctx),
                 b_id)
 
         postBoardshareResponse.enqueue(object : Callback<PostBoardShareResponse> {
@@ -252,7 +253,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
     private fun BoardLikePost() {
         val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(ctx),
                 b_id)
 
         postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {

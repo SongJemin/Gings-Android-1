@@ -22,6 +22,7 @@ import com.computer.inu.myworkinggings.Moohyeon.Data.MyActData
 import com.computer.inu.myworkinggings.Moohyeon.Data.ReplysData
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageActResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_mypage_act.view.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
@@ -48,7 +49,7 @@ class MypageActFragment : Fragment(){
     }
 
     fun getOtherActive() {
-        var getOtherActiveResponse = networkService.getOtherActive("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", 1) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherActiveResponse = networkService.getOtherActive(SharedPreferenceController.getAuthorization(context!!), 1) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherActiveResponse.enqueue(object : Callback<GetOtherActiveResponse> {
             override fun onResponse(call: Call<GetOtherActiveResponse>?, response: Response<GetOtherActiveResponse>?) {
                 Log.v("TAG", "타인 활동 목록 서버 통신 연결")
@@ -68,7 +69,7 @@ class MypageActFragment : Fragment(){
         })
     }
     fun getMyAct() {
-        var getMypageActResponse = networkService.getMypageActResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg") // 네트워크 서비스의 getContent 함수를 받아옴
+        var getMypageActResponse = networkService.getMypageActResponse("application/json", SharedPreferenceController.getAuthorization(context!!)) // 네트워크 서비스의 getContent 함수를 받아옴
         getMypageActResponse.enqueue(object : Callback<GetMypageActResponse> {
             override fun onResponse(call: Call<GetMypageActResponse>?, response: Response<GetMypageActResponse>?) {
                 Log.v("TAG", "나의 활동 페이지 서버 통신 연결")

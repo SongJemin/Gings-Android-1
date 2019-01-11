@@ -22,13 +22,29 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.pm.PackageManager
 import android.util.Base64
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
+import com.google.firebase.iid.FirebaseInstanceId
 import com.kakao.util.helper.Utility.getPackageInfo
+import org.jetbrains.anko.toast
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
 class LoginActivity : AppCompatActivity() {
+    val FINISH_INTERVAL_TIME = 2000
+    var backPressedTime : Long = 0
 
+    override fun onBackPressed() {
+        var tempTime = System.currentTimeMillis()
+        var intervalTime = tempTime-backPressedTime
+
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
+            super.onBackPressed()
+        } else {
+            backPressedTime = tempTime
+            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
     var userID : Int = 0
 
     val networkService: NetworkService by lazy {
@@ -39,7 +55,16 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
+        if(intent.getStringExtra("sender_id")!=null)
+        { toast(intent.getStringExtra("sender_id"))}
+        else{
+            toast("값이 없다.")
+        }
+        if(SharedPreferenceController.getAutoAuthorization(this).isNotEmpty()){
+            toast("자동로그인 성공")
+            startActivity<MainActivity>() // 그사람 정보로 해야함
+            finish()
+        }
         val boardID = intent.getIntExtra("BoardId",-1)
         if(boardID> 0)
         {
@@ -61,19 +86,17 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        //startActivity<DetailBoardActivity>("BoardId" to boardID)
-
-
         tv_login_join_us.setOnClickListener {
             startActivity<SignUp1Activity>()
         }
         tv_login_about_gings.setOnClickListener {
-            startActivity<DetailBoardActivity>()
+
         }
 
         //***로그인 통신***
         tv_login_login_button.setOnClickListener {
             //startActivity<MainActivity>()
+
             getLoginResponse()
         }
 
@@ -111,7 +134,7 @@ class LoginActivity : AppCompatActivity() {
             val jsonObject: JSONObject = JSONObject()
             jsonObject.put("email", input_email)
             jsonObject.put("pwd", input_pw)
-
+            jsonObject.put("fcm", FirebaseInstanceId.getInstance().getToken().toString()) //fcm 토큰받기
             val gsonObject: JsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
             Log.v("LoginActivity", "확인")
 
@@ -125,37 +148,31 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
                     Log.v("LoginActivity", "확인2")
+                    val token = response.body()!!.data.jwt.toString()
+                    val userId = response.body()!!.data.userId
+
                     if (response.isSuccessful) {
                         Log.v("LoginActivity", "확인3")
-                        if(response.body()!!.message == "로그인 성공"){
-                            userID = response.body()!!.data.userId
-                            var pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
-                            var editor : SharedPreferences.Editor = pref.edit()
-                            editor.putInt("userID", userID) //userID란  key값으로 userID 데이터를 저장한다.
-                            Log.v("LoginActivity", "유저 번호 = " + userID)
-                            editor.commit()
-                            Log.v("ttt", "Login-!-!-!")
+                        if(response.body()!!.message == "로그인 성공"&&cb_login_auto_check_box.isChecked==true){
+                            SharedPreferenceController.setAutoAuthorization(this@LoginActivity,token)
+                            SharedPreferenceController.setAuthorization(this@LoginActivity,response.body()!!.data.jwt.toString())
+                            SharedPreferenceController.setUserId(this@LoginActivity,response.body()!!.data.userId)
                             startActivity<MainActivity>()
+                            finish()
                         }
-                        else{
-                            Log.v("LoginActivity", "확인4")
-                            Toast.makeText(applicationContext,"회원 정보가 틀렸습니다.", Toast.LENGTH_LONG).show()
+                        else if(response.body()!!.message == "로그인 성공"&&cb_login_auto_check_box.isChecked==false){
+                            SharedPreferenceController.setAuthorization(this@LoginActivity,response.body()!!.data.jwt.toString())
+                            SharedPreferenceController.setUserId(this@LoginActivity,response.body()!!.data.userId)
+                            startActivity<MainActivity>()
+                            finish()
+                        }else{
+                            toast("회원 정보가 틀렸습니다.")
                         }
 
-
-                        //자동 로그인
-                        /*val firstLogIn = response.body()!!.data.firstLogIn
-
-                        if(cb_login_auto_check_box.isChecked){
-                            //SharedPreferenceController.setAuthorization(this@LoginActivity, firstLogIn)
-                            //toast(SharedPreferenceController.getAuthorization(this@LoginActivity))
-                        }
-*/
-                        //startActivity<BottomNaviActivity>()
                     }
                     else{
                         Log.v("LoginActivity", "확인5")
-                        Toast.makeText(applicationContext,"회원 정보가 틀렸습니다.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,"통신 실패.", Toast.LENGTH_LONG).show()
                     }
                 }
             })

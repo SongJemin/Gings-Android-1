@@ -53,6 +53,8 @@ class LoungeFragment : Fragment(){
                     Log.v("TAG", "message = " + response.body()!!.message)
 
 
+
+
                     //Toast.makeText(context,"success", Toast.LENGTH_SHORT).show()
 
                     LoungeDataRecyclerViewAdapter = LoungeDataRecyclerViewAdapter(activity!!, dataList)

@@ -192,6 +192,18 @@
                 android:background="@drawable/bt_join_signup_waiting"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
+            //clubId가 2일 때, 나올 버튼
+            <Button
+                android:id="@+id/btn_lounge_introduce_signup_comming_soon"
+                android:visibility="invisible"
+                android:layout_width="164dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/bt_comming_soon"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 

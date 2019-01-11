@@ -169,13 +169,15 @@
                         android:weightSum="45"
                         >
                         <Button
+                            android:fontFamily="@font/noto_bold"
+                            android:textSize="14sp"
+                            android:lineHeight="15sp"
                             android:id="@+id/mypage_intro_btn"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="42"
                             android:text="소개"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
                             android:gravity="center"
                             android:background="#ffffff"
                             />
@@ -197,12 +199,14 @@
                         >
                         <Button
                             android:id="@+id/mypage_act_btn"
+                            android:fontFamily="@font/noto_bold"
+                            android:textSize="14sp"
+                            android:lineHeight="15sp"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="42"
                             android:text="활동"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
                             android:gravity="center"
                             android:background="#ffffff"
                             />

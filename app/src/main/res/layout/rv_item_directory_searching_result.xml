@@ -4,7 +4,7 @@
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
     android:layout_marginTop="8dp"
-android:orientation="vertical"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="168dp"
     android:layout_height="205dp"
@@ -48,7 +48,7 @@ android:orientation="vertical"
         android:text="역할 |"/>
     <TextView
         android:layout_marginLeft="8dp"
-       android:layout_below="@+id/tv_item_searching_part"
+        android:layout_below="@+id/tv_item_searching_part"
         android:id="@+id/tv_item_directory_searching_role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,7 +59,7 @@ android:orientation="vertical"
         android:textColor="#525252"
         android:text="PM" />
     <de.hdodenhof.circleimageview.CircleImageView
-     android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="13dp"
         android:layout_marginRight="4dp"
@@ -68,37 +68,37 @@ android:orientation="vertical"
         android:layout_height="61dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img_default"/>
-<RelativeLayout
-    android:layout_alignParentBottom="true"
- android:layout_toLeftOf="@+id/iv_item_directory_searching_profile_img"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <TextView
-
-        android:layout_below="@+id/tv_item_directory_searching_part"
-        android:id="@+id/tv_item_directory_searching_profile_name"
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/iv_item_directory_searching_profile_img"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="4sp"
-        android:textSize="12sp"
-        android:layout_marginBottom="13dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#222222"
-        android:text="이충엽" />
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_below="@+id/tv_item_directory_searching_part"
+            android:id="@+id/tv_item_directory_searching_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="4sp"
+            android:textSize="12sp"
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#222222"
+            android:text="이충엽" />
 
 
-    <TextView
-android:layout_marginLeft="10dp"
-        android:id="@+id/tv_item_directory_searching_part"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:textColor="#999999"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:text="기획" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tv_item_directory_searching_part"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#999999"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="6sp"
+            android:text="기획" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>

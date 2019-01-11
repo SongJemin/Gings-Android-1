@@ -32,16 +32,20 @@
                 android:textSize="15sp" />
 
             <EditText
+
+                android:fontFamily="@font/noto_regular"
+                android:background="@null"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_toRightOf="@id/iv_directory_picture"
                 android:id="@+id/et_directory_searching"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+
                 android:layout_marginStart="18.2dp"
-                android:layout_toRightOf="@id/iv_directory_picture"
-                android:background="@null"
+
                 android:hint="이름,역할,소속,협업 분야,키워드"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:textColor="#222222"
@@ -101,6 +105,7 @@
                 android:id="@+id/tv_directory_searching_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
                 android:layout_gravity="center"
                 android:layout_marginTop="41dp"
                 android:letterSpacing="-0.01"
@@ -128,5 +133,5 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
->>>>>>> 3211ac34e1dd536e61413385deb940444113916b
+
 </LinearLayout>

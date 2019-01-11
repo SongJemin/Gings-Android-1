@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    android:id="@+id/rl_lounge_main"
+<RelativeLayout android:id="@+id/rl_lounge_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:computer="http://schemas.android.com/apk/com.computer.inu.myworkinggings.Hyunjin.Activity.CustomeTextView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+   >
 
     <RelativeLayout
         android:layout_marginTop="8dp"
@@ -24,7 +25,56 @@
         android:scaleType="fitXY"
         />
     <RelativeLayout
-        android:id="@+id/rl_lounge_main_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+        <ImageView
+            android:id="@+id/iv_lounge_arrow_left"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_lounge_left_24dp"
+            />
+<!--        <com.computer.inu.myworkinggings.Hyunjin.Activity.CustomTextView
+            android:id="@+id/CustomTextView"
+            android:textSize="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World"
+            android:textColor="#ffffffff"
+            computer:textStroke="true"
+            computer:textStrokeWidth="7.0"
+            computer:textStrokeColor="#ffff0000"
+            android:singleLine="true"  />-->
+
+        <TextView
+            android:id="@+id/tv_rl_lounge_main_club_name"
+            android:layout_toRightOf="@+id/iv_lounge_arrow_left"
+            android:fontFamily="@font/noto_black"
+            android:lineHeight="35sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="#ffffff"
+            android:lineSpacingExtra="0sp"
+            android:text="INNOVATOR CLUB"
+            />
+        <ImageView
+            android:layout_toRightOf="@+id/tv_rl_lounge_main_club_name"
+            android:id="@+id/iv_lounge_arrow_right"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_chevron_right_black_24dp"
+            />
+    </RelativeLayout>
+
+    //ClubId가 1일 시, 보일버튼
+    <RelativeLayout
+        android:id="@+id/rl_lounge_main_button_join"
+        android:visibility="visible"
         android:background="@drawable/round"
         android:layout_width="289dp"
         android:layout_height="68dp"
@@ -33,20 +83,57 @@
         android:layout_marginBottom="40dp"
         >
         <TextView
-            android:id="@+id/tv_rl_lounge_main_club_name"
-            android:layout_width="131dp"
-            android:layout_height="22dp"
-            android:textSize="15sp"
-            android:textColor="#222222"
-            android:letterSpacing="-0.01"
+            android:fontFamily="@font/noto_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineHeight="20sp"
+            android:textColor="#ff786e"
+            android:letterSpacing="-0.16"
             android:lineSpacingExtra="5sp"
-            android:text="INNOVATOR CLUB"
+            android:text="JOIN"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
-            android:textStyle="bold"
             />
+
         <ImageView
-            android:id="@+id/btn_lounge_main_arrow_button"
+            android:id="@+id/btn_lounge_main_arrow_button_1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_chevron_right_pink_24dp"
+            />
+    </RelativeLayout>
+
+    //clubId 가 2일 시, 보일 버튼
+    <RelativeLayout
+        android:id="@+id/rl_lounge_main_button_comming_soon"
+        android:visibility="invisible"
+        android:background="@drawable/round"
+        android:layout_width="289dp"
+        android:layout_height="68dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        >
+        <TextView
+            android:fontFamily="@font/noto_black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:lineHeight="20sp"
+            android:textColor="#000000"
+            android:letterSpacing="-0.16"
+            android:lineSpacingExtra="5sp"
+            android:text="COMMING SOON"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:id="@+id/btn_lounge_main_arrow_button_2"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -55,5 +142,6 @@
             android:background="@drawable/ic_black_arrow_24dp"
             />
     </RelativeLayout>
+
 
 </RelativeLayout>

@@ -13,12 +13,14 @@
         android:src="@drawable/img_default"/>
 
     <TextView
+        android:fontFamily="@font/noto_medium"
         android:layout_marginTop="12dp"
         android:id="@+id/tv_item_directory_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="63.5dp"
-        android:letterSpacing="-0.01"
+        android:letterSpacing="-0.12"
+        android:lineHeight="16sp"
         android:lineSpacingExtra="4sp"
         android:textColor="#222222"
         android:textSize="12sp"
@@ -35,24 +37,28 @@
         android:background="#999999" />
 
     <TextView
+        android:fontFamily="@font/noto_regular"
         android:layout_toRightOf="@+id/v_item_directory_v"
         android:id="@+id/tv_item_directory_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:letterSpacing="-0.01"
+        android:lineHeight="16sp"
+        android:letterSpacing="-0.1"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
         android:textSize="10sp"
         android:layout_marginLeft="8.8dp"
         android:text="" />
     <TextView
+        android:fontFamily="@font/noto_regular"
         android:layout_toRightOf="@+id/tv_item_directory_company"
         android:id="@+id/tv_item_directory_slash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:letterSpacing="-0.01"
+        android:letterSpacing="-0.1"
+        android:lineHeight="16sp"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
         android:textSize="10sp"
@@ -63,12 +69,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:letterSpacing="-0.01"
+        android:letterSpacing="-0.1"
+        android:lineHeight="16sp"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
         android:textSize="10sp"
         android:text="" />
     <TextView
+        android:fontFamily="@font/noto_regular"
         android:layout_marginTop="2dp"
         android:layout_marginStart="63.5dp"
         android:layout_below="@+id/tv_item_directory_profile_name"
@@ -77,7 +85,8 @@
         android:layout_height="wrap_content"
         android:textSize="10sp"
         android:textColor="#999999"
-        android:letterSpacing="-0.01"
+        android:letterSpacing="-0.1"
+        android:lineHeight="16sp"
         android:lineSpacingExtra="6sp"
        android:text="2018/12/29 03:00"
         />
@@ -123,9 +132,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:fontFamily="@font/noto_bold"
             android:id="@+id/btn_item_directory_message"
             android:background="#ffffff"
             android:text="메세지"
+            android:textSize="13sp"
+            android:lineHeight="16sp"
+            android:letterSpacing="-0.13"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
@@ -137,10 +150,14 @@
             android:background="#e2e8ed"
             />
         <Button
+            android:fontFamily="@font/noto_bold"
             android:id="@+id/btn_item_directory_guest_board"
             android:layout_weight="1"
             android:background="#ffffff"
             android:text="게스트 보드"
+            android:textSize="13sp"
+            android:lineHeight="16sp"
+            android:letterSpacing="-0.13"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 

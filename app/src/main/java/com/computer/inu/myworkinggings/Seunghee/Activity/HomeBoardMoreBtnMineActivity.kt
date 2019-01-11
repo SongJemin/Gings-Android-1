@@ -10,6 +10,7 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.boardRecyclerViewAdapter
+import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.notRefresh
 import com.computer.inu.myworkinggings.Seunghee.Post.DeleteBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_home_board_more_btn_mine.*
@@ -21,9 +22,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
+    var position : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        var position : Int = 0
 
         val networkService: NetworkService by lazy {
             ApplicationController.instance.networkService
@@ -33,17 +35,18 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_board_more_btn_mine)
 
 
+        val modifyBoardID: Int = intent.getIntExtra("BoardId", 0)
+
+
         rl_btn_home_board_more_btn_mine_modify.setOnClickListener {
 
-            val modifyBoardID: Int = intent.getIntExtra("BoardId", 0).toInt()
             startActivity<UpBoardActivity>("ModifyBoardID" to modifyBoardID)
 
         }
 
         rl_btn_home_board_more_btn_mine_delete.setOnClickListener {
 
-            val modifyBoardID: Int = intent.getIntExtra("BoardId", 0).toInt()
-
+            //삭제 통신
             val deleteBoardResponse: Call<DeleteBoardResponse> = networkService.deleteBoardResponse("application/json",
                     SharedPreferenceController.getAuthorization(this),
                     modifyBoardID)
@@ -58,13 +61,17 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<DeleteBoardResponse>, response: Response<DeleteBoardResponse>) {
                     if (response.isSuccessful) {
                         toast("삭제 성공")
+                        //if(intent.getBooleanExtra("isDetailed", false))
+                            //finish()
                         //startActivity<MainActivity>()
-                        arrayOf(HomeBoardFragment.boardRecyclerViewAdapter)
+                        //arrayOf(HomeBoardFragment.boardRecyclerViewAdapter)
 
                         position = intent.getIntExtra("Position", 0)
 
                         boardRecyclerViewAdapter.notifyItemRemoved(position)
                         boardRecyclerViewAdapter.notifyItemRangeRemoved(position,1)
+
+
                         finish()
                     }
                 }

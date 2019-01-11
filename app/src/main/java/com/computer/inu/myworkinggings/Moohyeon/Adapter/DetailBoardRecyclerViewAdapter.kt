@@ -136,7 +136,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView
         val contents_images: ImageView = itemView.findViewById(R.id.iv_item_board_image_contents) as ImageView
 
-        val reboard_like_layout: RelativeLayout = itemView.findViewById(R.id.rl_item_reboard_ike) as RelativeLayout
+        val reboard_like_layout: LinearLayout = itemView.findViewById(R.id.ll_item_reboard_ike) as LinearLayout
 
         val reboard_like_img : ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
         val reboard_like_img_red : ImageView = itemView.findViewById(R.id.iv_item_reboard_like_red) as ImageView

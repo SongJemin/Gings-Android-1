@@ -196,7 +196,7 @@
             android:layout_marginLeft="7.2dp"
             android:background="#999999"
             />
-        
+
         <TextView
 
             android:id="@+id/tv_item_board_profile_team"

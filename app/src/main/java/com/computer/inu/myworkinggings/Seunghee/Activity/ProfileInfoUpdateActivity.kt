@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_profile_info_update.*
 import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import org.jetbrains.anko.ctx
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
@@ -33,7 +34,9 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     lateinit var regionSpinner : Spinner
     lateinit var collabSpinner : Spinner
     lateinit var statusSpinner : Spinner
-    var regionValue : String = ""
+    var regionResult : String = ""
+    var collabResult : String = ""
+    var statusResult : String = ""
     var keywords = ArrayList<String>()
 
     val networkService: NetworkService by lazy {
@@ -43,8 +46,17 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_info_update)
         regionSpinner = findViewById(R.id.sp_profile_info_update_city) as Spinner
+        collabSpinner = findViewById(R.id.sp_profile_info_update_co_available) as Spinner
+        statusSpinner = findViewById(R.id.sp_profile_info_update_co_state) as Spinner
+
+        collabSpinner.setSelection(0)
+        collabResult = "true"
+
+        statusSpinner.setSelection(0)
+        statusResult = "OPENED"
+
         regionSpinner.setSelection(0)
-        regionValue = "SEOUL"
+        regionResult = "SEOUL"
         getProfileInform()
 
         bt_profile_info_update_complete.setOnClickListener {
@@ -67,60 +79,93 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
                 }
             }
             else{
-                if(regionSpinner.getSelectedItem().toString() == "서울"){
-                    regionValue = "SEOUL"
+                // 지역 스피너
+                if(regionSpinner.getSelectedItem().toString() == "서울특별시"){
+                    regionResult = "SEOUL"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "세종"){
-                    regionValue = "SEJONG"
+                else if(regionSpinner.getSelectedItem().toString() == "세종특별자치시"){
+                    regionResult = "SEJONG"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "부산"){
-                    regionValue = "PUSAN"
+                else if(regionSpinner.getSelectedItem().toString() == "부산광역시"){
+                    regionResult = "BUSAN"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "대구"){
-                    regionValue = "DAEGU"
+                else if(regionSpinner.getSelectedItem().toString() == "대구광역시"){
+                    regionResult = "DAEGU"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "대전"){
-                    regionValue = "DAEJEON"
+                else if(regionSpinner.getSelectedItem().toString() == "대전광역시"){
+                    regionResult = "DAEJEON"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "인천"){
-                    regionValue = "INCHEON"
+                else if(regionSpinner.getSelectedItem().toString() == "인천광역시"){
+                    regionResult = "INCHEON"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "울산"){
-                    regionValue = "ULSAN"
+                else if(regionSpinner.getSelectedItem().toString() == "울산광역시"){
+                    regionResult = "ULSAN"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "광주"){
-                    regionValue = "GWANGJU"
+                else if(regionSpinner.getSelectedItem().toString() == "광주광역시"){
+                    regionResult = "GWANGJU"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "강원"){
-                    regionValue = "GANGWON"
+                else if(regionSpinner.getSelectedItem().toString() == "강원도"){
+                    regionResult = "GANGWON"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "경기"){
-                    regionValue = "GYEONGGI"
+                else if(regionSpinner.getSelectedItem().toString() == "경기도"){
+                    regionResult = "GYUNGGI"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "충남"){
-                    regionValue = "CHUNGNAM"
+                else if(regionSpinner.getSelectedItem().toString() == "충청남도"){
+                    regionResult = "CHUNG_NAM"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "충북"){
-                    regionValue = "CHUNGBUK"
+                else if(regionSpinner.getSelectedItem().toString() == "충청북도"){
+                    regionResult = "CHUNG_BUK"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "전북"){
-                    regionValue = "JEONBUK"
+                else if(regionSpinner.getSelectedItem().toString() == "전라북도"){
+                    regionResult = "JEON_BUK"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "전남"){
-                    regionValue = "JEONNAM"
+                else if(regionSpinner.getSelectedItem().toString() == "전라남도"){
+                    regionResult = "JEON_NAM"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "경남"){
-                    regionValue = "GYEONGNAM"
+                else if(regionSpinner.getSelectedItem().toString() == "경상남도"){
+                    regionResult = "GYEONG_NAM"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "경북"){
-                    regionValue = "GYEONGBUK"
+                else if(regionSpinner.getSelectedItem().toString() == "경상북도"){
+                    regionResult = "GYEONG_BUK"
                 }
-                else if(regionSpinner.getSelectedItem().toString() == "제주"){
-                    regionValue = "JEJU"
+                else if(regionSpinner.getSelectedItem().toString() == "제주도"){
+                    regionResult = "JEJU"
                 }
                 else{
-                    regionValue = "NONE"
+                    regionResult = "NONE"
                 }
+
+                // 상태 스피너
+                if(statusSpinner.getSelectedItem().toString() == "열려있음"){
+                    statusResult = "OPENED"
+                }
+                else if(statusSpinner.getSelectedItem().toString() == "준비중"){
+                    statusResult = "PREPARED"
+                }
+                else if(statusSpinner.getSelectedItem().toString() == "본업"){
+                    statusResult = "MAIN_JOB"
+                }
+                else if(statusSpinner.getSelectedItem().toString() == "프리랜서"){
+                    statusResult = "FREELANCER"
+                }
+                else if(statusSpinner.getSelectedItem().toString() == "구인중"){
+                    statusResult = "RECRUITING"
+                }
+                else if(statusSpinner.getSelectedItem().toString() == "구직중"){
+                    statusResult = "LOOKING_JOB"
+                }
+                else if(statusSpinner.getSelectedItem().toString() == "투자후원유중"){
+                    statusResult = "LOOKING_INVESTMENT"
+                }
+
+                // 협업 스피너
+                if(collabSpinner.getSelectedItem().toString() == "가능"){
+                    collabResult = "true"
+                }
+                else{
+                    collabResult = "false"
+                }
+
 
                 val keywordList = et_profile_info_update_keyword.text.toString().split("\\s".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
@@ -138,44 +183,136 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     }
 
     fun getProfileInform(){
-        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json",SharedPreferenceController.getAuthorization(ctx))
         getMypageResponse.enqueue(object : Callback<GetMypageResponse> {
             override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
                 if (response!!.isSuccessful) {
-                    profileInformData = response!!.body()!!.data
+                    if(response!!.body()!!.data.region != "NONE"){
+                        Log.v("프로필 등록 ", "수정")
+                        profileInformData = response!!.body()!!.data
 
-                    collabSpinner = findViewById(R.id.sp_profile_info_update_co_available) as Spinner
-                    statusSpinner = findViewById(R.id.sp_profile_info_update_co_state) as Spinner
+                        var findPosition : Int = 0
+                        var getRegionValue : String = ""
+                        var getStatusValue : String = ""
+                        var getCollabValue : String = ""
 
-                    var findPosition : Int = 0
-                    findPosition = findSpinnerData(regionSpinner, profileInformData.region!!)
-                    regionSpinner.setSelection(findPosition)
-                    et_profile_info_update_role.setText(profileInformData.job)
-                    et_profile_info_update_part.setText(profileInformData.company)
-                    et_profile_info_update_co_part.setText(profileInformData.field)
-                    if(profileInformData.coworkingEnabled == true){
-                        findPosition = findSpinnerData(collabSpinner, "가능")
-                        collabSpinner.setSelection(findPosition)
+                        // 지역 스피너
+                        if(profileInformData.region!! == "SEOUL"){
+                            getRegionValue = "서울특별시"
+                        }
+                        else if(profileInformData.region!! == "SEJONG"){
+                            getRegionValue = "세종특별자치시"
+                        }
+                        else if(profileInformData.region!! == "BUSAN"){
+                            getRegionValue = "부산광역시"
+                        }
+                        else if(profileInformData.region!! == "DAEGU"){
+                            getRegionValue = "대구광역시"
+                        }
+                        else if(profileInformData.region!! == "DAEJEON"){
+                            getRegionValue = "대전광역시"
+                        }
+                        else if(profileInformData.region!! == "INCHEON"){
+                            getRegionValue = "인천광역시"
+                        }
+                        else if(profileInformData.region!! == "ULSAN"){
+                            getRegionValue = "울산광역시"
+                        }
+                        else if(profileInformData.region!! == "GWANGJU"){
+                            getRegionValue = "광주광역시"
+                        }
+                        else if(profileInformData.region!! == "GANGWON"){
+                            getRegionValue = "강원도"
+                        }
+                        else if(profileInformData.region!! == "GYUNGGI"){
+                            getRegionValue = "경기도"
+                        }
+                        else if(profileInformData.region!! == "CHUNG_NAM"){
+                            getRegionValue = "충청남도"
+                        }
+                        else if(profileInformData.region!! == "CHUNG_BUK"){
+                            getRegionValue = "충청북도"
+                        }
+                        else if(profileInformData.region!! == "JEON_BUK"){
+                            getRegionValue = "전라북도"
+                        }
+                        else if(profileInformData.region!! == "JEON_NAM"){
+                            getRegionValue = "전라남도"
+                        }
+                        else if(profileInformData.region!! == "GYEONG_NAM"){
+                            getRegionValue = "경상남도"
+                        }
+                        else if(profileInformData.region!! == "GYEONG_BUK"){
+                            getRegionValue = "경상북도"
+                        }
+                        else if(profileInformData.region!! == "JEJU"){
+                            getRegionValue = "제주도"
+                        }
+                        else{
+                            getRegionValue = "NONE"
+                        }
+
+
+                        findPosition = findSpinnerData(regionSpinner, getRegionValue)
+                        regionSpinner.setSelection(findPosition)
+
+                        et_profile_info_update_role.setText(profileInformData.job)
+                        et_profile_info_update_part.setText(profileInformData.company)
+                        et_profile_info_update_co_part.setText(profileInformData.field)
+
+                        if(profileInformData.coworkingEnabled == true){
+                            findPosition = findSpinnerData(collabSpinner, "가능")
+                            collabSpinner.setSelection(findPosition)
+                        }
+                        else{
+                            findPosition = findSpinnerData(collabSpinner, "불가능")
+                            collabSpinner.setSelection(findPosition)
+                        }
+
+
+                        // 상태 스피너
+                        if(profileInformData.status!! == "OPENED"){
+                            getStatusValue = "열려있음"
+                        }
+                        else if(profileInformData.status!! == "PREPARED"){
+                            getStatusValue = "준비중"
+                        }
+                        else if(profileInformData.status!! == "MAIN_JOB"){
+                            getStatusValue = "본업"
+                        }
+                        else if(profileInformData.status!! == "FREELANCER"){
+                            getStatusValue = "프리랜서"
+                        }
+                        else if(profileInformData.status!! == "RECRUITING"){
+                            getStatusValue = "구인중"
+                        }
+                        else if(profileInformData.status!! == "LOOKING_JOB"){
+                            getStatusValue = "구직중"
+                        }
+                        else if(profileInformData.status!! == "LOOKING_INVESTMENT"){
+                            getStatusValue = "투자후원유중"
+                        }
+
+                        findPosition = findSpinnerData(statusSpinner, getStatusValue)
+                        statusSpinner.setSelection(findPosition)
+
+                        var keywordString : String = ""
+
+                        for (i in 0..profileInformData.keywords.size - 1) {
+                            Log.v("asdf","키워드 우에 = " + response.body()!!.data.keywords[i])
+                            if (i == 0) {
+                                keywordString = "#" + response.body()!!.data.keywords[i]
+                            } else {
+                                keywordString += "    #" + response.body()!!.data.keywords[i]
+                            }
+                        }
+                        Log.v("asdf","키워드 값 = " + keywordString)
+                        et_profile_info_update_keyword.setText(keywordString)
                     }
                     else{
-                        findPosition = findSpinnerData(collabSpinner, "불가능")
-                        collabSpinner.setSelection(findPosition)
+                        Log.v("프로필 등록 ", "처음 조회")
                     }
-                    findPosition = findSpinnerData(statusSpinner, profileInformData.status!!)
-                    statusSpinner.setSelection(findPosition)
 
-                    var keywordString : String = ""
-
-                    for (i in 0..profileInformData.keywords.size - 1) {
-                        Log.v("asdf","키워드 우에 = " + response.body()!!.data.keywords[i])
-                        if (i == 0) {
-                            keywordString = "#" + response.body()!!.data.keywords[i]
-                        } else {
-                            keywordString += "    #" + response.body()!!.data.keywords[i]
-                        }
-                    }
-                    Log.v("asdf","키워드 값 = " + keywordString)
-                    et_profile_info_update_keyword.setText(keywordString)
                 }
             }
 
@@ -192,19 +329,20 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     }
 
     fun putProfileInfo(){
-        var collabResult : String = ""
-        if(collabSpinner.getSelectedItem().toString() == "가능"){
-            collabResult = "true"
-        }
-        else{
-            collabResult = "false"
-        }
+
+        Log.v("프로필", "장소 = " + regionResult )
+        Log.v("프로필", "역할 = " + et_profile_info_update_role.text.toString() )
+        Log.v("프로필", "소속 = " + et_profile_info_update_part.text.toString() )
+        Log.v("프로필", "분야 = " + et_profile_info_update_co_part.text.toString() )
+        Log.v("프로필", "상태 = " + statusResult )
+        Log.v("프로필", "협업여부 = " + collabResult )
+
         var jsonObject = JSONObject()
-        jsonObject.put("region", regionSpinner.getSelectedItem().toString())
+        jsonObject.put("region", regionResult)
         jsonObject.put("job", et_profile_info_update_role.text.toString())
         jsonObject.put("company", et_profile_info_update_part.text.toString())
         jsonObject.put("field", et_profile_info_update_co_part.text.toString())
-        jsonObject.put("status", regionSpinner.getSelectedItem().toString())
+        jsonObject.put("status", statusResult)
         jsonObject.put("coworkingEnabled", collabResult)
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
@@ -224,7 +362,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     }
 
     fun postKeywordList(){
-
+        Log.v("프로필", "키워드 = " + keywords.toString() )
         var postKeywords = PostKeywords(keywords)
         var putProfileInfoResponse = networkService.postKeywordList(SharedPreferenceController.getAuthorization(this), postKeywords)
         putProfileInfoResponse.enqueue(object : Callback<PostResponse>{

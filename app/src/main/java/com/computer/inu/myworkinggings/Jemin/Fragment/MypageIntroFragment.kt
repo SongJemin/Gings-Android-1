@@ -84,9 +84,23 @@ class MypageIntroFragment : Fragment() {
         image = extra!!.getString("image")
         name = extra!!.getString("name")
         field = extra!!.getString("field")
-
-        Log.v("asdf", "받는 필드 = " + field)
         status = extra!!.getString("status")
+        Log.v("asdf", "받는 필드 = " + field)
+        Log.v("asdf", "받는 상태 = " + status)
+
+
+        if(status == "-"){
+            v.mypage_intro_status_layout.isSelected = false
+        }
+        else{
+            v.mypage_intro_status_layout.isSelected = true
+        }
+        if(field == "-"){
+            v.mypage_intro_field_layout.isSelected = false
+        }
+        else{
+            v.mypage_intro_field_layout.isSelected = true
+        }
 
         coworkingEnabled = extra!!.getInt("coworkingEnabled")
         if (coworkingEnabled == 1) {

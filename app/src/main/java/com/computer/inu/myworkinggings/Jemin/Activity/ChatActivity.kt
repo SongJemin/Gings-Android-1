@@ -10,11 +10,13 @@ import com.computer.inu.myworkinggings.Jemin.Adapter.ChatAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.ChatListItem
 import com.computer.inu.myworkinggings.Jemin.RealmDB.ChatMessage
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import io.reactivex.CompletableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_chat.*
+import org.jetbrains.anko.ctx
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompHeader
@@ -55,7 +57,9 @@ class ChatActivity : AppCompatActivity() {
             mStompClient.disconnect()
         }
         var headers = java.util.ArrayList<StompHeader>()
-        headers.add(StompHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjExLCJyb2xlIjoiVVNFUiIsImlzcyI6IkdpbmdzIFVzZXIgQXV0aCBNYW5hZ2VyIiwiZXhwIjoxNTQ5NTU1MjQ0fQ.Scr9KOVbfIM34s4Ez6vquutEk6uO_Xavk55fyob2Org"))
+        Log.v(TAG, "채팅 토큰 = " + SharedPreferenceController.getAuthorization(ctx))
+        Log.v(TAG, "채팅 아이디 = " + SharedPreferenceController.getUserId(ctx))
+        headers.add(StompHeader("Authorization", SharedPreferenceController.getAuthorization(ctx)))
 
         chat_test_send_btn.setOnClickListener {
             sendChatMessage()
@@ -79,7 +83,6 @@ class ChatActivity : AppCompatActivity() {
 
             var receiveData = JSONObject(topicMessage.payload)
 
-            receiveData = JSONObject(topicMessage.payload)
             Log.v("ChatMessage", "받는 타입 = " + receiveData.getString("type"))
             Log.v("ChatMessage", "받는 채팅방 = " + receiveData.getString("chatRoom"))
             var receiveMessage = JSONObject(receiveData.getString("chatRoom"))
@@ -129,7 +132,7 @@ class ChatActivity : AppCompatActivity() {
         var jsonObject = JSONObject()
         val pref = applicationContext.getSharedPreferences("auto", Activity.MODE_PRIVATE)
         //var userID = pref.getInt("userID",0)
-        var userID : Int = 9
+        var userID : Int = 17
         Log.v("ChatActivity","유저 번호 = " + userID)
         jsonObject.put("opponentId", userID)
 

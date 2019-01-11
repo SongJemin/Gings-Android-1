@@ -29,7 +29,6 @@
                 android:layout_centerInParent="true"
                 />
 
-
             <ImageView
                 android:layout_width="21dp"
                 android:layout_height="21dp"
@@ -112,6 +111,7 @@
                     android:layout_marginStart="55dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
+                    android:hint="역할"
                     />
 
             </LinearLayout>
@@ -143,6 +143,7 @@
                     android:layout_marginStart="55dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
+                    android:hint="소속"
                     />
 
             </LinearLayout>
@@ -157,7 +158,8 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:paddingStart="37dp"
-                android:paddingEnd="16dp">
+                android:paddingEnd="16dp"
+                >
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -173,7 +175,7 @@
                     android:layout_marginStart="29dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
-
+                    android:hint="분야"
                     />
             </LinearLayout>
             <View
@@ -267,7 +269,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="13sp"
-                    android:textColor="#999999"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
                     android:layout_marginStart="43dp"

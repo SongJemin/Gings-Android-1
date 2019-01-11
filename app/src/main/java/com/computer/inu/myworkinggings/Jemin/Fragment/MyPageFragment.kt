@@ -183,14 +183,19 @@ class MyPageFragment : Fragment() {
 
                     Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
 
-                    status = response.body()!!.data.status!!
+                    if(response.body()!!.data.status!! == "NONE"){
+                        status = "-"
+                    }
+                    else{
+                        status = response.body()!!.data.status!!
+                    }
                     if (response.body()!!.data.image != null) {
                         Glide.with(context).load(response.body()!!.data.image).centerCrop().into(mypage_background_img)
                         image = response.body()!!.data.image!!
                     }
                     if(response.body()!!.data.field!! == "\"\"")
                     {
-                        field = "분야미정"
+                        field = "-"
                     }
                     else{
                         field = response.body()!!.data.field!!
@@ -281,12 +286,17 @@ class MyPageFragment : Fragment() {
                     }
                     if(response.body()!!.data.field!! == "\"\"")
                     {
-                        field = "분야미정"
+                        field = "-"
                     }
                     else{
                         field = response.body()!!.data.field!!
                     }
-                    status = response.body()!!.data.status!!
+                    if(response.body()!!.data.status!! == "NONE"){
+                        status = "-"
+                    }
+                    else{
+                        status = response.body()!!.data.status!!
+                    }
 
                     name = response.body()!!.data.name!!
                     if (response.body()!!.data.coworkingEnabled!! == true) {

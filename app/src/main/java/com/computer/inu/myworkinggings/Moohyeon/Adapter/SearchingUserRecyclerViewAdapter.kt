@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.computer.inu.myworkinggings.Moohyeon.Data.DirectorySearchData
@@ -35,22 +36,23 @@ class SearchingUserRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList
 
        }
        else{
-           holder.role.text ="/"+dataList[position].job
+           holder.role.text =dataList[position].job
        }
         holder.part.text=dataList[position].field
-        Glide.with(ctx)
-                .load(dataList[position].image)
-                .into(holder.image)
-
-        if(dataList[position].coworkingChk==true){
-            holder.coworking.setText("on")
-            holder.coworking.setBackground(ContextCompat.getDrawable(ctx, R.drawable.box_on))
+        if(dataList[position].image==null)
+        {
+         holder.image.setImageResource(R.drawable.img_sample)
+        }else {
+            Glide.with(ctx)
+                    .load(dataList[position].image)
+                    .into(holder.image)
         }
-        else{
-            holder.coworking.setText("off")
-            holder.coworking.setBackground(ContextCompat.getDrawable(ctx, R.drawable.box_off))
-
+     if(dataList[position].coworkingChk==true){
+         holder.coworking.isSelected=true
         }
+        else {
+         holder.coworking.isSelected=false
+     }
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -59,6 +61,6 @@ class SearchingUserRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList
         val role : TextView = itemView.findViewById(R.id.tv_item_directory_searching_role) as TextView
         val part : TextView = itemView.findViewById(R.id.tv_item_directory_searching_part) as TextView
         val image : ImageView= itemView.findViewById(R.id.iv_item_directory_searching_profile_img) as ImageView
-        val coworking : TextView = itemView.findViewById(R.id.tv_item_directory_searching_available_coworker) as TextView
+        val coworking : RelativeLayout= itemView.findViewById(R.id.rl_image_directory_searching) as RelativeLayout
     }
 }

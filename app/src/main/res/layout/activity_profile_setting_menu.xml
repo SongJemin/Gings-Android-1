@@ -66,6 +66,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_profile_name"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,11 +77,12 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/tv_profile_userId"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="5sp"
-                    android:text="gings@gmail.com"
+                    android:text=""
                     android:textColor="#000000"
                     android:textSize="10sp" />
 
@@ -344,6 +346,7 @@
 
             //로그아웃
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_signout"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -369,12 +372,13 @@
 
                     <TextView
                         android:background="#ffffff"
+                        android:id="@+id/tv_userID"
                         android:layout_below="@+id/tv_profile_setting_menu_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.01"
                         android:lineSpacingExtra="6sp"
-                        android:text="gings@gmail.com"
+                        android:text=""
                         android:textColor="#999999"
                         android:textSize="8sp" />
 

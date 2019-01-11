@@ -118,6 +118,22 @@
             android:name=".Jemin.Activity.ChatActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".Jemin.Activity.GuestboardWriteActivity"></activity>
+
+        <!-- FCM 관련 서비스 -->
+        <service
+            android:name=".Moohyeon.Firebase.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Moohyeon.Firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- 여기까지 -->
+
     </application>
 
 </manifest>

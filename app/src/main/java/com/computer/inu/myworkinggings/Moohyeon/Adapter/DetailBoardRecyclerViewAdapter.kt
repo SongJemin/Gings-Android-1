@@ -24,6 +24,8 @@ import retrofit2.Response
 import kotlin.collections.ArrayList
 import android.app.Activity
 import android.widget.LinearLayout
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
+import org.jetbrains.anko.ctx
 
 
 class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReplyData?>)
@@ -54,7 +56,7 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
             }
 
             val postReBoardrecommendResponse = networkService.postReboardRecommendResponse("application/json",
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    SharedPreferenceController.getAuthorization(ctx),
                     dataList[position]!!.replyId!!
             )
             postReBoardrecommendResponse.enqueue(object : Callback<PostReboardRecommendResponse> {

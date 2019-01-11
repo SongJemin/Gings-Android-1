@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide
 import com.computer.inu.myworkinggings.Jemin.Adapter.GuestActAdapter
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherActiveResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 
@@ -35,7 +36,7 @@ class MyPageFragment : Fragment() {
         ApplicationController.instance.networkService
     }
     var image : String? = ""
-    var name : String = ""
+    var name : String = " "
     var job : String = ""
     var company : String = ""
     var field : String = ""
@@ -160,6 +161,7 @@ class MyPageFragment : Fragment() {
         v.iv_btn_my_page_setting.setOnClickListener {
             var intent = Intent(activity, ProfileSettingMenuActivity::class.java)
             intent.putExtra("profileImgUrl", profileImgUrl)
+            intent.putExtra("name",mypage_name_tv.text)
             startActivity(intent)
         }
 
@@ -175,7 +177,7 @@ class MyPageFragment : Fragment() {
 
 
     fun getOtherPage() {
-        var getOtherInformResponse = networkService.getOtherPageInform("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",userID) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherInformResponse = networkService.getOtherPageInform( SharedPreferenceController.getAuthorization(context!!),1) // 유저아이디의 타인 유저 아이디 추가
         getOtherInformResponse.enqueue(object : Callback<GetOtherInformResponse> {
             override fun onResponse(call: Call<GetOtherInformResponse>?, response: Response<GetOtherInformResponse>?) {
                 Log.v("TAG", "타인페이지 서버 통신 연결")
@@ -227,25 +229,26 @@ class MyPageFragment : Fragment() {
         })
     }
     fun getUserPagePost(){
-        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json", SharedPreferenceController.getAuthorization(context!!))
         getMypageResponse.enqueue(object : Callback<GetMypageResponse> {
             override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
-                    mypage_name_tv.text = response.body()!!.data.name
-                    mypage_job_tv.text = response.body()!!.data.job
-                    mypage_team_tv.text = response.body()!!.data.company
-                    mypage_region_tv.text = response.body()!!.data.region
-
-                    Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
-
+                    mypage_name_tv.text = response.body()!!.data.name!!
+                    mypage_job_tv.text = response.body()!!.data.job!!
+                    mypage_team_tv.text = response.body()!!.data.company!!
+                    mypage_region_tv.text = response.body()!!.data.region!!
+                    if (response.body()!!.data.image != null) {
+                        Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
+                        image = response.body()!!.data.image!!
+                    }
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
-                    image = response.body()!!.data.image!!
+
                     name = response.body()!!.data.name!!
                     job = response.body()!!.data.job!!
                     company=response.body()!!.data.company!!
-                    if (response.body()!!.data.coworkingEnabled == true) {
+                    if (response.body()!!.data.coworkingEnabled!! == true) {
                         coworkingEnabled = 1
                     } else {
                         coworkingEnabled = 0

@@ -30,6 +30,7 @@ import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_exit.*
 import kotlinx.android.synthetic.main.dialog_exit.view.*
+import android.app.Activity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // 탭 버튼에 대한 리스너 연결
         main_hometab_btn!!.setOnClickListener(this)
@@ -201,12 +203,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.v(TAG,"메인 액티비티 리턴")
-        if(requestCode == 20){
+        Log.v(TAG, "메인 액티비티 리턴")
+        if (requestCode == 20) {
             // 보드 상세에서 이름이나 프로필사진 선택으로 넘어올 경우
-            if(data!!.getIntExtra("userID",0) != 0){
-                Log.v(TAG,"리턴 번호 값 = " + data!!.getIntExtra("boardID",0))
-                Log.v(TAG,"리턴 유저 값 = " + data!!.getIntExtra("userID",0))
+            if (data!!.getIntExtra("userID", 0) != 0) {
+                Log.v(TAG, "리턴 번호 값 = " + data!!.getIntExtra("boardID", 0))
+                Log.v(TAG, "리턴 유저 값 = " + data!!.getIntExtra("userID", 0))
                 main_mypage_btn.setSelected(true)
                 main_directory_btn.setSelected(false)
                 main_lounge_btn.setSelected(false)
@@ -215,7 +217,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 callFragment(FRAGMENT5)
             }
             // 보드 상세에서 백버튼으로 넘어올 경우
-            else{
+            else {
 
             }
 

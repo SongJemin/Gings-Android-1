@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
@@ -170,7 +171,7 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
 
         val image = RequestBody.create(MediaType.parse("text.plain"), profileImgUrl)
 
-        val putProfileImgUrlResponse = networkService.putMyProfileImg("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", image, profileIImage)
+        val putProfileImgUrlResponse = networkService.putMyProfileImg(SharedPreferenceController.getAuthorization(ctx), image, profileIImage)
 
         putProfileImgUrlResponse.enqueue(object : retrofit2.Callback<PostResponse>{
 

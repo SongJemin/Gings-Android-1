@@ -120,16 +120,6 @@ class MyPageFragment : Fragment() {
 
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
-     //   getProfileImgUrl()
-       //getOtherPage()
-
-
-        /* requestManager = Glide.with(this)
-         requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
- */
-        v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
-        v.mypage_intro_btn.setTextColor(Color.parseColor("#b0caea"))
-
 
         // '소개' 클릭 시
         v.mypage_intro_btn.setOnClickListener {
@@ -190,19 +180,46 @@ class MyPageFragment : Fragment() {
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
                     mypage_name_tv.text = response.body()!!.data.name
-                    mypage_job_tv.text = response.body()!!.data.job
-                    mypage_team_tv.text = response.body()!!.data.company
-                    mypage_region_tv.text = response.body()!!.data.region
 
                     Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
 
-                    field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
+                    if (response.body()!!.data.image != null) {
+                        Glide.with(context).load(response.body()!!.data.image).centerCrop().into(mypage_background_img)
+                        image = response.body()!!.data.image!!
+                    }
+                    if(response.body()!!.data.field!! == "\"\"")
+                    {
+                        field = "분야미정"
+                    }
+                    else{
+                        field = response.body()!!.data.field!!
+                    }
+
                     if(response.body()!!.data.image == "")
-                    image = response.body()!!.data.image!!
                     name = response.body()!!.data.name!!
-                    job = response.body()!!.data.job!!
-                    company=response.body()!!.data.company!!
+                    if(response.body()!!.data.job!! == "\"\""){
+                        mypage_job_tv.text = "역할"
+                        job = "역할"
+                    }
+                    else{
+                        job = response.body()!!.data.job!!
+                        mypage_job_tv.text = response.body()!!.data.job!!
+                    }
+                    if(response.body()!!.data.company!! == "\"\""){
+                        mypage_team_tv.text = "소속"
+                        company = "소속"
+                    }
+                    else{
+                        company=response.body()!!.data.company!!
+                        mypage_team_tv.text = response.body()!!.data.company!!
+                    }
+                    if(response.body()!!.data.region!! == "NONE"){
+                        mypage_region_tv.text = "장소"
+                    }
+                    else{
+                        mypage_region_tv.text = response.body()!!.data.region!!
+                    }
                     if (response.body()!!.data.coworkingEnabled == true) {
                         coworkingEnabled = 1
                     } else {
@@ -235,24 +252,49 @@ class MyPageFragment : Fragment() {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     mypage_name_tv.text = response.body()!!.data.name!!
-                    mypage_job_tv.text = response.body()!!.data.job!!
-                    mypage_team_tv.text = response.body()!!.data.company!!
-                    mypage_region_tv.text = response.body()!!.data.region!!
+                    if(response.body()!!.data.job!! == "\"\""){
+                        mypage_job_tv.text = "역할"
+                        job = "역할"
+                    }
+                    else{
+                        job = response.body()!!.data.job!!
+                        mypage_job_tv.text = response.body()!!.data.job!!
+                    }
+                    if(response.body()!!.data.company!! == "\"\""){
+                        mypage_team_tv.text = "소속"
+                        company = "소속"
+                    }
+                    else{
+                        company=response.body()!!.data.company!!
+                        mypage_team_tv.text = response.body()!!.data.company!!
+                    }
+                    if(response.body()!!.data.region!! == "NONE"){
+                        mypage_region_tv.text = "장소"
+                    }
+                    else{
+                        mypage_region_tv.text = response.body()!!.data.region!!
+                    }
+
                     if (response.body()!!.data.image != null) {
-                        Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
+                        Glide.with(context).load(response.body()!!.data.image).centerCrop().into(mypage_background_img)
                         image = response.body()!!.data.image!!
                     }
-                    field = response.body()!!.data.field!!
+                    if(response.body()!!.data.field!! == "\"\"")
+                    {
+                        field = "분야미정"
+                    }
+                    else{
+                        field = response.body()!!.data.field!!
+                    }
                     status = response.body()!!.data.status!!
 
                     name = response.body()!!.data.name!!
-                    job = response.body()!!.data.job!!
-                    company=response.body()!!.data.company!!
                     if (response.body()!!.data.coworkingEnabled!! == true) {
                         coworkingEnabled = 1
                     } else {
                         coworkingEnabled = 0
                     }
+
 
                     for (i in 0..response.body()!!.data.keywords.size - 1) {
                         if (i == 0) {

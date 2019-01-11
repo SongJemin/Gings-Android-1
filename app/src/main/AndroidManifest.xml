@@ -109,9 +109,6 @@
         <activity android:name=".Jemin.Activity.TestActivity">
 
         </activity>
-        <activity android:name=".Jemin.Activity.Test2Activity">
-
-        </activity>
         <activity
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />

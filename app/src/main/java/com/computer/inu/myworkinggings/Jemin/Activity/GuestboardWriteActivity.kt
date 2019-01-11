@@ -30,7 +30,7 @@ class GuestboardWriteActivity : AppCompatActivity() {
 
         userID = intent.getIntExtra("userID", 0)
 
-        guest_board_write_title_tv.text = intent.getStringExtra("name")
+        guest_board_write_title_tv.text = intent.getStringExtra("name") +"님의 Guest Board"
 
         guest_board_write_confirm_btn.setOnClickListener {
             postGuestBoard()

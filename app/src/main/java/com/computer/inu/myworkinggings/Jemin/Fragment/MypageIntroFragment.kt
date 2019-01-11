@@ -105,8 +105,6 @@ class MypageIntroFragment : Fragment() {
         v.mypage_intro_status.text = status
         /*getOtherIntro()*/ //타인
 
-
-
         v.mypage_board_write_btn.setOnClickListener {
             val intent : Intent = Intent(activity, GuestboardWriteActivity::class.java)
             intent.putExtra("name", name)

@@ -261,6 +261,8 @@ class UpBoardActivity : AppCompatActivity() {
     private fun getDetailedBoardResponse(modifyBoardID: Int) {
         Log.v("vdvd","숫자2 = " + modifyBoardID)
 
+        Log.v("asdf","토큰 = " + SharedPreferenceController.getAuthorization(ctx))
+        Log.v("asdf", "수정번호 = " + modifyBoardID)
         //toast("토오스트")
         val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json",
                 SharedPreferenceController.getAuthorization(ctx),
@@ -269,11 +271,12 @@ class UpBoardActivity : AppCompatActivity() {
         getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
             override fun onFailure(call: Call<GetDetailedBoardResponse>, t: Throwable) {
                 Log.e("detailed_board fail", t.toString())
+                Log.v("ggg", "상세 보드 데이터 수집 실패")
             }
 
             override fun onResponse(call: Call<GetDetailedBoardResponse>, response: Response<GetDetailedBoardResponse>) {
                 if (response.isSuccessful) {
-                    Log.v("ggg", "board list success")
+                    Log.v("ggg", "상세 보드 데이터 수집 성공")
                     imageUrlList.clear()
                     //보드연결
                     temp = response.body()!!.data

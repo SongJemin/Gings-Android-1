@@ -136,7 +136,6 @@ class LoginActivity : AppCompatActivity() {
             jsonObject.put("pwd", input_pw)
             jsonObject.put("fcm", FirebaseInstanceId.getInstance().getToken().toString()) //fcm 토큰받기
             val gsonObject: JsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
-            Log.v("LoginActivity", "확인")
 
             val postLogInResponse = networkService.postLoginResponse("application/json", gsonObject)
 
@@ -147,11 +146,9 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
-                    Log.v("LoginActivity", "확인2")
 
 
                     if (response.isSuccessful) {
-                        Log.v("LoginActivity", "확인3")
                         if(response.body()!!.message == "로그인 성공"&&cb_login_auto_check_box.isChecked==true){
                             val token = response.body()!!.data.jwt.toString()
                             val userId = response.body()!!.data.userId
@@ -172,7 +169,6 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                     else{
-                        Log.v("LoginActivity", "확인5")
                     }
                 }
             })

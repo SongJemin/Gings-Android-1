@@ -39,7 +39,7 @@
                 />
 
 
-            <Button
+            <TextView
                 android:id="@+id/mypage_update_confirm_btn"
                 android:layout_width="28dp"
                 android:layout_height="match_parent"
@@ -48,6 +48,7 @@
                 android:textColor="@color/colorPrimary"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="24dp"
+                android:gravity="center"
                 android:layout_alignParentRight="true"
                 android:textStyle="bold"
                 />

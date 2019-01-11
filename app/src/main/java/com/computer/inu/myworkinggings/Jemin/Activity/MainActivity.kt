@@ -2,24 +2,17 @@ package com.computer.inu.myworkinggings.Jemin.Activity
 
 import android.Manifest
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.location.LocationManager
-import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.ImageButton
 
 import android.util.Log
-import android.widget.Toast
 import com.computer.inu.myworkinggings.Hyunjin.Activity.TopNaviMessageNoticeActivity
 import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeFragment
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
@@ -27,12 +20,9 @@ import com.computer.inu.myworkinggings.Moohyeon.Fragment.DirectoryFragment
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_exit.*
-import kotlinx.android.synthetic.main.dialog_exit.view.*
-import android.app.Activity
-import com.computer.inu.myworkinggings.Jemin.Data.ChatMessage
-import io.realm.Realm
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -53,7 +43,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Log.v("MainActivity", "유저 아이디 = " + SharedPreferenceController.getUserId(applicationContext))
 
         // 탭 버튼에 대한 리스너 연결
         main_hometab_btn!!.setOnClickListener(this)

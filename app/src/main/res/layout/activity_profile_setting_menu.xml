@@ -33,7 +33,6 @@
                 android:src="@drawable/ic_chevron_left_black_24dp" />
 
             <TextView
-                android:fontFamily="@font/noto_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -41,6 +40,7 @@
                 android:gravity="center_horizontal"
                 android:lineHeight="20sp"
                 android:lineSpacingExtra="7sp"
+                android:textStyle="bold"
                 android:text="설정"
                 android:textColor="#040404"
                 android:textSize="15sp" />
@@ -66,27 +66,25 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:fontFamily="@font/noto_bold"
-                    android:lineHeight="31sp"
+                    android:id="@+id/tv_profile_name"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:letterSpacing="-0.15"
+                    android:letterSpacing="-0.01"
                     android:lineSpacingExtra="16sp"
                     android:text="이충엽"
                     android:textColor="#000000"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:fontFamily="@font/noto_regular"
-                    android:lineHeight="15sp"
+                    android:id="@+id/tv_profile_userId"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingExtra="5sp"
-                    android:text="gings@gmail.com"
+                    android:text=""
                     android:textColor="#000000"
-                    android:textSize="13sp" />
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -99,18 +97,18 @@
             android:layout_height="40dp">
 
             <TextView
-                android:fontFamily="@font/noto_bold"
-                android:lineHeight="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="40dp"
                 android:background="#ffffff"
-                android:letterSpacing="-0.14"
+                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="알림"
+
+                android:textStyle="bold"
                 android:textColor="#c45c55"
-                android:textSize="14sp"/>
+                android:textSize="13sp"/>
 
             <Switch
                 android:id="@+id/sw_profile_setting_menu_alarm"
@@ -119,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="27dp"
-                android:shadowColor="#c45c55" />
+                android:shadowColor="#b0caea" />
         </RelativeLayout>
 
         //프로필관리
@@ -132,18 +130,17 @@
             android:orientation="vertical">
 
             <TextView
-                android:fontFamily="@font/noto_bold"
-                android:lineHeight="14sp"
                 android:background="#ffffff"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:letterSpacing="-0.14"
+                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="프로필 관리"
+
                 android:textStyle="bold"
-                android:textColor="#c45c55"
-                android:textSize="14sp" />
+                android:textColor="#c45c55"                android:textSize="13sp" />
 
             //프로필 사진변경
             <RelativeLayout
@@ -161,14 +158,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:lineHeight="14sp"
                         android:background="#ffffff"
-                        android:letterSpacing="-0.13"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="1sp"
                         android:text="프로필 사진 변경"
                         android:textColor="#999999"
@@ -209,14 +204,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
-                        android:lineHeight="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:background="#ffffff"
-                        android:letterSpacing="-0.13"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="1sp"
                         android:text="프로필 정보 수정"
                         android:textColor="#999999"
@@ -239,7 +232,7 @@
                 </RelativeLayout>
 
             </RelativeLayout>
-'
+            '
             //자기소개 수정
             <RelativeLayout
                 android:id="@+id/rl_btn_profile_setting_menu_mypage_update"
@@ -255,13 +248,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:background="#ffffff"
-                        android:letterSpacing="-0.13"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="1sp"
                         android:text="자기소개 수정"
                         android:textColor="#999999"
@@ -301,13 +293,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:letterSpacing="-0.14"
+                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="보안"
-                android:lineHeight="14sp"
                 android:textStyle="bold"
                 android:textColor="#c45c55"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             //비밀번호 변경
             <RelativeLayout
@@ -324,14 +315,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
-                        android:lineHeight="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:background="#ffffff"
-                        android:letterSpacing="-0.13"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="1sp"
                         android:text="비밀번호 변경"
                         android:textColor="#999999"
@@ -357,6 +346,7 @@
 
             //로그아웃
             <RelativeLayout
+                android:id="@+id/rl_btn_profile_setting_menu_signout"
                 android:background="#ffffff"
                 android:layout_width="match_parent"
                 android:layout_height="40dp">
@@ -369,29 +359,26 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
-                        android:lineHeight="14sp"
                         android:layout_marginTop="5dp"
                         android:id="@+id/tv_profile_setting_menu_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#ffffff"
-                        android:letterSpacing="-0.13"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="1sp"
                         android:text="로그아웃"
                         android:textColor="#999999"
                         android:textSize="13sp" />
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
-                        android:lineHeight="14sp"
                         android:background="#ffffff"
+                        android:id="@+id/tv_userID"
                         android:layout_below="@+id/tv_profile_setting_menu_logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:letterSpacing="-0.08"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="6sp"
-                        android:text="gings@gmail.com"
+                        android:text=""
                         android:textColor="#999999"
                         android:textSize="8sp" />
 
@@ -427,14 +414,12 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
-                        android:lineHeight="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:background="#ffffff"
-                        android:letterSpacing="-0.13"
+                        android:letterSpacing="-0.01"
                         android:lineSpacingExtra="1sp"
                         android:text="탈퇴하기"
                         android:textColor="#999999"
@@ -469,4 +454,3 @@
 
 
 </RelativeLayout>
-

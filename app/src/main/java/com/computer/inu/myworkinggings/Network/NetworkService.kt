@@ -44,7 +44,6 @@ interface NetworkService {
 
     @GET("/signup/authNumber")
     fun getVerifyNumberData(
-            @Header("Authorization") Authorization: String,
             @Query("email") email: String
     ): Call<GetVerifyNumberRequest>
 
@@ -369,4 +368,5 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("boardId") boardId: Int
     ) : Call<PostBlockBoardIDResponse>
+
 }

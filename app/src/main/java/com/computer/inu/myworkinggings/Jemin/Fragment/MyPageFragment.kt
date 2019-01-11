@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide
 import com.computer.inu.myworkinggings.Jemin.Adapter.GuestActAdapter
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherActiveResponse
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetProfileImgUrlResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 
@@ -35,7 +36,7 @@ class MyPageFragment : Fragment() {
         ApplicationController.instance.networkService
     }
     var image : String? = ""
-    var name : String = ""
+    var name : String = " "
     var job : String = ""
     var company : String = ""
     var field : String = ""
@@ -44,6 +45,9 @@ class MyPageFragment : Fragment() {
     var checkFlag : Int = 0
     var keword : String= ""
     var profileImgUrl : String = ""
+    var userID : Int = 0
+
+    var my_or_other_flag : Int = 0
 
     // 처음 프래그먼트 추가
     fun addFragment(fragment : Fragment){
@@ -85,7 +89,12 @@ class MyPageFragment : Fragment() {
             transaction.commit()
         }
         else{
-            transaction.replace(R.id.mypage_content_layout, fragment)
+            val myactFragment = MypageActFragment()
+            val bundle = Bundle()
+            bundle.putString("name", name)
+            bundle.putInt("my_or_other_flag", my_or_other_flag)
+            myactFragment.setArguments(bundle)
+            transaction.replace(R.id.mypage_content_layout, myactFragment)
             transaction.commit()
         }
 
@@ -97,11 +106,23 @@ class MyPageFragment : Fragment() {
         val v : View = inflater.inflate(R.layout.fragment_my_page,container,false)
         v.mypage_act_view.visibility = View.INVISIBLE
 
+        val extra = arguments
+        if(extra != null){
+            userID = extra!!.getInt("userID")
+            my_or_other_flag = 1
+            Log.v("MypageFragent", "받아온 유저 아이디 = " +userID)
+            getOtherPage()
+        }
+        else{
+            my_or_other_flag = 0
+            getUserPagePost()
+        }
+
         v.mypage_act_btn.setTextColor(Color.parseColor("#bcc5d3"))
         v.mypage_intro_btn.setTextColor(Color.parseColor("#f7746b"))
      //   getProfileImgUrl()
        //getOtherPage()
-       getUserPagePost()
+
 
         /* requestManager = Glide.with(this)
          requestManager.load("http://www.trinityseoul.com/uploads/8/7/6/4/87640636/art-talk-20_orig.jpg").into(v.mypage_background_img)
@@ -140,14 +161,10 @@ class MyPageFragment : Fragment() {
         v.iv_btn_my_page_setting.setOnClickListener {
             var intent = Intent(activity, ProfileSettingMenuActivity::class.java)
             intent.putExtra("profileImgUrl", profileImgUrl)
+            intent.putExtra("name",mypage_name_tv.text)
             startActivity(intent)
         }
 
-        v.iv_btn_other_page_close.setOnClickListener {
-            var intent = Intent(activity, ProfileSettingMenuActivity::class.java)
-            intent.putExtra("profileImgUrl", profileImgUrl)
-            startActivity(intent)
-        }
 
         // 테스트 연결
         v.mypage_background_img.setOnClickListener {
@@ -160,7 +177,7 @@ class MyPageFragment : Fragment() {
 
 
     fun getOtherPage() {
-        var getOtherInformResponse = networkService.getOtherPageInform("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",1) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherInformResponse = networkService.getOtherPageInform( SharedPreferenceController.getAuthorization(context!!),1) // 유저아이디의 타인 유저 아이디 추가
         getOtherInformResponse.enqueue(object : Callback<GetOtherInformResponse> {
             override fun onResponse(call: Call<GetOtherInformResponse>?, response: Response<GetOtherInformResponse>?) {
                 Log.v("TAG", "타인페이지 서버 통신 연결")
@@ -168,9 +185,7 @@ class MyPageFragment : Fragment() {
                     Log.v("TAG", "타인페이지 서버 통신 연결 성공")
                     if (response!!.body()!!.message == "자격 없음") {
                         iv_btn_my_page_setting.visibility = View.GONE
-                        iv_btn_other_page_close.visibility = View.VISIBLE
                     } else {
-                        iv_btn_other_page_close.visibility = View.GONE
                         iv_btn_my_page_setting.visibility = View.VISIBLE
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
@@ -183,6 +198,7 @@ class MyPageFragment : Fragment() {
 
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
+                    if(response.body()!!.data.image == "")
                     image = response.body()!!.data.image!!
                     name = response.body()!!.data.name!!
                     job = response.body()!!.data.job!!
@@ -213,25 +229,26 @@ class MyPageFragment : Fragment() {
         })
     }
     fun getUserPagePost(){
-        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg")
+        var getMypageResponse: Call<GetMypageResponse> = networkService.getMypageResponse("application/json", SharedPreferenceController.getAuthorization(context!!))
         getMypageResponse.enqueue(object : Callback<GetMypageResponse> {
             override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
-                    mypage_name_tv.text = response.body()!!.data.name
-                    mypage_job_tv.text = response.body()!!.data.job
-                    mypage_team_tv.text = response.body()!!.data.company
-                    mypage_region_tv.text = response.body()!!.data.region
-
-                    Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
-
+                    mypage_name_tv.text = response.body()!!.data.name!!
+                    mypage_job_tv.text = response.body()!!.data.job!!
+                    mypage_team_tv.text = response.body()!!.data.company!!
+                    mypage_region_tv.text = response.body()!!.data.region!!
+                    if (response.body()!!.data.image != null) {
+                        Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
+                        image = response.body()!!.data.image!!
+                    }
                     field = response.body()!!.data.field!!
                     status = response.body()!!.data.status!!
-                    image = response.body()!!.data.image!!
+
                     name = response.body()!!.data.name!!
                     job = response.body()!!.data.job!!
                     company=response.body()!!.data.company!!
-                    if (response.body()!!.data.coworkingEnabled == true) {
+                    if (response.body()!!.data.coworkingEnabled!! == true) {
                         coworkingEnabled = 1
                     } else {
                         coworkingEnabled = 0
@@ -247,7 +264,7 @@ class MyPageFragment : Fragment() {
                     addFragment(MypageIntroFragment())
                 }
                 else{
-                    Log.v("TAG", "타인페이지 서버 값 전달 실패")
+                    Log.v("TAG", "마이페이지 서버 값 전달 실패")
                 }
             }
             override fun onFailure(call: Call<GetMypageResponse>?, t: Throwable?) {
@@ -274,7 +291,5 @@ class MyPageFragment : Fragment() {
             }
         })
     }
-
-
 
 }

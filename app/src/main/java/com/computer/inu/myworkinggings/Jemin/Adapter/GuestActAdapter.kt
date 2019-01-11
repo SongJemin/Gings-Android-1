@@ -2,6 +2,7 @@ package com.computer.inu.myworkinggings.Jemin.Adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,15 @@ class GuestActAdapter(var ctx : Context, private var guestActItems : ArrayList<G
         holder.actTime.text = guestActItems[position].time!!.substring(0,16).replace("T","")
         holder.actContent.text = guestActItems[position].content
         holder.actName.text = guestActItems[position].writer
-        holder.actRole.text = guestActItems[position].category
+        if(guestActItems[position].category == "QUESTION") {
+            holder.actRole.text = "질문"
+        }
+        else if(guestActItems[position].category == "INSPIRATION") {
+            holder.actRole.text = "영감"
+        }
+        else if(guestActItems[position].category == "COWORKING"){
+            holder.actRole.text = "협업"
+        }
         holder.actReplyRecom.text = guestActItems[position].recommender!!.toString()
         holder.actReplySumNum.text = guestActItems[position].replys.size.toString()
         if(guestActItems[position].images.size != 0){

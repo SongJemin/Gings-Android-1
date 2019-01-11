@@ -7,8 +7,11 @@ import android.util.Log
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.boardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.Post.PostBlockBoardIDResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_home_board_more_btn.*
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,26 +27,23 @@ class HomeBoardMoreBtnActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_board_more_btn)
 
-
         //boardRecyclerViewAdapter.dataList.clear()
 
-
-        rl_btn_home_board_more_btn.setOnClickListener {
-
-
+        rl_btn_home_board_more_block_boardID.setOnClickListener {
             getBoardShareResponse()
+            var position = intent.getIntExtra("Position", 0)
+
+            boardRecyclerViewAdapter.notifyItemRemoved(position)
+            boardRecyclerViewAdapter.notifyItemRangeRemoved(position,1)
+            finish()
             //통신
-
-
         }
-
-
     }
 
     //보드 가리기 통신
     private fun getBoardShareResponse() {
         val getBoardshareResponse = networkService.postBlockBoardIDResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(this),
                 intent.getIntExtra("BoardId", 0)
         )
 

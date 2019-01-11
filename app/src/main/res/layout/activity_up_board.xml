@@ -244,7 +244,7 @@
 
             <LinearLayout
                 android:id="@+id/ll_up_board_category_list"
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#eceff0"
@@ -396,7 +396,7 @@
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="1sp"
 
-                    android:textColor="#999999"
+                    android:textColor="#000000"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -434,7 +434,7 @@
                     android:hint="#"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="1sp"
-                    android:textColor="#999999"
+                    android:textColor="#000000"
                     android:textSize="15sp" />
             </RelativeLayout>
 
@@ -468,6 +468,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:background="@null"
+                    android:textColor="#000000"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="1sp"
                     android:hint="텍스트를 입력하세요."
@@ -487,7 +488,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/upboard_pick_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20.1dp"

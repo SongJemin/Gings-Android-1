@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f9f9f9">
-<LinearLayout
-    android:gravity="center"
-    android:background="#ffffff"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="56dp">
-    <RelativeLayout
-        android:background="#f9f9f9"
-        android:layout_width="344dp"
-        android:layout_height="34dp"
-        android:layout_gravity="center">
+    android:layout_height="match_parent"
+    android:background="#f9f9f9"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="344dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:background="#f9f9f9">
 
             <ImageView
                 android:id="@+id/iv_directory_picture"
-                android:src="@drawable/bt_search"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentStart="true"
@@ -25,11 +27,11 @@
                 android:layout_marginStart="15dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
+                android:src="@drawable/bt_search"
                 android:textColor="#b0caea"
                 android:textSize="15sp" />
 
             <EditText
-                android:fontFamily="@font/noto_regular"
                 android:background="@null"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
@@ -38,79 +40,95 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-               android:layout_marginStart="18.2dp"
-                android:letterSpacing="-0.14"
-                android:lineHeight="22sp"
+
+                android:layout_marginStart="18.2dp"
+
+                android:hint="이름,역할,소속,협업 분야,키워드"
+                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:textColor="#222222"
-                android:textSize="14sp"
-                android:hint="이름,역할,소속,협업 분야,키워드" />
+                android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/iv_directory_finish"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/bt_x" />
+            <ImageView
+                android:id="@+id/iv_directory_finish"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/bt_x" />
         </RelativeLayout>
-</LinearLayout>
-    <ImageView
-        android:id="@+id/tv_directory_welcome"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:src="@drawable/img_directorytop"
-        android:textColor="#999999"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="9sp"
 
-        />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_directory_user_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
-<ImageView
-    android:layout_marginTop="158.7dp"
-    android:layout_gravity="center"
-    android:src="@drawable/bt_search_gray"
-    android:id="@+id/iv_directory_searching"
-    android:layout_width="114dp"
-    android:layout_height="114dp" />
-    <TextView
-        android:id="@+id/tv_directory_searching_text"
-        android:fontFamily="@font/noto_regular"
-        android:layout_marginTop="41dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="#999999"
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-       android:text="깅스의 멤버를 검색합니다."
-        />
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="4.5dp"
-        android:layout_marginRight="4.5dp"
-        android:layout_gravity="center"
-        android:id="@+id/rv_item_SearchingUserlist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    </LinearLayout>
 
-    </android.support.v7.widget.RecyclerView>
-    <ImageView
-        android:id="@+id/tv_directory_seaching_fail"
-android:layout_marginTop="115dp"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-     android:src="@drawable/img_fail"
-        />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/tv_directory_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="10dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="9sp"
+                android:src="@drawable/img_directorytop"
+                android:textColor="#999999"
+
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_directory_user_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/iv_directory_searching"
+                android:layout_width="114dp"
+                android:layout_height="114dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="158.7dp"
+                android:src="@drawable/bt_search_gray" />
+
+            <TextView
+                android:id="@+id/tv_directory_searching_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="41dp"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="6sp"
+                android:text="깅스의 멤버를 검색합니다."
+                android:textColor="#999999"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_item_SearchingUserlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4.5dp"
+                android:layout_marginRight="4.5dp"></android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/tv_directory_seaching_fail"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="115dp"
+                android:gravity="center_vertical"
+                android:src="@drawable/img_fail" />
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
 </LinearLayout>

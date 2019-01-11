@@ -42,7 +42,7 @@
                         />
 
                     <TextView
-                        android:fontFamily="@font/noto_bold"
+                        android:textStyle="bold"
                         android:lineHeight="15sp"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
@@ -64,7 +64,6 @@
                         android:background="@drawable/mypage_intro_box_selector"
                         >
                         <TextView
-                            android:fontFamily="@font/noto_regular"
                             android:lineHeight="16sp"
                             android:id="@+id/mypage_intro_collab_tv"
                             android:layout_width="wrap_content"
@@ -102,7 +101,6 @@
                         android:background="@drawable/ic_category" />
 
                     <TextView
-                        android:fontFamily="@font/noto_bold"
                         android:lineHeight="15sp"
                         android:id="@+id/mypage_intro_field_tv"
                         android:layout_centerInParent="true"
@@ -126,7 +124,6 @@
                         android:background="@drawable/box_on"
                         >
                         <TextView
-                            android:fontFamily="@font/noto_regular"
                             android:lineHeight="16sp"
                             android:id="@+id/mypage_intro_activity_part"
                             android:layout_centerHorizontal="true"
@@ -164,7 +161,6 @@
                         />
 
                     <TextView
-                        android:fontFamily="@font/noto_bold"
                         android:lineHeight="15sp"
                         android:id="@+id/mypage_intro_status_tv"
                         android:layout_centerInParent="true"
@@ -189,7 +185,6 @@
                         android:background="@drawable/box_on"
                         >
                         <TextView
-                            android:fontFamily="@font/noto_regular"
                             android:lineHeight="16sp"
                             android:id="@+id/mypage_intro_status"
                             android:layout_width="wrap_content"
@@ -243,7 +238,6 @@
 
                     >
                     <TextView
-                        android:fontFamily="@font/noto_bold"
                         android:lineHeight="16sp"
                         android:letterSpacing="-0.12"
                         android:id="@+id/mypage_board_name_tv"
@@ -267,7 +261,6 @@
                         />
 
                     <TextView
-                        android:fontFamily="@font/noto_regular"
                         android:lineHeight="16sp"
                         android:letterSpacing="-0.1"
                         android:id="@+id/mypage_board_company"
@@ -281,7 +274,6 @@
                         android:textColor="#525252"
                         />
                     <TextView
-                        android:fontFamily="@font/noto_regular"
                         android:lineHeight="16sp"
                         android:letterSpacing="-0.1"
                         android:id="@+id/mypage_board_job"
@@ -296,7 +288,6 @@
 
                 </LinearLayout>
                 <TextView
-                    android:fontFamily="@font/noto_regular"
                     android:lineHeight="16sp"
                     android:letterSpacing="-0.09"
                     android:id="@+id/mypage_board_datetime_tv"
@@ -321,7 +312,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
             <TextView
-                android:fontFamily="@font/noto_regular"
                 android:lineHeight="22sp"
                 android:letterSpacing="-0.13"
                 android:id="@+id/mypage_board_content_tv"
@@ -335,18 +325,16 @@
                 android:textColor="#222222"
                 android:layout_marginBottom="16dp"
                 />
-            <ImageView
-                android:src="@drawable/invalid_name"
-                android:scaleType="centerCrop"
-                android:id="@+id/mypage_board_content_iv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="38dp"
-                android:layout_below="@+id/mypage_board_content_tv"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="21dp"
-                />
+                    <ImageView
+                        android:id="@+id/my_intro_img_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginRight="38dp"
+                        android:layout_marginBottom="21dp"
+                        android:layout_marginTop="5dp"
+                        android:clipToPadding="false" />
+
             </LinearLayout>
             </ScrollView>
 
@@ -359,7 +347,6 @@
             android:background="#ffffff"
             >
             <TextView
-                android:fontFamily="@font/noto_black"
                 android:lineHeight="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -371,7 +358,7 @@
                 />
 
             <Button
-                android:id="@+id/mypage_board_more_btn"
+                android:id="@+id/mypage_board_write_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"

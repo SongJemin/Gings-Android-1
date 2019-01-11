@@ -36,7 +36,17 @@ import retrofit2.Response
 import java.util.ArrayList
 import com.computer.inu.myworkinggings.Moohyeon.Data.OnItemClick
 import android.R.attr.onClick
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.widget.*
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
+import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.rv_item_board.*
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 
 
 class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardItem>, var requestManager: RequestManager)
@@ -48,8 +58,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         ApplicationController.instance.networkService
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_board, parent, false)
 
@@ -60,13 +68,19 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        holder.item_box
+        //holder.item_box
 
         //인스턴스 객체 - 데이터 연결
-
         //title
-        dataList
-        holder.category.text = dataList[position].category
+
+        if (dataList[position].category == "QUESTION") {
+            holder.category.text = "질문"
+        } else if (dataList[position].category == "INSPIRATION") {
+            holder.category.text = "영감"
+        } else if (dataList[position].category == "COWORKING") {
+            holder.category.text = "협업"
+        }
+
         holder.title.text = dataList[position].title
         for (i in 0..dataList[position].keywords.size - 1) {
             if (i == 0) {
@@ -75,16 +89,20 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                 holder.tag.append("    #" + dataList[position].keywords[i])
             }
         }
-        for (i in 0..dataList[position].images.size - 1) {
-            if (dataList[position].images.size == 0) {
-                Log.v("asdf", "사이즈 0" + dataList[position].images.size)
-                holder.contents_img_viewPager.visibility = View.GONE
-            } else {
-                Log.v("asdf", "사이즈 있음 " + dataList[position].images.size)
-                var adapter = ImageAdapter(ctx, requestManager, dataList[position].images)
-                holder.contents_img_viewPager.adapter = adapter
-                if (dataList[position].images[i] == "abcd") {
+        if (dataList[position].images.size == 0) {
+            holder.imageLayout.visibility = View.GONE
+        } else {
+            for (i in 0..dataList[position].images.size - 1) {
+                if (dataList[position].images.size == 0) {
+                    Log.v("asdf", "사이즈 0" + dataList[position].images.size)
                     holder.contents_img_viewPager.visibility = View.GONE
+                } else {
+                    Log.v("asdf", "사이즈 있음 " + dataList[position].images.size)
+                    var adapter = ImageAdapter(ctx, requestManager, dataList[position].images)
+                    holder.contents_img_viewPager.adapter = adapter
+                    if (dataList[position].images[i] == "abcd") {
+                        holder.contents_img_viewPager.visibility = View.GONE
+                    }
                 }
             }
         }
@@ -121,11 +139,15 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         /*이벤트 처리*/
 
+        val REQUEST_CODE_SUB_ACTIVITY = 7777
+
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
-
+            var intent = Intent(ctx, DetailBoardActivity::class.java)
+            ///******
             ctx.toast(dataList[position].boardId!!.toString())
-            ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
+            intent.putExtra("BoardId", dataList[position].boardId)
+            (ctx as MainActivity).startActivityForResult(intent, 20);
 
         }
 
@@ -133,28 +155,75 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
 
-            ctx.toast(dataList[position].boardId!!.toString())
 
+            ctx.toast(dataList[position].boardId!!.toString())
+            if (SharedPreferenceController.getUserId(ctx) == dataList[position].writerId) {
+//본인 게시글 클릭
+                ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "Position" to position)
+            } else {
+                //일반 게시글 클릭
+                ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId, "Position" to position)
+            }
+
+        }
+
+        //댓글 버튼
+        holder.comment_btn.setOnClickListener {
+            var intent = Intent(ctx, DetailBoardActivity::class.java)
+            intent.putExtra("BoardId", dataList[position].boardId)
+            ctx.startActivity(intent)
             //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "Position" to position)
 
             //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
+            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId, "Position" to position)
+
+            position
+            //ctx.toast()
         }
 
         //좋아요 버튼
-        if(dataList[position].likeChk==true)
-        {
-            Log.v("like_on","on error")
-        holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)}
-        else {
-            Log.v("like_off","off error")
+        if (dataList[position].likeChk == true) {
+            Log.v("like_on", "on error")
+            holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)
+        } else {
+            Log.v("like_off", "off error")
             holder.like_btn.setBackgroundResource(R.drawable.ic_like)
+        }
+
+        holder.name.setOnClickListener {
+            val transaction = (ctx as FragmentActivity).getSupportFragmentManager().beginTransaction()
+            val mypageFragment = MyPageFragment()
+            val bundle = Bundle()
+            bundle.putInt("userID", dataList[position].writerId!!)
+            mypageFragment.setArguments(bundle)
+            transaction.replace(R.id.main_fragment_container, mypageFragment)
+            transaction.commit()
+            ctx.main_mypage_btn.setSelected(true)
+            ctx.main_directory_btn.setSelected(false)
+            ctx.main_lounge_btn.setSelected(false)
+            ctx.main_alarm_btn.setSelected(false)
+            ctx.main_hometab_btn.setSelected(false)
+        }
+
+        holder.profile_img.setOnClickListener {
+            val transaction = (ctx as FragmentActivity).getSupportFragmentManager().beginTransaction()
+            val mypageFragment = MyPageFragment()
+            val bundle = Bundle()
+            bundle.putInt("userID", dataList[position].writerId!!)
+            mypageFragment.setArguments(bundle)
+            transaction.replace(R.id.main_fragment_container, mypageFragment)
+            transaction.commit()
+            ctx.main_mypage_btn.setSelected(true)
+            ctx.main_directory_btn.setSelected(false)
+            ctx.main_lounge_btn.setSelected(false)
+            ctx.main_alarm_btn.setSelected(false)
+            ctx.main_hometab_btn.setSelected(false)
         }
 
         holder.like_rl.setOnClickListener {
             val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    SharedPreferenceController.getAuthorization(ctx),
                     dataList[position].boardId)
 
             postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
@@ -165,17 +234,16 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                 override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
                     if (response.isSuccessful) {
 
-                        Log.e("통신성공","  통신 성공")
-                        if(response.body()!!.message=="보드 추천 성공"){
+                        Log.e("통신성공", "  통신 성공")
+                        if (response.body()!!.message == "보드 추천 성공") {
                             ctx.toast("좋아요 성공")
                             holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)
-                            var cnt =Integer.parseInt(holder.like_cnt.getText().toString())+1
+                            var cnt = Integer.parseInt(holder.like_cnt.getText().toString()) + 1
                             holder.like_cnt.setText(cnt.toString())
-                        }
-                        else if (response.body()!!.message=="보드 추천 해제 성공"){
+                        } else if (response.body()!!.message == "보드 추천 해제 성공") {
                             ctx.toast("좋아요 해제")
                             holder.like_btn.setBackgroundResource(R.drawable.ic_like)
-                            var cnt =Integer.parseInt(holder.like_cnt.getText().toString())-1
+                            var cnt = Integer.parseInt(holder.like_cnt.getText().toString()) - 1
 
                             holder.like_cnt.setText(cnt.toString())
                         }
@@ -191,8 +259,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     //layout의 view를 인스턴스 변수로 만들어 줌
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val item_box : LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
+        val item_box: LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
         val gotoDetailedBoard: LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
+        val imageLayout: RelativeLayout = itemView.findViewById(R.id.item_board_img_layout) as RelativeLayout
 
         //title
         val category: TextView = itemView.findViewById(R.id.tv_item_board_category) as TextView
@@ -203,7 +272,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //contents
         var contents_img_viewPager: ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
-        val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필
         val profile_img: ImageView = itemView.findViewById(R.id.iv_item_board_profile_img) as ImageView
@@ -212,12 +280,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
 
         //좋아요
-        var like_rl : RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
-        var like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
+        var like_rl: RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
+        var like_btn: ImageView = itemView.findViewById(R.id.iv_item_like_btn) as ImageView
         var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 
         //댓글아이콘
-        val comment_btn: ImageView = itemView.findViewById(R.id.iv_item_board_comment) as ImageView
+        val comment_btn: RelativeLayout = itemView.findViewById(R.id.rl_item_board_comment) as RelativeLayout
         val comment_cnt: TextView = itemView.findViewById(R.id.tv_item_board_comment_cnt) as TextView //int
 
         //공유하기 val
@@ -229,9 +297,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
 
     //보드공유 통신
-    private fun getBoardShareResponse(){
+    private fun getBoardShareResponse() {
         val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(ctx),
                 b_id)
 
         postBoardshareResponse.enqueue(object : Callback<PostBoardShareResponse> {
@@ -249,10 +317,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
     }
 
-
     private fun BoardLikePost() {
         val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(ctx),
                 b_id)
 
         postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
@@ -272,13 +339,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
     private fun sendLink(dataList: BoardItem) {
 
 
-        var images : String?
+        var images: String?
 
-        Log.v("ㅎ;;ㅎ;ㅎ;;ㅎ;ㅎㅎ 너의크기는무엇이늬",dataList.images.size.toString())
+        Log.v("ㅎ;;ㅎ;ㅎ;;ㅎ;ㅎㅎ 너의크기는무엇이늬", dataList.images.size.toString())
 
-        if(dataList.images.size == 0){
+        if (dataList.images.size == 0) {
             images = "https://s3.ap-northeast-2.amazonaws.com/gings-storage/gings.png"
-        }else
+        } else
             images = dataList.images[0]
 
         val params = FeedTemplate
@@ -292,7 +359,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
                 .addButton(ButtonObject("깅스 앱으로 열기", LinkObject.newBuilder()
                         //.setWebUrl("'https://developers.kakao.com")
-                        .setAndroidExecutionParams("boardIDValue="+dataList.boardId)
+                        .setAndroidExecutionParams("boardIDValue=" + dataList.boardId)
                         .build()))
                 .build()
 
@@ -301,9 +368,15 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             override fun onFailure(errorResult: ErrorResult) {
                 Logger.e(errorResult.toString())
             }
+
             override fun onSuccess(result: KakaoLinkResponse) {}
         })
     }
+
+    fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        Log.d("BoardAdapter", "onActivityResult")
+    }
+
 }
 
 

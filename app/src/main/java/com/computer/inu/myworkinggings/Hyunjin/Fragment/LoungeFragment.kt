@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Hyunjin.Fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -53,9 +54,12 @@ class LoungeFragment : Fragment(){
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
 
+                    //제대로 데이터가 들어왔는지 body를 찍어보는 코드
+                    Log.v("TAG", "body = " + response.body()!!.toString())
+
                     //Toast.makeText(context,"success", Toast.LENGTH_SHORT).show()
 
-                    LoungeDataRecyclerViewAdapter = LoungeDataRecyclerViewAdapter(activity!!, dataList)
+                    LoungeDataRecyclerViewAdapter = LoungeDataRecyclerViewAdapter((activity as Context?)!!, dataList)
                     rv_lounge_frag_lounge_list.adapter = LoungeDataRecyclerViewAdapter
                     rv_lounge_frag_lounge_list.layoutManager = LinearLayoutManager(activity, LinearLayout.HORIZONTAL, false)
                 }

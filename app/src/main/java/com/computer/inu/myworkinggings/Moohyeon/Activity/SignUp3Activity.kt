@@ -3,6 +3,7 @@ package com.computer.inu.myworkinggings.Moohyeon.Activity
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import com.computer.inu.myworkinggings.Moohyeon.post.PostSignUpResponse
@@ -30,9 +31,14 @@ class SignUp3Activity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up3)
 
         tv_sign_up3_sign_up_complete.setOnClickListener {
+            tv_sign_up3_sign_up_complete.isEnabled=false
+            val delayHandler = Handler()
+            delayHandler.postDelayed(Runnable {
+                tv_sign_up3_sign_up_complete.isEnabled=true
+            }, 3000)
             SignUpPost()
-            finish()
             startActivity<LoginActivity>()
+            finish()
         }
     }
     private fun SignUpPost() {

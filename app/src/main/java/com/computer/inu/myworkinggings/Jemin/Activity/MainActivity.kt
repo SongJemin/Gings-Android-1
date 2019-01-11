@@ -1,10 +1,12 @@
 package com.computer.inu.myworkinggings.Jemin.Activity
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -23,23 +25,20 @@ import com.computer.inu.myworkinggings.Hyunjin.Fragment.LoungeFragment
 import com.computer.inu.myworkinggings.Jemin.Fragment.MyPageFragment
 import com.computer.inu.myworkinggings.Moohyeon.Fragment.DirectoryFragment
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Adapter.BoardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_exit.*
+import kotlinx.android.synthetic.main.dialog_exit.view.*
+import android.app.Activity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    val TAG = "MainActivity"
+
     val FINISH_INTERVAL_TIME = 2000
     var backPressedTime : Long = 0
-    override fun onBackPressed() {
-        var tempTime = System.currentTimeMillis()
-        var intervalTime = tempTime-backPressedTime
-
-        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime) {
-            super.onBackPressed()
-        } else {
-            backPressedTime = tempTime
-            Toast.makeText(applicationContext, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
+    lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
 
     private val FRAGMENT1 = 1
     private val FRAGMENT2 = 2
@@ -52,6 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // 탭 버튼에 대한 리스너 연결
         main_hometab_btn!!.setOnClickListener(this)
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 main_hometab_btn.setSelected(false)
                 main_alarm_btn.setSelected(false)
                 main_mypage_btn.setSelected(false)
-                // '추천 탭' 클릭 시 '추천 프래그먼트' 호출
+                // '라운지 탭' 클릭 시 '라운지 프래그먼트' 호출
                 callFragment(FRAGMENT3)
             }
 
@@ -178,4 +178,49 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    // 백버튼 클릭 시
+    override fun onBackPressed() {
+        showExitDialog()
+    }
+
+    protected fun showExitDialog() {
+        var exitDialog = Dialog(this)
+        exitDialog.setCancelable(true)
+        exitDialog.getWindow().setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
+        val exitDialogView = this!!.layoutInflater.inflate(R.layout.dialog_exit, null)
+        exitDialog.setContentView(exitDialogView)
+
+        exitDialog.exit_dialog_cancel_tv.setOnClickListener {
+            exitDialog.dismiss()
+        }
+        exitDialog.exit_dialog_exit_tv.setOnClickListener {
+            moveTaskToBack(true)
+            finish()
+            android.os.Process.killProcess(android.os.Process.myPid())
+        }
+        exitDialog.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.v(TAG, "메인 액티비티 리턴")
+        if (requestCode == 20) {
+            // 보드 상세에서 이름이나 프로필사진 선택으로 넘어올 경우
+            if (data!!.getIntExtra("userID", 0) != 0) {
+                Log.v(TAG, "리턴 번호 값 = " + data!!.getIntExtra("boardID", 0))
+                Log.v(TAG, "리턴 유저 값 = " + data!!.getIntExtra("userID", 0))
+                main_mypage_btn.setSelected(true)
+                main_directory_btn.setSelected(false)
+                main_lounge_btn.setSelected(false)
+                main_alarm_btn.setSelected(false)
+                main_hometab_btn.setSelected(false)
+                callFragment(FRAGMENT5)
+            }
+            // 보드 상세에서 백버튼으로 넘어올 경우
+            else {
+
+            }
+
+        }
+    }
 }

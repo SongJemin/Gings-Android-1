@@ -42,6 +42,15 @@
             android:layout_alignParentBottom="true"
             />
 
+        <Button
+            android:id="@+id/chat_test_btn"
+            android:layout_width="48dp"
+            android:layout_height="48.8dp"
+            android:background="@drawable/bt_send"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5.1dp"
+            />
+
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -81,6 +90,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="5.1dp"
             />
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

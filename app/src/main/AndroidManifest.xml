@@ -3,8 +3,8 @@
     package="com.computer.inu.myworkinggings">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEVIVE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEVIVE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".Network.ApplicationController"
@@ -15,25 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         //카카오링크
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-
         //카카오스플레시
         <activity android:name=".Seunghee.Activity.KakaoSplashActivity">
             //카카오링크 실행
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="@string/kakao_scheme"
-                    android:host="@string/kakaolink_host" />
+                <data
+                    android:host="@string/kakaolink_host"
+                    android:scheme="@string/kakao_scheme" />
             </intent-filter>
         </activity>
-
         <activity android:name=".Jemin.Activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,12 +41,8 @@
             </intent-filter>
         </activity>
 
-
         <!-- 로그인/가입창 -->
-        <activity android:name=".Moohyeon.Activity.LoginActivity">
-
-        </activity>
-
+        <activity android:name=".Moohyeon.Activity.LoginActivity"></activity>
         //가입창
         <activity android:name=".Moohyeon.Activity.SignUp1Activity" />
         <activity android:name=".Moohyeon.Activity.SignUp2Activity" />
@@ -108,33 +103,34 @@
         <activity android:name=".Jemin.Activity.PasswdModifyActivity" />
         <activity android:name=".Jemin.Activity.PasswordConfirmActivity" />
         <activity android:name=".Jemin.Activity.UnsubscribeActivity" />
-        <activity android:name=".Jemin.Activity.MainActivity" />
-        <activity android:name=".Jemin.Activity.TestActivity" />
-        <activity android:name=".Jemin.Activity.Test2Activity" />
+        <activity android:name=".Jemin.Activity.MainActivity">
 
+        </activity>
+        <activity android:name=".Jemin.Activity.TestActivity">
 
+        </activity>
+        <activity android:name=".Jemin.Activity.Test2Activity">
+
+        </activity>
         <activity
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".Jemin.Activity.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".Jemin.Activity.GuestboardWriteActivity"></activity>
 
-        <activity android:name=".Jemin.Activity.ChatActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            />
         <!-- FCM 관련 서비스 -->
         <service
-            android:name=".Jemin.Firebase.FireBaseMessagingService"
-            android:enabled="true"
-            android:exported="true">
+            android:name=".Moohyeon.Firebase.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name=".Jemin.Firebase.FirebaseInstanceIDService"
-            android:enabled="true"
-            android:exported="true">
+            android:name=".Moohyeon.Firebase.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <!-- 여기까지 -->

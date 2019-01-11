@@ -3,6 +3,7 @@ package com.computer.inu.myworkinggings.Moohyeon.Activity
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import com.computer.inu.myworkinggings.Hyunjin.Get.GetVerifyNumberRequest
@@ -17,6 +18,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.regex.Pattern
+import android.support.v4.os.HandlerCompat.postDelayed
+
+
 
 class SignUp2Activity : AppCompatActivity() {
     var name : String = String()
@@ -65,7 +69,12 @@ class SignUp2Activity : AppCompatActivity() {
                     tv_sign_up2_available_pw.setTextColor(Color.parseColor("#ff6464"))
                 }
                 if (post_check != 1) {
-                      //여기다가 이메일 전송 하면된다!!!!~~
+                    tv_sign_up2_confirm_number_send_message.isEnabled=false
+                    val delayHandler =Handler()
+                    delayHandler.postDelayed(Runnable {
+                        toast("test")
+                        tv_sign_up2_confirm_number_send_message.isEnabled=true
+                    }, 3000)
                     getVerifyNumberData()
                 }
             }else {
@@ -83,12 +92,12 @@ class SignUp2Activity : AppCompatActivity() {
     }
 
     fun getVerifyNumberData() {
-        var getVerifyNumberDataResponse = networkService.getVerifyNumberData("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getVerifyNumberDataResponse = networkService.getVerifyNumberData(et_sign_up2_email.text.toString()) // 네트워크 서비스의 getContent 함수를 받아옴
         getVerifyNumberDataResponse.enqueue(object : Callback<GetVerifyNumberRequest> {
             override fun onResponse(call: Call<GetVerifyNumberRequest>?, response: Response<GetVerifyNumberRequest>?) {
                 Log.v("TAG", "GET 통신 성공")
                 if (response!!.isSuccessful) {
-             var token =response.headers().toString()
+             var token =response.body()!!.data.jwt.toString()
                     startActivity(intentFor<SignUp3Activity>("name" to name ,"password" to password,"token" to token))
                 }
             }

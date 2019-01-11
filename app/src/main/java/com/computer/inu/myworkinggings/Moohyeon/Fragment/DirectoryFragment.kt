@@ -46,6 +46,7 @@ import com.computer.inu.myworkinggings.Moohyeon.get.GetDirectorySearchResponse
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_directory.view.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
@@ -145,7 +146,7 @@ class DirectoryFragment : Fragment() {
     }
 
     fun getDirectorySearchResponse() {
-        var getSearchResponse: Call<GetDirectorySearchResponse> = networkService.getDirectorySearchResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", et_directory_searching.text.toString())
+        var getSearchResponse: Call<GetDirectorySearchResponse> = networkService.getDirectorySearchResponse("application/json",  SharedPreferenceController.getAuthorization(context!!), et_directory_searching.text.toString())
         getSearchResponse.enqueue(object : Callback<GetDirectorySearchResponse> {
             override fun onResponse(call: Call<GetDirectorySearchResponse>?, response: Response<GetDirectorySearchResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
@@ -181,7 +182,7 @@ class DirectoryFragment : Fragment() {
     }
 
     fun getDirectoryListResponse() {
-        var getDirectoryListResponse: Call<GetDirectoryListResponse> = networkService.getDirectoryListResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",0,10)
+        var getDirectoryListResponse: Call<GetDirectoryListResponse> = networkService.getDirectoryListResponse("application/json",  SharedPreferenceController.getAuthorization(context!!),0,10)
         getDirectoryListResponse.enqueue(object : Callback<GetDirectoryListResponse> {
             override fun onResponse(call: Call<GetDirectoryListResponse>?, response: Response<GetDirectoryListResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")

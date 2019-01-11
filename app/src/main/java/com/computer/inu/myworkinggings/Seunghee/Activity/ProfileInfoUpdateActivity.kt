@@ -14,6 +14,7 @@ import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_profile_info_update.*
@@ -41,6 +42,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_info_update)
+        regionSpinner = findViewById(R.id.sp_profile_info_update_city) as Spinner
         regionSpinner.setSelection(0)
         regionValue = "SEOUL"
         getProfileInform()
@@ -141,16 +143,16 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
             override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
                 if (response!!.isSuccessful) {
                     profileInformData = response!!.body()!!.data
-                    regionSpinner = findViewById(R.id.sp_profile_info_update_city) as Spinner
+
                     collabSpinner = findViewById(R.id.sp_profile_info_update_co_available) as Spinner
                     statusSpinner = findViewById(R.id.sp_profile_info_update_co_state) as Spinner
 
                     var findPosition : Int = 0
-                    findPosition = findSpinnerData(regionSpinner, profileInformData.region)
+                    findPosition = findSpinnerData(regionSpinner, profileInformData.region!!)
                     regionSpinner.setSelection(findPosition)
-                    et_profile_info_update_role.hint = profileInformData.job
-                    et_profile_info_update_part.hint = profileInformData.company
-                    et_profile_info_update_co_part.hint = profileInformData.field
+                    et_profile_info_update_role.setText(profileInformData.job)
+                    et_profile_info_update_part.setText(profileInformData.company)
+                    et_profile_info_update_co_part.setText(profileInformData.field)
                     if(profileInformData.coworkingEnabled == true){
                         findPosition = findSpinnerData(collabSpinner, "가능")
                         collabSpinner.setSelection(findPosition)
@@ -159,7 +161,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
                         findPosition = findSpinnerData(collabSpinner, "불가능")
                         collabSpinner.setSelection(findPosition)
                     }
-                    findPosition = findSpinnerData(statusSpinner, profileInformData.status)
+                    findPosition = findSpinnerData(statusSpinner, profileInformData.status!!)
                     statusSpinner.setSelection(findPosition)
 
                     var keywordString : String = ""
@@ -173,7 +175,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
                         }
                     }
                     Log.v("asdf","키워드 값 = " + keywordString)
-                    et_profile_info_update_keyword.hint = keywordString
+                    et_profile_info_update_keyword.setText(keywordString)
                 }
             }
 
@@ -207,7 +209,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-        var putProfileInfoResponse = networkService.putProfileInfo("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", gsonObject)
+        var putProfileInfoResponse = networkService.putProfileInfo(SharedPreferenceController.getAuthorization(this), gsonObject)
         putProfileInfoResponse.enqueue(object : Callback<PostResponse>{
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
@@ -224,7 +226,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
     fun postKeywordList(){
 
         var postKeywords = PostKeywords(keywords)
-        var putProfileInfoResponse = networkService.postKeywordList("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", postKeywords)
+        var putProfileInfoResponse = networkService.postKeywordList(SharedPreferenceController.getAuthorization(this), postKeywords)
         putProfileInfoResponse.enqueue(object : Callback<PostResponse>{
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {

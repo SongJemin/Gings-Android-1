@@ -91,8 +91,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-
-
         <TextView
             android:id="@+id/tv_item_board_time"
             android:layout_width="wrap_content"
@@ -116,13 +114,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/iv_item_board_contents_image_viewpager"
+        <RelativeLayout
+            android:id="@+id/item_board_img_layout"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:background="@color/colorPrimary"
+            android:layout_height="match_parent"
             >
-        </android.support.v4.view.ViewPager>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/iv_item_board_contents_image_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:background="@color/colorPrimary"
+                >
+            </android.support.v4.view.ViewPager>
+
+        </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -143,18 +149,6 @@
                     android:text="안녕하세요ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ오안녕하세요 키이이이 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오"
                     android:textColor="#000000" />
 
-                <TextView
-                    android:id="@+id/tv_item_board_contents_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_item_board_contents_text"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="0dp"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="6sp"
-                    android:text="더보기"
-                    android:textColor="#a7a7a7"
-                    android:textSize="10sp" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -248,18 +242,18 @@
             <RelativeLayout
                 android:id="@+id/rl_item_board_like"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/rl_item_board_comment"
                 android:layout_marginRight="15.7dp"
                 >
 
                 <ImageView
-                    android:id="@+id/iv_item_board_like"
+                    android:id="@+id/iv_item_like_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
                     android:layout_marginTop="0dp"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/ic_like" />
 
                 <TextView
@@ -268,7 +262,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/iv_item_board_like"
+                    android:layout_toRightOf="@id/iv_item_like_btn"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="12sp"
                     android:text="999+"
@@ -280,7 +274,7 @@
             <RelativeLayout
                 android:id="@+id/rl_item_board_comment"
                 android:layout_width="42.7dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10.3dp"
                 android:layout_toLeftOf="@id/iv_item_board_share">
@@ -289,7 +283,9 @@
                     android:id="@+id/iv_item_board_comment"
                     android:layout_width="13.6dp"
                     android:layout_height="13.6dp"
-                    android:src="@drawable/ic_reple" />
+                    android:src="@drawable/ic_reple"
+                    android:layout_centerVertical="true"
+                    />
 
                 <TextView
                     android:id="@+id/tv_item_board_comment_cnt"

@@ -2,5 +2,6 @@ package com.computer.inu.myworkinggings.Seunghee.Post
 
 data class LogInData(
         val firstLogIn: Boolean,
-        val userId : Int
+        val userId : Int,
+        val jwt : String
 )

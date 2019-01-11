@@ -23,7 +23,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 import android.app.Activity
-
+import android.widget.LinearLayout
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
+import org.jetbrains.anko.ctx
+import android.media.Image
+import android.widget.RelativeLayout
 
 
 class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<ReplyData?>)
@@ -38,20 +42,38 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-
+        holder.reboardBottomLayout.visibility = View.GONE
+        if(position == dataList.size-1){
+            holder.reboardBottomLayout.visibility = View.VISIBLE
+        }
         holder.name.text = dataList[position]!!.writer
         holder.time.text = dataList[position]!!.writeTime
         holder.contents_text.text = dataList[position]!!.content
         holder.reboard_like_cnt.text = dataList[position]!!.recommender.toString()
         Glide.with(ctx).load(dataList[position]!!.writerImage).into(holder.profileImg)
-        holder.reboard_like.setOnClickListener {
+
+
+        if (dataList[position]!!.likeChk!!) {
+
+            holder.reboard_like_img.visibility = View.GONE
+            holder.reboard_like_img_red.visibility = View.VISIBLE
+
+        } else {
+            holder.reboard_like_img_red.visibility = View.GONE
+            holder.reboard_like_img.visibility = View.VISIBLE
+        }
+
+
+        //댓글 좋아요
+        holder.reboard_like_layout.setOnClickListener {
 
             val networkService: NetworkService by lazy {
                 ApplicationController.instance.networkService
             }
 
+            //댓글좋아요
             val postReBoardrecommendResponse = networkService.postReboardRecommendResponse("application/json",
-                    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                    SharedPreferenceController.getAuthorization(ctx),
                     dataList[position]!!.replyId!!
             )
             postReBoardrecommendResponse.enqueue(object : Callback<PostReboardRecommendResponse> {
@@ -63,7 +85,26 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
                 override fun onResponse(call: Call<PostReboardRecommendResponse>, response: Response<PostReboardRecommendResponse>) {
                     if (response.isSuccessful) {
                         //holder.reboard_like_cnt
-                        ctx.toast("성공!!")
+
+                        if (response.body()!!.message == "리보드 추천 해제 성공") {
+                            //좋아요 해재
+
+                            holder.reboard_like_img_red.visibility = View.GONE
+                            holder.reboard_like_img.visibility = View.VISIBLE
+
+                            //인트형으로 바꾸기
+                            var cnt =Integer.parseInt(holder.reboard_like_cnt.getText().toString())-1
+                            holder.reboard_like_cnt.setText(cnt.toString())
+
+                        } else {
+                            //좋아요
+
+                            holder.reboard_like_img.visibility = View.GONE
+                            holder.reboard_like_img_red.visibility = View.VISIBLE
+
+                            var cnt =Integer.parseInt(holder.reboard_like_cnt.getText().toString())+1
+                            holder.reboard_like_cnt.setText(cnt.toString())
+                        }
                     }
                 }
             })
@@ -95,9 +136,14 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView
         val contents_images: ImageView = itemView.findViewById(R.id.iv_item_board_image_contents) as ImageView
 
-        val reboard_like: ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
+        val reboard_like_layout: RelativeLayout = itemView.findViewById(R.id.rl_item_reboard_ike) as RelativeLayout
+
+        val reboard_like_img : ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
+        val reboard_like_img_red : ImageView = itemView.findViewById(R.id.iv_item_reboard_like_red) as ImageView
         var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
         var reboardMoreImg : ImageView = itemView.findViewById(R.id.iv_item_rebord_more) as ImageView
+        var reboardBottomLayout : LinearLayout = itemView.findViewById(R.id.rv_item_detail_board_layout) as LinearLayout
+
 
     }
 

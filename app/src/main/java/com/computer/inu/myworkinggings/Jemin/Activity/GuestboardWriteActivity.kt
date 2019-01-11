@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Jemin.Activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -49,6 +50,9 @@ class GuestboardWriteActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
                 if(response.isSuccessful){
                     Log.v("asdf", "게스트보드 등록 성공")
+                    val intent : Intent = Intent()
+                    setResult(10)
+                    finish()
                 }
             }
             override fun onFailure(call: Call<PostResponse>, t: Throwable?) {

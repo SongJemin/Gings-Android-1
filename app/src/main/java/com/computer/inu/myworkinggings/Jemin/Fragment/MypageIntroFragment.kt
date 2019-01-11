@@ -1,6 +1,7 @@
 package com.computer.inu.myworkinggings.Jemin.Fragment
 
 import android.content.Intent
+import android.graphics.Point
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -16,24 +17,16 @@ import com.computer.inu.myworkinggings.Jemin.Data.GuestBoardItem
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherGuestBoardResponse
 
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
-import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 
 import com.computer.inu.myworkinggings.Moohyeon.get.GetGuestBoardResponse
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
 import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
-import org.json.JSONObject
 
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
-import kotlinx.android.synthetic.main.fragment_my_page.*
-import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
-import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.toast
 
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,6 +48,8 @@ class MypageIntroFragment : Fragment() {
     var coworkingEnabled: Int = 0
     var checkFlag: Int = 0
     var my_or_other_flag : Int = 0
+
+    var myIntroImgUrlList = ArrayList<String>()
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -102,16 +97,13 @@ class MypageIntroFragment : Fragment() {
 
 
 
-        v.mypage_board_more_btn.setOnClickListener {
-            var intent = Intent(activity, GuestboardWriteActivity::class.java)
+        v.mypage_board_write_btn.setOnClickListener {
+            val intent : Intent = Intent(activity, GuestboardWriteActivity::class.java)
             intent.putExtra("name", name)
             intent.putExtra("userID", userID)
-            startActivity(intent)
+            startActivityForResult(intent,10)
         }
 
-        v.mypage_board_more_btn.setOnClickListener {
-
-        }
 
         requestManager = Glide.with(this)
 
@@ -134,8 +126,24 @@ class MypageIntroFragment : Fragment() {
 
                     mypage_board_content_tv.text = response.body()!!.data.content
                     mypage_board_datetime_tv.text = response.body()!!.data.time!!.substring(0, 16).replace("T", "   ")
+                    myIntroImgUrlList = response!!.body()!!.data.imgs!!
+                    //my_intro_img_viewPager.adapter = CustomViewPagerAdapter(MainListContentAdapter(context!!, myIntroImgUrlList, requestManager))
+                   // my_intro_img_viewPager.setPadding(50, 0, 50, 0)
+                   // my_intro_img_viewPager.pageMargin = -200
+                    //my_intro_img_viewPager.offscreenPageLimit = 10
 
-                    Glide.with(ctx).load(response.body()!!.data.imgs!![0]).into( mypage_board_content_iv) // 한장만 넣을수 있음
+                   // my_intro_img_viewPager.clipToPadding = false
+                    // v.home_rc_viewPager.setPadding(40, 0, 40, 0)
+                    //v.home_rc_viewPager.setPageMargin(resources.displayMetrics.widthPixels / -9)
+                    Glide.with(ctx).load(response.body()!!.data.imgs!![0]).into( my_intro_img_viewPager) // 한장만 넣을수 있음
+/*
+                    val screen = Point()
+                    activity!!.windowManager.defaultDisplay.getSize(screen)
+
+                    val startOffset = 50.0f / (screen.x - 2 * 50.0f)
+                    my_intro_img_viewPager.setPageTransformer(false, CardPagerTransformerShift(my_intro_img_viewPager.elevation * 1.0f, my_intro_img_viewPager.elevation,
+                            0.6f, startOffset))
+*/
                 }
             }
 
@@ -216,4 +224,5 @@ class MypageIntroFragment : Fragment() {
         })
 
     }
+
 }

@@ -311,18 +311,16 @@
                 android:textColor="#222222"
                 android:layout_marginBottom="16dp"
                 />
-            <ImageView
-                android:src="@drawable/invalid_name"
-                android:scaleType="centerCrop"
-                android:id="@+id/mypage_board_content_iv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="38dp"
-                android:layout_below="@+id/mypage_board_content_tv"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="21dp"
-                />
+                    <ImageView
+                        android:id="@+id/my_intro_img_viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginRight="38dp"
+                        android:layout_marginBottom="21dp"
+                        android:layout_marginTop="5dp"
+                        android:clipToPadding="false" />
+
             </LinearLayout>
             </ScrollView>
 
@@ -346,7 +344,7 @@
                 />
 
             <Button
-                android:id="@+id/mypage_board_more_btn"
+                android:id="@+id/mypage_board_write_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"

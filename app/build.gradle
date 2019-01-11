@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -19,12 +20,22 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
+        dexOptions {
+            incremental false
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+}
+
+repositories {
+    maven {
+        url "https://jitpack.io"
     }
 }
 
@@ -60,6 +71,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.airbnb.android:lottie:2.3.0'
     compile 'com.kakao.sdk:kakaolink:1.15.1'
-
 }
-
+apply plugin: 'realm-android'

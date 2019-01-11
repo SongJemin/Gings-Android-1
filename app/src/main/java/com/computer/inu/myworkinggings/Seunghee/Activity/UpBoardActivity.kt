@@ -394,7 +394,7 @@ class UpBoardActivity : AppCompatActivity() {
 
     fun postBoard() {
 
-        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjExLCJyb2xlIjoiVVNFUiIsImlzcyI6IkdpbmdzIFVzZXIgQXV0aCBNYW5hZ2VyIiwiZXhwIjoxNTQ5NTU1MjQ0fQ.Scr9KOVbfIM34s4Ez6vquutEk6uO_Xavk55fyob2Org"
 
         var networkService = ApplicationController.instance.networkService
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())
@@ -427,7 +427,7 @@ class UpBoardActivity : AppCompatActivity() {
 
     fun updateBoard() {
 
-        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjExLCJyb2xlIjoiVVNFUiIsImlzcyI6IkdpbmdzIFVzZXIgQXV0aCBNYW5hZ2VyIiwiZXhwIjoxNTQ5NTU1MjQ0fQ.Scr9KOVbfIM34s4Ez6vquutEk6uO_Xavk55fyob2Org"
 
         var networkService = ApplicationController.instance.networkService
         val title = RequestBody.create(MediaType.parse("text.plain"), et_up_board_title.text.toString())

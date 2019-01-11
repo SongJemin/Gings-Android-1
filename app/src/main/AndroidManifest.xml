@@ -32,7 +32,13 @@
                     android:scheme="@string/kakao_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".Jemin.Activity.SplashActivity"></activity>
+        <activity android:name=".Jemin.Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+               <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- 로그인/가입창 -->
         <activity android:name=".Moohyeon.Activity.LoginActivity"></activity>
@@ -97,14 +103,14 @@
         <activity android:name=".Jemin.Activity.PasswordConfirmActivity" />
         <activity android:name=".Jemin.Activity.UnsubscribeActivity" />
         <activity android:name=".Jemin.Activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".Jemin.Activity.TestActivity" />
-        <activity android:name=".Jemin.Activity.Test2Activity" />
+        <activity android:name=".Jemin.Activity.TestActivity">
+
+        </activity>
+        <activity android:name=".Jemin.Activity.Test2Activity">
+
+        </activity>
         <activity
             android:name=".Jemin.Activity.ReboardMoreBtnMineActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />

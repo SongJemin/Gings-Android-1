@@ -140,7 +140,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
                     statusResult = "OPENED"
                 }
                 else if(statusSpinner.getSelectedItem().toString() == "준비중"){
-                    statusResult = "PREPARED"
+                    statusResult = "PREPARING"
                 }
                 else if(statusSpinner.getSelectedItem().toString() == "본업"){
                     statusResult = "MAIN_JOB"
@@ -274,7 +274,7 @@ class ProfileInfoUpdateActivity : AppCompatActivity() {
                         if(profileInformData.status!! == "OPENED"){
                             getStatusValue = "열려있음"
                         }
-                        else if(profileInformData.status!! == "PREPARED"){
+                        else if(profileInformData.status!! == "PREPARING"){
                             getStatusValue = "준비중"
                         }
                         else if(profileInformData.status!! == "MAIN_JOB"){

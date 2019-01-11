@@ -26,6 +26,14 @@ class GuestActAdapter(var ctx : Context, private var guestActItems : ArrayList<G
     //데이터클래스와 뷰홀더를 이어준다.
     override fun onBindViewHolder(holder: GuestActViewHolder, position: Int) {
         holder.actCategory.text = guestActItems[position].category
+        if (guestActItems[position].category == "QUESTION") {
+            holder.actCategory.text = "질문"
+        } else if (guestActItems[position].category == "INSPIRATION") {
+            holder.actCategory.text = "영감"
+        } else if (guestActItems[position].category == "COWORKING") {
+            holder.actCategory.text = "협업"
+        }
+
         holder.actTitle.text = guestActItems[position].title
         for (i in 0..guestActItems[position].keywords.size - 1) {
             if (i == 0) {
@@ -34,7 +42,7 @@ class GuestActAdapter(var ctx : Context, private var guestActItems : ArrayList<G
                 holder.actHashTag.append("    #" + guestActItems[position].keywords[i])
             }
         }
-        holder.actTime.text = guestActItems[position].time!!.substring(0,16).replace("T","")
+        holder.actTime.text = guestActItems[position].time!!.substring(0,16).replace("T"," ")
         holder.actContent.text = guestActItems[position].content
         holder.actName.text = guestActItems[position].writer
         if(guestActItems[position].category == "QUESTION") {

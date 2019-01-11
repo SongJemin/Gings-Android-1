@@ -115,6 +115,7 @@ class MyPageFragment : Fragment() {
         }
         else{
             my_or_other_flag = 0
+
             getUserPagePost()
         }
 
@@ -167,7 +168,7 @@ class MyPageFragment : Fragment() {
 
 
     fun getOtherPage() {
-        var getOtherInformResponse = networkService.getOtherPageInform( SharedPreferenceController.getAuthorization(context!!),1) // 유저아이디의 타인 유저 아이디 추가
+        var getOtherInformResponse = networkService.getOtherPageInform( SharedPreferenceController.getAuthorization(context!!),userID) // 유저아이디의 타인 유저 아이디 추가
         getOtherInformResponse.enqueue(object : Callback<GetOtherInformResponse> {
             override fun onResponse(call: Call<GetOtherInformResponse>?, response: Response<GetOtherInformResponse>?) {
                 Log.v("TAG", "타인페이지 서버 통신 연결")
@@ -223,7 +224,8 @@ class MyPageFragment : Fragment() {
                         mypage_region_tv.text = "장소"
                     }
                     else{
-                        mypage_region_tv.text = response.body()!!.data.region!!
+                        transRegion(response.body()!!.data.region!!)
+
                     }
                     if (response.body()!!.data.coworkingEnabled == true) {
                         coworkingEnabled = 1
@@ -277,7 +279,7 @@ class MyPageFragment : Fragment() {
                         mypage_region_tv.text = "장소"
                     }
                     else{
-                        mypage_region_tv.text = response.body()!!.data.region!!
+                        transRegion(response.body()!!.data.region!!)
                     }
 
                     if (response.body()!!.data.image != null) {
@@ -342,6 +344,67 @@ class MyPageFragment : Fragment() {
                 Log.v("TAG", "프로필 이미지 서버 연결 실패 = " + t.toString())
             }
         })
+    }
+
+    fun transRegion(regionValue : String){
+        var selectedRegion : String = ""
+                selectedRegion = regionValue
+        if(regionValue == "SEOUL"){
+            selectedRegion = "서울"
+        }
+        else if(regionValue == "SEJONG"){
+            selectedRegion = "세종"
+        }
+        else if(regionValue == "BUSAN"){
+            selectedRegion = "부산"
+        }
+        else if(regionValue == "DAEGU"){
+            selectedRegion = "대구"
+        }
+        else if(regionValue == "DAEJEON"){
+            selectedRegion = "대전"
+        }
+        else if(regionValue!! == "INCHEON"){
+            selectedRegion = "인천"
+        }
+        else if(regionValue!! == "ULSAN"){
+            selectedRegion = "울산"
+        }
+        else if(regionValue!! == "GWANGJU"){
+            selectedRegion = "광주"
+        }
+        else if(regionValue!! == "GANGWON"){
+            selectedRegion = "강원"
+        }
+        else if(regionValue!! == "GYUNGGI"){
+            selectedRegion = "경기"
+        }
+        else if(regionValue!! == "CHUNG_NAM"){
+            selectedRegion = "충남"
+        }
+        else if(regionValue == "CHUNG_BUK"){
+            selectedRegion = "충북"
+        }
+        else if(regionValue!! == "JEON_BUK"){
+            selectedRegion = "전북"
+        }
+        else if(regionValue!! == "JEON_NAM"){
+            selectedRegion = "전남"
+        }
+        else if(regionValue!! == "GYEONG_NAM"){
+            selectedRegion = "경남"
+        }
+        else if(regionValue == "GYEONG_BUK"){
+            selectedRegion = "경북"
+        }
+        else if(regionValue!! == "JEJU"){
+            selectedRegion = "제주"
+        }
+        else{
+            selectedRegion = "NONE"
+        }
+        mypage_region_tv.text = selectedRegion
+
     }
 
 }

@@ -46,7 +46,6 @@ class MypageActFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v : View = inflater.inflate(R.layout.fragment_mypage_act,container,false)
-       // getOtherActive()
 
         val extra = arguments
 
@@ -63,7 +62,7 @@ class MypageActFragment : Fragment(){
     }
 
     fun getOtherActive() {
-        var getOtherActiveResponse = networkService.getOtherActive(SharedPreferenceController.getAuthorization(context!!), 1) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getOtherActiveResponse = networkService.getOtherActive(SharedPreferenceController.getAuthorization(context!!), userID) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherActiveResponse.enqueue(object : Callback<GetOtherActiveResponse> {
             override fun onResponse(call: Call<GetOtherActiveResponse>?, response: Response<GetOtherActiveResponse>?) {
                 Log.v("TAG", "타인 활동 목록 서버 통신 연결")

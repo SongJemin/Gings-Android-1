@@ -70,13 +70,11 @@ class MypageIntroFragment : Fragment() {
         requestManager = Glide.with(this)
         my_or_other_flag = extra!!.getInt("my_or_other_flag")
         if(my_or_other_flag == 1){
+            v.mypage_board_write_btn.visibility = View.VISIBLE
             userID = extra!!.getInt("userID")
-            //getOtherIntro()
-            //getOtherGuestBoard()
         }
         else{
-            //getMyIntro() //자신의 소개페이지
-            //getGuestBoardPost()
+            v.mypage_board_write_btn.visibility = View.GONE
         }
 
         job = extra!!.getString("job")
@@ -116,6 +114,28 @@ class MypageIntroFragment : Fragment() {
         v.mypage_board_job.text = "/" + company
         Glide.with(ctx).load(image).into(v.mypage_board_profile_img)
         v.mypage_intro_activity_part.text =field
+        // 상태 스피너
+        if(status == "OPENED"){
+            status = "열려있음"
+        }
+        else if(status == "PREPARING"){
+            status = "준비중"
+        }
+        else if(status == "MAIN_JOB"){
+            status = "본업"
+        }
+        else if(status == "FREELANCER"){
+            status = "프리랜서"
+        }
+        else if(status == "RECRUITING"){
+            status = "구인중"
+        }
+        else if(status!! == "LOOKING_JOB"){
+            status = "구직중"
+        }
+        else if(status == "LOOKING_INVESTMENT"){
+            status = "투자후원유중"
+        }
         v.mypage_intro_status.text = status
         /*getOtherIntro()*/ //타인
 
@@ -187,14 +207,15 @@ class MypageIntroFragment : Fragment() {
                     Log.v("MyTAG", "나의 소개 페이지 서버 통신 연결 성공 = " + response.body().toString())
 
                     if(response.body()!!.data != null){
+                        my_intro_img_viewPager.visibility = View.VISIBLE
                         mypage_board_content_tv.text = response.body()!!.data!!.content!!
                         mypage_board_datetime_tv.text = response.body()!!.data!!.time!!.substring(0, 16).replace("T", "   ")
 
-                        for(i in 0 ..2){
+                        myIntroImgUrlList = response.body()!!.data!!.imgs!!
+                        for(i in 0 ..myIntroImgUrlList.size-1){
                             myIntroImgUrlList.add(response.body()!!.data!!.imgs!![i])
                         }
                         //Glide.with(ctx).load(response.body()!!.data!!.imgs!![0]).into( v.my_intro_img_viewPager) // 한장만 넣을수 있음
-
                         v.my_intro_img_viewPager.adapter = CustomViewPagerAdapter(MainListContentAdapter(context!!, myIntroImgUrlList, requestManager))
                         v.my_intro_img_viewPager.setPadding(50, 0, 50, 0)
                         v.my_intro_img_viewPager.pageMargin = -200
@@ -210,8 +231,9 @@ class MypageIntroFragment : Fragment() {
                         val startOffset = 50.0f / (screen.x - 2 * 50.0f)
                         v.my_intro_img_viewPager.setPageTransformer(false, CardPagerTransformerShift(v.my_intro_img_viewPager.elevation * 1.0f, my_intro_img_viewPager.elevation,
                                 0.6f, startOffset))
-
-
+                    }
+                    else{
+                        v.my_intro_img_viewPager.visibility = View.GONE
                     }
                 }
             }

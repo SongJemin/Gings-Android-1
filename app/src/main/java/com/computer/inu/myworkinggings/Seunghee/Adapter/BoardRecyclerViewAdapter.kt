@@ -203,7 +203,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //contents
         var contents_img_viewPager: ViewPager = itemView.findViewById<ViewPager>(R.id.iv_item_board_contents_image_viewpager)
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_board_contents_text) as TextView
-        val contents_more: TextView = itemView.findViewById(R.id.tv_item_board_contents_more) as TextView
 
         //프로필
         val profile_img: ImageView = itemView.findViewById(R.id.iv_item_board_profile_img) as ImageView
@@ -212,7 +211,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
 
         //좋아요
-        var like_rl : RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
+        var like_rl : LinearLayout = itemView.findViewById(R.id.rl_item_board_like) as LinearLayout
         var like_btn: ImageView = itemView.findViewById(R.id.iv_item_board_like) as ImageView
         var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 

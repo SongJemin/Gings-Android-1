@@ -13,7 +13,7 @@
     //title
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="71dp">
+        android:layout_height="60dp">
 
         <RelativeLayout
             android:id="@+id/rl_item_board_title"
@@ -22,6 +22,7 @@
             android:layout_centerVertical="true">
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_item_board_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
 
 
             <TextView
+                android:fontFamily="@font/noto_medium"
                 android:id="@+id/tv_item_board_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +57,7 @@
                 android:lineSpacingExtra="1sp"
                 android:text="개발 협업할 디자이너 구합니다!"
                 android:textColor="#222222"
-                android:textSize="15sp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btn_rv_item_more"
@@ -72,10 +74,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_item_board_title"
                 android:layout_alignLeft="@+id/tv_item_board_title"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="-15dp"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:id="@+id/tv_item_board_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -85,7 +88,7 @@
                     android:paddingEnd="15dp"
                     android:text="#사업 #창업 #준비"
                     android:textColor="#999999"
-                    android:textSize="10sp" />
+                    android:textSize="9sp" />
 
 
             </LinearLayout>
@@ -137,24 +140,13 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:id="@+id/tv_item_board_contents_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="안녕하세요ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ오안녕하세요 키이이이 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오안녕하세요 반가워요오"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/tv_item_board_contents_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_item_board_contents_text"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="0dp"
-                    android:letterSpacing="-0.01"
-                    android:lineSpacingExtra="6sp"
-                    android:text="더보기"
-                    android:textColor="#a7a7a7"
-                    android:textSize="10sp" />
+                    android:textColor="#000000"
+                    android:textSize="13sp"/>
             </RelativeLayout>
         </RelativeLayout>
 
@@ -181,6 +173,7 @@
             />
 
         <TextView
+            android:fontFamily="@font/noto_medium"
             android:id="@+id/tv_item_board_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -192,11 +185,11 @@
             android:text="이충엽"
             android:textColor="#222222"
             android:textStyle="bold"
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
         <View
             android:layout_width="1dp"
-            android:layout_height="7.6dp"
+            android:layout_height="10dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/tv_item_board_profile_name"
             android:layout_marginLeft="7.2dp"
@@ -204,29 +197,34 @@
             />
         
         <TextView
-
+            android:fontFamily="@font/noto_regular"
             android:id="@+id/tv_item_board_profile_team"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="112.5dp"
+            android:layout_marginStart="113dp"
             android:letterSpacing="-0.01"
             android:lineSpacingExtra="6sp"
             android:text="깅스"
             android:textColor="#525252"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
 
         <TextView
+            android:fontFamily="@font/noto_regular"
             android:id="@+id/tv_item_board_profile_slash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:textSize="12sp"
             android:layout_toRightOf="@+id/tv_item_board_profile_team"
             android:text="/" />
 
         <TextView
+            android:fontFamily="@font/noto_regular"
             android:id="@+id/tv_item_board_profile_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -236,33 +234,33 @@
             android:lineSpacingExtra="6sp"
             android:text="PM"
             android:textColor="#525252"
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="18dp">
 
-            <RelativeLayout
+            <LinearLayout
+                android:gravity="center_vertical"
                 android:id="@+id/rl_item_board_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/rl_item_board_comment"
                 android:layout_marginRight="15.7dp"
-                >
+                android:layout_toLeftOf="@id/rl_item_board_comment">
 
                 <ImageView
                     android:id="@+id/iv_item_board_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="0dp"
                     android:src="@drawable/ic_like" />
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:id="@+id/tv_item_board_like_cnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -273,11 +271,12 @@
                     android:lineSpacingExtra="12sp"
                     android:text="999+"
                     android:textColor="#222222"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
+                android:gravity="center_vertical"
                 android:id="@+id/rl_item_board_comment"
                 android:layout_width="42.7dp"
                 android:layout_height="wrap_content"
@@ -288,7 +287,7 @@
                 <ImageView
                     android:id="@+id/iv_item_board_comment"
                     android:layout_width="13.6dp"
-                    android:layout_height="13.6dp"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_reple" />
 
                 <TextView
@@ -300,20 +299,21 @@
                     android:layout_toRightOf="@id/iv_item_board_comment"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="12sp"
+                    android:layout_marginTop="-2dp"
                     android:text="999+"
                     android:textColor="#222222"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <ImageView
-                android:padding="5dp"
                 android:id="@+id/iv_item_board_share"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="19dp"
-                android:layout_alignParentRight="true"
+                android:padding="5dp"
                 android:src="@drawable/bt_share" />
 
 

@@ -126,6 +126,7 @@
             android:background="#f8bab6" />
 
         <TextView
+            android:fontFamily="@font/noto_regular"
             android:id="@+id/tv_home_board_write_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

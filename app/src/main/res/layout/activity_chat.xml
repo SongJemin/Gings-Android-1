@@ -74,6 +74,14 @@
             />
 
         <Button
+            android:id="@+id/chat_disconnect_btn"
+            android:layout_width="48dp"
+            android:layout_height="48.8dp"
+            android:background="@drawable/bt_send"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            />
+        <Button
             android:id="@+id/chat_send_btn"
             android:layout_width="48dp"
             android:layout_height="48.8dp"

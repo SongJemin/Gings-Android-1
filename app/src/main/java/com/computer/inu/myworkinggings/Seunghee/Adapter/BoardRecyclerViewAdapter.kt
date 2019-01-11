@@ -68,7 +68,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        holder.item_box
+        //holder.item_box
 
         //인스턴스 객체 - 데이터 연결
         //title
@@ -142,9 +142,12 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
         /*이벤트 처리*/
 
+        val REQUEST_CODE_SUB_ACTIVITY = 7777
+
         //디테일 보드 창으로 넘어가기
         holder.gotoDetailedBoard.setOnClickListener {
             var intent = Intent(ctx, DetailBoardActivity::class.java)
+            ///******
             ctx.toast(dataList[position].boardId!!.toString())
             intent.putExtra("BoardId", dataList[position].boardId)
             (ctx as MainActivity).startActivityForResult(intent, 20);
@@ -170,6 +173,14 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
             var intent = Intent(ctx, DetailBoardActivity::class.java)
             intent.putExtra("BoardId", dataList[position].boardId)
             ctx.startActivity(intent)
+            //본인 게시글 클릭
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId,  "Position" to position)
+
+            //일반 게시글 클릭
+            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId,  "Position" to position)
+
+            position
+            //ctx.toast()
         }
 
         //좋아요 버튼
@@ -308,7 +319,6 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
         })
 
     }
-
 
     private fun BoardLikePost() {
         val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",

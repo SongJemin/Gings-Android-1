@@ -26,20 +26,12 @@ class HomeBoardMoreBtnActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_board_more_btn)
 
-
         //boardRecyclerViewAdapter.dataList.clear()
 
-
-        rl_btn_home_board_more_btn.setOnClickListener {
-
-
+        rl_btn_home_board_more_block_boardID.setOnClickListener {
             getBoardShareResponse()
             //통신
-
-
         }
-
-
     }
 
     //보드 가리기 통신

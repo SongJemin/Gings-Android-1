@@ -8,5 +8,6 @@ data class ReplyData (
         val content : String?,
         val writeTime : String?,
         val images : ArrayList<String?>,
-        val recommender : Int?
+        val recommender : Int?,
+        val likeChk : Boolean
 )

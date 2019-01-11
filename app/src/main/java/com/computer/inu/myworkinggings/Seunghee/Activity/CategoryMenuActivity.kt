@@ -7,9 +7,7 @@ import android.widget.RelativeLayout
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.R.anim.stay
 import kotlinx.android.synthetic.main.activity_category_menu.*
-import org.jetbrains.anko.ctx
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 class CategoryMenuActivity : AppCompatActivity() {
 

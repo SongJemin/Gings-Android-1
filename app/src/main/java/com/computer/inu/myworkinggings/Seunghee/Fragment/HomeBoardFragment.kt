@@ -74,7 +74,6 @@ class HomeBoardFragment : Fragment() {
         requestManager = Glide.with(this)
 
         getBoard()
-        toast( SharedPreferenceController.getAuthorization(context!!).toString())
         return view
     }
 
@@ -261,7 +260,6 @@ class HomeBoardFragment : Fragment() {
                     boardRecyclerViewAdapter.notifyDataSetChanged()
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
-                    toast("통신")
 
 
                 }

@@ -8,7 +8,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView android:layout_width="43dp"
             android:layout_height="43dp"
-            android:src="@drawable/default_circle_background"
+            android:src="@drawable/img_sample"
             android:layout_marginTop="17dp"
             android:layout_marginLeft="15dp"
             android:id="@+id/iv_rv_item_alarm_image"
@@ -30,26 +30,12 @@
                     <TextView
                         android:id="@+id/tv_rv_item_alarm_title"
                         android:textColor="#000000"
-                        android:textSize="13sp"
+                        android:textSize="16sp"
                         android:text="[질문보드]ㅇㅇㅇ님의 답변이 달렸어요."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/tv_rv_item_alarm_content"
-                    android:text="잘 해보세요 화이팅!!"
-                    android:textSize="13sp"
-                    android:textColor="#000000"
-                    android:layout_marginTop="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/tv_rv_item_alarm_time"
-                    android:text="12/26 12:30"
-                    android:textSize="13sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>

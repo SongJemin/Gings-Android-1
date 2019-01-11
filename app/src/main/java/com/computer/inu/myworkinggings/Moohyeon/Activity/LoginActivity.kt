@@ -28,6 +28,8 @@ import com.kakao.util.helper.Utility.getPackageInfo
 import org.jetbrains.anko.toast
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import android.content.Intent
+import android.net.Uri
 
 
 class LoginActivity : AppCompatActivity() {
@@ -90,6 +92,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity<SignUp1Activity>()
         }
         tv_login_about_gings.setOnClickListener {
+            val url = "https://www.gings.co.kr/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
 
         }
 
@@ -148,12 +153,11 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
                     Log.v("LoginActivity", "확인2")
-                    val token = response.body()!!.data.jwt.toString()
-                    val userId = response.body()!!.data.userId
-
                     if (response.isSuccessful) {
                         Log.v("LoginActivity", "확인3")
                         if(response.body()!!.message == "로그인 성공"&&cb_login_auto_check_box.isChecked==true){
+                            val token = response.body()!!.data.jwt.toString()
+                            val userId = response.body()!!.data.userId
                             SharedPreferenceController.setAutoAuthorization(this@LoginActivity,token)
                             SharedPreferenceController.setAuthorization(this@LoginActivity,response.body()!!.data.jwt.toString())
                             SharedPreferenceController.setUserId(this@LoginActivity,response.body()!!.data.userId)
@@ -165,14 +169,14 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferenceController.setUserId(this@LoginActivity,response.body()!!.data.userId)
                             startActivity<MainActivity>()
                             finish()
-                        }else{
-                            toast("회원 정보가 틀렸습니다.")
                         }
-
+                        else{
+                            toast("회원 정보가 틀렸습니다")
+                        }
                     }
                     else{
                         Log.v("LoginActivity", "확인5")
-                        Toast.makeText(applicationContext,"통신 실패.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext,"로그인 실패", Toast.LENGTH_LONG).show()
                     }
                 }
             })

@@ -28,6 +28,7 @@ class SignUp2Activity : AppCompatActivity() {
     var password_check: String = String()
     var email : String = String()
     val Passwrod_PATTERN = "^(?=.*[a-zA-Z]+)(?=.*[!@#$%^*+=-]|.*[0-9]+).{7,16}$"
+    val Email_PATTERN = "^[a-zA-Z0-9]+@[a-zA-Z0-9]+\$ or ^[_0-9a-zA-Z-]+@[0-9a-zA-Z-]+(.[_0-9a-zA-Z-]+)*\$"
     var status : String = ""
     var message : String = ""
     lateinit var networkService : NetworkService
@@ -36,7 +37,7 @@ class SignUp2Activity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up2)
-        tv_sign_up2_available_pw.visibility = View.INVISIBLE
+        tv_sign_up2_available.visibility = View.INVISIBLE
         tv_sign_up2_available_email.visibility = View.GONE
         tv_sign_up2_confirm_number_send_message.isEnabled = false
         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
@@ -44,6 +45,11 @@ class SignUp2Activity : AppCompatActivity() {
         networkService = ApplicationController.instance.networkService
 
         tv_sign_up2_overlap_check.setOnClickListener {
+            email = et_sign_up2_email.text.toString()
+            if (!isValidEmail(email)) {
+                tv_sign_up2_available_email.setVisibility(View.VISIBLE)
+                tv_sign_up2_available_email.text="이메일 형식을 입력해주세요"
+            }else
             getEmailRedundancy()
         }
 
@@ -58,15 +64,15 @@ class SignUp2Activity : AppCompatActivity() {
             if (email.length > 0 && password.length > 0 && password_check.length > 0 && name.length > 0) {
                 if (!Passwordvalidate(password)) {
                     post_check = 1
-                    tv_sign_up2_available_pw.setText("영문자,숫자 조합 7글자 이상 입력해주세요.")
-                    tv_sign_up2_available_pw.setVisibility(View.VISIBLE)
-                    tv_sign_up2_available_pw.setTextColor(Color.parseColor("#ff6464"))
+                    tv_sign_up2_available.setText("영문자,숫자 조합 7글자 이상 입력해주세요.")
+                    tv_sign_up2_available.setVisibility(View.VISIBLE)
+                    tv_sign_up2_available.setTextColor(Color.parseColor("#ff6464"))
                 }
                 if (!password.equals(password_check)) {
                     post_check = 1
-                    tv_sign_up2_available_pw.setText("일치하지 않습니다.")
-                    tv_sign_up2_available_pw.setVisibility(View.VISIBLE)
-                    tv_sign_up2_available_pw.setTextColor(Color.parseColor("#ff6464"))
+                    tv_sign_up2_available.setText("일치하지 않습니다.")
+                    tv_sign_up2_available.setVisibility(View.VISIBLE)
+                    tv_sign_up2_available.setTextColor(Color.parseColor("#ff6464"))
                 }
                 if (post_check != 1) {
                     tv_sign_up2_confirm_number_send_message.isEnabled=false
@@ -89,6 +95,16 @@ class SignUp2Activity : AppCompatActivity() {
         var pattern = Pattern.compile(Passwrod_PATTERN)
         var matcher = pattern.matcher(pw)
         return matcher.matches()
+    }
+    fun isValidEmail(email: String): Boolean {
+        var err = false
+        val regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$"
+        val p = Pattern.compile(regex)
+        val m = p.matcher(email)
+        if (m.matches()) {
+            err = true
+        }
+        return err
     }
 
     fun getVerifyNumberData() {
@@ -118,14 +134,14 @@ class SignUp2Activity : AppCompatActivity() {
                     Log.v("TAG", "이메일 중복 확인")
                     message = response.body()!!.message!!
                     if(message == "이미 등록된 이메일입니다"){
-                      toast("이미 있는 아이디입니다.")  // 이미 있는 아이디로 토스트 띄우기
+                        toast("이미 등록")
                         tv_sign_up2_available_email.setText("이미 등록된 이메일 입니다.")
                         tv_sign_up2_available_email.setVisibility(View.VISIBLE)
                         tv_sign_up2_confirm_number_send_message.isEnabled = false
                         tv_sign_up2_confirm_number_send_message.setBackgroundColor(Color.parseColor("#FF9DA3A4"))
                     }
                     else{
-                      toast("사용 가능한 아이디입니다.")    // 사용 가능한 아이디입니다 토스트 띄우기
+                      toast("사용 가능한 이메일입니다.")    // 사용 가능한 이메일입니다 토스트 띄우기
                         tv_sign_up2_available_email.setText("사용 가능한 이메일 입니다.")
                         tv_sign_up2_available_email.setTextColor(Color.parseColor("#64dfff"))
                         tv_sign_up2_confirm_number_send_message.isEnabled = true

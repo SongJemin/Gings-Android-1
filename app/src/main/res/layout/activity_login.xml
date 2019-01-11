@@ -25,12 +25,14 @@
         android:layout_gravity="center"
         android:layout_marginTop="52dp"
         android:layout_width="324dp"
+
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@drawable/signup2_round_background"
         >
         <TextView
-            android:layout_marginTop="15dp"
+
+
             android:layout_marginLeft="21dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,13 +42,12 @@
             android:gravity="center_horizontal"
             android:text="이메일"/>
     <EditText
-        android:layout_marginTop="16dp"
         android:background="@null"
         android:id="@+id/et_login_id"
         android:layout_marginLeft="32dp"
         android:textSize="14dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="50dp"
         android:text="dlfb77@gmail.com"/>
     </LinearLayout>
     <LinearLayout
@@ -58,7 +59,7 @@
         android:background="@drawable/signup2_round_background"
         >
         <TextView
-            android:layout_marginTop="15dp"
+
             android:layout_marginLeft="21dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,12 +70,12 @@
             android:text="비밀번호"/>
         <EditText
             android:textSize="14dp"
-            android:layout_marginTop="16dp"
+
             android:background="@null"
             android:id="@+id/et_login_pw"
             android:layout_marginLeft="18dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="210dp"
+            android:layout_height="50dp"
             android:inputType="textPassword"
             android:text="rla12345"/>
     </LinearLayout>
@@ -111,7 +112,7 @@
 <CheckBox
     android:layout_marginRight="36.5dp"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="30dp"
     android:id="@+id/cb_login_auto_check_box"
     android:layout_gravity="center"
     />
@@ -122,12 +123,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-
             android:id="@+id/tv_login_about_gings"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textSize="12sp"
             android:textColor="#5c5c5c"
             android:lineSpacingExtra="4sp"
@@ -136,10 +136,10 @@
             />
         <TextView
             android:id="@+id/tv_login_join_us"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="30dp"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:textSize="12sp"
             android:textColor="#5c5c5c"
             android:lineSpacingExtra="4sp"

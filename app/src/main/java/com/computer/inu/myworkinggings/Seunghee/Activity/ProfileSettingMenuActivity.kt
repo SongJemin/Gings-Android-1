@@ -22,7 +22,9 @@ import com.computer.inu.myworkinggings.Moohyeon.Activity.LoginActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.R.anim.stay
 import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
+import kotlinx.android.synthetic.main.activity_category_menu.*
 import kotlinx.android.synthetic.main.activity_profile_setting_menu.*
 import kotlinx.android.synthetic.main.activity_up_board.*
 import okhttp3.MediaType
@@ -37,7 +39,8 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.InputStream
 
-class ProfileSettingMenuActivity : AppCompatActivity() {
+class
+ProfileSettingMenuActivity : AppCompatActivity() {
 
     private val REQ_CODE_SELECT_IMAGE = 100
     lateinit var data : Uri
@@ -72,6 +75,11 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
             startActivity<MypageUpdateActivity>()
         }
 
+        ll_setting_menu_bar_no.setOnClickListener {
+            finish()
+            overridePendingTransition(stay, android.R.anim.fade_out)
+        }
+
 
         /*보안*/
         //비밀번호 변경
@@ -91,12 +99,11 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
             startActivity<UnsubscribeActivity>()
         }
 
-
         /**/
         //종료버튼
         iv_btn_profile_setting_close.setOnClickListener {
             finish()
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.fade_in)
+            overridePendingTransition(stay, android.R.anim.fade_out)
 
         }
     }
@@ -190,4 +197,14 @@ class ProfileSettingMenuActivity : AppCompatActivity() {
 
         })
     }
+
+    @Override
+    override fun onBackPressed()
+    {
+        super.onBackPressed()
+
+        finish()
+        overridePendingTransition(stay, android.R.anim.fade_out)
+    }
+
 }

@@ -57,9 +57,6 @@ class HomeBoardFragment : Fragment() {
 
     companion object {
 
-        //
-        var notRefresh = 0
-
         //홈보드 리사이클러뷰
         lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
     }
@@ -91,6 +88,7 @@ class HomeBoardFragment : Fragment() {
             getBoard()
             sr_homeboard_refresh.isRefreshing=false
         }
+
 
         //최상단으로
         rl_logo_goto_top.setOnClickListener {
@@ -246,7 +244,7 @@ class HomeBoardFragment : Fragment() {
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
             override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
-                notRefresh = 0
+
                 if (response!!.isSuccessful) {
                     BoardItemList.clear()
                     BoardData.clear()

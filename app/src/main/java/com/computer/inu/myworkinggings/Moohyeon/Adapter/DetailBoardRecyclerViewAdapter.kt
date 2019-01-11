@@ -108,7 +108,6 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
                     }
                 }
             })
-
         }
 
         holder.reboardMoreImg.setOnClickListener {
@@ -123,8 +122,13 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         lateinit var requestManager: RequestManager
         requestManager = Glide.with(ctx)
 
-        for (i in 0..dataList[position]!!.images.size - 1)
-            requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
+        //사진이 하나밖에 없을 경우,
+        if( dataList[position]!!.images.size == 0 )
+            holder.contents_images.visibility = View.GONE
+        else{
+            for (i in 0..dataList[position]!!.images.size - 1)
+                requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
+        }
     }
 
 
@@ -143,7 +147,6 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
         var reboardMoreImg : ImageView = itemView.findViewById(R.id.iv_item_rebord_more) as ImageView
         var reboardBottomLayout : LinearLayout = itemView.findViewById(R.id.rv_item_detail_board_layout) as LinearLayout
-
 
     }
 

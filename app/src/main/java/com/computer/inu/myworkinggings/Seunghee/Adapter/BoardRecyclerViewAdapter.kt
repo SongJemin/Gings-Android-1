@@ -254,7 +254,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                         }
                     }
                 }
-
             })
         }
         //댓글창=> 디테일보드

@@ -118,116 +118,126 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="34dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_category_board_like_rank"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="60dp"
-            android:gravity="center"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="5sp"
-            android:text="추천수"
-            android:textColor="#999999"
-            android:textSize="11sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_category_board_new_rank"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="5sp"
-            android:text="최신순"
-            android:textColor="#999999"
-            android:textSize="11sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="34dp">
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_category_board_like_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="60dp"
+                    android:gravity="center"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="5sp"
+                    android:text="추천수"
+                    android:textColor="#999999"
+                    android:textSize="11sp" />
 
-    //카테고리 보드 리스트_최신순
+                <TextView
+                    android:id="@+id/tv_category_board_new_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:letterSpacing="-0.01"
+                    android:lineSpacingExtra="5sp"
+                    android:text="최신순"
+                    android:textColor="#999999"
+                    android:textSize="11sp" />
 
-    <LinearLayout
-        android:id="@+id/ll_category_board_board_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF">
+            </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_item_category_board_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            //카테고리 보드 리스트_최신순
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_category_board_board_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF">
 
-    //카테고리 보드 리스트_추천순
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_item_category_board_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_category_board_new_rank_board_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:visibility="gone">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_item_category_board_new_rank_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            //카테고리 보드 리스트_추천순
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_category_board_new_rank_board_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:visibility="gone">
 
-    //카테고리 보드 '검색' 리스트_최신순
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_item_category_board_new_rank_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_category_board_search_new_rank_board_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:visibility="gone">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_item_category_board_search_new_rank_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            //카테고리 보드 '검색' 리스트_최신순
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_category_board_search_new_rank_board_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:visibility="gone">
 
-    //카테고리 보드 '검색' 리스트_추천순
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_item_category_board_search_new_rank_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/ll_category_board_search_like_rank_board_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:visibility="gone">
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_item_category_board_search_like_rank_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            //카테고리 보드 '검색' 리스트_추천순
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_category_board_search_like_rank_board_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                android:visibility="gone">
 
-    <ImageView
-        android:visibility="gone"
-        android:id="@+id/iv_category_board_search_fail"
-        android:background="#f6f6f6"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="61dp"
-        android:src="@drawable/img_fail"
-        />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_item_category_board_search_like_rank_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_category_board_search_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f6f6f6"
+                android:paddingTop="61dp"
+                android:src="@drawable/img_fail"
+                android:visibility="gone" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

@@ -91,7 +91,7 @@ class DetailBoardActivity : AppCompatActivity() {
         Log.v(TAG,"전송 받은 보드 ID = " + boardId)
         //postReBoard()
         detail_board_reboard_img_recyclerview.visibility = View.GONE
-        
+
         //setRecyclerView()
 
         tv_item_board_profile_name.setOnClickListener {
@@ -116,7 +116,7 @@ class DetailBoardActivity : AppCompatActivity() {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
             detail_board_reboard_img_recyclerview.visibility = View.GONE
-            
+
         }
 
         detail_board_reboard_img_btn.setOnClickListener {
@@ -170,7 +170,7 @@ class DetailBoardActivity : AppCompatActivity() {
                                 detail_board_reboard_img_recyclerview.adapter = boardImageAdapter
                             } else {
                                 detail_board_reboard_img_recyclerview.visibility = View.GONE
-                                
+
                             }
                         }
                     }
@@ -191,7 +191,7 @@ class DetailBoardActivity : AppCompatActivity() {
                 Log.v("asdf", "리보드 준비 완료" + detail_board_reboard_edit.text.toString())
                 postReBoard()
                 detail_board_reboard_img_recyclerview.visibility = View.GONE
-                
+
                 detail_board_reboard_edit.setText("")
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
@@ -503,7 +503,7 @@ class DetailBoardActivity : AppCompatActivity() {
                     Log.v("TAG", "리보드 수정 응답 status = " + response.body()!!.status)
                     Log.v("TAG", "리보드 수정 응답 message = " + response.body()!!.message)
                     detail_board_reboard_img_recyclerview.visibility = View.GONE
-                    
+
                     reboardImageUrlList.clear()
                     detail_board_reboard_edit.setText("")
                     getDetailedBoardResponse(0)

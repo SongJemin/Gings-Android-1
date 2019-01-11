@@ -10,7 +10,6 @@ import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.boardRecyclerViewAdapter
-import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.notRefresh
 import com.computer.inu.myworkinggings.Seunghee.Post.DeleteBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_home_board_more_btn_mine.*
@@ -80,6 +79,15 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    @Override
+    override fun onBackPressed()
+    {
+        super.onBackPressed()
+
+        finish()
+        overridePendingTransition(R.anim.stay, android.R.anim.fade_out)
     }
 
 }

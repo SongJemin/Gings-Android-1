@@ -335,12 +335,10 @@
                 android:textColor="#222222"
                 android:layout_marginBottom="16dp"
                 />
-                    <ImageView
+                    <android.support.v4.view.ViewPager
                         android:id="@+id/my_intro_img_viewPager"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginRight="38dp"
                         android:layout_marginBottom="21dp"
                         android:layout_marginTop="5dp"
                         android:clipToPadding="false" />

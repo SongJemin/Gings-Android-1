@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/view_pager_main_img"
-        android:layout_width="300dp"
+        android:layout_width="230dp"
         android:layout_height="match_parent"
         android:src="@drawable/img_default"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         />
 
 

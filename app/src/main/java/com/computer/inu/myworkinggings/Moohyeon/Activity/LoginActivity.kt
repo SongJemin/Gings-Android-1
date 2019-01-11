@@ -148,12 +148,13 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<PostLogInResponse>, response: Response<PostLogInResponse>) {
                     Log.v("LoginActivity", "확인2")
-                    val token = response.body()!!.data.jwt.toString()
-                    val userId = response.body()!!.data.userId
+
 
                     if (response.isSuccessful) {
                         Log.v("LoginActivity", "확인3")
                         if(response.body()!!.message == "로그인 성공"&&cb_login_auto_check_box.isChecked==true){
+                            val token = response.body()!!.data.jwt.toString()
+                            val userId = response.body()!!.data.userId
                             SharedPreferenceController.setAutoAuthorization(this@LoginActivity,token)
                             SharedPreferenceController.setAuthorization(this@LoginActivity,response.body()!!.data.jwt.toString())
                             SharedPreferenceController.setUserId(this@LoginActivity,response.body()!!.data.userId)
@@ -172,7 +173,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else{
                         Log.v("LoginActivity", "확인5")
-                        Toast.makeText(applicationContext,"통신 실패.", Toast.LENGTH_LONG).show()
                     }
                 }
             })

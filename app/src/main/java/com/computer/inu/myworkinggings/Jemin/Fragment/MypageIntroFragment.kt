@@ -17,6 +17,10 @@ import com.computer.inu.myworkinggings.Jemin.Data.GuestBoardItem
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherGuestBoardResponse
 
 import com.computer.inu.myworkinggings.Jemin.Get.Response.GetOtherIntroResponse
+import com.computer.inu.myworkinggings.Jemin.ViewPager.CardPagerTransformerShift
+import com.computer.inu.myworkinggings.Jemin.ViewPager.CustomViewPagerAdapter
+import com.computer.inu.myworkinggings.Jemin.ViewPager.MainListContentAdapter
+import com.computer.inu.myworkinggings.Moohyeon.Data.MyIntroduceData
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
@@ -27,14 +31,12 @@ import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
 
 import com.computer.inu.myworkinggings.Moohyeon.get.GetMypageIntroduceResponse
 import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
-import kotlinx.android.synthetic.main.fragment_my_page.*
-import kotlinx.android.synthetic.main.fragmet_my_page_introduce.*
-import kotlinx.android.synthetic.main.fragmet_my_page_introduce.view.*
 import org.jetbrains.anko.support.v4.ctx
 
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MypageIntroFragment : Fragment() {
 
@@ -52,6 +54,7 @@ class MypageIntroFragment : Fragment() {
     var coworkingEnabled: Int = 0
     var checkFlag: Int = 0
     var my_or_other_flag : Int = 0
+    lateinit var getMyIntroData : MyIntroduceData
 
     var myIntroImgUrlList = ArrayList<String>()
 
@@ -64,15 +67,16 @@ class MypageIntroFragment : Fragment() {
         val v: View = inflater.inflate(R.layout.fragmet_my_page_introduce, container, false)
         val extra = arguments
 
+        requestManager = Glide.with(this)
         my_or_other_flag = extra!!.getInt("my_or_other_flag")
         if(my_or_other_flag == 1){
             userID = extra!!.getInt("userID")
-            getOtherIntro()
-            getOtherGuestBoard()
+            //getOtherIntro()
+            //getOtherGuestBoard()
         }
         else{
-            getMyIntro() //자신의 소개페이지
-            getGuestBoardPost()
+            //getMyIntro() //자신의 소개페이지
+            //getGuestBoardPost()
         }
 
         job = extra!!.getString("job")
@@ -109,10 +113,15 @@ class MypageIntroFragment : Fragment() {
             intent.putExtra("userID", userID)
             startActivityForResult(intent,10)
         }
-
-
+/*
+        myIntroImgUrlList.add("https://previews.123rf.com/images/dominikhladik/dominikhladik1301/dominikhladik130100116/17676058-%EB%B4%84-%EB%B0%B0%EA%B2%BD.jpg")
+        myIntroImgUrlList.add("https://cdn.crowdpic.net/detail-thumb/thumb_d_398D2558C2751C55DAB3094C7C67AE66.jpg")
+        myIntroImgUrlList.add("https://previews.123rf.com/images/kittikornphongok/kittikornphongok1505/kittikornphongok150501367/40366613-%EB%8B%A4%EC%B1%84%EB%A1%9C%EC%9A%B4-%EC%88%98%EC%B1%84%ED%99%94%EC%9E%85%EB%8B%88%EB%8B%A4-%EA%B7%B8%EB%9F%B0-%EC%A7%80-%EC%A7%88%EA%B0%90-%EB%B0%B0%EA%B2%BD%EC%9E%85%EB%8B%88%EB%8B%A4-%EB%B6%80%EB%93%9C%EB%9F%AC%EC%9A%B4-%EB%B0%B0%EA%B2%BD%EC%9E%85%EB%8B%88%EB%8B%A4-.jpg")
+        myIntroImgUrlList.add("http://www.v3wall.com/wallpaper/1920_1080/1006/1920_1080_20100614094820326170.jpg")
         requestManager = Glide.with(this)
-
+        //getTest(v)
+ */
+        getMyIntro(v)
 
        //getOtherGuestBoard()
 
@@ -122,7 +131,42 @@ class MypageIntroFragment : Fragment() {
         v.mypage_guestboard_recyclerview.setNestedScrollingEnabled(false)
         return v
     }
-    fun getMyIntro() {
+    fun getTest(v : View){
+        v.my_intro_img_viewPager.adapter = CustomViewPagerAdapter(MainListContentAdapter(context!!, myIntroImgUrlList, requestManager))
+        v.my_intro_img_viewPager.setPadding(50, 0, 50, 0)
+        v.my_intro_img_viewPager.pageMargin = -200
+        v.my_intro_img_viewPager.offscreenPageLimit = 9
+
+        v.my_intro_img_viewPager.clipToPadding = false
+        // v.home_rc_viewPager.setPadding(40, 0, 40, 0)
+        //v.home_rc_viewPager.setPageMargin(resources.displayMetrics.widthPixels / -9)
+
+        val screen = Point()
+        activity!!.windowManager.defaultDisplay.getSize(screen)
+
+        val startOffset = 50.0f / (screen.x - 2 * 50.0f)
+        v.my_intro_img_viewPager.setPageTransformer(false, CardPagerTransformerShift(v.my_intro_img_viewPager.elevation * 1.0f, v.my_intro_img_viewPager.elevation,
+                0.6f, startOffset))
+    }
+
+    fun insertImgViewPager(v : View){
+        v.my_intro_img_viewPager.adapter = CustomViewPagerAdapter(MainListContentAdapter(context!!, myIntroImgUrlList, requestManager))
+        v.my_intro_img_viewPager.setPadding(50, 0, 50, 0)
+        v.my_intro_img_viewPager.pageMargin = -200
+        v.my_intro_img_viewPager.offscreenPageLimit = 9
+
+        v.my_intro_img_viewPager.clipToPadding = false
+        // v.home_rc_viewPager.setPadding(40, 0, 40, 0)
+        //v.home_rc_viewPager.setPageMargin(resources.displayMetrics.widthPixels / -9)
+
+        val screen = Point()
+        activity!!.windowManager.defaultDisplay.getSize(screen)
+
+        val startOffset = 50.0f / (screen.x - 2 * 50.0f)
+        v.my_intro_img_viewPager.setPageTransformer(false, CardPagerTransformerShift(v.my_intro_img_viewPager.elevation * 1.0f, v.my_intro_img_viewPager.elevation,
+                0.6f, startOffset))
+    }
+    fun getMyIntro(v: View) {
         var getMypageIntroduceResponse = networkService.getMypageIntroduceResponse("application/json", SharedPreferenceController.getAuthorization(context!!)) // 네트워크 서비스의 getContent 함수를 받아옴
         getMypageIntroduceResponse.enqueue(object : Callback<GetMypageIntroduceResponse> {
             override fun onResponse(call: Call<GetMypageIntroduceResponse>?, response: Response<GetMypageIntroduceResponse>?) {
@@ -133,18 +177,30 @@ class MypageIntroFragment : Fragment() {
                     if(response.body()!!.data != null){
                         mypage_board_content_tv.text = response.body()!!.data!!.content!!
                         mypage_board_datetime_tv.text = response.body()!!.data!!.time!!.substring(0, 16).replace("T", "   ")
-                        Glide.with(ctx).load(response.body()!!.data!!.imgs!![0]).into( my_intro_img_viewPager) // 한장만 넣을수 있음
+
+                        for(i in 0 ..2){
+                            myIntroImgUrlList.add(response.body()!!.data!!.imgs!![i])
+                        }
+                        //Glide.with(ctx).load(response.body()!!.data!!.imgs!![0]).into( v.my_intro_img_viewPager) // 한장만 넣을수 있음
+
+                        v.my_intro_img_viewPager.adapter = CustomViewPagerAdapter(MainListContentAdapter(context!!, myIntroImgUrlList, requestManager))
+                        v.my_intro_img_viewPager.setPadding(50, 0, 50, 0)
+                        v.my_intro_img_viewPager.pageMargin = -200
+                        v.my_intro_img_viewPager.offscreenPageLimit = 9
+
+                        v.my_intro_img_viewPager.clipToPadding = false
+                        // v.home_rc_viewPager.setPadding(40, 0, 40, 0)
+                        //v.home_rc_viewPager.setPageMargin(resources.displayMetrics.widthPixels / -9)
+
+                        val screen = Point()
+                        activity!!.windowManager.defaultDisplay.getSize(screen)
+
+                        val startOffset = 50.0f / (screen.x - 2 * 50.0f)
+                        v.my_intro_img_viewPager.setPageTransformer(false, CardPagerTransformerShift(v.my_intro_img_viewPager.elevation * 1.0f, my_intro_img_viewPager.elevation,
+                                0.6f, startOffset))
+
+
                     }
-
-                    /*
-                    val screen = Point()
-                    activity!!.windowManager.defaultDisplay.getSize(screen)
-
-                    val startOffset = 50.0f / (screen.x - 2 * 50.0f)
-                    my_intro_img_viewPager.setPageTransformer(false, CardPagerTransformerShift(my_intro_img_viewPager.elevation * 1.0f, my_intro_img_viewPager.elevation,
-                            0.6f, startOffset))
-*/
-
                 }
             }
 

@@ -64,19 +64,20 @@ public class Test2Activity extends AppCompatActivity {
 
     void getChatMessage(){
         Realm realm = Realm.getDefaultInstance();
+
         realm.beginTransaction();
-         ChatMessage cm = realm.createObject(ChatMessage.class, 6);
-         cm.setRoomId(6);
-         cm.setWriteAt("2019-01-11");
+         ChatMessage cm = realm.createObject(ChatMessage.class, 7);
+         cm.setRoomId(2);
+         cm.setWriteAt("2019-01-12");
          realm.commitTransaction();
 
-        String result = realm.where(ChatMessage.class).equalTo("roomId",6).findFirst().getWriteAt();
+        String result = realm.where(ChatMessage.class).equalTo("roomId",2).findFirst().getWriteAt();
         Log.v("adf","응답 메시지 = " + result);
-        /*
+
         RealmResults<Dog> puppies = realm.where(Dog.class)
                 .lessThan("age", 2)
                 .findAll();
-
+/*
         Log.v("RealmDB", "도그 번호 = " + puppies.get(0).age);
         Log.v("RealmDB", "도그 이름 = " + puppies.get(0).name);
         realm.beginTransaction();

@@ -12,6 +12,14 @@
         android:layout_height="73dp"
         android:background="#ffffff"
         >
+        <Button
+            android:id="@+id/chat_test_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="48.8dp"
+            android:layout_alignParentLeft="true"
+            android:text="보내기"
+            android:layout_marginRight="5.1dp"
+            />
         <TextView
             android:id="@+id/chat_name_tv"
             android:layout_width="wrap_content"
@@ -43,11 +51,11 @@
             />
 
         <Button
-            android:id="@+id/chat_test_btn"
-            android:layout_width="48dp"
+            android:id="@+id/chat_test_receive_btn"
+            android:layout_width="wrap_content"
             android:layout_height="48.8dp"
-            android:background="@drawable/bt_send"
             android:layout_alignParentRight="true"
+            android:text="받기"
             android:layout_marginRight="5.1dp"
             />
 
@@ -86,9 +94,9 @@
             android:id="@+id/chat_disconnect_btn"
             android:layout_width="48dp"
             android:layout_height="48.8dp"
-            android:background="@drawable/bt_send"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"
+            android:text="해제"
             />
         <Button
             android:id="@+id/chat_send_btn"

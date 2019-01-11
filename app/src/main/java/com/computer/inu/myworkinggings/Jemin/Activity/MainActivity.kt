@@ -31,6 +31,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_exit.*
 import kotlinx.android.synthetic.main.dialog_exit.view.*
 import android.app.Activity
+import com.computer.inu.myworkinggings.Jemin.Data.ChatMessage
+import io.realm.Realm
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -116,6 +118,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.main_alarm_btn ->{
+
+
                 main_alarm_btn.setSelected(true)
                 main_directory_btn.setSelected(false)
                 main_lounge_btn.setSelected(false)
@@ -123,8 +127,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 main_mypage_btn.setSelected(false)
                 // '알림 탭' 클릭 시 '알림 프래그먼트' 호출
                 callFragment(FRAGMENT4)
+
             }
             R.id.main_mypage_btn ->{
+/*
+                Realm.init(this)
+                val realm = Realm.getDefaultInstance()
+                val puppies = realm.where(ChatMessage::class.java)
+                        //.lessThan("roomId", 10)
+                        .findAll()
+
+                Log.v("RealmDB", "전체 리스트 값 = " + puppies.toString())
+
+                Log.v("RealmDB", "채팅 시각1 = " + puppies.get(0)!!.writeAt);
+                Log.v("RealmDB", "채팅 시각2 = " + puppies.get(1)!!.writeAt);
+                Log.v("RealmDB", "채팅 시각3 = " + puppies.get(2)!!.writeAt);
+                Log.v("RealmDB", "채팅 글쓴이 번호1 = " + puppies.get(0)!!.writerId);
+                Log.v("RealmDB", "채팅 글쓴이 번호2 = " + puppies.get(1)!!.writerId);
+                Log.v("RealmDB", "채팅 글쓴이 번호3 = " + puppies.get(2)!!.writerId);
+
+
+*/
                 main_mypage_btn.setSelected(true)
                 main_directory_btn.setSelected(false)
                 main_lounge_btn.setSelected(false)

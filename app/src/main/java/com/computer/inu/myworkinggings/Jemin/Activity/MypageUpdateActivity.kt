@@ -65,8 +65,8 @@ class MypageUpdateActivity : AppCompatActivity() {
         mypageUpdateActivity = this
 
         requestManager = Glide.with(this)
-        getMyIntroduce()
 
+        getMyIntroduce()
         mypage_update_galley_btn.setOnClickListener {
             val tedBottomPicker = TedBottomPicker.Builder(this@MypageUpdateActivity)
                     .setOnMultiImageSelectedListener {
@@ -132,7 +132,7 @@ class MypageUpdateActivity : AppCompatActivity() {
                         mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
                         mypage_update_recyclerview.adapter = boardImageAdapter
                     }
-                    .setSelectMaxCount(4)
+                    .setSelectMaxCount(3)
                     .showCameraTile(false)
                     .setPeekHeight(800)
                     .showTitle(false)
@@ -144,22 +144,24 @@ class MypageUpdateActivity : AppCompatActivity() {
 
         mypage_update_confirm_btn.setOnClickListener {
             if (mypage_update_content_edit.text.toString() == "" || (postImagesList.size == 0 && getImageUrlSize == 0)) {
+                Log.v("MyPageUpdate", "로그값 확인")
                 if (postImagesList.size == 0 && getImageUrlSize == 0) {
                     Toast.makeText(applicationContext, "이미지를 넣어주세요", Toast.LENGTH_LONG).show()
                 } else if (mypage_update_content_edit.text.toString() == "") {
                     Toast.makeText(applicationContext, "내용을 적어주세요", Toast.LENGTH_LONG).show()
                 }
-                else{
-                    if (getServerData != true) {
-                        Log.v(TAG, "최초 등록 준비 완료")
-                        postMyIntroduce(0)
-                    } else {
-                        Log.v(TAG, "수정 등록 준비 완료")
-                        postMyIntroduce(1)
-                    }
-                }
-                
+
             }
+            else{
+                if (getServerData != true) {
+                    Log.v(TAG, "최초 등록 준비 완료")
+                    postMyIntroduce(0)
+                } else {
+                    Log.v(TAG, "수정 등록 준비 완료")
+                    postMyIntroduce(1)
+                }
+            }
+
 
         }
     }
@@ -181,6 +183,10 @@ class MypageUpdateActivity : AppCompatActivity() {
         postBoardResponse.enqueue(object : retrofit2.Callback<PostResponse>{
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {
+                Log.v(TAG,"토큰 = " + SharedPreferenceController.getAuthorization(ctx))
+                Log.v(TAG, "내용 = " + content)
+                Log.v(TAG, "이전 이미지 리스트 = " + prevImagesUrl.size)
+                Log.v(TAG, "추가 이미지 리스트 = " + postImagesList.size)
                 Log.v(TAG, "통신 성공")
                 if(response.isSuccessful){
                     Toast.makeText(applicationContext,"값 전달 성공" ,Toast.LENGTH_LONG).show()
@@ -209,33 +215,34 @@ class MypageUpdateActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<GetMyIntroduceResponse>, response: Response<GetMyIntroduceResponse>) {
                 if(response.isSuccessful){
-                    if(response.body()!!.data.size > 0){
+                    if(response.body()!!.data != null){
                         Log.v(TAG, "수정 버튼 활성화")
                         mypage_update_title_tv.text = "자기소개 수정"
                         getServerData = true
                         imgs = response.body()!!.data[0].imgs!!
+                        Log.v(TAG, "받은 데이터 = " + response.body()!!.data[0])
+                        mypage_update_content_edit.hint = response.body()!!.data[0].content
+                        boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,0, 1, getImageUrlSize)
+
+                        if(imgs.size > 0){
+                            getServerImageUrl = true
+                            getImageUrlSize = imgs.size - boardImageAdapter.urlRemovedCount
+                        }
+                        for(i in 0 .. imgs.size-1){
+                            imageUrlList.add(ImageType(imgs[i],null))
+                        }
+
+                        mypage_update_recyclerview.visibility = View.VISIBLE
+                        boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,1, 0, getImageUrlSize)
+                        mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                        mypage_update_recyclerview.adapter = boardImageAdapter
                     }
                     else{
                         Log.v(TAG, "최초 등록 버튼 활성화")
                         mypage_update_title_tv.text = "자기소개 등록"
                     }
 
-                    Log.v(TAG, "받은 데이터 = " + response.body()!!.data[0])
-                    mypage_update_content_edit.hint = response.body()!!.data[0].content
-                    boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,0, 1, getImageUrlSize)
 
-                    if(imgs.size > 0){
-                        getServerImageUrl = true
-                        getImageUrlSize = imgs.size - boardImageAdapter.urlRemovedCount
-                    }
-                    for(i in 0 .. imgs.size-1){
-                        imageUrlList.add(ImageType(imgs[i],null))
-                    }
-
-                    mypage_update_recyclerview.visibility = View.VISIBLE
-                    boardImageAdapter = BoardImageAdapter(imageUrlList, requestManager,1, 0, getImageUrlSize)
-                    mypage_update_recyclerview.layoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-                    mypage_update_recyclerview.adapter = boardImageAdapter
                 }
                 else{
                 }

@@ -60,7 +60,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        holder.item_box
+        //holder.item_box
 
         //인스턴스 객체 - 데이터 연결
 
@@ -127,6 +127,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         holder.gotoDetailedBoard.setOnClickListener {
 
 
+
             ///******
             ctx.toast(dataList[position].boardId!!.toString())
             ctx.startActivity<DetailBoardActivity>("BoardId" to dataList[position].boardId)
@@ -140,10 +141,13 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             ctx.toast(dataList[position].boardId!!.toString())
 
             //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId,  "Position" to position)
 
             //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
+            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId,  "Position" to position)
+
+            position
+            //ctx.toast()
         }
 
         //좋아요 버튼

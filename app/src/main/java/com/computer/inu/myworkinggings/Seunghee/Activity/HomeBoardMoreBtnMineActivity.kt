@@ -1,12 +1,15 @@
 package com.computer.inu.myworkinggings.Seunghee.Activity
 
+import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.boardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.Post.DeleteBoardResponse
 import kotlinx.android.synthetic.main.activity_home_board_more_btn_mine.*
 import org.jetbrains.anko.startActivity
@@ -16,6 +19,8 @@ import retrofit2.Response
 
 class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        var position : Int = 0
 
         val networkService: NetworkService by lazy {
             ApplicationController.instance.networkService
@@ -29,6 +34,7 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
 
             val modifyBoardID: Int = intent.getIntExtra("BoardId", 0).toInt()
             startActivity<UpBoardActivity>("ModifyBoardID" to modifyBoardID)
+
         }
 
         rl_btn_home_board_more_btn_mine_delete.setOnClickListener {
@@ -46,6 +52,15 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
                 //통신 성공 시 수행되는 메소드
                 override fun onResponse(call: Call<DeleteBoardResponse>, response: Response<DeleteBoardResponse>) {
                     if (response.isSuccessful) {
+                        //startActivity<MainActivity>()
+                        arrayOf(HomeBoardFragment.boardRecyclerViewAdapter)
+
+
+
+                        position = intent.getIntExtra("Position", 0)
+
+                        boardRecyclerViewAdapter.notifyItemRemoved(position)
+                        boardRecyclerViewAdapter.notifyItemRangeRemoved(position,1)
                         finish()
                     }
                 }

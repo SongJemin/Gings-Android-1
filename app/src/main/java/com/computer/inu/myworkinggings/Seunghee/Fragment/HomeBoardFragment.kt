@@ -44,6 +44,7 @@ class HomeBoardFragment : Fragment() {
 
     lateinit var searchBoardRecyclerViewAdapter: BoardRecyclerViewAdapter
 
+
     lateinit var requestManager: RequestManager
     lateinit var networkService: NetworkService
 
@@ -51,7 +52,11 @@ class HomeBoardFragment : Fragment() {
     lateinit var BoardDataForSearch: ArrayList<BoardData>
 
     //홈보드 리사이클러뷰
-    lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
+    companion object {
+        lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
+    }
+
+
     var BoardItemListForSearch = ArrayList<BoardItem>()
     var BoardData = ArrayList<BoardData>()
     var BoardItemList = ArrayList<BoardItem>()

@@ -73,13 +73,11 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //인스턴스 객체 - 데이터 연결
         //title
 
-        if(dataList[position].category == "QUESTION") {
+        if (dataList[position].category == "QUESTION") {
             holder.category.text = "질문"
-        }
-        else if(dataList[position].category == "INSPIRATION") {
+        } else if (dataList[position].category == "INSPIRATION") {
             holder.category.text = "영감"
-        }
-        else if(dataList[position].category == "COWORKING"){
+        } else if (dataList[position].category == "COWORKING") {
             holder.category.text = "협업"
         }
 
@@ -91,10 +89,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                 holder.tag.append("    #" + dataList[position].keywords[i])
             }
         }
-        if(dataList[position].images.size == 0){
+        if (dataList[position].images.size == 0) {
             holder.imageLayout.visibility = View.GONE
-        }
-        else{
+        } else {
             for (i in 0..dataList[position].images.size - 1) {
                 if (dataList[position].images.size == 0) {
                     Log.v("asdf", "사이즈 0" + dataList[position].images.size)
@@ -160,12 +157,14 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
 
 
             ctx.toast(dataList[position].boardId!!.toString())
-if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    //본인 게시글 클릭
-    ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId)
-}else {
-    //일반 게시글 클릭
-    ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId)
-}
+            if (SharedPreferenceController.getUserId(ctx) == dataList[position].writerId) {
+//본인 게시글 클릭
+                ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "Position" to position)
+            } else {
+                //일반 게시글 클릭
+                ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId, "Position" to position)
+            }
+
         }
 
         //댓글 버튼
@@ -174,22 +173,21 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
             intent.putExtra("BoardId", dataList[position].boardId)
             ctx.startActivity(intent)
             //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId,  "Position" to position)
+            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "Position" to position)
 
             //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId,  "Position" to position)
+            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId, "Position" to position)
 
             position
             //ctx.toast()
         }
 
         //좋아요 버튼
-        if(dataList[position].likeChk==true)
-        {
-            Log.v("like_on","on error")
-        holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)}
-        else {
-            Log.v("like_off","off error")
+        if (dataList[position].likeChk == true) {
+            Log.v("like_on", "on error")
+            holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)
+        } else {
+            Log.v("like_off", "off error")
             holder.like_btn.setBackgroundResource(R.drawable.ic_like)
         }
 
@@ -236,17 +234,16 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
                 override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
                     if (response.isSuccessful) {
 
-                        Log.e("통신성공","  통신 성공")
-                        if(response.body()!!.message=="보드 추천 성공"){
+                        Log.e("통신성공", "  통신 성공")
+                        if (response.body()!!.message == "보드 추천 성공") {
                             ctx.toast("좋아요 성공")
                             holder.like_btn.setBackgroundResource(R.drawable.ic_like_on)
-                            var cnt =Integer.parseInt(holder.like_cnt.getText().toString())+1
+                            var cnt = Integer.parseInt(holder.like_cnt.getText().toString()) + 1
                             holder.like_cnt.setText(cnt.toString())
-                        }
-                        else if (response.body()!!.message=="보드 추천 해제 성공"){
+                        } else if (response.body()!!.message == "보드 추천 해제 성공") {
                             ctx.toast("좋아요 해제")
                             holder.like_btn.setBackgroundResource(R.drawable.ic_like)
-                            var cnt =Integer.parseInt(holder.like_cnt.getText().toString())-1
+                            var cnt = Integer.parseInt(holder.like_cnt.getText().toString()) - 1
 
                             holder.like_cnt.setText(cnt.toString())
                         }
@@ -262,9 +259,9 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
     //layout의 view를 인스턴스 변수로 만들어 줌
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val item_box : LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
+        val item_box: LinearLayout = itemView.findViewById(R.id.btn_rv_item_board_box) as LinearLayout
         val gotoDetailedBoard: LinearLayout = itemView.findViewById(R.id.ll_item_board_list_contents) as LinearLayout
-        val imageLayout : RelativeLayout = itemView.findViewById(R.id.item_board_img_layout) as RelativeLayout
+        val imageLayout: RelativeLayout = itemView.findViewById(R.id.item_board_img_layout) as RelativeLayout
 
         //title
         val category: TextView = itemView.findViewById(R.id.tv_item_board_category) as TextView
@@ -283,7 +280,7 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
         val role: TextView = itemView.findViewById(R.id.tv_item_board_profile_role) as TextView
 
         //좋아요
-        var like_rl : RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
+        var like_rl: RelativeLayout = itemView.findViewById(R.id.rl_item_board_like) as RelativeLayout
         var like_btn: ImageView = itemView.findViewById(R.id.iv_item_like_btn) as ImageView
         var like_cnt: TextView = itemView.findViewById(R.id.tv_item_board_like_cnt) as TextView //int
 
@@ -300,7 +297,7 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
 
 
     //보드공유 통신
-    private fun getBoardShareResponse(){
+    private fun getBoardShareResponse() {
         val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
                 SharedPreferenceController.getAuthorization(ctx),
                 b_id)
@@ -342,13 +339,13 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
     private fun sendLink(dataList: BoardItem) {
 
 
-        var images : String?
+        var images: String?
 
-        Log.v("ㅎ;;ㅎ;ㅎ;;ㅎ;ㅎㅎ 너의크기는무엇이늬",dataList.images.size.toString())
+        Log.v("ㅎ;;ㅎ;ㅎ;;ㅎ;ㅎㅎ 너의크기는무엇이늬", dataList.images.size.toString())
 
-        if(dataList.images.size == 0){
+        if (dataList.images.size == 0) {
             images = "https://s3.ap-northeast-2.amazonaws.com/gings-storage/gings.png"
-        }else
+        } else
             images = dataList.images[0]
 
         val params = FeedTemplate
@@ -362,7 +359,7 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
 
                 .addButton(ButtonObject("깅스 앱으로 열기", LinkObject.newBuilder()
                         //.setWebUrl("'https://developers.kakao.com")
-                        .setAndroidExecutionParams("boardIDValue="+dataList.boardId)
+                        .setAndroidExecutionParams("boardIDValue=" + dataList.boardId)
                         .build()))
                 .build()
 
@@ -371,6 +368,7 @@ if(SharedPreferenceController.getUserId(ctx)==dataList[position].writerId) {    
             override fun onFailure(errorResult: ErrorResult) {
                 Logger.e(errorResult.toString())
             }
+
             override fun onSuccess(result: KakaoLinkResponse) {}
         })
     }

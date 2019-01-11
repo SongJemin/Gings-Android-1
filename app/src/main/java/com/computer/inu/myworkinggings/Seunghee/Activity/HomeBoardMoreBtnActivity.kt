@@ -7,6 +7,7 @@ import android.util.Log
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.Fragment.HomeBoardFragment.Companion.boardRecyclerViewAdapter
 import com.computer.inu.myworkinggings.Seunghee.Post.PostBlockBoardIDResponse
 import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_home_board_more_btn.*
@@ -30,6 +31,11 @@ class HomeBoardMoreBtnActivity : AppCompatActivity() {
 
         rl_btn_home_board_more_block_boardID.setOnClickListener {
             getBoardShareResponse()
+            var position = intent.getIntExtra("Position", 0)
+
+            boardRecyclerViewAdapter.notifyItemRemoved(position)
+            boardRecyclerViewAdapter.notifyItemRangeRemoved(position,1)
+            finish()
             //통신
         }
     }

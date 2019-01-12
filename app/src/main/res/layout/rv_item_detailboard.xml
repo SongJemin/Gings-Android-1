@@ -21,12 +21,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="18dp">
+            android:layout_height="30dp">
 
             <TextView
+
+                android:gravity="center"
                 android:id="@+id/tv_item_detailboard_profile_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:text="이충엽"
                 android:textColor="#222222"
@@ -43,9 +45,10 @@
                 android:background="#999999" />
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/tv_item_detailboard_time"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="7.8dp"
                 android:layout_toRightOf="@+id/v_item_detailboard_v"
@@ -54,6 +57,7 @@
                 android:textSize="10sp" />
 
             <LinearLayout
+                android:id="@+id/ll_item_reboard_ike"
                 android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/iv_item_rebord_more"
@@ -74,7 +78,6 @@
 
                 <RelativeLayout
                     android:layout_gravity="center"
-                    android:id="@+id/rl_item_reboard_ike"
                     android:layout_width="11.9dp"
                     android:layout_height="10.4dp"
                     android:layout_centerVertical="true"

@@ -67,11 +67,11 @@ interface NetworkService {
     @PUT("/boards/{boardId}")
     fun updateBoard(
             @Header("Authorization") Authorization: String,
-            @Path("boardId") boardId : Int,
+            @Path("boardId") boardId: Int,
             @Part("title") title: RequestBody,
-            @Part("content") content : RequestBody,
+            @Part("content") content: RequestBody,
             @Part("category") category: RequestBody,
-            @Part("prevImagesUrl") prevImagesUrl : ArrayList<RequestBody>,
+            @Part("prevImagesUrl") prevImagesUrl: ArrayList<RequestBody>,
             @Part postImages: ArrayList<MultipartBody.Part?>,
             @Part("prevKeywords") prevKeywords: ArrayList<RequestBody>,
             @Part("postKeywords") postKeywords: ArrayList<RequestBody>
@@ -81,7 +81,7 @@ interface NetworkService {
     @POST(" /reboards")
     fun postReBoard(
             @Header("Authorization") Authorization: String,
-            @Part("boardId") boardId : RequestBody,
+            @Part("boardId") boardId: RequestBody,
             @Part("content") summary: RequestBody,
             @Part images: ArrayList<MultipartBody.Part?>
     ): Call<PostResponse>
@@ -90,10 +90,10 @@ interface NetworkService {
     @PUT("/reboards/{reboardId}")
     fun updateReBoard(
             @Header("Authorization") Authorization: String,
-            @Path("reboardId") reboardId : Int,
-            @Part("content") content : RequestBody,
+            @Path("reboardId") reboardId: Int,
+            @Part("content") content: RequestBody,
             @Part("prevImagesUrl") prevImagesUrl: ArrayList<RequestBody>,
-            @Part postImages : ArrayList<MultipartBody.Part?>
+            @Part postImages: ArrayList<MultipartBody.Part?>
     ): Call<PostResponse>
 
 
@@ -176,7 +176,7 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Part("content") content: RequestBody,
             @Part images: ArrayList<MultipartBody.Part?>,
-            @Part ("prevImagesUrl") prevImagesUrl : ArrayList<RequestBody>
+            @Part("prevImagesUrl") prevImagesUrl: ArrayList<RequestBody>
     ): Call<PostResponse>
 
     @GET("/mypage/others/active/{myPageUserId}")
@@ -252,24 +252,24 @@ interface NetworkService {
     @POST("/clubs/{clubId}/join")
     fun postClubSignUp(
 
-            @Header("Authorization") Authorization : String,
-            @Path("clubId") clubId : Int
-    ) : Call<PostClubSignUp>
+            @Header("Authorization") Authorization: String,
+            @Path("clubId") clubId: Int
+    ): Call<PostClubSignUp>
 
     @GET("/search/directory")
     fun getDirectorySearchResponse(
             @Header("Content-type") content_type: String,
-            @Header("Authorization") authorization  : String,
-            @Query("keyword") keyword : String
-    ) : Call<GetDirectorySearchResponse>
+            @Header("Authorization") authorization: String,
+            @Query("keyword") keyword: String
+    ): Call<GetDirectorySearchResponse>
 
     @GET("/search/directory/new")
     fun getDirectoryListResponse(
             @Header("Content-type") content_type: String,
-            @Header("Authorization") authorization  : String,
+            @Header("Authorization") authorization: String,
             @Query("offset") offset: Int?,
             @Query("limit") limit: Int?
-    ) : Call<GetDirectoryListResponse>
+    ): Call<GetDirectoryListResponse>
 
 
     @DELETE("/boards/{boardId}")
@@ -315,29 +315,29 @@ interface NetworkService {
 
     @GET("/clubs/{clubId}")
     fun getDetailSearchClub(
-            @Header("Authorization") Authorization : String,
-            @Path("clubId") clubId : Int
-    ) : Call<GetDetailSearchClub>
+            @Header("Authorization") Authorization: String,
+            @Path("clubId") clubId: Int
+    ): Call<GetDetailSearchClub>
 
     @GET("/clubs/{clubId}/{eventId}")
     fun getEventSearch(
-            @Header("Authorization") Authorization : String,
-            @Path("clubId") clubId : Int,
-            @Path("eventId") eventId : Int
-    ) : Call<GetEventSearch>
+            @Header("Authorization") Authorization: String,
+            @Path("clubId") clubId: Int,
+            @Path("eventId") eventId: Int
+    ): Call<GetEventSearch>
 
     @POST("/events/{eventId}")
     fun postJoinEvent(
-            @Header("Authorization") Authorization : String,
+            @Header("Authorization") Authorization: String,
             @Path("eventId") eventId: Int
-    ) : Call<PostJoinEvent>
+    ): Call<PostJoinEvent>
 
     @GET("boards/category/{category}/recommend")
     fun getCategoryLikeRankResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
             @Path("category") category: String
-    ) : Call<GetCategoryLikeRankResponse>
+    ): Call<GetCategoryLikeRankResponse>
 
     @GET("/search/boards/category/{category}/latest")
     fun getCategorySearchResponse(
@@ -345,7 +345,7 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("category") category: String,
             @Query("keyword") keyword: String
-    ) : Call<GetCategorySearchResponse>
+    ): Call<GetCategorySearchResponse>
 
     @GET("/search/boards/category/{category}/recommend")
     fun getCategorySearchLikeRankResponse(
@@ -353,20 +353,32 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("category") category: String,
             @Query("keyword") keyword: String
-    ) : Call<GetCategorySearchLikeRankResponse>
+    ): Call<GetCategorySearchLikeRankResponse>
 
     @POST("boards/{boardId}/share")
     fun postBoardShareResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
             @Path("boardId") boardId: Int
-    ) : Call<PostBoardShareResponse>
+    ): Call<PostBoardShareResponse>
 
     @POST("boards/{boardId}/block")
     fun postBlockBoardIDResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String,
             @Path("boardId") boardId: Int
-    ) : Call<PostBlockBoardIDResponse>
+    ): Call<PostBlockBoardIDResponse>
 
+
+    @DELETE("/deleteAccount")
+    fun deleteAccountResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String
+    ): Call<DeleteAccountResponse>
+
+    @GET("/alarm/main")
+    fun getAlarmResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String
+    ) : Call<GetAlarmResponse>
 }

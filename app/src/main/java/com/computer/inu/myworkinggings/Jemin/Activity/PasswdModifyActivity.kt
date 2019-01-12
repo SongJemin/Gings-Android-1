@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_passwd_modify.*
@@ -36,7 +37,7 @@ class PasswdModifyActivity : AppCompatActivity() {
     }
 
     private fun postDetailedBoardResponse() {
-        val token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
+        val token = SharedPreferenceController.getAuthorization(this)
 
         val jsonObject: JSONObject = JSONObject()
         jsonObject.put("oldPwd", passwd_modify_passwd_edit.text.toString())
@@ -54,6 +55,7 @@ class PasswdModifyActivity : AppCompatActivity() {
                     if(response.body()!!.message == "비밀번호가 일치합니다."){
                         val intent = Intent(applicationContext, PasswordConfirmActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                     else{
                         Toast.makeText(applicationContext,"비밀번호가 틀렸습니다.", Toast.LENGTH_LONG).show()

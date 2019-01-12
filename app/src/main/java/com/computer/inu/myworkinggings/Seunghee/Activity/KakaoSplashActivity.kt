@@ -33,6 +33,8 @@ class KakaoSplashActivity : Activity() {
             else{
                 var boardIDValue = kakaoBoardId.getQueryParameter("boardIDValue")
                 boardID = Integer.parseInt(boardIDValue)
+
+                Log.v("카카오ㄷ톡쓰,,,",boardID.toString())
 /*
                 val hd = Handler()
                 hd.postDelayed(splashhandler(), 3000) // 3000ms=3초후에 핸들러 실행 //딜레이 3000
@@ -67,14 +69,13 @@ class KakaoSplashActivity : Activity() {
     private inner class splashhandler : Runnable {
         override fun run() {
 
-            /*
-            var intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)*/
 
-            //toast()
-            //startActivity<DetailBoardActivity>("boardId",)
+            Log.v("카카오ㄷ톡쓰,,,56",boardID.toString())
+
 
             startActivity<LoginActivity>("BoardId" to boardID)
+
+            Log.v("카카오ㄷ톡쓰,,,5",boardID.toString())
 
 
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out) // fade in, fade out 애니메이션 효과

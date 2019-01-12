@@ -21,9 +21,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
+    var position : Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        var position : Int = 0
 
         val networkService: NetworkService by lazy {
             ApplicationController.instance.networkService
@@ -33,17 +34,18 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home_board_more_btn_mine)
 
 
+        val modifyBoardID: Int = intent.getIntExtra("BoardId", 0)
+
+
         rl_btn_home_board_more_btn_mine_modify.setOnClickListener {
 
-            val modifyBoardID: Int = intent.getIntExtra("BoardId", 0).toInt()
             startActivity<UpBoardActivity>("ModifyBoardID" to modifyBoardID)
 
         }
 
         rl_btn_home_board_more_btn_mine_delete.setOnClickListener {
 
-            val modifyBoardID: Int = intent.getIntExtra("BoardId", 0).toInt()
-
+            //삭제 통신
             val deleteBoardResponse: Call<DeleteBoardResponse> = networkService.deleteBoardResponse("application/json",
                     SharedPreferenceController.getAuthorization(this),
                     modifyBoardID)
@@ -57,14 +59,19 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
                 //통신 성공 시 수행되는 메소드
                 override fun onResponse(call: Call<DeleteBoardResponse>, response: Response<DeleteBoardResponse>) {
                     if (response.isSuccessful) {
-                        toast("삭제 성공")
+
+                        //if(intent.getBooleanExtra("isDetailed", false))
+                            //finish()
                         //startActivity<MainActivity>()
-                        arrayOf(HomeBoardFragment.boardRecyclerViewAdapter)
+                        //arrayOf(HomeBoardFragment.boardRecyclerViewAdapter)
+                        Log.e("보드공유 통신성공", "  통신 성공")
 
                         position = intent.getIntExtra("Position", 0)
 
                         boardRecyclerViewAdapter.notifyItemRemoved(position)
                         boardRecyclerViewAdapter.notifyItemRangeRemoved(position,1)
+
+
                         finish()
                     }
                 }
@@ -73,6 +80,15 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    @Override
+    override fun onBackPressed()
+    {
+        super.onBackPressed()
+
+        finish()
+        overridePendingTransition(R.anim.stay, android.R.anim.fade_out)
     }
 
 }

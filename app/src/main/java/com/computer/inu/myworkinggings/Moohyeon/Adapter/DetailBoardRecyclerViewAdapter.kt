@@ -108,23 +108,36 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
                     }
                 }
             })
-
         }
 
+
+        //댓글 더보기 버튼
         holder.reboardMoreImg.setOnClickListener {
             var intent = Intent(ctx, ReboardMoreBtnMineActivity::class.java)
             intent.putExtra("reboardId", dataList[position]!!.replyId)
             Log.v("asdf","선택 리보드 ID 값 = " + dataList[position]!!.replyId)
 
+            //수정
             (ctx as Activity).startActivityForResult(intent, 30)
+            //삭제
+            ctx.startActivityForResult(intent, 33)
+
         }
+
+        //onActivityResult(30,)
 
         //이미지
         lateinit var requestManager: RequestManager
         requestManager = Glide.with(ctx)
 
-        for (i in 0..dataList[position]!!.images.size - 1)
-            requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
+       //사진이 하나밖에 없을 경우,
+        if( dataList[position]!!.images.size == 0 )
+            holder.contents_images.visibility = View.GONE
+        else{
+            for (i in 0..dataList[position]!!.images.size - 1)
+                requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
+        }
+
     }
 
 
@@ -136,14 +149,13 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
         val contents_text: TextView = itemView.findViewById(R.id.tv_item_detailboard_contents) as TextView
         val contents_images: ImageView = itemView.findViewById(R.id.iv_item_board_image_contents) as ImageView
 
-        val reboard_like_layout: RelativeLayout = itemView.findViewById(R.id.rl_item_reboard_ike) as RelativeLayout
+        val reboard_like_layout: LinearLayout = itemView.findViewById(R.id.ll_item_reboard_ike) as LinearLayout
 
         val reboard_like_img : ImageView = itemView.findViewById(R.id.iv_item_reboard_like) as ImageView
         val reboard_like_img_red : ImageView = itemView.findViewById(R.id.iv_item_reboard_like_red) as ImageView
         var reboard_like_cnt: TextView = itemView.findViewById(R.id.iv_item_reboard_like_cnt) as TextView
         var reboardMoreImg : ImageView = itemView.findViewById(R.id.iv_item_rebord_more) as ImageView
         var reboardBottomLayout : LinearLayout = itemView.findViewById(R.id.rv_item_detail_board_layout) as LinearLayout
-
 
     }
 

@@ -116,12 +116,10 @@ class MyPageFragment : Fragment() {
             userID = extra!!.getInt("userID")
             my_or_other_flag = 1
             Log.v("MypageFragent", "받아온 유저 아이디 = " +userID)
-            iv_btn_my_page_chat.visibility = View.VISIBLE
             getOtherPage()
         }
         else{
             my_or_other_flag = 0
-            iv_btn_my_page_chat.visibility = View.GONE
             getUserPagePost()
         }
 

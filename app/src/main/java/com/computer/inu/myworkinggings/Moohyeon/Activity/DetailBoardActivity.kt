@@ -30,6 +30,7 @@ import java.io.File
 import java.io.InputStream
 
 import com.computer.inu.myworkinggings.Jemin.Adapter.BoardImageAdapter
+import com.computer.inu.myworkinggings.Jemin.Adapter.ImageAdapter
 import com.computer.inu.myworkinggings.Jemin.Data.ImageType
 import com.computer.inu.myworkinggings.Moohyeon.post.PostBoardLikeResponse
 import com.computer.inu.myworkinggings.Seunghee.Activity.HomeBoardMoreBtnActivity
@@ -38,6 +39,7 @@ import com.computer.inu.myworkinggings.Seunghee.GET.DetailedBoardData
 import com.computer.inu.myworkinggings.Seunghee.GET.GetDetailedBoardResponse
 import com.computer.inu.myworkinggings.Seunghee.GET.ReplyData
 import com.computer.inu.myworkinggings.Seunghee.Post.PostBoardShareResponse
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import com.kakao.kakaolink.v2.KakaoLinkResponse
 import com.kakao.kakaolink.v2.KakaoLinkService
 import com.kakao.message.template.ButtonObject
@@ -70,6 +72,7 @@ class DetailBoardActivity : AppCompatActivity() {
     var deleteImagesUrl = ArrayList<String>()
     var prevImagesUrl = ArrayList<RequestBody>()
 
+    var judge = 0
     var getUserID : Int = 0
 
     val networkService: com.computer.inu.myworkinggings.Network.NetworkService by lazy {
@@ -85,14 +88,56 @@ class DetailBoardActivity : AppCompatActivity() {
         getDetailedBoardResponse(0)
 
         boardId = intent.getIntExtra("BoardId", 0)
+        if(judge==0) {
+
+            if (intent.getStringExtra("sender_id") != null) {
+
+                judge = 1
+                val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", SharedPreferenceController.getAuthorization(this), Integer.parseInt(intent.getStringExtra("sender_id")) )
+
+                getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
+                    override fun onFailure(call: Call<GetDetailedBoardResponse>, t: Throwable) {
+                        Log.e("detailed_board fail", t.toString())
+                    }
+
+                    override fun onResponse(call: Call<GetDetailedBoardResponse>, response: Response<GetDetailedBoardResponse>) {
+                        if (response.isSuccessful) {
+                            //toast(intent.getIntExtra("BoardId",0))
+                            Log.v("ggg", "board list success")
+                            //Toast.makeText(applicationContext,"성공",Toast.LENGTH_SHORT).show()
+
+                            //보드연결
+                            temp = response.body()!!.data
+
+                            getUserID = temp.writerId!!
+                            bindBoardData(temp)
+                            if(temp.writerImage != null){
+                                requestManager.load(temp.writerImage).into(iv_item_board_profile_img)
+                            }
+
+                            //리보드연결
+                            val reboardtemp: ArrayList<ReplyData?> = response.body()!!.data.replys
+                            bindReBoardData(reboardtemp)
+
+                        }
+                    }
+
+                })
+
+            }
+        }else
+            boardId = intent.getIntExtra("BoardId", 0)
+
         requestManager = Glide.with(this)
         detail_board_reboard_btn.visibility = View.VISIBLE
         detail_board_reboard_modify_btn.visibility = View.GONE
-        Log.v(TAG,"전송 받은 보드 ID = " + boardId)
+        Log.v(TAG, "전송 받은 보드 ID = " + boardId)
         //postReBoard()
+
         detail_board_reboard_img_recyclerview.visibility = View.GONE
-        
         //setRecyclerView()
+
+        nuri.setOnClickListener { System.out.println("있어 값ㅇ 있다고") }
 
         tv_item_board_profile_name.setOnClickListener {
             var intent = Intent()
@@ -116,7 +161,7 @@ class DetailBoardActivity : AppCompatActivity() {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
             detail_board_reboard_img_recyclerview.visibility = View.GONE
-            
+
         }
 
         detail_board_reboard_img_btn.setOnClickListener {
@@ -124,14 +169,13 @@ class DetailBoardActivity : AppCompatActivity() {
                     .setOnMultiImageSelectedListener { reboardUriList: java.util.ArrayList<Uri>? ->
                         for (i in 0..reboardUriList!!.size - 1) {
 
-                            if(modifyFlag == 1){
-                                if(temp.replys[seletectedPostion]!!.images.size > 0){
+                            if (modifyFlag == 1) {
+                                if (temp.replys[seletectedPostion]!!.images.size > 0) {
                                     deleteImagesUrl = boardImageAdapter.deleteImageUrlList
-                                    if(deleteImagesUrl.size > 0){
-                                        Log.v("asdf"," 지운 사진 = " +deleteImagesUrl[0])
-                                    }
-                                    else{
-                                        Log.v("asdf","지운 사진 0")
+                                    if (deleteImagesUrl.size > 0) {
+                                        Log.v("asdf", " 지운 사진 = " + deleteImagesUrl[0])
+                                    } else {
+                                        Log.v("asdf", "지운 사진 0")
                                     }
                                 }
                             }
@@ -170,7 +214,7 @@ class DetailBoardActivity : AppCompatActivity() {
                                 detail_board_reboard_img_recyclerview.adapter = boardImageAdapter
                             } else {
                                 detail_board_reboard_img_recyclerview.visibility = View.GONE
-                                
+
                             }
                         }
                     }
@@ -191,7 +235,7 @@ class DetailBoardActivity : AppCompatActivity() {
                 Log.v("asdf", "리보드 준비 완료" + detail_board_reboard_edit.text.toString())
                 postReBoard()
                 detail_board_reboard_img_recyclerview.visibility = View.GONE
-                
+
                 detail_board_reboard_edit.setText("")
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(detail_board_reboard_edit.getWindowToken(), 0);
@@ -199,10 +243,9 @@ class DetailBoardActivity : AppCompatActivity() {
         }
 
 
-
     }
 
-    private fun getDetailedBoardResponse(modifyFlag: Int){
+    private fun getDetailedBoardResponse(modifyFlag: Int) {
         var insertBoardID: Int
         // 수정X
         if (modifyFlag == 0) {
@@ -212,7 +255,7 @@ class DetailBoardActivity : AppCompatActivity() {
         else {
             insertBoardID = boardId
         }
-        val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", insertBoardID)
+        val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", SharedPreferenceController.getAuthorization(this), insertBoardID)
 
         getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
             override fun onFailure(call: Call<GetDetailedBoardResponse>, t: Throwable) {
@@ -230,7 +273,7 @@ class DetailBoardActivity : AppCompatActivity() {
 
                     getUserID = temp.writerId!!
                     bindBoardData(temp)
-                    if(temp.writerImage != null){
+                    if (temp.writerImage != null) {
                         requestManager.load(temp.writerImage).into(iv_item_board_profile_img)
                     }
 
@@ -248,9 +291,9 @@ class DetailBoardActivity : AppCompatActivity() {
 
 
     //보드좋아요
-    private  fun getBoardLikeResponse(b_id: Int){
+    private fun getBoardLikeResponse(b_id: Int) {
         val postBoardLikeResponse = networkService.postBoardLikeResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(this),
                 b_id)
 
         postBoardLikeResponse.enqueue(object : Callback<PostBoardLikeResponse> {
@@ -261,7 +304,7 @@ class DetailBoardActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostBoardLikeResponse>, response: Response<PostBoardLikeResponse>) {
                 if (response.isSuccessful) {
 
-                    Log.e("통신성공","  통신 성공")
+                    Log.e("통신성공", "  통신 성공")
                     if (response.body()!!.message == "보드 추천 해제 성공") {
                         //좋아요 해재
 
@@ -270,7 +313,7 @@ class DetailBoardActivity : AppCompatActivity() {
                         iv_item_board_like.visibility = View.VISIBLE
 
                         //인트형으로 바꾸기
-                        var cnt =Integer.parseInt(tv_item_board_like_cnt.getText().toString())-1
+                        var cnt = Integer.parseInt(tv_item_board_like_cnt.getText().toString()) - 1
                         tv_item_board_like_cnt.setText(cnt.toString())
 
                     } else {
@@ -281,11 +324,10 @@ class DetailBoardActivity : AppCompatActivity() {
                         iv_item_board_like.visibility = View.GONE
                         iv_item_board_like_on.visibility = View.VISIBLE
 
-                        var cnt =Integer.parseInt(tv_item_board_like_cnt.getText().toString())+1
+                        var cnt = Integer.parseInt(tv_item_board_like_cnt.getText().toString()) + 1
                         tv_item_board_like_cnt.setText(cnt.toString())
                     }
-                }
-                else{
+                } else {
                     Log.v("Detail", "error = " + response.errorBody().toString())
                 }
             }
@@ -297,14 +339,12 @@ class DetailBoardActivity : AppCompatActivity() {
     private fun bindBoardData(temp: DetailedBoardData) {
 
         /*타이틀*/
-        tv_detail_board_time.text = temp.time!!.substring(0,16).replace("T"," ")
-        if(temp.category == "QUESTION") {
+        tv_detail_board_time.text = temp.time!!.substring(0, 16).replace("T", " ")
+        if (temp.category == "QUESTION") {
             tv_detail_board_category.text = "질문"
-        }
-        else if(temp.category == "INSPIRATION") {
+        } else if (temp.category == "INSPIRATION") {
             tv_detail_board_category.text = "영감"
-        }
-        else if(temp.category == "COWORKING"){
+        } else if (temp.category == "COWORKING") {
             tv_detail_board_category.text = "협업"
         }
         tv_detail_board_category.text = temp.category
@@ -326,8 +366,27 @@ class DetailBoardActivity : AppCompatActivity() {
         tv_detail_board_contents_text.text = temp.content
         //이미지
 
-        for (i in 0..temp.images.size - 1)
-            requestManager.load(temp.images[0]).centerCrop().into(iv_detail_board_contents_image)
+        //이미지 뷰
+        if (temp.images.size == 0) {
+            item_detailboard_img_layout.visibility = View.GONE
+            iv_basic_img_detailed.visibility = View.VISIBLE
+        } else {
+            for (i in 0..temp.images.size - 1) {
+                if (temp.images.size == 0) {
+                    Log.v("asdf", "사이즈 0" + temp.images.size)
+                    iv_item_detailboard_contents_image_viewpager.visibility = View.GONE
+                } else {
+                    Log.v("asdf", "사이즈 있음 " + temp.images.size)
+                    var adapter = ImageAdapter(ctx, requestManager, temp.images)
+                    iv_item_detailboard_contents_image_viewpager.adapter = adapter
+                    if (temp.images[i] == "abcd") {
+                        iv_item_detailboard_contents_image_viewpager.visibility = View.GONE
+                    }
+                }
+            }
+        }
+
+
         /* profile */
         //개인정보
         tv_item_board_profile_name.text = temp.writer
@@ -390,7 +449,7 @@ class DetailBoardActivity : AppCompatActivity() {
     //보드공유 통신
     private fun getBoardShareResponse(b_id: Int) {
         val postBoardshareResponse = networkService.postBoardShareResponse("application/json",
-                "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg",
+                SharedPreferenceController.getAuthorization(this),
                 b_id)
 
         postBoardshareResponse.enqueue(object : Callback<PostBoardShareResponse> {
@@ -421,16 +480,15 @@ class DetailBoardActivity : AppCompatActivity() {
 
     fun postReBoard() {
 
-        var token: String = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg"
-
         var networkService = ApplicationController.instance.networkService
         Log.v("Detail", "보드 넘버 = " + boardId)
         val boardId = RequestBody.create(MediaType.parse("text.plain"), boardId.toString())
         val content = RequestBody.create(MediaType.parse("text.plain"), detail_board_reboard_edit.text.toString())
 
-        val postReBoardResponse = networkService.postReBoard(token, boardId, content, reboardImagesList)
+        val postReBoardResponse = networkService.postReBoard(SharedPreferenceController.getAuthorization(this),
+                boardId, content, reboardImagesList)
 
-        Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + token + ", 내용 = " + detail_board_reboard_edit.text.toString())
+        Log.v("TAG", "프로젝트 생성 전송 : 토큰 = " + SharedPreferenceController.getAuthorization(this)+ ", 내용 = " + detail_board_reboard_edit.text.toString())
 
         postReBoardResponse.enqueue(object : retrofit2.Callback<PostResponse> {
 
@@ -503,7 +561,7 @@ class DetailBoardActivity : AppCompatActivity() {
                     Log.v("TAG", "리보드 수정 응답 status = " + response.body()!!.status)
                     Log.v("TAG", "리보드 수정 응답 message = " + response.body()!!.message)
                     detail_board_reboard_img_recyclerview.visibility = View.GONE
-                    
+
                     reboardImageUrlList.clear()
                     detail_board_reboard_edit.setText("")
                     getDetailedBoardResponse(0)
@@ -521,7 +579,8 @@ class DetailBoardActivity : AppCompatActivity() {
 
     }
 
-    override protected fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    @Override
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         detailBoardRecyclerViewAdapter.onActivityResult(requestCode, resultCode, data!!)
         if (requestCode == 30) {
             modifyFlag = 1
@@ -536,10 +595,9 @@ class DetailBoardActivity : AppCompatActivity() {
                 }
             }
             reboardImageUrlList.clear()
-            if(temp.replys[seletectedPostion]!!.images.size == 0){
+            if (temp.replys[seletectedPostion]!!.images.size == 0) {
                 detail_board_reboard_img_recyclerview.visibility = View.GONE
-            }
-            else{
+            } else {
                 detail_board_reboard_img_recyclerview.visibility = View.VISIBLE
                 reboardImageUrlList.add(ImageType(temp.replys[seletectedPostion]!!.images[0], null))
                 boardImageAdapter = BoardImageAdapter(reboardImageUrlList, requestManager, 2, 0, 1)

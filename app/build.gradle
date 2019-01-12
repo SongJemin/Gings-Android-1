@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.computer.inu.myworkinggings"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 28
         multiDexEnabled true
         versionCode 1
@@ -75,6 +75,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     implementation 'com.airbnb.android:lottie:2.3.0'
     compile 'com.kakao.sdk:kakaolink:1.15.1'
+    
 
 
 

@@ -55,8 +55,8 @@ class HomeBoardFragment : Fragment() {
     //검색 리사이클러뷰
     lateinit var BoardDataForSearch: ArrayList<BoardData>
 
-    //홈보드 리사이클러뷰
     companion object {
+        //홈보드 리사이클러뷰
         lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
     }
 
@@ -74,19 +74,21 @@ class HomeBoardFragment : Fragment() {
         requestManager = Glide.with(this)
 
         getBoard()
-        toast( SharedPreferenceController.getAuthorization(context!!).toString())
+        Log.v("토큰ㅋ",SharedPreferenceController.getAuthorization(context!!).toString())
+
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        /*
+
         // 당겨서 새로 고침 기능
         sr_homeboard_refresh.setOnRefreshListener {
             getBoard()
             sr_homeboard_refresh.isRefreshing=false
         }
-*/
+
+
         //최상단으로
         rl_logo_goto_top.setOnClickListener {
 
@@ -94,7 +96,7 @@ class HomeBoardFragment : Fragment() {
             rv_item_board_list_for_search.smoothScrollToPosition( 0 )
             rv_item_board_list.smoothScrollToPosition( 0 )*/
 
-            //nested_home_board.fullScroll(View.FOCUS_UP)
+            //nested_home_board.fullScroll
             nested_home_board.smoothScrollTo(0,0)
         }
 
@@ -237,10 +239,11 @@ class HomeBoardFragment : Fragment() {
 
     //보드 통신
     fun getBoard() {
-        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 5, 40) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
             override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
+
                 if (response!!.isSuccessful) {
                     BoardItemList.clear()
                     BoardData.clear()
@@ -261,7 +264,6 @@ class HomeBoardFragment : Fragment() {
                     boardRecyclerViewAdapter.notifyDataSetChanged()
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
-                    toast("통신")
 
 
                 }

@@ -8,5 +8,8 @@ data class ChatListItem (
         var ChatDateTime : String?
         */
         var ChatUserID : Int?,
-        var ChatContent : String?
+        var ChatUserName : String?,
+        var ChatUserImgUrl : String?,
+        var ChatContent : String?,
+        var ChatDateTime : String?
 )

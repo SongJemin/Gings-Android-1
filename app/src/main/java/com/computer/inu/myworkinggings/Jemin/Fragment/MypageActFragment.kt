@@ -48,10 +48,12 @@ class MypageActFragment : Fragment(){
         val v : View = inflater.inflate(R.layout.fragment_mypage_act,container,false)
 
         val extra = arguments
-
         my_or_other_flag = extra!!.getInt("my_or_other_flag")
+        Log.v("asdf","my other 플래그 = " + my_or_other_flag)
+
         if(my_or_other_flag == 1){
             userID = extra!!.getInt("userID")
+            Log.v("asdf","활동 유저 넘버 = " + userID)
             getOtherActive()
         }
         else{
@@ -62,13 +64,16 @@ class MypageActFragment : Fragment(){
     }
 
     fun getOtherActive() {
+        Log.v("asdf","타인활동 번호 = " + userID)
         var getOtherActiveResponse = networkService.getOtherActive(SharedPreferenceController.getAuthorization(context!!), userID) // 네트워크 서비스의 getContent 함수를 받아옴
         getOtherActiveResponse.enqueue(object : Callback<GetOtherActiveResponse> {
             override fun onResponse(call: Call<GetOtherActiveResponse>?, response: Response<GetOtherActiveResponse>?) {
                 Log.v("TAG", "타인 활동 목록 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     Log.v("TAG", "타인 활동 목록 조회 성공")
+                    getOtherActiveData.clear()
                     getOtherActiveData = response.body()!!.data
+                    Log.v("asdf","타인 활동 목록 = " + response!!.body().toString())
                     guestActAdapter = GuestActAdapter(context!!, getOtherActiveData)
                     mypage_act_recyclerview.layoutManager = LinearLayoutManager(activity)
                     mypage_act_recyclerview.adapter = guestActAdapter
@@ -88,6 +93,7 @@ class MypageActFragment : Fragment(){
                 Log.v("TAG", "나의 활동 페이지 서버 통신 연결")
                 if (response!!.isSuccessful) {
                     Log.v("MyTAG", "나의 활동 페이지 서버 통신 연결 성공")
+                    getMyActiveData.clear()
                     getMyActiveData = response.body()!!.data
                     guestActAdapter = GuestActAdapter(context!!,  getMyActiveData)
                     mypage_act_recyclerview.layoutManager = LinearLayoutManager(activity)

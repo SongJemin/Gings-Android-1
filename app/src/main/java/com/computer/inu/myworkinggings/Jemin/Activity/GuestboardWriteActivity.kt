@@ -8,9 +8,11 @@ import com.computer.inu.myworkinggings.Jemin.POST.PostResponse
 import com.computer.inu.myworkinggings.Network.ApplicationController
 import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_guestboard_write.*
+import org.jetbrains.anko.ctx
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,7 +46,7 @@ class GuestboardWriteActivity : AppCompatActivity() {
 
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
-        var postOtherGuestBoardResponse = networkService.postOtherGuestBoard("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", userID, gsonObject)
+        var postOtherGuestBoardResponse = networkService.postOtherGuestBoard(SharedPreferenceController.getAuthorization(ctx), userID, gsonObject)
         postOtherGuestBoardResponse.enqueue(object : Callback<PostResponse> {
 
             override fun onResponse(call: Call<PostResponse>, response: Response<PostResponse>) {

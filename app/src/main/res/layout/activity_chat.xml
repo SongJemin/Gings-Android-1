@@ -90,14 +90,7 @@
             android:paddingLeft="10dp"
             />
 
-        <Button
-            android:id="@+id/chat_disconnect_btn"
-            android:layout_width="48dp"
-            android:layout_height="48.8dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="40dp"
-            android:text="해제"
-            />
+
         <Button
             android:id="@+id/chat_send_btn"
             android:layout_width="48dp"

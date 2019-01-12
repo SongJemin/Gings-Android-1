@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Jemin.Adapter
 
+import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -10,8 +11,9 @@ import android.view.ViewGroup
 import com.bumptech.glide.RequestManager
 import com.computer.inu.myworkinggings.Jemin.Data.ChatListItem
 import com.computer.inu.myworkinggings.R
+import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 
-class ChatAdapter (private var chatListItem: ArrayList<ChatListItem>) : RecyclerView.Adapter<ChatViewHolder>(){
+class ChatAdapter (var ctx : Context, private var chatListItem: ArrayList<ChatListItem>) : RecyclerView.Adapter<ChatViewHolder>(){
 
     val TAG = "ChatAdapter"
     var userID : Int = 0
@@ -26,14 +28,14 @@ class ChatAdapter (private var chatListItem: ArrayList<ChatListItem>) : Recycler
 
     //데이터클래스와 뷰홀더를 이어준다.
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-
+        userID = SharedPreferenceController.getUserId(ctx)
         // 내가 보낸 채팅일 경우
-        if(chatListItem[position]!!.ChatUserID == 0)
+        if(chatListItem[position]!!.ChatUserID == SharedPreferenceController.getUserId(ctx))
         {
             Log.v(TAG, "보낸 메세지")
             holder.chatLeftTime.visibility = View.VISIBLE
             holder.chatRightTime.visibility = View.GONE
-           // holder.chatContent.setBackgroundResource(R.drawable.chat_purple)
+            holder.chatContent.setBackgroundResource(R.drawable.red)
             holder.chatProfileLayout.visibility = View.GONE
             holder.chatUserName.visibility = View.GONE
             holder.chatChatLayout.gravity = Gravity.END
@@ -69,7 +71,7 @@ class ChatAdapter (private var chatListItem: ArrayList<ChatListItem>) : Recycler
             }
 
             holder.chatRightTime.visibility = View.VISIBLE
-           // holder.chatContent.setBackgroundResource(R.drawable.chat_gray)
+            holder.chatContent.setBackgroundResource(R.drawable.white)
             holder.chatMainLayout.gravity = Gravity.LEFT
             holder.chatMineViewLayout.visibility = View.GONE
 

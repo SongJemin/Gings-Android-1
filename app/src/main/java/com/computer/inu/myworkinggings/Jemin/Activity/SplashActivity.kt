@@ -7,22 +7,31 @@ import android.os.Handler
 import com.computer.inu.myworkinggings.Moohyeon.Activity.LoginActivity
 import com.computer.inu.myworkinggings.R
 import android.os.Looper.loop
+import android.util.Log
 import android.view.View
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
+import com.computer.inu.myworkinggings.Jemin.RealmDB.ChatRoom
+import com.computer.inu.myworkinggings.Jemin.RealmDB.User
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_splash.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class SplashActivity : Activity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_splash)
-        val gifImage = GlideDrawableImageViewTarget(splash_all_background)
 
-        Glide.with(this).load(R.drawable.real_final_splash).into(gifImage)
+
+        setContentView(R.layout.activity_splash)
+
+
+        Glide.with(this).load(R.drawable.real_final_splash).into(splash_all_background)
 /*
         val animationView = findViewById<View>(R.id.animation_view) as LottieAnimationView
         animationView.setAnimation("gings_splash.json")
@@ -33,7 +42,10 @@ class SplashActivity : Activity() {
         //startActivity(intent)
         val hd = Handler()
         hd.postDelayed(splashhandler(), 3000) // 3000ms=3초후에 핸들러 실행 //딜레이 3000
+
     }
+
+
 
     private inner class splashhandler : Runnable {
         override fun run() {

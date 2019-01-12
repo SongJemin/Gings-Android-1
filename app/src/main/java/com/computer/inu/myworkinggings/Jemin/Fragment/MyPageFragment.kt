@@ -60,6 +60,8 @@ class MyPageFragment : Fragment() {
         bundle.putString("company", company)
         bundle.putString("image", image)
         bundle.putString("field", field)
+        bundle.putInt("userID", userID)
+        bundle.putInt("my_or_other_flag", my_or_other_flag)
         Log.v("asdf", "보내는필드 = " + field)
         bundle.putString("status", status)
         bundle.putInt("coworkingEnabled", coworkingEnabled)
@@ -81,6 +83,8 @@ class MyPageFragment : Fragment() {
             bundle.putString("company", company)
             bundle.putString("image", image)
             bundle.putString("field", field)
+            bundle.putInt("my_or_other_flag", my_or_other_flag)
+            bundle.putInt("userID", userID)
             Log.v("asdf", "보내는필드 = " + field)
             bundle.putString("status", status)
             bundle.putInt("coworkingEnabled", coworkingEnabled)
@@ -93,6 +97,7 @@ class MyPageFragment : Fragment() {
             val bundle = Bundle()
             bundle.putString("name", name)
             bundle.putInt("my_or_other_flag", my_or_other_flag)
+            bundle.putInt("userID", userID)
             myactFragment.setArguments(bundle)
             transaction.replace(R.id.mypage_content_layout, myactFragment)
             transaction.commit()
@@ -111,11 +116,12 @@ class MyPageFragment : Fragment() {
             userID = extra!!.getInt("userID")
             my_or_other_flag = 1
             Log.v("MypageFragent", "받아온 유저 아이디 = " +userID)
+            iv_btn_my_page_chat.visibility = View.VISIBLE
             getOtherPage()
         }
         else{
             my_or_other_flag = 0
-
+            iv_btn_my_page_chat.visibility = View.GONE
             getUserPagePost()
         }
 
@@ -203,7 +209,7 @@ class MyPageFragment : Fragment() {
                     }
 
                     if(response.body()!!.data.image == "")
-                    name = response.body()!!.data.name!!
+                        name = response.body()!!.data.name!!
                     if(response.body()!!.data.job!! == "\"\""){
                         mypage_job_tv.text = "역할"
                         job = "역할"
@@ -348,7 +354,7 @@ class MyPageFragment : Fragment() {
 
     fun transRegion(regionValue : String){
         var selectedRegion : String = ""
-                selectedRegion = regionValue
+        selectedRegion = regionValue
         if(regionValue == "SEOUL"){
             selectedRegion = "서울"
         }

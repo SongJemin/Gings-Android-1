@@ -368,5 +368,9 @@ interface NetworkService {
             @Header("Authorization") Authorization: String,
             @Path("boardId") boardId: Int
     ) : Call<PostBlockBoardIDResponse>
-
+    @GET("/alarm/main")
+    fun getAlarmResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String
+    ) : Call<GetAlarmResponse>
 }

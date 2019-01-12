@@ -6,8 +6,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.computer.inu.myworkinggings.Hyunjin.Data.AlarmData
+import com.computer.inu.myworkinggings.Moohyeon.Data.MyAlarmData
 import com.computer.inu.myworkinggings.R
 
 
@@ -21,14 +24,11 @@ class AlarmDataRecyclerViewAdapter(val ctx : Context, val dataList : ArrayList<A
     override fun getItemCount(): Int = dataList.size
     override fun onBindViewHolder(holder: Holder, position: Int) {
 //뷰 바인딩!!
-        holder.title.text = dataList[position].title
-        holder.content.text = dataList[position].content
-        holder.time.text = dataList[position].time
+        holder.title.text = dataList[position].sentence
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val title : TextView = itemView.findViewById(R.id.tv_rv_item_alarm_title) as TextView
-        val content : TextView = itemView.findViewById(R.id.tv_rv_item_alarm_content) as TextView
-        val time : TextView = itemView.findViewById(R.id.tv_rv_item_alarm_time) as TextView
+
     }
 }

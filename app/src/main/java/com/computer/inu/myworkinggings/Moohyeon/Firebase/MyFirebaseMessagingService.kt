@@ -1,6 +1,9 @@
 package com.computer.inu.myworkinggings.Moohyeon.Firebase
 
-import android.app.*
+import android.app.ActivityManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -12,91 +15,143 @@ import com.computer.inu.myworkinggings.Moohyeon.Activity.LoginActivity
 import com.computer.inu.myworkinggings.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import android.system.Os.link
-import android.os.Bundle
-import com.computer.inu.myworkinggings.Jemin.Activity.MainActivity
+import android.R.attr.data
+import com.computer.inu.myworkinggings.R.string.default_notification_channel_id
+import org.jetbrains.anko.ctx
 import org.jetbrains.anko.notificationManager
-
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
+    private val TAG = "MessagingService"
 
-    /**
-     * Called when message is received.
-     *
-     * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
-     */
-    // [START receive_message]
-
-    // 푸시 메세지를 수신했을때 호출되는 메소드
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-
-        Log.d(TAG, "메세지를 받음")
-        if (isAppRunning(this)) {           // 앱 포그라운드 실행중
-            Log.d(TAG, "앱 포그라운드 실행중")
-
-            // 푸시 메세지 내용 pushDataMap
-            val sender_id = remoteMessage!!.getData().get("sender_id").toString()
-            // 이렇게 데이터에 있는걸 키값으로 뽑아 쓰면 된다.
-            val title = remoteMessage.getData().get("title")!!
-            val body = remoteMessage.notification!!.body!!
-            //val body = "asdf"
-            //val body = remoteMessage.getData()!!.get("body")!!
-            sendNotification(title, body ,sender_id)
-
-
-        }
-        // 앱 백그라운드 실행중
-        else {
-            Log.d(TAG, "app background running...")
-            // 푸시 메세지 내용 pushDataMap
-            val sender_id = remoteMessage!!.getData().get("sender_id").toString()
-            val title = remoteMessage.getData().get("title")!!
-            val body = remoteMessage.getData()!!.get("body")!!
-            Log.v("TAG", "백그라운드 타이틀 = " + title)
-            Log.v("TAG", "백그라운드 바디 = " + body)
-            sendNotification(title, body,sender_id)
-        }
-
-    }
-
-    // 푸시 메세지를 알림으로 표현해주는 메소드
-    private fun sendNotification(title : String, body : String, sender_id :String) {
-        val channelId = getString(R.string.default_notification_channel_id)
-        val channelName ="Channel Name"
-        val intent = Intent(this, MainActivity::class.java)
-        Log.v("TAG", "sendNotification = " + body)
-
-        val pendingIntent : PendingIntent = PendingIntent.getActivity(this,0,intent,
-                PendingIntent.FLAG_ONE_SHOT)
-
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-
-        val nBuilder = Notification.Builder(this,channelId)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setChannelId(channelId)
-                .setVisibility(Notification.VISIBILITY_PUBLIC)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setVibrate(longArrayOf(300, 500, 300, 500))     //진동
-                .setLights(Color.BLUE,1,1)
-                .setContentIntent(pendingIntent)
-
-        var nManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel =  NotificationChannel(channelId, title, NotificationManager.IMPORTANCE_DEFAULT)
-            channel.setDescription(body)
-           nManager.createNotificationChannel(channel);
-            nBuilder.setChannelId(channelId)
+            // Create the NotificationChannel
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel = NotificationChannel("gings", name, importance)
+            mChannel.description = descriptionText
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(mChannel)
         }
-        nManager.notify(0 /* ID of notification */, nBuilder.build())
+        val notification = remoteMessage!!.notification
+        val data = remoteMessage!!.data
+
+        val title = remoteMessage.getData().get("title")!!
+        val body = remoteMessage.getData().get("body")!!
+        var clickAction = "오류"
+         clickAction = remoteMessage.getData().get("clickAction")!!
+        val sender_id= remoteMessage.getData().get("sender_id")!!
+/*
+        sendNotification(title,body)*/
+
+       //intent.putExtra("sender_id", sender_id)
+        if (isAppRunning(this)) {           // 앱 포그라운드 실행중
+            Log.d(TAG, "앱 포그라운드")
+      /*      val intent = Intent(this,LoginActivity::class.java)          // 로그인 화면으로 이동.
+            intent.putExtra("sender_id",sender_id)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)*/
+
+            Log.d(TAG, "앱 sendNotification")
+            val channelId = "default_channel_id"
+            val channelDescription = "Default Channel"
+// Since android Oreo notification channel is needed.
+//Check if notification channel exists and if not create one
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("sender_id",sender_id)
+            intent.putExtra("clickAction",clickAction)
+            val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_ONE_SHOT)
+
+            val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+            val nBuilder = NotificationCompat.Builder(this,channelId)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setChannelId(channelId)
+                    .setVibrate(longArrayOf(300, 500, 300, 500))     //진동
+                    .setLights(Color.BLUE, 1, 1)
+                    .setContentIntent(pendingIntent)
+
+            val nManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.notify(0 /* ID of notification */, nBuilder.build())
+
+        } else {              // 앱 백그라운드 실행중
+            Log.d(TAG, "앱 백그라운드")
+            Log.d(TAG, "앱 sendNotification")
+            val channelId = "default_channel_id"
+            val channelDescription = "Default Channel"
+// Since android Oreo notification channel is needed.
+//Check if notification channel exists and if not create one
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("sender_id",sender_id)
+            val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_ONE_SHOT)
+
+            val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+            val nBuilder = NotificationCompat.Builder(this,channelId)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setChannelId(channelId)
+                    .setVibrate(longArrayOf(300, 500, 300, 500))     //진동
+                    .setLights(Color.BLUE, 1, 1)
+                    .setContentIntent(pendingIntent)
+
+            val nManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.notify(0 /* ID of notification */, nBuilder.build())
+        }
     }
+        /*private fun sendNotification(title: String, body: String) {
+            Log.d(TAG, "앱 sendNotification")
+            val channelId = "default_channel_id"
+            val channelDescription = "Default Channel"
+// Since android Oreo notification channel is needed.
+//Check if notification channel exists and if not create one
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra("sender_id",sender_id)
+            val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_ONE_SHOT)
+
+            val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+
+            val nBuilder = NotificationCompat.Builder(this,channelId)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentTitle(title)
+                    .setContentText(body)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setChannelId(channelId)
+                    .setVibrate(longArrayOf(300, 500, 300, 500))     //진동
+                    .setLights(Color.BLUE, 1, 1)
+                    .setContentIntent(pendingIntent)
+
+            val nManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            nManager.notify(0 *//* ID of notification *//*, nBuilder.build())
+        }
+*/
+
 
     companion object {
 
         private val TAG = "MyFirebaseMsgService"
+
 
         fun isAppRunning(context: Context): Boolean {                        // 어플이 실행 중인지 확인 하는 함수.
             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
@@ -109,5 +164,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             return false
         }
     }
+
 
 }

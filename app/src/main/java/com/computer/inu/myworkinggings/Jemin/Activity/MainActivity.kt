@@ -31,6 +31,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_exit.*
 import kotlinx.android.synthetic.main.dialog_exit.view.*
 import android.app.Activity
+import android.os.Handler
+import com.computer.inu.myworkinggings.Moohyeon.Activity.DetailBoardActivity
+import kotlinx.android.synthetic.main.activity_sign_up3.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -51,6 +56,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val delayHandler = Handler()
+        delayHandler.postDelayed(Runnable {
+            if(intent.getStringExtra("check")!=null){
+                if(intent.getStringExtra("check")=="마이페이지"){
+                    main_mypage_btn.setSelected(true)
+                    main_directory_btn.setSelected(false)
+                    main_lounge_btn.setSelected(false)
+                    main_alarm_btn.setSelected(false)
+                    main_hometab_btn.setSelected(false)
+                    // '마이페이지 탭' 클릭 시 '마이페이지 프래그먼트' 호출
+                    callFragment(FRAGMENT5)
+                }
+                else if(intent.getStringExtra("check")=="detail board"){
+                    startActivity<DetailBoardActivity>( "sender_id" to intent.getStringExtra("sender_id"))
+
+                }
+            }
+        }, 700)
 
 
         // 탭 버튼에 대한 리스너 연결

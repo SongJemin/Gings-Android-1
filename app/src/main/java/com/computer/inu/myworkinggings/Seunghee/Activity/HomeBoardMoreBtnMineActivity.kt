@@ -59,11 +59,12 @@ class HomeBoardMoreBtnMineActivity : AppCompatActivity() {
                 //통신 성공 시 수행되는 메소드
                 override fun onResponse(call: Call<DeleteBoardResponse>, response: Response<DeleteBoardResponse>) {
                     if (response.isSuccessful) {
-                        toast("삭제 성공")
+
                         //if(intent.getBooleanExtra("isDetailed", false))
                             //finish()
                         //startActivity<MainActivity>()
                         //arrayOf(HomeBoardFragment.boardRecyclerViewAdapter)
+                        Log.e("보드공유 통신성공", "  통신 성공")
 
                         position = intent.getIntExtra("Position", 0)
 

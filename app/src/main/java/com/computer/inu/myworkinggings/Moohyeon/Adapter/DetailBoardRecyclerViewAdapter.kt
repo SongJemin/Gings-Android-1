@@ -110,25 +110,34 @@ class DetailBoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<R
             })
         }
 
+
+        //댓글 더보기 버튼
         holder.reboardMoreImg.setOnClickListener {
             var intent = Intent(ctx, ReboardMoreBtnMineActivity::class.java)
             intent.putExtra("reboardId", dataList[position]!!.replyId)
             Log.v("asdf","선택 리보드 ID 값 = " + dataList[position]!!.replyId)
 
+            //수정
             (ctx as Activity).startActivityForResult(intent, 30)
+            //삭제
+            ctx.startActivityForResult(intent, 33)
+
         }
+
+        //onActivityResult(30,)
 
         //이미지
         lateinit var requestManager: RequestManager
         requestManager = Glide.with(ctx)
 
-        //사진이 하나밖에 없을 경우,
+       //사진이 하나밖에 없을 경우,
         if( dataList[position]!!.images.size == 0 )
             holder.contents_images.visibility = View.GONE
         else{
             for (i in 0..dataList[position]!!.images.size - 1)
                 requestManager.load(dataList[position]!!.images[0]).into(holder.contents_images)
         }
+
     }
 
 

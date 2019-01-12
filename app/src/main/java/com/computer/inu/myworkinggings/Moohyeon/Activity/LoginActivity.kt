@@ -180,6 +180,7 @@ class LoginActivity : AppCompatActivity() {
 
                             } else {
                                 //***로그인 통신***
+                                //toast("11못들어옴=====" + boardID)
                                 Log.v("카카오로그인", "으로들어오지않음")
 
                                 startActivity<MainActivity>()

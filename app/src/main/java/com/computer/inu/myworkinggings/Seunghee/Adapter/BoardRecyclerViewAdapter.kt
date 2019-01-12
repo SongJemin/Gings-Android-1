@@ -92,6 +92,8 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
                 holder.tag.append("    #" + dataList[position].keywords[i])
             }
         }
+
+        //이미지 뷰
         if (dataList[position].images.size == 0) {
             holder.imageLayout.visibility = View.GONE
             holder.contents_basic_img.visibility = View.VISIBLE
@@ -152,7 +154,7 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             ///******
             ctx.toast(dataList[position].boardId!!.toString())
             intent.putExtra("BoardId", dataList[position].boardId)
-            (ctx as MainActivity).startActivityForResult(intent, 20);
+            (ctx as MainActivity).startActivityForResult(intent, 20)
 
         }
 
@@ -160,10 +162,9 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
         //더보기 버튼 클릭 시
         holder.more_btn.setOnClickListener {
 
-
             ctx.toast(dataList[position].boardId!!.toString())
             if (SharedPreferenceController.getUserId(ctx) == dataList[position].writerId) {
-//본인 게시글 클릭
+            //본인 게시글 클릭
                 ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "Position" to position, "isDetailed" to true)
             } else {
                 //일반 게시글 클릭
@@ -177,13 +178,6 @@ class BoardRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<BoardIt
             var intent = Intent(ctx, DetailBoardActivity::class.java)
             intent.putExtra("BoardId", dataList[position].boardId)
             ctx.startActivity(intent)
-            //본인 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnMineActivity>("BoardId" to dataList[position].boardId, "Position" to position)
-
-            //일반 게시글 클릭
-            ctx.startActivity<HomeBoardMoreBtnActivity>("BoardId" to dataList[position].boardId, "Position" to position)
-
-            position
             //ctx.toast()
         }
 

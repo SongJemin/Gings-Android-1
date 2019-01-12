@@ -56,7 +56,6 @@ class HomeBoardFragment : Fragment() {
     lateinit var BoardDataForSearch: ArrayList<BoardData>
 
     companion object {
-
         //홈보드 리사이클러뷰
         lateinit var boardRecyclerViewAdapter: BoardRecyclerViewAdapter
     }
@@ -240,7 +239,7 @@ class HomeBoardFragment : Fragment() {
 
     //보드 통신
     fun getBoard() {
-        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 20, 100) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
             override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")

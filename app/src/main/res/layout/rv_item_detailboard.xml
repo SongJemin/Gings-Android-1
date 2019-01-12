@@ -117,26 +117,26 @@
         </RelativeLayout>
     </RelativeLayout>
 
-        <TextView
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="65dp"
-            android:id="@+id/tv_item_detailboard_contents"
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#222222"
-            android:lineSpacingExtra="5sp"
-            android:layout_below="@+id/iv_item_detailboard_top_layout"
-            android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
-            />
-        <ImageView
-            android:id="@+id/iv_item_board_image_contents"
-            android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/tv_item_detailboard_contents"
-            android:layout_width="245dp"
-            android:layout_height="245dp"
-            android:src="@mipmap/ic_launcher_round"/>
+    <TextView
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="65dp"
+        android:id="@+id/tv_item_detailboard_contents"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#222222"
+        android:lineSpacingExtra="5sp"
+        android:layout_below="@+id/iv_item_detailboard_top_layout"
+        android:text="http://www.changupguide.com이 사이트 참고하셔서 준비하시면 좋을거같아요 여러 스타트업의 일상스토리와 팁, 노하우 등을 공유하고 다양한 분야의 인재들이 소통하고있습니다ㅎ"
+        />
+    <ImageView
+        android:id="@+id/iv_item_board_image_contents"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tv_item_detailboard_contents"
+        android:layout_width="245dp"
+        android:layout_height="245dp"
+        android:src="@mipmap/ic_launcher_round"/>
     <LinearLayout
         android:id="@+id/rv_item_detail_board_layout"
         android:layout_width="match_parent"

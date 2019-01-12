@@ -15,14 +15,15 @@
         android:id="@+id/tv_item_searching_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10sp"
+        android:textSize="13sp"
         android:textColor="#f7746b"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="5sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/noto_bold"
         android:text="소속 |"
         />
     <TextView
+        android:fontFamily="@font/noto_medium"
         android:layout_below="@id/tv_item_searching_team"
         android:id="@+id/tv_item_directory_searching_team_name"
         android:layout_width="wrap_content"
@@ -30,8 +31,8 @@
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
-        android:textSize="9sp"
-        android:layout_marginLeft="8dp"
+        android:textSize="13sp"
+        android:layout_marginLeft="5dp"
         android:text="깅스" />
     <TextView
         android:layout_marginTop="16dp"
@@ -40,22 +41,20 @@
         android:id="@+id/tv_item_searching_part"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="10sp"
+        android:textSize="13sp"
         android:textColor="#f7746b"
         android:letterSpacing="-0.01"
         android:lineSpacingExtra="5sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/noto_bold"
         android:text="역할 |"/>
     <TextView
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="5dp"
         android:layout_below="@+id/tv_item_searching_part"
         android:id="@+id/tv_item_directory_searching_role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:letterSpacing="-0.01"
-        android:lineSpacingExtra="6sp"
-        android:textSize="9sp"
+        android:fontFamily="@font/noto_medium"
+        android:textSize="13sp"
         android:textColor="#525252"
         android:text="PM" />
     <de.hdodenhof.circleimageview.CircleImageView
@@ -68,36 +67,43 @@
         android:layout_height="61dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img_default"/>
+
     <RelativeLayout
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/iv_item_directory_searching_profile_img"
+        android:layout_marginRight="6dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-
-            android:layout_below="@+id/tv_item_directory_searching_part"
-            android:id="@+id/tv_item_directory_searching_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:letterSpacing="-0.01"
-            android:lineSpacingExtra="4sp"
-            android:textSize="12sp"
-            android:layout_marginBottom="13dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="#222222"
-            android:text="이충엽" />
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/iv_item_directory_searching_profile_img">
 
 
         <TextView
-            android:layout_marginLeft="10dp"
             android:id="@+id/tv_item_directory_searching_part"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:textColor="#999999"
+            android:fontFamily="@font/noto_regular"
             android:letterSpacing="-0.01"
+            android:layout_marginBottom="-15dp"
+            android:layout_alignParentRight="true"
+            android:layout_above="@id/tv_item_directory_searching_profile_name"
             android:lineSpacingExtra="6sp"
-            android:text="기획" />
+            android:text="기획"
+            android:textColor="#999999"
+            android:textSize="9sp" />
+
+        <TextView
+            android:id="@+id/tv_item_directory_searching_profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_bold"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="4sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="true"
+            android:text="이충엽"
+            android:textColor="#222222"
+            android:textSize="13sp" />
+
 
 
     </RelativeLayout>

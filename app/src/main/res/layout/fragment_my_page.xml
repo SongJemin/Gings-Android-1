@@ -169,7 +169,7 @@
                         android:weightSum="45"
                         >
                         <Button
-                            android:textStyle="bold"
+                            android:fontFamily="@font/noto_bold"
                             android:textSize="14sp"
                             android:lineHeight="15sp"
                             android:id="@+id/mypage_intro_btn"
@@ -199,7 +199,7 @@
                         >
                         <Button
                             android:id="@+id/mypage_act_btn"
-                            android:textStyle="bold"
+                            android:fontFamily="@font/noto_bold"
                             android:textSize="14sp"
                             android:lineHeight="15sp"
                             android:layout_width="match_parent"

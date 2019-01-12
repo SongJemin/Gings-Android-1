@@ -30,11 +30,17 @@
             android:text="INNOVATOR CLUB"
             android:lineHeight="20sp"
             android:textColor="#000000"
-            android:textStyle="bold"
+            android:fontFamily="@font/noto_bold"
             android:textSize="20sp"
             />
 
     </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/rl_lounge_image"
@@ -53,12 +59,13 @@
         <RelativeLayout
             android:id="@+id/rl_lounge_introuce_introudeuce_bar"
             android:layout_width="40dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="182.7dp">
 
             <TextView
-                android:textStyle="bold"
+                android:fontFamily="@font/noto_regular"
+                android:layout_marginTop="-8dp"
                 android:id="@+id/tv_lounge_introduce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,12 +86,14 @@
             android:layout_marginTop="182.7dp">
 
             <TextView
+                android:fontFamily="@font/noto_regular"
                 android:id="@+id/tv_lounge_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="5sp"
                 android:text="일정"
+                android:layout_marginTop="-8dp"
                 android:lineHeight="20sp"
                 android:textColor="#000000"
                 android:textSize="17sp"
@@ -94,7 +103,6 @@
 
 
     //소개
-
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ll_lounge_introduce_introduce_layout"
@@ -102,7 +110,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/rl_lounge_image"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/rl_lounge_introducetext"
@@ -111,25 +119,27 @@
             android:background="#f9f9f9">
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_intro_stop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="31.7dp"
+                android:layout_marginTop="21.7dp"
                 android:lineSpacingExtra="7sp"
                 android:text="ABOUT"
                 android:textColor="#040404"
                 android:lineHeight="22sp"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                />
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:id="@+id/tv_lounge_intro_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="INNOVATOR CLUB"
-                android:layout_marginTop="50.7dp"
+                android:layout_marginTop="40.7dp"
                 android:textColor="#040404"
                 android:lineHeight="22sp"
                 android:textSize="16sp"
@@ -148,6 +158,7 @@
             android:background="#ffffff">
 
             <TextView
+                android:fontFamily="@font/noto_regular"
                 android:textSize="13sp"
                 android:lineHeight="24sp"
                 android:id="@+id/tv_rl_lounge_introdata"
@@ -198,110 +209,110 @@
     </LinearLayout>
 
     //일정
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="292dp"
-        >
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ll_lounge_introduce_introduce_schedule"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <RelativeLayout
-            android:id="@+id/rl_lounge_schedule_text"
+            >
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll_lounge_introduce_introduce_schedule"
+            android:visibility="invisible"
             android:layout_width="match_parent"
-            android:layout_height="57.7dp"
-            android:layout_below="@id/rl_lounge_image"
-            android:background="#f9f9f9">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-            <TextView
-                android:textStyle="bold"
-                android:id="@+id/tv_lounge_calendar_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20.7dp"
-                android:text="April"
-                android:textColor="#040404"
-                android:lineHeight="20sp"
-                android:textSize="16sp" />
+            <RelativeLayout
+                android:id="@+id/rl_lounge_schedule_text"
+                android:layout_width="match_parent"
+                android:layout_height="57.7dp"
+                android:layout_below="@id/rl_lounge_image"
+                android:background="#f9f9f9">
 
-            <TextView
-                android:textStyle="bold"
-                android:id="@+id/tv_lounge_calendar_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20.7dp"
-                android:lineSpacingExtra="7sp"
-                android:text="2019"
-                android:textColor="#040404"
-                android:textSize="15sp" />
+                <TextView
+                    android:fontFamily="@font/noto_bold"
+                    android:id="@+id/tv_lounge_calendar_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10.7dp"
+                    android:text="April"
+                    android:textColor="#040404"
+                    android:lineHeight="20sp"
+                    android:textSize="15sp" />
 
-        </RelativeLayout>
+                <TextView
+                    android:fontFamily="@font/noto_bold"
+                    android:id="@+id/tv_lounge_calendar_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="75dp"
+                    android:layout_marginTop="11.7dp"
+                    android:lineSpacingExtra="7sp"
+                    android:text="2019"
+                    android:textColor="#040404"
+                    android:textSize="15sp" />
 
-        <RelativeLayout
-            android:id="@+id/rl_lounge_event_calendar"
-            android:layout_width="328dp"
-            android:layout_height="217dp"
-            android:layout_below="@id/rl_lounge_schedule_text"
-            android:layout_gravity="center"
-            android:background="#ffffff">
-            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/calendarView"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_lounge_event_calendar"
                 android:layout_width="328dp"
                 android:layout_height="217dp"
-                app:mcv_showOtherDates="defaults"
-                app:mcv_selectionColor="#f7746b"
-                />
-        </RelativeLayout>
+                android:layout_below="@id/rl_lounge_schedule_text"
+                android:layout_gravity="center"
+                android:background="#ffffff">
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/calendarView"
+                    android:layout_width="328dp"
+                    android:layout_height="217dp"
+                    app:mcv_showOtherDates="defaults"
+                    app:mcv_selectionColor="#f7746b"
+                    />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/rl_lounge_event_text"
-            android:layout_width="match_parent"
-            android:layout_height="57.7dp"
-            android:layout_below="@id/rl_lounge_event_calendar"
-            android:background="#f9f9f9">
+            <RelativeLayout
+                android:id="@+id/rl_lounge_event_text"
+                android:layout_width="match_parent"
+                android:layout_height="57.7dp"
+                android:layout_below="@id/rl_lounge_event_calendar"
+                android:background="#f9f9f9">
 
-            <TextView
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20.7dp"
-                android:lineSpacingExtra="7sp"
-                android:text="PROGRAM"
-                android:textColor="#040404"
-                android:textSize="15sp"
-                android:lineHeight="20sp"
-                />
+                <TextView
+                    android:fontFamily="@font/noto_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10.7dp"
+                    android:lineSpacingExtra="7sp"
+                    android:text="PROGRAM"
+                    android:textColor="#040404"
+                    android:textSize="15sp"
+                    android:lineHeight="20sp"
+                    />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/rl_lounge_event_image"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_below="@id/rl_lounge_event_text">
+            <RelativeLayout
+                android:id="@+id/rl_lounge_event_image"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_below="@id/rl_lounge_event_text">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_lounge_frag_lounge_event_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                >
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_lounge_frag_lounge_event_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    >
+                </android.support.v7.widget.RecyclerView>
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
 </RelativeLayout>

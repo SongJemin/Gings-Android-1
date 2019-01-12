@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
@@ -40,7 +41,7 @@
                 android:gravity="center_horizontal"
                 android:lineHeight="20sp"
                 android:lineSpacingExtra="7sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/noto_bold"
                 android:text="설정"
                 android:textColor="#040404"
                 android:textSize="15sp" />
@@ -66,6 +67,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:fontFamily="@font/noto_bold"
                     android:id="@+id/tv_profile_name"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
@@ -77,6 +79,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:id="@+id/tv_profile_userId"
                     android:background="#ffffff"
                     android:layout_width="wrap_content"
@@ -84,7 +87,7 @@
                     android:lineSpacingExtra="5sp"
                     android:text=""
                     android:textColor="#000000"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -105,10 +108,9 @@
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="알림"
-
-                android:textStyle="bold"
+                android:fontFamily="@font/noto_bold"
                 android:textColor="#c45c55"
-                android:textSize="13sp"/>
+                android:textSize="14sp"/>
 
             <Switch
                 android:id="@+id/sw_profile_setting_menu_alarm"
@@ -117,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="27dp"
-                android:shadowColor="#b0caea" />
+                android:shadowColor="#c45c55" />
         </RelativeLayout>
 
         //프로필관리
@@ -131,16 +133,15 @@
 
             <TextView
                 android:background="#ffffff"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="프로필 관리"
-
-                android:textStyle="bold"
-                android:textColor="#c45c55"                android:textSize="13sp" />
+                android:fontFamily="@font/noto_bold"
+                android:textColor="#c45c55"
+                android:textSize="14sp" />
 
             //프로필 사진변경
             <RelativeLayout
@@ -158,6 +159,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -204,6 +206,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -248,6 +251,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -296,9 +300,9 @@
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:text="보안"
-                android:textStyle="bold"
+                android:fontFamily="@font/noto_bold"
                 android:textColor="#c45c55"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
             //비밀번호 변경
             <RelativeLayout
@@ -315,6 +319,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
@@ -359,6 +364,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
                         android:layout_marginTop="5dp"
                         android:id="@+id/tv_profile_setting_menu_logout"
                         android:layout_width="wrap_content"
@@ -414,6 +420,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:fontFamily="@font/noto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"

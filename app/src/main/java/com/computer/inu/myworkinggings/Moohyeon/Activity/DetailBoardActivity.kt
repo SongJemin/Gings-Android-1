@@ -72,7 +72,8 @@ class DetailBoardActivity : AppCompatActivity() {
     var deleteImagesUrl = ArrayList<String>()
     var prevImagesUrl = ArrayList<RequestBody>()
 
-    var getUserID: Int = 0
+    var judge = 0
+    var getUserID : Int = 0
 
     val networkService: com.computer.inu.myworkinggings.Network.NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -87,11 +88,52 @@ class DetailBoardActivity : AppCompatActivity() {
         getDetailedBoardResponse(0)
 
         boardId = intent.getIntExtra("BoardId", 0)
+        if(judge==0) {
+
+            if (intent.getStringExtra("sender_id") != null) {
+
+                judge = 1
+                val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", SharedPreferenceController.getAuthorization(this), Integer.parseInt(intent.getStringExtra("sender_id")) )
+
+                getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
+                    override fun onFailure(call: Call<GetDetailedBoardResponse>, t: Throwable) {
+                        Log.e("detailed_board fail", t.toString())
+                    }
+
+                    override fun onResponse(call: Call<GetDetailedBoardResponse>, response: Response<GetDetailedBoardResponse>) {
+                        if (response.isSuccessful) {
+                            //toast(intent.getIntExtra("BoardId",0))
+                            Log.v("ggg", "board list success")
+                            //Toast.makeText(applicationContext,"성공",Toast.LENGTH_SHORT).show()
+
+                            //보드연결
+                            temp = response.body()!!.data
+
+                            getUserID = temp.writerId!!
+                            bindBoardData(temp)
+                            if(temp.writerImage != null){
+                                requestManager.load(temp.writerImage).into(iv_item_board_profile_img)
+                            }
+
+                            //리보드연결
+                            val reboardtemp: ArrayList<ReplyData?> = response.body()!!.data.replys
+                            bindReBoardData(reboardtemp)
+
+                        }
+                    }
+
+                })
+
+            }
+        }else
+            boardId = intent.getIntExtra("BoardId", 0)
+
         requestManager = Glide.with(this)
         detail_board_reboard_btn.visibility = View.VISIBLE
         detail_board_reboard_modify_btn.visibility = View.GONE
         Log.v(TAG, "전송 받은 보드 ID = " + boardId)
         //postReBoard()
+
         detail_board_reboard_img_recyclerview.visibility = View.GONE
         //setRecyclerView()
 
@@ -213,7 +255,7 @@ class DetailBoardActivity : AppCompatActivity() {
         else {
             insertBoardID = boardId
         }
-        val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkwODg1Mjd9.P7rYzg9pNtc31--pL8qGYkC7cx2G93HhaizWlvForfg", insertBoardID)
+        val getDetailedBoardResponse = networkService.getDetailedBoardResponse("application/json", SharedPreferenceController.getAuthorization(this), insertBoardID)
 
         getDetailedBoardResponse.enqueue(object : Callback<GetDetailedBoardResponse> {
             override fun onFailure(call: Call<GetDetailedBoardResponse>, t: Throwable) {

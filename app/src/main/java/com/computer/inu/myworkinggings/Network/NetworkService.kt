@@ -369,10 +369,16 @@ interface NetworkService {
             @Path("boardId") boardId: Int
     ): Call<PostBlockBoardIDResponse>
 
+
     @DELETE("/deleteAccount")
     fun deleteAccountResponse(
             @Header("Content-type") content_type: String,
             @Header("Authorization") Authorization: String
     ): Call<DeleteAccountResponse>
 
+    @GET("/alarm/main")
+    fun getAlarmResponse(
+            @Header("Content-type") content_type: String,
+            @Header("Authorization") Authorization: String
+    ) : Call<GetAlarmResponse>
 }

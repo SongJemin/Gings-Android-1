@@ -74,8 +74,8 @@ class HomeBoardFragment : Fragment() {
         requestManager = Glide.with(this)
 
         getBoard()
-        toast( SharedPreferenceController.getAuthorization(context!!).toString())
         Log.v("토큰ㅋ",SharedPreferenceController.getAuthorization(context!!).toString())
+
         return view
     }
 
@@ -239,7 +239,7 @@ class HomeBoardFragment : Fragment() {
 
     //보드 통신
     fun getBoard() {
-        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 20, 100) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 5, 50) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
             override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
@@ -264,7 +264,6 @@ class HomeBoardFragment : Fragment() {
                     boardRecyclerViewAdapter.notifyDataSetChanged()
                     rv_item_board_list.adapter = boardRecyclerViewAdapter
                     rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
-                    toast("통신")
 
 
                 }

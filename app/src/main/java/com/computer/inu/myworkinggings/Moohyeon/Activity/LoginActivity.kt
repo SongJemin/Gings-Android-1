@@ -1,6 +1,8 @@
 package com.computer.inu.myworkinggings.Moohyeon.Activity
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.SharedPreferences
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
@@ -21,10 +23,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.support.v4.app.FragmentActivity
 import android.util.Base64
 import com.computer.inu.myworkinggings.Seunghee.db.SharedPreferenceController
 import com.google.firebase.iid.FirebaseInstanceId
 import com.kakao.util.helper.Utility.getPackageInfo
+import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.toast
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -56,7 +61,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        pushAlarm()
 
+        //Log.v("카카오 키 해쉬 갑=" , getKeyHash(this))
 
         Log.v("Login", "받는 보드 번호 = " + intent.getIntExtra("BoardId", -1))
 
@@ -64,30 +71,35 @@ class LoginActivity : AppCompatActivity() {
         Log.v("Login", "받는 보드 번호 (boardID)= " + boardID)
 
 
-        if (intent.getStringExtra("sender_id") != null) {
-            toast(intent.getStringExtra("sender_id"))
-        } else {
-            toast("값이 없다.")
-        }
-
         if (SharedPreferenceController.getAutoAuthorization(this).isNotEmpty()) {
-
-            if (boardID > 0) {
-                Log.v("카카오로그인", "으로들어옴")
-
-                tv_login_login_button.setOnClickListener {
-                    startActivity<DetailBoardActivity>("BoardId" to boardID)
+            if (intent.getStringExtra("clickAction") != null) {
+                if (intent.getStringExtra("clickAction") == "마이페이지") {
+                    toast("메인페이지 이동")
+                    startActivity<MainActivity>("check" to "마이페이지")
+                } else if (intent.getStringExtra("clickAction") == "detail board") {
+                    startActivity<MainActivity>("check" to "detail board", "sender_id" to intent.getStringExtra("sender_id"))
                 }
-
             } else {
-                Log.v("카카오로그인", "으로들어오지않음")
-
-                tv_login_login_button.setOnClickListener {
+                Log.v("푸시알람 하는중", boardID.toString())
+                //toast(boardID)
+                if (boardID > 0) {
+                    Log.v("카카오로그인", "으로들어옴")
+                    startActivity<DetailBoardActivity>("BoardId" to boardID)
+                } else {
+                    //***로그인 통신***
+                    Log.v("카카오로그인", "으로들어오지않음")
+                    Log.v("푸시알람 하는중 잘못 옴", "푸시알람 하는중 잘못 옴")
                     startActivity<MainActivity>()
+                    toast("자동로그인 되었습니다.")
                     //sendLink()
                 }
+
+                //startActivity<MainActivity>() // 그사람 정보로 해야함
+                //finish()
             }
         }
+
+
 
         tv_login_join_us.setOnClickListener {
             startActivity<SignUp1Activity>()
@@ -102,8 +114,28 @@ class LoginActivity : AppCompatActivity() {
 
             getLoginResponse(boardID)
         }
-    }
 
+        //startActivity<BottomNaviActivity>()
+        //getLoginResponse()
+        //startActivity<BottomNaviActivity>()
+
+        //getKeyHash(applicationContext)
+        //Log.v("카카오",getKeyHash(applicationContext))
+    }
+    fun pushAlarm(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val channelId = "default_channel_id"
+            val channelDescription = "Default Channel"
+            var notificationChannel = notificationManager.getNotificationChannel(channelId)
+            if (notificationChannel == null) {
+                val importance = NotificationManager.IMPORTANCE_HIGH //Set the importance level
+                notificationChannel = NotificationChannel(channelId, channelDescription, importance)
+                notificationChannel!!.setLightColor(Color.GREEN) //Set if it is necesssary
+                notificationChannel!!.enableVibration(true) //Set if it is necesssary
+                notificationManager.createNotificationChannel(notificationChannel)
+            }
+        }
+    }
     fun getKeyHash(context: Context): String? {
         val packageInfo = getPackageInfo(context, PackageManager.GET_SIGNATURES) ?: return null
 
@@ -114,7 +146,7 @@ class LoginActivity : AppCompatActivity() {
                 return Base64.encodeToString(md.digest(), Base64.NO_WRAP)
             } catch (e: NoSuchAlgorithmException) {
 
-                //Log.w(FragmentActivity.TAG, "Unable to get MessageDigest. signature=$signature", e)
+                //Log.w(this, "Unable to get MessageDigest. signature=$signature", e)
             }
 
         }
@@ -148,7 +180,12 @@ class LoginActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Log.v("LoginActivity", "확인3")
 
+                        Log.v("커톡공유해야한다고ㅗㅗㅗㅗ", boardID.toString())
+                        //toast(boardID)
+
+
                         if (response.body()!!.message == "로그인 성공" && cb_login_auto_check_box.isChecked == true) {
+
 
                             val token = response.body()!!.data.jwt.toString()
                             val userId = response.body()!!.data.userId
@@ -156,37 +193,39 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferenceController.setAutoAuthorization(this@LoginActivity, token)
                             SharedPreferenceController.setAuthorization(this@LoginActivity, response.body()!!.data.jwt.toString())
                             SharedPreferenceController.setUserId(this@LoginActivity, response.body()!!.data.userId)
-                            //카카오로그인 일경우, 바로 해당 보드로
                             if (boardID > 0) {
 
-                                startActivity<DetailBoardActivity>("BoardId" to boardID)
-                                finish()
-
-                            } else {
-                                Log.v("카카오로그인", "으로들어오지않음")
-
-                                startActivity<MainActivity>()
-                                finish()
-                            }
-
-                        } else if (response.body()!!.message == "로그인 성공" && cb_login_auto_check_box.isChecked == false) {
-                            SharedPreferenceController.setAuthorization(this@LoginActivity, response.body()!!.data.jwt.toString())
-                            SharedPreferenceController.setUserId(this@LoginActivity, response.body()!!.data.userId)
-                            //카카오로그인 일경우, 바로 해당 보드로
-                            if (boardID > 0) {
-
+                                toast("들어왔네[;")
                                 startActivity<DetailBoardActivity>("BoardId" to boardID)
                                 finish()
 
                             } else {
                                 //***로그인 통신***
-                                //toast("11못들어옴=====" + boardID)
                                 Log.v("카카오로그인", "으로들어오지않음")
 
                                 startActivity<MainActivity>()
                                 finish()
                             }
+                            startActivity<MainActivity>()
+                            finish()
+                        } else if (response.body()!!.message == "로그인 성공" && cb_login_auto_check_box.isChecked == false) {
+                            SharedPreferenceController.setAuthorization(this@LoginActivity, response.body()!!.data.jwt.toString())
+                            SharedPreferenceController.setUserId(this@LoginActivity, response.body()!!.data.userId)
+                            if (boardID > 0) {
 
+                                toast("들어왔네[;")
+                                startActivity<DetailBoardActivity>("BoardId" to boardID)
+                                finish()
+
+                            } else {
+                                //***로그인 통신***
+                                Log.v("카카오로그인", "으로들어오지않음")
+
+                                startActivity<MainActivity>()
+                                finish()
+                            }
+                            startActivity<MainActivity>()
+                            finish()
                         } else {
                             toast("회원 정보가 틀렸습니다.")
                         }
@@ -200,5 +239,7 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Toast.makeText(applicationContext, "빈칸 없이 입력해주세요.", Toast.LENGTH_LONG).show()
         }
+
     }
+
 }

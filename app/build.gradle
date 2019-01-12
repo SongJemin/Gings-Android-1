@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.computer.inu.myworkinggings"
-        minSdkVersion 24
+        minSdkVersion 25
         targetSdkVersion 28
         multiDexEnabled true
         versionCode 1

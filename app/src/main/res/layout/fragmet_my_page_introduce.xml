@@ -34,6 +34,7 @@
                     android:layout_weight="1"
                     >
                     <ImageView
+                        android:layout_marginTop="2dp"
                         android:layout_centerHorizontal="true"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
@@ -42,16 +43,17 @@
                         />
 
                     <TextView
-                        android:fontFamily="@font/noto_bold"
-                        android:lineHeight="15sp"
-                        android:layout_centerInParent="true"
-                        android:layout_centerHorizontal="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_above="@+id/mypage_intro_collab_layout"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="-3dp"
+                        android:fontFamily="@font/noto_bold"
+                        android:lineHeight="15sp"
                         android:text="협업여부"
                         android:textSize="10sp"
-                        android:layout_gravity="center"
-                        />
+                         />
 
                     <RelativeLayout
                         android:id="@+id/mypage_intro_collab_layout"
@@ -94,6 +96,7 @@
                     >
 
                     <ImageView
+                        android:layout_marginTop="5dp"
                         android:layout_width="18dp"
                         android:layout_height="14.1dp"
                         android:layout_alignParentTop="true"
@@ -107,12 +110,11 @@
                         android:id="@+id/mypage_intro_field_tv"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="활동분야"
                         android:textSize="10sp"
-                        android:textStyle="bold"
                         android:layout_gravity="center"
                         />
 
@@ -156,6 +158,7 @@
                     android:layout_weight="1"
                     >
                     <ImageView
+                        android:layout_marginTop="5dp"
                         android:layout_centerHorizontal="true"
                         android:layout_width="15.5dp"
                         android:layout_height="15.5dp"
@@ -174,7 +177,6 @@
                         android:layout_height="wrap_content"
                         android:text="업무상태"
                         android:textSize="10sp"
-                        android:textStyle="bold"
                         android:layout_gravity="center"
                         />
 
@@ -243,6 +245,7 @@
 
                     >
                     <TextView
+                        android:layout_marginTop="-8dp"
                         android:fontFamily="@font/noto_bold"
                         android:lineHeight="16sp"
                         android:letterSpacing="-0.12"
@@ -250,7 +253,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="이충엽"
-                        android:textSize="12sp"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         android:layout_marginLeft="8.5dp"
                         android:textColor="#222222"
@@ -267,6 +270,7 @@
                         />
 
                     <TextView
+                        android:layout_marginTop="-5dp"
                         android:fontFamily="@font/noto_regular"
                         android:lineHeight="16sp"
                         android:letterSpacing="-0.1"
@@ -274,13 +278,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SWU"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_toRightOf="@+id/mypage_board_view"
                         android:layout_marginLeft="9.2dp"
                         android:layout_gravity="center"
                         android:textColor="#525252"
                         />
                     <TextView
+                        android:layout_marginTop="-5dp"
                         android:fontFamily="@font/noto_regular"
                         android:lineHeight="16sp"
                         android:letterSpacing="-0.1"
@@ -288,7 +293,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="/DESIGNER"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_toRightOf="@+id/mypage_board_company"
                         android:layout_gravity="center"
                         android:textColor="#525252"
@@ -303,8 +308,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2018/12/30    01:16"
-                    android:textSize="9sp"
-                    android:layout_marginTop="4.8dp"
+                    android:textSize="10sp"
+                    android:layout_marginTop="-3dp"
                     android:textColor="#999999"
                     android:layout_marginLeft="8.5dp"
                     android:layout_below="@+id/mypage_board_name_tv"
@@ -355,7 +360,7 @@
             android:background="#ffffff"
             >
             <TextView
-                android:fontFamily="@font/noto_black"
+                android:fontFamily="@font/noto_bold"
                 android:lineHeight="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

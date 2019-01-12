@@ -92,7 +92,7 @@ class ChatActivity : AppCompatActivity() {
         chat_test_receive_btn.setOnClickListener {
             getChatMessage()
         }
-
+/*
         chat_send_btn.setOnClickListener {
             var message = chat_message_edit.text.toString()
             System.out.println("제민이 : " + intent.getStringExtra("roomId"))
@@ -105,6 +105,7 @@ class ChatActivity : AppCompatActivity() {
 
             ChatClass.sendMessage(intent.getStringExtra("roomId"),message)
         }
+        */
     }
 
     internal val handler: Handler = object : Handler(Looper.getMainLooper()) {

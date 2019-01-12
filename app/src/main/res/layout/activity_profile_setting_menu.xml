@@ -240,7 +240,7 @@
                 </RelativeLayout>
 
             </RelativeLayout>
-'
+            '
             //자기소개 수정
             <RelativeLayout
                 android:id="@+id/rl_btn_profile_setting_menu_mypage_update"
@@ -462,4 +462,3 @@
 
 
 </RelativeLayout>
-

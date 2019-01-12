@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-   android:background="#f9f9f9"
+    android:background="#f9f9f9"
     tools:context=".Moohyeon.Activity.SignUp1Activity">
     <TextView
         android:fontFamily="@font/noto_bold"
@@ -51,25 +51,22 @@
             android:layout_width="wrap_content"
             android:layout_height="90dp">
 
-        <TextView
-            android:paddingTop="8dp"
-            android:paddingBottom="5dp"
-            android:fontFamily="@font/noto_regular"
-            android:background="@drawable/back"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:text="깅스 멤버십 원칙 동의
-
+            <TextView
+                android:paddingTop="8dp"
+                android:paddingLeft="11dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="11dp"
+                android:fontFamily="@font/noto_regular"
+                android:background="@drawable/back"
+                android:layout_width="300dp"
+                android:layout_height="120dp"
+                android:text="깅스 멤버십 원칙 동의
 1. 깅스의 멤버들은 더 나은 사회와 미래를 만들기 위해 크리에이티브를 제안하고 실행하여 새 시대의 혁신을 일구어내며, 연결과 공유의 가치를 믿고 인류의 가능성을 위해 행동합니다. 깅스는 언제나 정직하게 모든 과정과 결과를 사회와 나누며 공동체의 가치를 실현하겠습니다.
-
 2. 깅스의 멤버들은 공동선을 해치지 않습니다. 다양성을 인정하고 모든 멤버의 개성과 인격을 존중합니다. 깅스의 멤버는 하나된 깅스의 가치로 모인 공동체의 일원입니다. 무한한 적자생존의 경쟁이 아닌 협력과 교류를 통해 서로를 돕고 더 나은 선순환 가치를 만들어냅니다. 극단성과 차별을 경계하며, 강요와 선동, 자극적인 메시지, 비방과 욕설, 허위사실 유포, 무단권리남용, 저작권 침해 등 다른 멤버와 사회의 올바른 가치를 말살하는 행위는 일체 하지 않습니다.
-
 3. 깅스는 누구나 타고난 환경과 관계없이 꿈을 꿀 수 있는 사회를 만들기 위해 존재하며, 스스로 함께 업을 만들어갈 수 있는 업의 생태계의 건설을 목표로 합니다. 저희는 홀로 존재하는 것이 아니며, 멤버들과 함께 만들어갈 때 비로소 의미가 있습니다. 깅스는  언제나, 마지막까지 멤버들과 함께할 것입니다. 깅스의 이용약관과 개인정보보호정책, 운영원칙을 비롯하여 모든 제품과 서비스의 개선을 위해 소통하겠습니다.
 "
-            android:layout_centerInParent="true"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-        />
+                android:layout_centerInParent="true"
+                />
 
         </ScrollView>
     </RelativeLayout>
@@ -81,51 +78,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cb_sign_up1_two">
-
-        <TextView
-            android:fontFamily="@font/noto_regular"
-            android:layout_alignParentLeft="true"
-            android:textSize="14sp"
-            android:textColor="#000000"
-            android:lineSpacingExtra="6sp"
-            android:id="@+id/tv_sign_up1_using_agree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이용약관 동"/>
-        <CheckBox
-            android:layout_marginLeft="207dp"
-            android:layout_width="25dp"
-            android:layout_height="17dp"
-            android:id="@+id/cb_sign_up1_using_agree_check"/>
-    </LinearLayout>
+            android:id="@+id/cb_sign_up1_two">
+
+            <TextView
+                android:fontFamily="@font/noto_regular"
+                android:layout_alignParentLeft="true"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="6sp"
+                android:id="@+id/tv_sign_up1_using_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이용약관 동"/>
+            <CheckBox
+                android:layout_marginLeft="207dp"
+                android:layout_width="25dp"
+                android:layout_height="17dp"
+                android:id="@+id/cb_sign_up1_using_agree_check"/>
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_below="@+id/cb_sign_up1_two"
             android:layout_height="90dp">
 
-        <TextView
-            android:paddingTop="5dp"
-            android:paddingLeft="11dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="11dp"
-            android:fontFamily="@font/noto_regular"
-            android:background="@drawable/back"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:text="깅스 멤버십 원칙 동의
-
+            <TextView
+                android:paddingTop="5dp"
+                android:paddingLeft="11dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="11dp"
+                android:fontFamily="@font/noto_regular"
+                android:background="@drawable/back"
+                android:layout_width="300dp"
+                android:layout_height="120dp"
+                android:text="깅스 멤버십 원칙 동의
 1. 깅스의 멤버들은 더 나은 사회와 미래를 만들기 위해 크리에이티브를 제안하고 실행하여 새 시대의 혁신을 일구어내며, 연결과 공유의 가치를 믿고 인류의 가능성을 위해 행동합니다. 깅스는 언제나 정직하게 모든 과정과 결과를 사회와 나누며 공동체의 가치를 실현하겠습니다.
-
 2. 깅스의 멤버들은 공동선을 해치지 않습니다. 다양성을 인정하고 모든 멤버의 개성과 인격을 존중합니다. 깅스의 멤버는 하나된 깅스의 가치로 모인 공동체의 일원입니다. 무한한 적자생존의 경쟁이 아닌 협력과 교류를 통해 서로를 돕고 더 나은 선순환 가치를 만들어냅니다. 극단성과 차별을 경계하며, 강요와 선동, 자극적인 메시지, 비방과 욕설, 허위사실 유포, 무단권리남용, 저작권 침해 등 다른 멤버와 사회의 올바른 가치를 말살하는 행위는 일체 하지 않습니다.
-
 3. 깅스는 누구나 타고난 환경과 관계없이 꿈을 꿀 수 있는 사회를 만들기 위해 존재하며, 스스로 함께 업을 만들어갈 수 있는 업의 생태계의 건설을 목표로 합니다. 저희는 홀로 존재하는 것이 아니며, 멤버들과 함께 만들어갈 때 비로소 의미가 있습니다. 깅스는  언제나, 마지막까지 멤버들과 함께할 것입니다. 깅스의 이용약관과 개인정보보호정책, 운영원칙을 비롯하여 모든 제품과 서비스의 개선을 위해 소통하겠습니다.
 "
-            android:layout_centerInParent="true"
-            />
+                android:layout_centerInParent="true"
+                />
         </ScrollView>
     </RelativeLayout>
     <RelativeLayout
@@ -140,45 +134,42 @@
             android:layout_height="wrap_content"
             android:id="@+id/cb_sign_up1_three">
 
-        <TextView
-            android:fontFamily="@font/noto_regular"
-            android:layout_alignParentLeft="true"
-            android:textSize="14sp"
-            android:textColor="#000000"
-            android:lineSpacingExtra="6sp"
-            android:id="@+id/tv_sign_up1_membership_agree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="멤버십 원칙 동의"/>
-        <CheckBox
-            android:layout_marginLeft="180dp"
-            android:layout_width="25dp"
-            android:layout_height="17dp"
-            android:id="@+id/cb_sign_up1_membership_agree_check"/>
+            <TextView
+                android:fontFamily="@font/noto_regular"
+                android:layout_alignParentLeft="true"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="6sp"
+                android:id="@+id/tv_sign_up1_membership_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="멤버십 원칙 동의"/>
+            <CheckBox
+                android:layout_marginLeft="180dp"
+                android:layout_width="25dp"
+                android:layout_height="17dp"
+                android:id="@+id/cb_sign_up1_membership_agree_check"/>
         </LinearLayout>
         <ScrollView
             android:layout_width="wrap_content"
             android:layout_below="@+id/cb_sign_up1_three"
             android:layout_height="90dp">
-        <TextView
-            android:paddingTop="5dp"
-            android:paddingLeft="11dp"
-            android:paddingBottom="5dp"
-            android:paddingRight="11dp"
-            android:fontFamily="@font/noto_regular"
-            android:background="@drawable/back"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
-            android:text="깅스 멤버십 원칙 동의
-
+            <TextView
+                android:paddingTop="5dp"
+                android:paddingLeft="11dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="11dp"
+                android:fontFamily="@font/noto_regular"
+                android:background="@drawable/back"
+                android:layout_width="300dp"
+                android:layout_height="120dp"
+                android:text="깅스 멤버십 원칙 동의
 1. 깅스의 멤버들은 더 나은 사회와 미래를 만들기 위해 크리에이티브를 제안하고 실행하여 새 시대의 혁신을 일구어내며, 연결과 공유의 가치를 믿고 인류의 가능성을 위해 행동합니다. 깅스는 언제나 정직하게 모든 과정과 결과를 사회와 나누며 공동체의 가치를 실현하겠습니다.
-
 2. 깅스의 멤버들은 공동선을 해치지 않습니다. 다양성을 인정하고 모든 멤버의 개성과 인격을 존중합니다. 깅스의 멤버는 하나된 깅스의 가치로 모인 공동체의 일원입니다. 무한한 적자생존의 경쟁이 아닌 협력과 교류를 통해 서로를 돕고 더 나은 선순환 가치를 만들어냅니다. 극단성과 차별을 경계하며, 강요와 선동, 자극적인 메시지, 비방과 욕설, 허위사실 유포, 무단권리남용, 저작권 침해 등 다른 멤버와 사회의 올바른 가치를 말살하는 행위는 일체 하지 않습니다.
-
 3. 깅스는 누구나 타고난 환경과 관계없이 꿈을 꿀 수 있는 사회를 만들기 위해 존재하며, 스스로 함께 업을 만들어갈 수 있는 업의 생태계의 건설을 목표로 합니다. 저희는 홀로 존재하는 것이 아니며, 멤버들과 함께 만들어갈 때 비로소 의미가 있습니다. 깅스는  언제나, 마지막까지 멤버들과 함께할 것입니다. 깅스의 이용약관과 개인정보보호정책, 운영원칙을 비롯하여 모든 제품과 서비스의 개선을 위해 소통하겠습니다.
 "
-            android:layout_centerInParent="true"
-            />
+                android:layout_centerInParent="true"
+                />
         </ScrollView>
     </RelativeLayout>
     <LinearLayout
@@ -204,7 +195,7 @@
             android:lineSpacingExtra="6sp"
             android:textColor="#000000"
             android:textSize="14sp"
-           android:text="위 내용에 모두 동의합니다."/>
+            android:text="위 내용에 모두 동의합니다."/>
 
         <CheckBox
             android:layout_marginTop="6dp"
@@ -225,5 +216,5 @@
         android:lineSpacingExtra="5sp"
         android:gravity="center"
         android:textStyle="bold"
-      android:text="다음"/>
+        android:text="다음"/>
 </LinearLayout>

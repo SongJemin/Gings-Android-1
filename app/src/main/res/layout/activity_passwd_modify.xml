@@ -19,6 +19,9 @@
             >
 
             <TextView
+                android:fontFamily="@font/noto_bold"
+                android:textSize="18sp"
+                android:lineHeight="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="비밀번호 변경"
@@ -50,6 +53,8 @@
             android:background="#ffffff"
             >
             <TextView
+                android:fontFamily="@font/noto_regular"
+                android:lineHeight="14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="보안을 위해 현재 비밀번호를 입력해 주세요."
@@ -60,6 +65,8 @@
                 />
 
             <EditText
+                android:fontFamily="@font/noto_regular"
+                android:lineHeight="14sp"
                 android:id="@+id/passwd_modify_passwd_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -32,7 +32,6 @@
                 android:textSize="15sp" />
 
             <EditText
-
                 android:fontFamily="@font/noto_regular"
                 android:background="@null"
                 android:imeOptions="actionSearch"
@@ -42,14 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-
                 android:layout_marginStart="18.2dp"
-
                 android:hint="이름,역할,소속,협업 분야,키워드"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="1sp"
                 android:textColor="#222222"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/iv_directory_finish"
@@ -82,7 +79,7 @@
                 android:layout_marginBottom="10dp"
                 android:letterSpacing="-0.01"
                 android:lineSpacingExtra="9sp"
-                android:src="@drawable/img_directorytop"
+                android:src="@drawable/img_directorytop_renew"
                 android:textColor="#999999"
 
                 />
@@ -105,7 +102,6 @@
                 android:id="@+id/tv_directory_searching_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/noto_regular"
                 android:layout_gravity="center"
                 android:layout_marginTop="41dp"
                 android:letterSpacing="-0.01"

@@ -1,5 +1,6 @@
 package com.computer.inu.myworkinggings.Hyunjin.Activity
 
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.computer.inu.myworkinggings.Network.NetworkService
 import com.computer.inu.myworkinggings.R
 import kotlinx.android.synthetic.main.activity_lounge_introduce.*
 import org.jetbrains.anko.ctx
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,15 +38,22 @@ class LoungeIntroduceActivity : AppCompatActivity() {
 
         networkService = ApplicationController.instance.networkService
 
+
         getDetailSearchClub()
         rl_lounge_introuce_introudeuce_bar.setOnClickListener {
             ll_lounge_introduce_introduce_layout.visibility=View.VISIBLE
             ll_lounge_introduce_introduce_schedule.visibility=View.GONE
+            //tv_lounge_introduce.setTextColor(Color.parseColor("#000000"))
+            tv_lounge_introduce.setTypeface(null, Typeface.BOLD);
+            tv_lounge_calendar.setTypeface(null, Typeface.NORMAL);
         }
 
         rl_lounge_introuce_event_bar.setOnClickListener {
             ll_lounge_introduce_introduce_layout.visibility= View.GONE
             ll_lounge_introduce_introduce_schedule.visibility=View.VISIBLE
+            //tv_lounge_calendar.setTextColor(Color.parseColor("#000000"))
+            tv_lounge_calendar.setTypeface(null, Typeface.BOLD);
+            tv_lounge_introduce.setTypeface(null, Typeface.NORMAL);
 
         }
      //var clubId =  intent.getIntExtra("clubId",0)
@@ -62,7 +71,7 @@ class LoungeIntroduceActivity : AppCompatActivity() {
     //클럽 가입 통신
     fun postClubSignUp() {
         Log.v("asd","클럽가입")
-        var postClubSignUpResponse = networkService.postClubSignUp("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds",intent.getIntExtra("clubId",-1)) // 네트워크 서비스의 getContent 함수를 받아옴
+        var postClubSignUpResponse = networkService.postClubSignUp("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjksInJvbGUiOiJVU0VSIiwiaXNzIjoiR2luZ3MgVXNlciBBdXRoIE1hbmFnZXIiLCJleHAiOjE1NDkxOTYxMzN9.OrlfMuYaMa2SqrXGcHlDRmttGOC1z7DiROKD4dsz2Ds",intent.getIntExtra("clubId",1)) // 네트워크 서비스의 getContent 함수를 받아옴
         postClubSignUpResponse.enqueue(object : Callback<PostClubSignUp> {
             override fun onResponse(call: Call<PostClubSignUp>?, response: Response<PostClubSignUp>?) {
                 Log.v("TAG", "POST 클럽 가입 통신 성공")
@@ -102,17 +111,26 @@ class LoungeIntroduceActivity : AppCompatActivity() {
                     Log.v("TAG", "클럽 정보 조회 성공")
                     Log.v("TAG", "status = " + response.body()!!.status)
                     Log.v("TAG", "message = " + response.body()!!.message)
-                    dataList = response.body()!!.data.event
+                    Log.v("TAG", "body = " + response.body()!!.toString())
+
+                    if(response.body()!!.data.event != null) {
+                        dataList = response.body()!!.data.event
+                    }
 
                     // 일정 부분 데이터 연결 부분
                    LoungeEventDataRecyclerViewAdapter = LoungeEventDataRecyclerViewAdapter(ctx, intent.getIntExtra("clubId",0),dataList)
                     rv_lounge_frag_lounge_event_list.adapter = LoungeEventDataRecyclerViewAdapter
                     rv_lounge_frag_lounge_event_list.layoutManager = LinearLayoutManager(ctx, LinearLayout.HORIZONTAL, false)
 
+                    Log.v("TAG","일정 부분 통과")
+
                     // 소개 부분 데이터 연결 부분
                     tv_rl_lounge_introdata.text = response.body()!!.data.introImg
                     rl_top_bar_lounge_text.text = response.body()!!.data.title
                     tv_lounge_intro_title.text = response.body()!!.data.title
+
+                    Log.v("TAG","소개 부분 통과")
+
 
                     response.body()!!.data
 
@@ -129,6 +147,7 @@ class LoungeIntroduceActivity : AppCompatActivity() {
                 }
                 else{
                     Log.v("TAG","값 전달 잘못")
+                    toast("값 전달 잘못")
                 }
             }
 

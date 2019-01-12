@@ -20,12 +20,13 @@
             >
 
             <TextView
+                android:fontFamily="@font/noto_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gings 탈퇴"
                 android:layout_centerInParent="true"
-                android:textStyle="bold"
                 android:textColor="#040404"
+                android:textSize="18sp"
                 />
 
             <ImageView
@@ -67,11 +68,10 @@
                 android:layout_marginLeft="31dp"
                 />
             <TextView
+                android:fontFamily="@font/noto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="- 멤버십 탈퇴 시 모든 정보가 삭제됩니다.
-- 이용내역 및 멤버십 포인트 등은 모두 소멸됩니다.
-- 탈퇴 후 동일 아이디로 신규 가입이 ~일 간 제한됩니다."
+                android:text="- 멤버십 탈퇴 시 모든 정보가 삭제됩니다.\n- 이용내역 및 멤버십 포인트 등은 모두 소멸됩니다.\n- 탈퇴 후 동일 아이디로 신규 가입이 ~일 간 제한됩니다."
                 android:layout_marginLeft="31dp"
                 android:layout_marginRight="35dp"
                 android:layout_marginTop="10dp"
@@ -95,6 +95,7 @@
             >
 
             <TextView
+                android:fontFamily="@font/noto_regular"
                 android:layout_marginTop="50dp"
                 android:id="@+id/tv_unsubscribe_input"
                 android:layout_width="wrap_content"
@@ -106,6 +107,7 @@
                 />
 
             <EditText
+                android:fontFamily="@font/noto_regular"
                 android:id="@+id/et_unsubscribe_pwd"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -131,6 +133,7 @@
                     android:layout_marginLeft="55.4dp" />
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

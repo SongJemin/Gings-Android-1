@@ -19,13 +19,13 @@
 
 
             <TextView
-                android:textSize="15sp"
+                android:fontFamily="@font/noto_bold"
+                android:textSize="18sp"
                 android:textColor="#040404"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="프로필 정보 수정"
                 android:lineHeight="20sp"
-                android:textStyle="bold"
                 android:layout_centerInParent="true"
                 />
 
@@ -64,9 +64,11 @@
                 android:orientation="horizontal"
                 android:paddingStart="37dp" android:paddingEnd="16dp">
 
-                <TextView   android:layout_width="wrap_content"
+                <TextView
+                    android:fontFamily="@font/noto_medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
@@ -98,7 +100,8 @@
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/noto_medium"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
@@ -106,9 +109,11 @@
                     android:layout_gravity="center"/>
 
                 <EditText android:id="@+id/et_profile_info_update_role"
+                    android:fontFamily="@font/noto_regular"
+                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="55dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
                     android:hint="역할"
@@ -130,17 +135,20 @@
 
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:fontFamily="@font/noto_medium"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
                     android:text="소속"
                     android:layout_gravity="center"/>
                 <EditText
+                    android:fontFamily="@font/noto_regular"
+                    android:textSize="15sp"
                     android:id="@+id/et_profile_info_update_part"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="55dp"
+                    android:layout_marginStart="60dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
                     android:hint="소속"
@@ -161,18 +169,24 @@
                 android:paddingEnd="16dp"
                 >
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:fontFamily="@font/noto_medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
                     android:text="활동 분야"
                     android:layout_gravity="center"/>
-                <EditText android:id="@+id/et_profile_info_update_co_part"
+
+                <EditText
+                    android:fontFamily="@font/noto_regular"
+                    android:id="@+id/et_profile_info_update_co_part"
                     android:layout_width="match_parent"
+                    android:textSize="15sp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="29dp"
+                    android:layout_marginStart="33dp"
                     android:layout_marginEnd="16dp"
                     android:background="@null"
                     android:hint="분야"
@@ -191,9 +205,11 @@
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:fontFamily="@font/noto_medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
@@ -202,6 +218,7 @@
 
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/sp_profile_info_update_co_available"
+                    android:fontFamily="@font/noto_regular"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -224,9 +241,11 @@
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:fontFamily="@font/noto_medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
@@ -234,6 +253,7 @@
                     android:layout_gravity="center"/>
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/sp_profile_info_update_co_state"
+                    android:fontFamily="@font/noto_regular"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -256,9 +276,11 @@
                 android:paddingStart="37dp"
                 android:paddingEnd="16dp">
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:fontFamily="@font/noto_medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     android:textColor="#333333"
                     android:letterSpacing="-0.01"
                     android:lineSpacingExtra="4sp"
@@ -266,6 +288,7 @@
                     android:layout_gravity="center"/>
                 <EditText
                     android:id="@+id/et_profile_info_update_keyword"
+                    android:fontFamily="@font/noto_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="13sp"

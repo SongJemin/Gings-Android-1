@@ -7,21 +7,20 @@
         android:layout_height="188dp"
         android:background="#f9f9f9"
         >
-    <ImageView
-        android:id="@+id/rl_iv_lounge_event_eventImg"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="@drawable/lounge_event"
-        />
+        <ImageView
+            android:id="@+id/rl_iv_lounge_event_eventImg"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@drawable/lounge_event"
+            />
         <TextView
-            android:fontFamily="@font/noto_black"
+            android:fontFamily="@font/noto_bold"
             android:id="@+id/tv_rv_item_lounge_event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="#ffffff"
             android:lineHeight="34sp"
-            android:letterSpacing="-0.24"
             android:lineSpacingExtra="10sp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="37dp"
@@ -51,7 +50,6 @@
             android:textColor="#ffffff"
             android:lineSpacingExtra="6sp"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
             android:text="12:00 - 17:00"
             android:layout_marginTop="102.7dp"
             />
@@ -64,7 +62,6 @@
             android:textColor="#ffffff"
             android:lineSpacingExtra="6sp"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
             android:lineHeight="17sp"
             android:text="서울청년창업허브"
             android:layout_marginTop="122.7dp"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
@@ -13,8 +14,7 @@
         android:src="@drawable/img_default"/>
 
     <TextView
-        android:fontFamily="@font/noto_medium"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/tv_item_directory_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,26 +37,26 @@
         android:background="#999999" />
 
     <TextView
-        android:fontFamily="@font/noto_regular"
+        android:fontFamily="@font/noto_medium"
         android:layout_toRightOf="@+id/v_item_directory_v"
         android:id="@+id/tv_item_directory_company"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
         android:lineHeight="16sp"
         android:letterSpacing="-0.1"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:layout_marginLeft="8.8dp"
         android:text="" />
     <TextView
-        android:fontFamily="@font/noto_regular"
+        android:fontFamily="@font/noto_medium"
         android:layout_toRightOf="@+id/tv_item_directory_company"
         android:id="@+id/tv_item_directory_slash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="10dp"
         android:letterSpacing="-0.1"
         android:lineHeight="16sp"
         android:lineSpacingExtra="6sp"
@@ -64,20 +64,21 @@
         android:textSize="10sp"
         android:text="/" />
     <TextView
+        android:fontFamily="@font/noto_medium"
         android:layout_toRightOf="@+id/tv_item_directory_slash"
         android:id="@+id/tv_item_directory_job"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="8dp"
         android:letterSpacing="-0.1"
         android:lineHeight="16sp"
         android:lineSpacingExtra="6sp"
         android:textColor="#525252"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:text="" />
     <TextView
         android:fontFamily="@font/noto_regular"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="0dp"
         android:layout_marginStart="63.5dp"
         android:layout_below="@+id/tv_item_directory_profile_name"
         android:id="@+id/tv_item_directory_time"
@@ -88,7 +89,7 @@
         android:letterSpacing="-0.1"
         android:lineHeight="16sp"
         android:lineSpacingExtra="6sp"
-       android:text="2018/12/29 03:00"
+        android:text="2018/12/29 03:00"
         />
 
     <ImageView
@@ -104,6 +105,7 @@
         android:textColor="#222222"
         android:textSize="13sp" />
     <TextView
+        android:fontFamily="@font/noto_regular"
         android:id="@+id/tv_item_directory_contents"
         android:layout_marginTop="10.5dp"
         android:layout_below="@+id/iv_item_directory_contents_image"
@@ -132,7 +134,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:fontFamily="@font/noto_bold"
+            android:fontFamily="@font/noto_medium"
             android:id="@+id/btn_item_directory_message"
             android:background="#ffffff"
             android:text="메세지"
@@ -150,7 +152,7 @@
             android:background="#e2e8ed"
             />
         <Button
-            android:fontFamily="@font/noto_bold"
+            android:fontFamily="@font/noto_medium"
             android:id="@+id/btn_item_directory_guest_board"
             android:layout_weight="1"
             android:background="#ffffff"

@@ -47,7 +47,6 @@
             android:lineHeight="20sp"
             android:layout_centerInParent="true"
             android:gravity="center_horizontal"
-            android:letterSpacing="0.05"
             android:lineSpacingExtra="5sp"
             android:text="INNOVATOR CLUB"
             android:textColor="#ffffff"
@@ -72,7 +71,6 @@
             android:layout_marginTop="18.7dp"
             android:background="#ffffff"
             android:gravity="center"
-            android:letterSpacing="0.32"
             android:lineHeight="22sp"
             android:lineSpacingExtra="7sp"
             android:text="INNOVATOR CLUB | 혁신 콘서트 제목이 길어지면 이렇게 두 줄로 들어가겠죠"
@@ -81,7 +79,7 @@
             />
 
     </RelativeLayout>
-e
+    e
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="328dp"
         android:layout_height="match_parent"
@@ -104,16 +102,15 @@ e
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
-                android:letterSpacing="-0.15"
                 android:lineSpacingExtra="9sp"
                 android:text="일정 | "
                 android:textColor="#222222"
-                 />
+                />
 
             <TextView
-                android:fontFamily="@font/noto_medium"
+                android:fontFamily="@font/noto_regular"
                 android:lineHeight="24sp"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:id="@+id/tv_lounge_event_detail_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,16 +126,15 @@ e
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="55dp"
-                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="9sp"
                 android:text="시간 | "
                 android:textColor="#222222"
-               />
+                />
 
             <TextView
-                android:fontFamily="@font/noto_medium"
+                android:fontFamily="@font/noto_regular"
                 android:lineHeight="24sp"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:id="@+id/tv_lounge_event_detail_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,16 +150,15 @@ e
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="110dp"
-                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="9sp"
                 android:text="장소 | "
                 android:textColor="#222222"
-           />
+                />
 
             <TextView
-                android:fontFamily="@font/noto_medium"
+                android:fontFamily="@font/noto_regular"
                 android:lineHeight="24sp"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:id="@+id/tv_lounge_detail_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,22 +174,21 @@ e
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="165dp"
-                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="9sp"
                 android:text="가격 | "
                 android:textColor="#222222"
                 />
 
             <TextView
+                android:fontFamily="@font/noto_regular"
                 android:id="@+id/tv_lounge_detail_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="190dp"
                 android:text="30,000 원"
-                android:fontFamily="@font/noto_medium"
                 android:lineHeight="24sp"
-                android:textSize="15sp"/>
+                android:textSize="13sp"/>
 
             <TextView
                 android:fontFamily="@font/noto_medium"
@@ -204,11 +198,10 @@ e
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="220dp"
-                android:letterSpacing="-0.01"
                 android:lineSpacingExtra="9sp"
                 android:text="프로그램 | "
                 android:textColor="#222222"
-              />
+                />
 
             <RelativeLayout
                 android:id="@+id/rl_lounge_detail_program"

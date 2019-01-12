@@ -5,7 +5,7 @@
     xmlns:computer="http://schemas.android.com/apk/com.computer.inu.myworkinggings.Hyunjin.Activity.CustomeTextView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    >
 
     <RelativeLayout
         android:layout_marginTop="8dp"
@@ -36,24 +36,23 @@
             android:layout_centerVertical="true"
             android:background="@drawable/ic_lounge_left_24dp"
             />
-<!--        <com.computer.inu.myworkinggings.Hyunjin.Activity.CustomTextView
-            android:id="@+id/CustomTextView"
-            android:textSize="50dp"
-            android:layout_marginTop="60dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World"
-            android:textColor="#ffffffff"
-            computer:textStroke="true"
-            computer:textStrokeWidth="7.0"
-            computer:textStrokeColor="#ffff0000"
-            android:singleLine="true"  />-->
+        <!--        <com.computer.inu.myworkinggings.Hyunjin.Activity.CustomTextView
+                    android:id="@+id/CustomTextView"
+                    android:textSize="50dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hello World"
+                    android:textColor="#ffffffff"
+                    computer:textStroke="true"
+                    computer:textStrokeWidth="7.0"
+                    computer:textStrokeColor="#ffff0000"
+                    android:singleLine="true"  />-->
 
         <TextView
             android:id="@+id/tv_rl_lounge_main_club_name"
             android:layout_toRightOf="@+id/iv_lounge_arrow_left"
-            android:fontFamily="@font/noto_black"
-            android:lineHeight="35sp"
+            android:fontFamily="@font/noto_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35sp"
@@ -83,14 +82,11 @@
         android:layout_marginBottom="40dp"
         >
         <TextView
-            android:fontFamily="@font/noto_black"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:lineHeight="20sp"
             android:textColor="#ff786e"
-            android:letterSpacing="-0.16"
-            android:lineSpacingExtra="5sp"
             android:text="JOIN"
             android:layout_marginLeft="20dp"
             android:layout_centerVertical="true"
@@ -119,13 +115,12 @@
         android:layout_marginBottom="40dp"
         >
         <TextView
-            android:fontFamily="@font/noto_black"
+            android:fontFamily="@font/noto_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:lineHeight="20sp"
             android:textColor="#000000"
-            android:letterSpacing="-0.16"
             android:lineSpacingExtra="5sp"
             android:text="COMMING SOON"
             android:layout_marginLeft="20dp"

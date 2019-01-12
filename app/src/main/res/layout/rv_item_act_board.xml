@@ -10,12 +10,14 @@
         android:background="#ffffff">
 
         <TextView
+            android:fontFamily="@font/noto_bold"
             android:id="@+id/item_act_category_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="18.5dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:text="질문"
+            android:lineHeight="16sp"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -25,11 +27,13 @@
             android:layout_width="1dp"
             android:layout_height="15.6dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="19.8dp"
+            android:layout_marginTop="15.8dp"
             android:layout_toRightOf="@+id/item_act_category_tv"
             android:background="#999999" />
 
         <TextView
+            android:fontFamily="@font/noto_medium"
+            android:lineHeight="16sp"
             android:id="@+id/item_act_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,15 +55,17 @@
             android:src="@drawable/bt_more" />
 
         <TextView
+            android:fontFamily="@font/noto_regular"
+            android:lineHeight="10sp"
             android:id="@+id/item_act_hashtag_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_act_title_tv"
             android:layout_alignLeft="@+id/item_act_title_tv"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="-15dp"
             android:text="#사업 #창업 #준비 #팁"
             android:textColor="#999999"
-            android:textSize="10sp" />
+            android:textSize="9sp" />
 
         <TextView
             android:id="@+id/item_act_time_tv"
@@ -67,11 +73,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_act_title_tv"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-16dp"
             android:layout_marginRight="31dp"
+            android:fontFamily="@font/noto_regular"
+            android:lineHeight="16sp"
             android:text="3시간전"
             android:textColor="#999999"
-            android:textSize="10sp" />
+            android:textSize="9sp" />
 
 
     </RelativeLayout>
@@ -91,10 +99,12 @@
             android:src="@drawable/invalid_name" />
 
         <TextView
+            android:fontFamily="@font/noto_regular"
+            android:lineHeight="20sp"
             android:id="@+id/item_act_content_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="66.5dp"
+            android:layout_marginLeft="46.5dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="69.5dp"
             android:text="이번에 처음 준비하는데 너무 어렵네요ㅠㅠ
@@ -123,6 +133,7 @@
                     android:src="@drawable/invalid_name" />
 
                 <TextView
+                    android:fontFamily="@font/noto_medium"
                     android:id="@+id/item_act_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,6 +154,7 @@
                     android:background="#999999" />
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:layout_toRightOf="@+id/item_act_profile_view"
                     android:layout_centerVertical="true"
                     android:id="@+id/item_act_team_tv"
@@ -155,6 +167,7 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:layout_toRightOf="@+id/item_act_team_tv"
                     android:layout_centerVertical="true"
                     android:id="@+id/item_act_role_slash_tv"
@@ -166,6 +179,7 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:fontFamily="@font/noto_regular"
                     android:layout_centerVertical="true"
                     android:id="@+id/item_act_role_role_tv"
                     android:layout_width="wrap_content"

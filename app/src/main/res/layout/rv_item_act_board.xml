@@ -113,12 +113,14 @@
             android:textSize="13sp" />
 
         <RelativeLayout
+            android:id="@+id/rv_item_act_bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="18dp"
             android:background="#ffffff">
 
             <RelativeLayout
+
                 android:layout_marginLeft="19dp"
                 android:layout_width="192dp"
                 android:layout_height="31dp"

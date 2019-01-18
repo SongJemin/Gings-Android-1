@@ -99,7 +99,6 @@ class LoginActivity : AppCompatActivity() {
         pushAlarm()
 
         if (intent.getStringExtra("sender_id") != null) {
-            toast(intent.getStringExtra("sender_id"))
         } else {
         }
         if (SharedPreferenceController.getAutoAuthorization(this).isNotEmpty()) {
@@ -120,7 +119,6 @@ class LoginActivity : AppCompatActivity() {
             if (SharedPreferenceController.getAutoAuthorization(this).isNotEmpty()) {
                 if (intent.getStringExtra("clickAction") != null) {
                     if (intent.getStringExtra("clickAction") == "마이페이지") {
-                        toast("메인페이지 이동")
                         startActivity<MainActivity>("check" to "마이페이지")
                     } else if (intent.getStringExtra("clickAction") == "detail board") {
                         startActivity<MainActivity>("check" to "detail board", "sender_id" to intent.getStringExtra("sender_id"))
@@ -241,7 +239,6 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferenceController.setUserId(this@LoginActivity, response.body()!!.data.userId)
                             if (boardID > 0) {
 
-                                toast("들어왔네[;")
                                 startActivity<DetailBoardActivity>("BoardId" to boardID)
                                 finish()
 
@@ -259,7 +256,6 @@ class LoginActivity : AppCompatActivity() {
                             SharedPreferenceController.setUserId(this@LoginActivity, response.body()!!.data.userId)
                             if (boardID > 0) {
 
-                                toast("들어왔네[;")
                                 startActivity<DetailBoardActivity>("BoardId" to boardID)
                                 finish()
 
@@ -278,7 +274,6 @@ class LoginActivity : AppCompatActivity() {
 
                     } else {
                         Log.v("LoginActivity", "확인5")
-                        Toast.makeText(applicationContext, "통신 실패.", Toast.LENGTH_LONG).show()
                     }
                 }
             })

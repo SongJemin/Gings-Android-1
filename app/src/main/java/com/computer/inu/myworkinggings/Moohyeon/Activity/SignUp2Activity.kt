@@ -78,7 +78,6 @@ class SignUp2Activity : AppCompatActivity() {
                     tv_sign_up2_confirm_number_send_message.isEnabled=false
                     val delayHandler =Handler()
                     delayHandler.postDelayed(Runnable {
-                        toast("test")
                         tv_sign_up2_confirm_number_send_message.isEnabled=true
                     }, 3000)
                     getVerifyNumberData()
@@ -134,7 +133,6 @@ class SignUp2Activity : AppCompatActivity() {
                     Log.v("TAG", "이메일 중복 확인")
                     message = response.body()!!.message!!
                     if(message == "이미 등록된 이메일입니다"){
-                        toast("이미 등록")
                         tv_sign_up2_available_email.setText("이미 등록된 이메일 입니다.")
                         tv_sign_up2_available_email.setVisibility(View.VISIBLE)
                         tv_sign_up2_confirm_number_send_message.isEnabled = false

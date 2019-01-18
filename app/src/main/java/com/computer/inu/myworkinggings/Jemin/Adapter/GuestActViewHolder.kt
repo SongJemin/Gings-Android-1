@@ -3,6 +3,7 @@ package com.computer.inu.myworkinggings.Jemin.Adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.computer.inu.myworkinggings.R
 
@@ -17,5 +18,6 @@ class GuestActViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) 
     var actReplyRecom : TextView = itemView!!.findViewById(R.id.iv_tiem_like_tv)
     var actReplySumNum : TextView = itemView!!.findViewById(R.id.iv_item_reply_tv)
     var actBackgroundImg : ImageView = itemView!!.findViewById(R.id.item_act_background_img)
+    var actBottomLayout : RelativeLayout = itemView!!.findViewById(R.id.rv_item_act_bottom_layout)
 
 }

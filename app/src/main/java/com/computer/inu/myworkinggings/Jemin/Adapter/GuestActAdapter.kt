@@ -25,6 +25,7 @@ class GuestActAdapter(var ctx : Context, private var guestActItems : ArrayList<G
 
     //데이터클래스와 뷰홀더를 이어준다.
     override fun onBindViewHolder(holder: GuestActViewHolder, position: Int) {
+        holder.actBottomLayout.visibility = View.GONE
         holder.actCategory.text = guestActItems[position].category
         if (guestActItems[position].category == "QUESTION") {
             holder.actCategory.text = "질문"

@@ -64,12 +64,9 @@ class LoungeFragment : Fragment(){
                     rv_lounge_frag_lounge_list.layoutManager = LinearLayoutManager(activity, LinearLayout.HORIZONTAL, false)
                 }
                 else{
-                    Toast.makeText(context,"에러 사유 = " + response.errorBody(), Toast.LENGTH_SHORT).show()
-                    toast("값 잘못 받음")
                 }
             }
             override fun onFailure(call: Call<GetSearchClub>?, t: Throwable?) {
-                Toast.makeText(context,"통신 실패", Toast.LENGTH_SHORT).show()
             }
         })
     }

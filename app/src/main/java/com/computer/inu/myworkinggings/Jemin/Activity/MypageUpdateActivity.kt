@@ -189,7 +189,6 @@ class MypageUpdateActivity : AppCompatActivity() {
                 Log.v(TAG, "추가 이미지 리스트 = " + postImagesList.size)
                 Log.v(TAG, "통신 성공")
                 if(response.isSuccessful){
-                    Toast.makeText(applicationContext,"값 전달 성공" ,Toast.LENGTH_LONG).show()
                     Log.v(TAG, "소개 값 전달 성공")
                     Log.v(TAG,"소개 응답 status = " + response.body()!!.status)
                     Log.v(TAG,"소개 응답 message = " + response.body()!!.message)
@@ -202,7 +201,6 @@ class MypageUpdateActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
-                Toast.makeText(applicationContext,"서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -249,7 +247,6 @@ class MypageUpdateActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<GetMyIntroduceResponse>, t: Throwable?) {
-                Toast.makeText(applicationContext,"자기 소개 조회 서버 연결 실패", Toast.LENGTH_SHORT).show()
                 Log.v(TAG,"실패 이유 = " + t.toString())
             }
         })

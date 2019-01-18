@@ -21,6 +21,7 @@ import retrofit2.Response
 class GuestboardWriteActivity : AppCompatActivity() {
 
     var userID : Int = 0
+    var name : String = ""
 
     val networkService: NetworkService by lazy {
         ApplicationController.instance.networkService
@@ -31,8 +32,8 @@ class GuestboardWriteActivity : AppCompatActivity() {
         setContentView(R.layout.activity_guestboard_write)
 
         userID = intent.getIntExtra("userID", 0)
-
-        guest_board_write_title_tv.text = intent.getStringExtra("name") +"님의 Guest Board"
+        name = intent.getStringExtra("name")
+        guest_board_write_title_tv.text = name +"님의 Guest Board"
 
         guest_board_write_confirm_btn.setOnClickListener {
             postGuestBoard()

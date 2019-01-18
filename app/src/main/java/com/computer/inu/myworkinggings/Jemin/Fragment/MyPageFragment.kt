@@ -161,12 +161,6 @@ class MyPageFragment : Fragment() {
         }
 
 
-        // 테스트 연결
-        v.mypage_background_img.setOnClickListener {
-            var intent = Intent(activity, PasswdModifyActivity::class.java)
-            startActivity(intent)
-        }
-
         return v
     }
 
@@ -184,8 +178,8 @@ class MyPageFragment : Fragment() {
                         iv_btn_my_page_setting.visibility = View.VISIBLE
                     }
                     Log.v("asdf", "응답 바디 = " + response.body().toString())
-                    mypage_name_tv.text = response.body()!!.data.name
-
+                    name = response.body()!!.data.name!!
+                    mypage_name_tv.text = name
                     Glide.with(context).load(response.body()!!.data.image).into(mypage_background_img)
 
                     if(response.body()!!.data.status!! == "NONE"){
@@ -262,7 +256,8 @@ class MyPageFragment : Fragment() {
             override fun onResponse(call: Call<GetMypageResponse>?, response: Response<GetMypageResponse>?) {
                 Log.v("TAG", "보드 서버 통신 연결")
                 if (response!!.isSuccessful) {
-                    mypage_name_tv.text = response.body()!!.data.name!!
+                    name = response.body()!!.data.name!!
+                    mypage_name_tv.text = name
                     if(response.body()!!.data.job!! == "\"\""){
                         mypage_job_tv.text = "역할"
                         job = "역할"

@@ -239,31 +239,33 @@ class HomeBoardFragment : Fragment() {
 
     //보드 통신
     fun getBoard() {
-        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 5, 40) // 네트워크 서비스의 getContent 함수를 받아옴
+        var getBoardResponse = networkService.getBoard(SharedPreferenceController.getAuthorization(context!!), 0, 10) // 네트워크 서비스의 getContent 함수를 받아옴
         getBoardResponse.enqueue(object : Callback<GetBoardResponse> {
-            override fun onResponse(call: Call<GetBoardResponse>?, response: Response<GetBoardResponse>?) {
+            override fun onResponse(call: Call<GetBoardResponse>, response: Response<GetBoardResponse>) {
                 Log.v("TAG", "보드 서버 통신 연결")
 
                 if (response!!.isSuccessful) {
-                    BoardItemList.clear()
                     BoardData.clear()
-                    BoardData = response.body()!!.data
-                    for (i in 0..BoardData.size - 1) {
 
-                        //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
-                        Log.v("asdf", "키워드 크기 = " + BoardData[i].keywords.size)
-                        BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer,
-                                BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
-                                BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images,
-                                BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender, BoardData[i].likeChk))
-                    }
-                    Log.v("asdf", "응답 바디 = " + response.body().toString())
+                        BoardData = response.body()!!.data
+                        for (i in 0..BoardData.size - 1) {
 
-                    //rv_item_boardㄷ_list.removeItemDecorationAt()
-                    boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
-                    boardRecyclerViewAdapter.notifyDataSetChanged()
-                    rv_item_board_list.adapter = boardRecyclerViewAdapter
-                    rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
+                            //Log.v("asdf","키워드 크기 = " + BoardData[i].keywords.size)
+                            Log.v("asdf", "키워드 크기 = " + BoardData[i].keywords.size)
+                            BoardItemList.add(BoardItem(BoardData[i].boardId, BoardData[i].writerId, BoardData[i].writer,
+                                    BoardData[i].writerImage, BoardData[i].field, BoardData[i].company,
+                                    BoardData[i].title, BoardData[i].content, BoardData[i].share, BoardData[i].time, BoardData[i].category, BoardData[i].images,
+                                    BoardData[i].keywords, BoardData[i].numOfReply, BoardData[i].recommender, BoardData[i].likeChk))
+                        }
+                        Log.v("asdf", "응답 바디 = " + response.body().toString())
+
+                        //rv_item_boardㄷ_list.removeItemDecorationAt()
+                        boardRecyclerViewAdapter = BoardRecyclerViewAdapter(ctx, BoardItemList, requestManager)
+                        boardRecyclerViewAdapter.notifyDataSetChanged()
+                        rv_item_board_list.adapter = boardRecyclerViewAdapter
+                        rv_item_board_list.layoutManager = LinearLayoutManager(ctx)
+
+
 
 
                 }

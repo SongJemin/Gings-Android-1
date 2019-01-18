@@ -308,7 +308,7 @@ class DetailBoardActivity : AppCompatActivity() {
                     if (response.body()!!.message == "보드 추천 해제 성공") {
                         //좋아요 해재
 
-                        toast("좋아요 취솟ㅅ")
+                        toast("좋아요 취소")
                         iv_item_board_like_on.visibility = View.GONE
                         iv_item_board_like.visibility = View.VISIBLE
 
@@ -460,7 +460,6 @@ class DetailBoardActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostBoardShareResponse>, response: Response<PostBoardShareResponse>) {
                 if (response.isSuccessful) {
                     Log.e("보드공유 통신성공", "  통신 성공")
-                    ctx.toast("공유@")
                 }
             }
         })
@@ -506,7 +505,6 @@ class DetailBoardActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<PostResponse>, t: Throwable?) {
-                Toast.makeText(applicationContext, "서버 연결 실패", Toast.LENGTH_SHORT).show()
             }
 
         })

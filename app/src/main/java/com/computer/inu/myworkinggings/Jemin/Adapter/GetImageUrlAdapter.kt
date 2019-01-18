@@ -28,8 +28,6 @@ class GetImageUrlAdapter(var ctx : Context, var boardImageItem : ArrayList<Strin
     override fun onBindViewHolder(holder: BoardImageViewHolder, position: Int) {
         requestManager.load(boardImageItem[position]).centerCrop().into(holder.boardImageView)
         holder.boardImageDeleteBtn.setOnClickListener {
-            Toast.makeText(ctx, "지우는 버튼 클릭", Toast.LENGTH_LONG).show()
-            Log.v("asdf","지우는 버튼 클릭")
 
             Log.v("asdf","사진" + position + "번째 지우는 버튼 클릭")
             // 삭제되는 아이템의 포지션을 가져온다

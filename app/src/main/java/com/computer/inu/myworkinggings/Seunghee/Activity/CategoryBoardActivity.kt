@@ -370,7 +370,6 @@ class CategoryBoardActivity : AppCompatActivity() {
                     ll_category_board_board_view.visibility = View.GONE
 
                 } else {
-                    ctx.toast("pleas")
                 }
             }
 
@@ -421,7 +420,6 @@ class CategoryBoardActivity : AppCompatActivity() {
                     ll_category_board_board_view.visibility = View.VISIBLE
 
                 } else {
-                    ctx.toast("pleas")
                 }
             }
         })

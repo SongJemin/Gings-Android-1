@@ -147,7 +147,6 @@ class LoungeIntroduceActivity : AppCompatActivity() {
                 }
                 else{
                     Log.v("TAG","값 전달 잘못")
-                    toast("값 전달 잘못")
                 }
             }
 

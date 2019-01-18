@@ -47,7 +47,9 @@
             android:textSize="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ywooo21@gmail.com"/>
+            android:hint="이메일주소"
+            android:gravity="center"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_gravity="center"
@@ -75,9 +77,11 @@
             android:id="@+id/et_login_pw"
             android:layout_marginLeft="18dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:inputType="textPassword"
-            android:text="1234567"/>
+            android:gravity="center"
+            android:hint="*********"
+            />
     </LinearLayout>
     <TextView
         android:id="@+id/tv_login_login_button"
